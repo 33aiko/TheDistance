@@ -15,10 +15,12 @@ public class LevelFinishController : MonoBehaviour {
                 Button bu = FindObjectOfType<Button>();
                 bu.GetComponentInChildren<Text>().text = "Try again!";
                 print("Finished this level!");
+                // level finished
             }
             else
             {
                 print("You need to collect the key first!");
+                // the player have to collect the key first
             }
         }
     }

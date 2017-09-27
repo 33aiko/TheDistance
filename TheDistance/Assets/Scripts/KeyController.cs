@@ -9,7 +9,7 @@ public class KeyController : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             Player p = collision.GetComponent<Player>();
-            p.haveKey1 = true;
+            p.haveKey1 = true; // player got the key
             print("The player got the key!");
             gameObject.SetActive(false);
         }

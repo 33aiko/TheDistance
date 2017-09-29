@@ -2,64 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 
-[RequireComponent (typeof (Controller2D) )]
-public class Player : NetworkBehaviour {
+[RequireComponent(typeof(Controller2D))]
+public class Player : MonoBehaviour
+{
 
     public float jumpHeight;
     public float timeToJumpApex;
-    public bool haveKey1 = false;
     public Vector3 curCheckPoint;
     public float moveSpeed;
-    public Vector3 offset;
-    public Sprite clientSprite;
 
-    float gravity;
+    public bool[] haveKey;
+    public int keyNum;
+
+    public NPCTrigger curNPC;
+
+    public float gravity;
     float jumpVelocity;
-    float accelOnAir = .1f;
-    float accelOnGround= .2f;
     Vector3 velocity;
     float velocitySmoothing;
 
-    Controller2D controller;
+    private Vector3 offset;
 
-	void Start () {
+    [HideInInspector]
+    public Controller2D controller;
+
+    void Start()
+    {
         controller = GetComponent<Controller2D>();
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        curCheckPoint = new Vector3(12.82f, 58f, 0);
-        transform.position = curCheckPoint;
+        //curCheckPoint = new Vector3(5457f, 685f, 0);
 
+        //have key
+        for (int i = 0; i < 3; i++) haveKey[i] = false;
+
+        // interact with objects
+        controller.collisions.interact = false;
+        
         //camera
         offset = Camera.main.transform.position - transform.position;
+    }
 
-        //SpriteImage
-        if ((!isServer&&isLocalPlayer) || (isServer&&!isLocalPlayer)) { GetComponent<SpriteRenderer>().sprite = clientSprite; }
-	}
-
-	void Update ()
+    void Update()
     {
-        //LocalPlayerDetection
-        if (!isLocalPlayer) { return; }
+        // press Q to interact with the object
+        if(Input.GetKey(KeyCode.Q))
+           controller.collisions.interact = true;
+        else
+           controller.collisions.interact = false;
 
-        if(controller.collisions.above || controller.collisions.below)
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            print("have NPC in range? " + (curNPC != null));
+            if(curNPC != null)
+            {
+                print("NPC says: " + curNPC.NPCtalk);
+            }
+        }
+
+        // on the ground
+        if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
         {
             velocity.y = 0;
         }
 
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //print("On the ladder? " + controller.collisions.onLadder);
 
-        if(Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
+        // move in y axis if on the ladder
+        if(controller.collisions.onLadder)
+        {
+            //print("User on the ladder!");
+            //print(controller.collisions.onLadder);
+            velocity.y = input.y * moveSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
         {
             velocity.y = jumpVelocity;
         }
 
         velocity.x = input.x * moveSpeed;
-        velocity.y -= gravity * Time.deltaTime;
+        if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        //Camera
+        //camera
         Vector3 tmp = new Vector3(0, 0, offset.z);
         Camera.main.transform.position = transform.position + tmp;
     }

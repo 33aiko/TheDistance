@@ -10,7 +10,13 @@ public class LevelFinishController : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             Player p = collision.GetComponent<Player>();
-            if(p.haveKey1)
+            bool canFinish = true;
+            for(int i = 0; i < p.keyNum; i++)
+            {
+                canFinish &= p.haveKey[i];
+                if(!p.haveKey[i]) print("Player missing key " + i);
+            }
+            if(canFinish)
             {
                 Button bu = FindObjectOfType<Button>();
                 bu.GetComponentInChildren<Text>().text = "Try again!";

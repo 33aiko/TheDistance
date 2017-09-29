@@ -11,7 +11,7 @@ public class HarmfulTrigger : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log("somethign entered");
+        Debug.Log("somethign entered");
         if(collision.gameObject.tag == "Player")
         {
             Player p = collision.GetComponent<Player>();

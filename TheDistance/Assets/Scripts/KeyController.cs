@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class KeyController : MonoBehaviour {
 
+    public int keyIdx;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             Player p = collision.GetComponent<Player>();
-            p.haveKey1 = true;
+            p.haveKey[keyIdx] = true;
             print("The player got the key!");
             gameObject.SetActive(false);
         }

@@ -69,6 +69,7 @@ public class Controller2D : RaycastController
                     bo.controller.Move(new Vector3(pushX, pushY));
                 }
 
+
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
                 //if the player can climb the slope
@@ -92,7 +93,8 @@ public class Controller2D : RaycastController
                 // no slope or cannot climb
                 if (!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
-                    velocity.x = (hit.distance - skinWidth) * directionX;
+                    if(hit.transform.gameObject.tag != "FloatingPlatform")
+                        velocity.x = (hit.distance - skinWidth) * directionX;
                     rayLength = hit.distance;
 
                     if (collisions.climbingSlope)
@@ -122,7 +124,17 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
-                velocity.y = (hit.distance - skinWidth) * directionY;
+                if(directionY == 1 && 
+                    hit.transform.gameObject.tag == "FloatingPlatform")
+                {
+                    //print("Hit bottom of the floating platform");
+                    //hits bottom of the floating platform
+                    //will not collide
+                }
+                else
+                {
+                    velocity.y = (hit.distance - skinWidth) * directionY;
+                }
                 rayLength = hit.distance;
 
                 if (collisions.climbingSlope)
@@ -131,7 +143,8 @@ public class Controller2D : RaycastController
                 }
 
                 collisions.below = directionY == -1;
-                collisions.above = directionY == 1;
+                collisions.above = (directionY == 1) && 
+                    (hit.transform.gameObject.tag != "FloatingPlatform");
             }
         }
 

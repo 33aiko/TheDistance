@@ -67,9 +67,11 @@ public class Player : NetworkBehaviour
 
 		if (isLocalPlayer && isServer) {
 			transform.position = EricTransform.position;
+            curCheckPoint = EricTransform.position;
 		}
 		if (isLocalPlayer && !isServer) {
 			transform.position = NatalieTransform.position;
+            curCheckPoint = NatalieTransform.position;
 		}
 
 		//
@@ -119,27 +121,24 @@ public class Player : NetworkBehaviour
 
 		if(Input.GetKeyDown(KeyCode.E))
 		{
-			print("have NPC in range? " + (curNPC != null));
+			//print("have NPC in range? " + (curNPC != null));
 			if(curNPC != null)
 			{
 				print("NPC says: " + curNPC.NPCtalk);
 			}
 		}
 
-		// on the ground
+		// on the ground or on the ladder
 		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
 		{
 			velocity.y = 0;
 		}
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		//print("On the ladder? " + controller.collisions.onLadder);
 
 		// move in y axis if on the ladder
 		if(controller.collisions.onLadder)
 		{
-			//print("User on the ladder!");
-			//print(controller.collisions.onLadder);
 			velocity.y = input.y * moveSpeed;
 		}
 

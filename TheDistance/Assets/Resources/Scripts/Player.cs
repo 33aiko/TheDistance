@@ -39,12 +39,17 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     public Controller2D controller;
 
+    [HideInInspector]
+    public PlayerCircleCollider pCC;
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
+        pCC = GetComponent<PlayerCircleCollider>();
+
+        // movement offset
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        //curCheckPoint = new Vector3(5457f, 685f, 0);
 
         //have key
         for (int i = 0; i < 3; i++) haveKey[i] = false;
@@ -112,6 +117,7 @@ public class Player : NetworkBehaviour
 			spirit.transform.Translate((spiritTargetPos - spirit.transform.position) / interpolateTime);
 		}
     }
+
 	void KeyControlMove(){
 		// press Q to interact with the object
 		if(Input.GetKey(KeyCode.Q))
@@ -127,6 +133,18 @@ public class Player : NetworkBehaviour
 				print("NPC says: " + curNPC.NPCtalk);
 			}
 		}
+
+        // object sharing
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            pCC.highlightNearObject();
+            pCC.getDefaultShareObject();
+        }
+        if(Input.GetKeyUp(KeyCode.T))
+        {
+            pCC.highlightNearObject(false);
+            pCC.shareSelectedObject();
+        }
 
 		// on the ground or on the ladder
 		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)

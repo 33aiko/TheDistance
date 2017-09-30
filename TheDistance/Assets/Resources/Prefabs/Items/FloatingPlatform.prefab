@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33923698348884998}
   - component: {fileID: 23052731296009636}
   - component: {fileID: 61654821234014242}
+  - component: {fileID: 122470983256616904}
   m_Layer: 9
   m_Name: FloatingPlatform
   m_TagString: FloatingPlatform
@@ -36,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1651210776227576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -163.3, y: 21.47, z: 1.6769496}
-  m_LocalScale: {x: 79.72875, y: 13.442719, z: 1}
+  m_LocalPosition: {x: -6.4, y: -97.8, z: 1.6769496}
+  m_LocalScale: {x: 98.88357, y: 23.020138, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,3 +107,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.23727614}
   m_EdgeRadius: 0
+--- !u!122 &122470983256616904
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651210776227576}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278255590
+  m_Size: 5

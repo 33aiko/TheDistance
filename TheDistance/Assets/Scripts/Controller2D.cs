@@ -25,15 +25,16 @@ public class Controller2D : RaycastController
         {
             DescendSlope(ref velocity);
         }
-        if (velocity.x != 0)
+        if (velocity.x != 0) // if the player is moving in x-direction, check the collision
         {
             HorizontalCollisions(ref velocity);
         }
-        if (velocity.y != 0)
+        if (velocity.y != 0) // if the player is moving in y-direction, check the collision
         {
             VerticalCollisions(ref velocity);
         }
 
+        //move the player after checking collision
         transform.Translate(velocity);
 
         if(standingOnPlatform)
@@ -49,6 +50,7 @@ public class Controller2D : RaycastController
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
+            //check hit on x-direction
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
@@ -69,6 +71,7 @@ public class Controller2D : RaycastController
 
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
+                //if the player can climb the slope
                 if (i == 0 && slopeAngle <= maxClimbAngle)
                 {
                     if (collisions.descendingSlope)
@@ -86,6 +89,7 @@ public class Controller2D : RaycastController
                     velocity.x += distanceToSlopeStart * directionX;
                 }
 
+                // no slope or cannot climb
                 if (!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
                     velocity.x = (hit.distance - skinWidth) * directionX;

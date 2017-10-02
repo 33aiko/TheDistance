@@ -24,8 +24,10 @@ GameObject:
   - component: {fileID: 61359329358718218}
   - component: {fileID: 114386261297146404}
   - component: {fileID: 114126426605706722}
+  - component: {fileID: 114043183566061410}
   - component: {fileID: 50416968415205598}
   - component: {fileID: 114417509091363796}
+  - component: {fileID: 58764016973506572}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -105,6 +107,21 @@ Rigidbody2D:
   m_SleepingMode: 2
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &58764016973506572
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309638351721858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!61 &61359329358718218
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -130,6 +147,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114043183566061410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309638351721858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7452d9fe182d544b378944227cb4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114126426605706722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,6 +176,7 @@ MonoBehaviour:
   ShareWorldName: ShareWorld
   spirit: {fileID: 1878287516793506, guid: 1bb0e7cec865944eb865db239881109c, type: 2}
   spiritTargetPos: {x: 0, y: 0, z: 0}
+  interpolateTime: 10
   jumpHeight: 150
   timeToJumpApex: 0.3
   curCheckPoint: {x: 0, y: 0, z: 0}
@@ -157,6 +186,7 @@ MonoBehaviour:
   curNPC: {fileID: 0}
   gravity: 0
   controller: {fileID: 0}
+  pCC: {fileID: 0}
 --- !u!114 &114386261297146404
 MonoBehaviour:
   m_ObjectHideFlags: 1

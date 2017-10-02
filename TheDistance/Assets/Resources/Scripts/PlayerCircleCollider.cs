@@ -12,7 +12,8 @@ public class PlayerCircleCollider : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "FloatingPlatform")
+        if(collision.gameObject.tag == "FloatingPlatform" ||
+            collision.gameObject.tag == "Box")
         {
             //print(collision.gameObject.name + "enters the region");
             nearObjectList.Add(collision.gameObject);
@@ -24,7 +25,8 @@ public class PlayerCircleCollider : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "FloatingPlatform")
+        if (collision.gameObject.tag == "FloatingPlatform" ||
+            collision.gameObject.tag == "Box")
         {
             //print(collision.gameObject.name + "leaves the region");
             nearObjectList.Remove(collision.gameObject);

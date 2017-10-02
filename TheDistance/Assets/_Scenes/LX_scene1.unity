@@ -5293,7 +5293,7 @@ GameObject:
   - component: {fileID: 1661995644}
   m_Layer: 9
   m_Name: movingPlatform_TriggerB
-  m_TagString: Untagged
+  m_TagString: FloatingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5398,10 +5398,12 @@ MonoBehaviour:
   passengerMask:
     serializedVersion: 2
     m_Bits: 256
-  move: {x: 100, y: 100, z: 0}
-  targetPos: {x: 2638, y: 800, z: 0}
+  move: {x: 0, y: 100, z: 0}
+  targetPos1: {x: 2638, y: 743, z: 0}
+  targetPos2: {x: 2638, y: 600, z: 0}
   defaultPosition: {x: 2638, y: 600, z: 0}
   canMove: 0
+  goingUp: 0
 --- !u!4 &1675893317 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4044722808766262, guid: 0ce2dce94796e234eadc5c314542e212,
@@ -6549,7 +6551,7 @@ GameObject:
   - component: {fileID: 1936993770}
   m_Layer: 9
   m_Name: movingPlatform_TriggerA
-  m_TagString: Untagged
+  m_TagString: FloatingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6655,9 +6657,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   move: {x: 0, y: 100, z: 0}
-  targetPos: {x: 5055, y: 560, z: 0}
+  targetPos1: {x: 0, y: 0, z: 0}
+  targetPos2: {x: 0, y: 0, z: 0}
   defaultPosition: {x: 5055, y: 379, z: 0}
   canMove: 1
+  goingUp: 0
 --- !u!1001 &1946232108
 Prefab:
   m_ObjectHideFlags: 0

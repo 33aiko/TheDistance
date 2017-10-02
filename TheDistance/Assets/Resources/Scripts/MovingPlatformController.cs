@@ -7,10 +7,12 @@ public class MovingPlatformController : RaycastController
 
     public LayerMask passengerMask;
     public Vector3 move;
-    public Vector3 targetPos;
+    public Vector3 targetPos1;
+    public Vector3 targetPos2;
     public Vector3 defaultPosition;
 
     public bool canMove;
+    public bool goingUp;
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
@@ -20,6 +22,8 @@ public class MovingPlatformController : RaycastController
         base.Start();
         canMove = false;
         transform.localPosition = defaultPosition;
+        targetPos2 = defaultPosition;
+        goingUp = true;
     }
 
     void Update()
@@ -28,12 +32,35 @@ public class MovingPlatformController : RaycastController
 
         if(canMove) // if the step on trigger is triggered
         {
-            Vector3 diff = (targetPos - transform.localPosition);
-            Vector3 velocity = move * Time.deltaTime;
+            Vector3 velocity;
+            if(goingUp)
+            {
+                Vector3 diff = (targetPos1 - transform.localPosition);
+                velocity = move * Time.deltaTime;
 
-            // in case the platform exceeds the check point in one frame
-            if (diff.y < velocity.y) velocity.y = diff.y;
-            if (diff.x < velocity.x) velocity.x = diff.x;
+                // in case the platform exceeds the check point in one frame
+                if (diff.y < velocity.y)
+                {
+                    velocity.y = diff.y;
+                    goingUp = false;
+                }
+                if (diff.y < 0) goingUp = false;
+                if (diff.x < velocity.x) velocity.x = diff.x;
+            }
+            else
+            {
+                Vector3 diff = (transform.localPosition - targetPos2);
+                velocity = -move * Time.deltaTime;
+
+                // in case the platform exceeds the check point in one frame
+                if (diff.y < Mathf.Abs(velocity.y))
+                {
+                    velocity.y = -diff.y;
+                    goingUp = true;
+                }
+                if (diff.y < 0) goingUp = true;
+                if (diff.x < velocity.x) velocity.x = diff.x;
+            }
 
             CalculatePassengerMovement(velocity);
 
@@ -77,7 +104,7 @@ public class MovingPlatformController : RaycastController
                 Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, passengerMask);
-                Debug.DrawRay(rayOrigin, Vector2.up* directionY * rayLength, Color.yellow);
+                Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.yellow);
 
                 if (hit)
                 {

@@ -14,7 +14,7 @@ public class PlayerCircleCollider : MonoBehaviour {
     {
         if(collision.gameObject.tag == "FloatingPlatform")
         {
-            //print(collision.gameObject.name + "enters the region");
+            print(collision.gameObject.name + "enters the region");
             nearObjectList.Add(collision.gameObject);
 
             //show the halo when the key is down & platform inside the region

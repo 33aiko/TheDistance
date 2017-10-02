@@ -13,6 +13,7 @@ public class HarmfulTrigger : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
+            print("player died!");
             Player p = collision.GetComponent<Player>();
             p.Die();
             // when player falls, the player will die

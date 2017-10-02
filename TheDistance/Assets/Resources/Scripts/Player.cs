@@ -42,6 +42,9 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     public PlayerCircleCollider pCC;
 
+    [HideInInspector]
+    GameObject root;
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
@@ -61,7 +64,7 @@ public class Player : NetworkBehaviour
         offset = Camera.main.transform.position - transform.position;
 
 		//find root, because spirit is deactived, so we can only use transform to find it.
-		GameObject root = GameObject.Find("Root");
+		root = GameObject.Find("Root");
 		spirit = root.transform.Find("Spirit").gameObject;
 		spiritTargetPos = spirit.transform.position;
 
@@ -143,7 +146,19 @@ public class Player : NetworkBehaviour
         if(Input.GetKeyUp(KeyCode.T))
         {
             pCC.highlightNearObject(false);
-            pCC.shareSelectedObject();
+            GameObject sharedObject = pCC.shareSelectedObject();
+            if (sharedObject != null)
+            {
+                Debug.Log("found");
+                if (isServer && isLocalPlayer)
+                {
+                    RpcShare(sharedObject.name);
+                }
+                if (!isServer && isLocalPlayer)
+                {
+                    CmdShare(sharedObject.name);
+                }
+            }
         }
 
 		// on the ground or on the ladder
@@ -192,8 +207,35 @@ public class Player : NetworkBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-	//sent by server, run on all clients
-	[ClientRpc]
+
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcShare(string sharedObject)
+    {
+        Debug.Log(sharedObject+" read");
+        GameObject remoteWorld=root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj=remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+
+    }
+
+    //sent by client, show object on server
+    [Command]
+    public void CmdShare(string sharedObject)
+    {
+        Debug.Log(sharedObject+" read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+    }
+
+
+    //sent by server, run on all clients
+    [ClientRpc]
 	public void RpcMove(Vector3 pos)
 	{
 		//print("Rpc Move");

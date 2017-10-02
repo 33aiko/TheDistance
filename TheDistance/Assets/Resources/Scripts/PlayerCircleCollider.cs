@@ -66,13 +66,14 @@ public class PlayerCircleCollider : MonoBehaviour {
         shareObject = nearestObject;
     }
 
-    public void shareSelectedObject()
+    public GameObject shareSelectedObject()
     {
         if(shareObject == null)
         {
             print("nothing can be shared");
         }
         // add share code here
+        return shareObject;
         // share "shareObject"
     }
 }

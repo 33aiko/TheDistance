@@ -163,7 +163,7 @@ MonoBehaviour:
     m_Bits: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 528
   horizontalRayCount: 4
   verticalRayCount: 4
   horizontalRaySpacing: 0

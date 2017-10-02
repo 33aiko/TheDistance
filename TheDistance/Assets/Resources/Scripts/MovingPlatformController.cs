@@ -12,6 +12,7 @@ public class MovingPlatformController : RaycastController
     public Vector3 defaultPosition;
 
     public bool canMove;
+    public bool oneWay;
     public bool goingUp;
 
     List<PassengerMovement> passengerMovement;
@@ -33,7 +34,7 @@ public class MovingPlatformController : RaycastController
         if(canMove) // if the step on trigger is triggered
         {
             Vector3 velocity;
-            if(goingUp)
+            if(goingUp || oneWay)
             {
                 Vector3 diff = (targetPos1 - transform.localPosition);
                 velocity = move * Time.deltaTime;
@@ -62,6 +63,10 @@ public class MovingPlatformController : RaycastController
                 if (diff.x < velocity.x) velocity.x = diff.x;
             }
 
+            if(velocity.y == 0)
+            {
+                gameObject.tag = "FloatingPlatform";
+            }
             CalculatePassengerMovement(velocity);
 
             MovePassengers(true);

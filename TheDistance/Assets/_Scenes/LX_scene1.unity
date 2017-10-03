@@ -4342,6 +4342,84 @@ Transform:
   m_PrefabParentObject: {fileID: 4044722808766262, guid: 0ce2dce94796e234eadc5c314542e212,
     type: 2}
   m_PrefabInternal: {fileID: 1063805213}
+--- !u!1 &1460724794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1460724796}
+  - component: {fileID: 1460724795}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1460724795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460724794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67643fff9d01542e18a3f87547d8fb49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: BGmusic
+    clip: {fileID: 8300000, guid: 0d6c65d9c4b754651bbfa58cb793d004, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 06135fa6e30ac4f24a160eaca81a8f92, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Land
+    clip: {fileID: 8300000, guid: 164483410c68545eca8232281b7f05f5, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Walking
+    clip: {fileID: 8300000, guid: 94dcc8b0fe4764f71a9d2202515aa63a, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+--- !u!4 &1460724796
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460724794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4790.29, y: 501.11554, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1501414529
 Prefab:
   m_ObjectHideFlags: 0
@@ -5105,9 +5183,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   move: {x: 0, y: 100, z: 0}
-  targetPos1: {x: 2638, y: 743, z: 0}
-  targetPos2: {x: 2638, y: 600, z: 0}
-  defaultPosition: {x: 2638, y: 600, z: 0}
+  curTranslate: {x: 0, y: 0, z: 0}
+  targetTranslate: {x: 0, y: 0, z: 0}
   canMove: 0
   oneWay: 0
   goingUp: 0
@@ -6387,9 +6464,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   move: {x: 0, y: 100, z: 0}
-  targetPos1: {x: 5073, y: 561, z: 0}
-  targetPos2: {x: 0, y: 0, z: 0}
-  defaultPosition: {x: 5055, y: 379, z: 0}
+  curTranslate: {x: 0, y: 0, z: 0}
+  targetTranslate: {x: 0, y: 0, z: 0}
   canMove: 1
   oneWay: 1
   goingUp: 0

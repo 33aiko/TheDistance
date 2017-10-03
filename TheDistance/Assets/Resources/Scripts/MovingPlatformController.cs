@@ -7,9 +7,9 @@ public class MovingPlatformController : RaycastController
 
     public LayerMask passengerMask;
     public Vector3 move;
-    public Vector3 targetPos1;
-    public Vector3 targetPos2;
-    public Vector3 defaultPosition;
+    public Vector3 curTranslate;
+    public Vector3 targetTranslate;
+    //public Vector3 defaultPosition;
 
     public bool canMove;
     public bool oneWay;
@@ -22,8 +22,8 @@ public class MovingPlatformController : RaycastController
     {
         base.Start();
         canMove = false;
-        transform.localPosition = defaultPosition;
-        targetPos2 = defaultPosition;
+        //transform.position = defaultPosition;
+        //targetPos2 = defaultPosition;
         goingUp = true;
     }
 
@@ -36,7 +36,7 @@ public class MovingPlatformController : RaycastController
             Vector3 velocity;
             if(goingUp || oneWay)
             {
-                Vector3 diff = (targetPos1 - transform.localPosition);
+                Vector3 diff = (targetTranslate - curTranslate);
                 velocity = move * Time.deltaTime;
 
                 // in case the platform exceeds the check point in one frame
@@ -46,11 +46,12 @@ public class MovingPlatformController : RaycastController
                     goingUp = false;
                 }
                 if (diff.y < 0) goingUp = false;
-                if (diff.x < velocity.x) velocity.x = diff.x;
+                curTranslate += velocity;
+                //if (diff.x < velocity.x) velocity.x = diff.x;
             }
             else
             {
-                Vector3 diff = (transform.localPosition - targetPos2);
+                Vector3 diff = curTranslate;
                 velocity = -move * Time.deltaTime;
 
                 // in case the platform exceeds the check point in one frame
@@ -60,7 +61,8 @@ public class MovingPlatformController : RaycastController
                     goingUp = true;
                 }
                 if (diff.y < 0) goingUp = true;
-                if (diff.x < velocity.x) velocity.x = diff.x;
+                curTranslate += velocity;
+                //if (diff.x < velocity.x) velocity.x = diff.x;
             }
 
             if(velocity.y == 0)

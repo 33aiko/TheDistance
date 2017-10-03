@@ -147,7 +147,7 @@ public class Player : NetworkBehaviour
         {
             pCC.highlightNearObject(false);
             GameObject sharedObject = pCC.shareSelectedObject();
-            if (sharedObject != null)
+            if (sharedObject.tag=="FloatingPlatform")
             {
                 Debug.Log("found");
                 if (isServer && isLocalPlayer)
@@ -157,6 +157,19 @@ public class Player : NetworkBehaviour
                 if (!isServer && isLocalPlayer)
                 {
                     CmdShare(sharedObject.name);
+                }
+            }
+            else if (sharedObject.tag == "Box")
+            {
+                Debug.Log("box found");
+                if(isServer && isLocalPlayer)
+                {
+                    RpcBox(sharedObject.name);
+                    root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find("Box").gameObject.SetActive(false);
+                }
+                if(!isServer && isLocalPlayer)
+                {
+                    CmdBox(sharedObject.name);
                 }
             }
         }
@@ -207,7 +220,9 @@ public class Player : NetworkBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
+    /**
+     * zhe li hui fan fu shengcheng! ri hou xuyao gai yi xia jiegou!!! jian yi fang ru shareworld!
+     */
     //sent by server, show object on clients
     [ClientRpc]
     public void RpcShare(string sharedObject)
@@ -226,6 +241,32 @@ public class Player : NetworkBehaviour
     public void CmdShare(string sharedObject)
     {
         Debug.Log(sharedObject+" read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+        Debug.Log(newObj.name);
+    }
+
+    //sent by server, show box on clients
+    [ClientRpc]
+    public void RpcBox(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+
+    }
+
+    //sent by client, show box on server
+    [Command]
+    public void CmdBox(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);

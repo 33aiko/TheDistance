@@ -166,6 +166,18 @@ public class Player : NetworkBehaviour
                     CmdShare(sharedObject.name);
                 }
             }
+            else if (sharedObject.tag == "MovingPlatform")
+            {
+                Debug.Log("mv!");
+                if (isServer && isLocalPlayer)
+                {
+                    RpcShareMv(sharedObject.name);
+                }
+                if (!isServer && isLocalPlayer)
+                {
+                    CmdShareMv(sharedObject.name);
+                }
+            }
             else if (sharedObject.tag == "Box")
             {
                 Debug.Log("box found");
@@ -263,6 +275,34 @@ public class Player : NetworkBehaviour
         newObj.transform.position = sObj.transform.position;
         Debug.Log(newObj.name);
     }
+
+
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcShareMv(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
+
+    }
+
+    //sent by client, show object on server
+    [Command]
+    public void CmdShareMv(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
+        Debug.Log(newObj.name);
+    }
+
 
     //sent by server, show box on clients
     [ClientRpc]

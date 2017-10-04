@@ -748,7 +748,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262095700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2151, y: -292, z: 0}
+  m_LocalPosition: {x: 1115, y: 244, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -4375,7 +4375,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5e277c64ac668664b8f61189bea2eaaa, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}
@@ -4384,7 +4384,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e95ad8447ef595b4e91ac4e56b54513d, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
@@ -4393,7 +4393,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 566c187c67faac14fba7e9e7ab395cef, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
@@ -4402,7 +4402,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7bb4722e27e1cba4ea865a7cb98d029c, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}
@@ -4411,7 +4411,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}
@@ -4423,7 +4423,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460724794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4790.29, y: 501.11554, z: 0}
+  m_LocalPosition: {x: 4790.29, y: 567, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5116,7 +5116,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.39986205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5127,7 +5127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 1}
+  m_Size: {x: 0.99999994, y: 0.20027593}
   m_EdgeRadius: 0
 --- !u!23 &1661995642
 MeshRenderer:
@@ -5193,7 +5193,7 @@ MonoBehaviour:
     m_Bits: 256
   move: {x: 0, y: 100, z: 0}
   curTranslate: {x: 0, y: 0, z: 0}
-  targetTranslate: {x: 0, y: 0, z: 0}
+  targetTranslate: {x: 0, y: 140, z: 0}
   canMove: 0
   oneWay: 0
   goingUp: 0
@@ -6305,7 +6305,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885479941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2131, y: -590, z: 0}
+  m_LocalPosition: {x: 834, y: 71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -6379,7 +6379,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1936993765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5073, y: 388, z: 1.6769496}
+  m_LocalPosition: {x: 5062, y: 373, z: 1.6769496}
   m_LocalScale: {x: 155.6048, y: 25.10187, z: 1}
   m_Children: []
   m_Father: {fileID: 1724559830}
@@ -6474,7 +6474,7 @@ MonoBehaviour:
     m_Bits: 256
   move: {x: 0, y: 100, z: 0}
   curTranslate: {x: 0, y: 0, z: 0}
-  targetTranslate: {x: 0, y: 0, z: 0}
+  targetTranslate: {x: 0, y: 140, z: 0}
   canMove: 1
   oneWay: 1
   goingUp: 0

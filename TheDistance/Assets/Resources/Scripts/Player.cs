@@ -287,7 +287,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
-
+        Debug.Log(newObj.transform.position);
     }
 
     //sent by client, show object on server
@@ -300,7 +300,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
-        Debug.Log(newObj.name);
+        Debug.Log(newObj.transform.position);
     }
 
 

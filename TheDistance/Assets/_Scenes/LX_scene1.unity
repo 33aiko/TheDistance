@@ -4366,13 +4366,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1460724794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67643fff9d01542e18a3f87547d8fb49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f9c2315dd4359a4e8f98566d2c7080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
   sounds:
-  - name: BGmusic
-    clip: {fileID: 8300000, guid: 0d6c65d9c4b754651bbfa58cb793d004, type: 3}
+  - name: PlayerWalking
+    clip: {fileID: 8300000, guid: 5e277c64ac668664b8f61189bea2eaaa, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 0
@@ -4380,8 +4380,8 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: Jump
-    clip: {fileID: 8300000, guid: 06135fa6e30ac4f24a160eaca81a8f92, type: 3}
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: e95ad8447ef595b4e91ac4e56b54513d, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 0
@@ -4389,8 +4389,8 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: Land
-    clip: {fileID: 8300000, guid: 164483410c68545eca8232281b7f05f5, type: 3}
+  - name: PlayerLand
+    clip: {fileID: 8300000, guid: 566c187c67faac14fba7e9e7ab395cef, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 0
@@ -4398,8 +4398,17 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: Walking
-    clip: {fileID: 8300000, guid: 94dcc8b0fe4764f71a9d2202515aa63a, type: 3}
+  - name: MusicTrack01NoAtmo
+    clip: {fileID: 8300000, guid: 7bb4722e27e1cba4ea865a7cb98d029c, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: MusicTrack01WithAtmo
+    clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 0

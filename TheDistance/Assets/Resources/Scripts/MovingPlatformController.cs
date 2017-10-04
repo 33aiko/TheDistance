@@ -43,11 +43,11 @@ public class MovingPlatformController : RaycastController
                 {
                     velocity.y = diff.y;
                     goingUp = false;
-                    gameObject.tag = "FloatingPlatform";
+                    gameObject.tag = "MovingPlatform";
                 }
                 if (diff.y < 0)
                 {
-                    gameObject.tag = "FloatingPlatform";
+                    gameObject.tag = "MovingPlatform";
                     goingUp = false;
                 }
                 curTranslate += velocity;

@@ -125,6 +125,8 @@ public class MovingPlatformController : RaycastController
                         movedPassengers.Add(hit.transform);
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
+                        pushY = Mathf.Max
+                            (hit.transform.GetComponent<Player>().velocity.y* Time.deltaTime, pushY);
 
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
                     }

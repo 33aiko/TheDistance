@@ -23,6 +23,7 @@ public class Player : NetworkBehaviour
     public float timeToJumpApex;
     public Vector3 curCheckPoint;
     public float moveSpeed;
+    public Vector3 velocity;
 
     public bool[] haveKey;
     public int keyNum;
@@ -31,8 +32,9 @@ public class Player : NetworkBehaviour
 
     public float gravity;
     float jumpVelocity;
-    Vector3 velocity;
     float velocitySmoothing;
+
+    bool isJumping = false;
 
     private Vector3 offset;
 
@@ -182,6 +184,11 @@ public class Player : NetworkBehaviour
 		// on the ground or on the ladder
 		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
 		{
+            if(isJumping)
+            {
+                audioManager.Play("PlayerLand");
+            }
+            isJumping = false;
 			velocity.y = 0;
 		}
 
@@ -198,6 +205,7 @@ public class Player : NetworkBehaviour
 		{
             audioManager.Play("PlayerJump");
 			velocity.y = jumpVelocity;
+            isJumping = true;
 		}
 
 		velocity.x = input.x * moveSpeed;

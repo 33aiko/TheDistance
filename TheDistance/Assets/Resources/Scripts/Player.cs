@@ -45,8 +45,13 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     GameObject root;
 
+    [HideInInspector]
+    AudioManager audioManager;
+
     void Start()
     {
+        // get components
+        audioManager = FindObjectOfType<AudioManager>();
         controller = GetComponent<Controller2D>();
         pCC = GetComponent<PlayerCircleCollider>();
 
@@ -188,8 +193,10 @@ public class Player : NetworkBehaviour
 			velocity.y = input.y * moveSpeed;
 		}
 
+        // jump
 		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
 		{
+            audioManager.Play("PlayerJump");
 			velocity.y = jumpVelocity;
 		}
 

@@ -11,13 +11,19 @@ public class AudioManager : MonoBehaviour
 
 	public Sound[] sounds;
 
-//	TODO: implement
-//	public float masterVolume;
-//	public float effectVolume;
-//	public float musicVolume;
-//	public float ambientVolume;
+    //	TODO: implement
+    //	public float masterVolume;
+    //	public float effectVolume;
+    //	public float musicVolume;
+    //	public float ambientVolume;
 
-	void Awake()
+    private void Start()
+    {
+        print("Playing music!");
+        Play("MusicTrack01WithAtmo");
+    }
+
+    void Awake()
 	{
 //		masterVolume = 1f;
 //		effectVolume = 1f;

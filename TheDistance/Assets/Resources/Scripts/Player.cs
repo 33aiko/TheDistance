@@ -286,7 +286,7 @@ public class Player : NetworkBehaviour
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-        newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
+        newObj.transform.position += sObj.GetComponent<MovingPlatformController>().targetTranslate;
         Debug.Log(newObj.transform.position);
     }
 
@@ -299,7 +299,7 @@ public class Player : NetworkBehaviour
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-        newObj.transform.position = sObj.GetComponent<MovingPlatformController>().targetTranslate;
+        newObj.transform.position += sObj.GetComponent<MovingPlatformController>().targetTranslate;
         Debug.Log(newObj.transform.position);
     }
 

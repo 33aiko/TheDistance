@@ -9,7 +9,6 @@ public class MovingPlatformController : RaycastController
     public Vector3 move;
     public Vector3 curTranslate;
     public Vector3 targetTranslate;
-    //public Vector3 defaultPosition;
 
     public bool canMove;
     public bool oneWay;
@@ -44,8 +43,13 @@ public class MovingPlatformController : RaycastController
                 {
                     velocity.y = diff.y;
                     goingUp = false;
+                    gameObject.tag = "FloatingPlatform";
                 }
-                if (diff.y < 0) goingUp = false;
+                if (diff.y < 0)
+                {
+                    gameObject.tag = "FloatingPlatform";
+                    goingUp = false;
+                }
                 curTranslate += velocity;
                 //if (diff.x < velocity.x) velocity.x = diff.x;
             }
@@ -67,7 +71,6 @@ public class MovingPlatformController : RaycastController
 
             if(velocity.y == 0)
             {
-                gameObject.tag = "FloatingPlatform";
             }
             CalculatePassengerMovement(velocity);
 

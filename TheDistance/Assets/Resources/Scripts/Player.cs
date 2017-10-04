@@ -285,9 +285,12 @@ public class Player : NetworkBehaviour
         GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
-        GameObject newObj = Instantiate(sObj);
-        newObj.transform.position += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-        Debug.Log(newObj.transform.position);
+		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		GameObject newObj = Instantiate(sObj);
+		newObj.transform.position = sObj.transform.position;
+		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
+			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		}
     }
 
     //sent by client, show object on server
@@ -298,9 +301,12 @@ public class Player : NetworkBehaviour
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
+		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
-        newObj.transform.position += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-        Debug.Log(newObj.transform.position);
+		newObj.transform.position = sObj.transform.position;
+		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
+			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		}
     }
 
 
@@ -314,6 +320,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		Debug.Log (sObj.name);
 
     }
 
@@ -327,6 +334,8 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		Debug.Log (sObj.name);
+
     }
 
 

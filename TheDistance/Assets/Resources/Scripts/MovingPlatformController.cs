@@ -13,6 +13,7 @@ public class MovingPlatformController : RaycastController
     public bool canMove;
     public bool oneWay;
     public bool goingUp;
+	public bool isMoved; 
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
@@ -24,6 +25,7 @@ public class MovingPlatformController : RaycastController
         //transform.position = defaultPosition;
         //targetPos2 = defaultPosition;
         goingUp = true;
+		isMoved = false; 
     }
 
     void Update()
@@ -44,11 +46,13 @@ public class MovingPlatformController : RaycastController
                     velocity.y = diff.y;
                     goingUp = false;
                     gameObject.tag = "MovingPlatform";
+					isMoved = true; 
                 }
                 if (diff.y < 0)
                 {
                     gameObject.tag = "MovingPlatform";
                     goingUp = false;
+					isMoved = true; 
                 }
                 curTranslate += velocity;
                 //if (diff.x < velocity.x) velocity.x = diff.x;

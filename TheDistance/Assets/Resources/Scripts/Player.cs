@@ -204,6 +204,10 @@ public class Player : NetworkBehaviour
             isJumping = false;
 			velocity.y = 0;
 		}
+        else
+        {
+            isJumping = true;
+        }
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -223,7 +227,7 @@ public class Player : NetworkBehaviour
 
 		velocity.x = input.x * moveSpeed;
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
-		controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)
 		{

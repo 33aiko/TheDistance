@@ -20,7 +20,6 @@ public class StepOnTriggerController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("cnt:" + cnt);
         if (collision.gameObject.tag == "Player") cnt++;
         if ((collision.gameObject.tag == "Player" && cnt == 2))
         {

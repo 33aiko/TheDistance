@@ -122,15 +122,11 @@ public class MovingPlatformController : RaycastController
 
                 if (hit)
                 {
-                    print("Hit one passenger!");
-
                     if (!movedPassengers.Contains(hit.transform))
                     {
                         movedPassengers.Add(hit.transform);
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
-                        pushY = Mathf.Max
-                            (hit.transform.GetComponent<Player>().velocity.y* Time.deltaTime, pushY);
 
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
                     }
@@ -164,6 +160,7 @@ public class MovingPlatformController : RaycastController
         }
 
         // Passenger on top of a horizontally or downward moving platform
+        /*
         if (directionY == -1 || velocity.y == 0 && velocity.x != 0)
         {
             float rayLength = skinWidth * 2;
@@ -186,6 +183,7 @@ public class MovingPlatformController : RaycastController
                 }
             }
         }
+        */
     }
 
     struct PassengerMovement

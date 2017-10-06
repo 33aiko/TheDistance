@@ -125,11 +125,17 @@ public class Controller2D : RaycastController
             if (hit)
             {
                 if(directionY == 1 && 
-                    hit.transform.gameObject.tag == "FloatingPlatform")
+                    (hit.transform.gameObject.tag == "FloatingPlatform" 
+                    || hit.transform.gameObject.tag == "MovingPlatform" ))
                 {
-                    //print("Hit bottom of the floating platform");
                     //hits bottom of the floating platform
                     //will not collide
+                    /* 
+                    if(hit.transform.gameObject.tag == "MovingPlatform")
+                        print("Hit the moving platform");
+                    else
+                        print("Hit bottom of the floating platform");
+                        */
                 }
                 else
                 {
@@ -143,8 +149,10 @@ public class Controller2D : RaycastController
                 }
 
                 collisions.below = directionY == -1;
-                collisions.above = (directionY == 1) && 
-                    (hit.transform.gameObject.tag != "FloatingPlatform");
+                collisions.above = (directionY == 1) &&
+                    ((hit.transform.gameObject.tag != "FloatingPlatform") &&
+                    (hit.transform.gameObject.tag != "MovingPlatform") 
+                    );
             }
         }
 

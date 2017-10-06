@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCTrigger : MonoBehaviour {
 
     public string NPCtalk;
+    Text t;
 
     int cnt = 0;
+
+    private void Start()
+    {
+        t = GameObject.Find("NPCText").GetComponent<Text>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +37,18 @@ public class NPCTrigger : MonoBehaviour {
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = null;
+                t.text = "";
             }
         }
+    }
+
+    public void showTalkText()
+    {
+        if(t == null)
+        {
+            print("nothing found");
+            return;
+        }
+        t.text = NPCtalk;
     }
 }

@@ -141,6 +141,7 @@ public class Player : NetworkBehaviour
 			if(curNPC != null)
 			{
 				print("NPC says: " + curNPC.NPCtalk);
+                curNPC.showTalkText();
 			}
 		}
 

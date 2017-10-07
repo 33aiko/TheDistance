@@ -34,7 +34,7 @@ public class Player : NetworkBehaviour
     float jumpVelocity;
     float velocitySmoothing;
 
-    bool isJumping = false;
+    public bool playerJumping = false;
 
     private Vector3 offset;
 
@@ -50,10 +50,14 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     AudioManager audioManager;
 
+    [HideInInspector]
+    Animator animator;
+
     void Start()
     {
         // get components
         audioManager = FindObjectOfType<AudioManager>();
+        animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         pCC = GetComponent<PlayerCircleCollider>();
 
@@ -197,16 +201,16 @@ public class Player : NetworkBehaviour
 		// on the ground or on the ladder
 		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
 		{
-            if(isJumping)
+            if(playerJumping)
             {
                 audioManager.Play("PlayerLand");
             }
-            isJumping = false;
+            playerJumping = false;
 			velocity.y = 0;
 		}
         else
         {
-            isJumping = true;
+            playerJumping = true;
         }
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -222,11 +226,20 @@ public class Player : NetworkBehaviour
 		{
             audioManager.Play("PlayerJump");
 			velocity.y = jumpVelocity;
-            isJumping = true;
+            playerJumping = true;
 		}
 
+
 		velocity.x = input.x * moveSpeed;
+        if (velocity.x < 0)
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
+
+        animator.SetBool("playerJumping", playerJumping);
+        animator.SetBool("playerUp", velocity.y > 0);
+        animator.SetBool("playerStand", (velocity.x == 0 && !playerJumping));
         controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)

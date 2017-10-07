@@ -229,17 +229,22 @@ public class Player : NetworkBehaviour
             playerJumping = true;
 		}
 
-
 		velocity.x = input.x * moveSpeed;
         if (velocity.x < 0)
+        {
             GetComponent<SpriteRenderer>().flipX = true;
-        else
+        }
+        else if(velocity.x > 0)
+        {
             GetComponent<SpriteRenderer>().flipX = false;
+        }
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
 
         animator.SetBool("playerJumping", playerJumping);
         animator.SetBool("playerUp", velocity.y > 0);
-        animator.SetBool("playerStand", (velocity.x == 0 && !playerJumping));
+        animator.SetBool("playerStand", 
+            (velocity.x == 0 && !playerJumping) );
+
         controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)

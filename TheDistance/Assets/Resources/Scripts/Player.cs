@@ -27,6 +27,8 @@ public class Player : NetworkBehaviour
     public float moveSpeed;
     public Vector3 velocity;
 
+	public Vector2 cameraMin, cameraMax; 
+
     public bool[] haveKey;
     public int keyNum;
 
@@ -130,6 +132,7 @@ public class Player : NetworkBehaviour
 
 		if (isLocalPlayer) {
 			Camera.main.transform.position = transform.position + tmp;
+			Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
 		}
 
 

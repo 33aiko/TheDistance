@@ -13,6 +13,8 @@ public class Player : NetworkBehaviour
 	public string EricPosName = "EricPos";
 	public string NataliePosName = "NataliePos";
 	public string ShareWorldName="ShareWorld";
+    public string EricAnimator = "Animations/Player_1";
+    public string NatalieAnimator = "Animations/Player_2";
 
 	public GameObject spirit;
 	public Vector3 spiritTargetPos;
@@ -110,6 +112,12 @@ public class Player : NetworkBehaviour
 			CmdInitializeServer(NatalieTransform.position,EricTransform.position);
 			InitializeClient(EricTransform.position,NatalieTransform.position);
 		}
+
+        GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
+        if (animator == null)
+        {
+            print("no animation controller found!");
+        }
     }
 
     void Update()

@@ -164,6 +164,7 @@ MonoBehaviour:
   keyNum: 3
   curNPC: {fileID: 0}
   gravity: 0
+  playerJumping: 0
   controller: {fileID: 0}
   pCC: {fileID: 0}
 --- !u!114 &114386261297146404

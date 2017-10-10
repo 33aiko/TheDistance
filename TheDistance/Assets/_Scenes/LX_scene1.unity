@@ -2728,7 +2728,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364592949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6432, y: 819, z: -218}
+  m_LocalPosition: {x: 6363, y: 724, z: -218}
   m_LocalScale: {x: 25.708006, y: 30.59284, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2757,7 +2757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blendMode: 2
-  intensity: 1
+  intensity: 1.5
   texture: {fileID: 2800000, guid: f0f78a73c85610e4fac3ec3e5443b15b, type: 3}
   overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!1 &367683965
@@ -13083,7 +13083,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.91792, g: 0.9264706, b: 0.30655277, a: 1}
-  m_Intensity: 40
+  m_Intensity: 30
   m_Range: 500
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -14952,7 +14952,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.88235295, g: 0.7880325, b: 0.48010382, a: 1}
   m_Intensity: 8
-  m_Range: 500
+  m_Range: 400
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

@@ -13,6 +13,8 @@ public class Player : NetworkBehaviour
 	public string EricPosName = "EricPos";
 	public string NataliePosName = "NataliePos";
 	public string ShareWorldName="ShareWorld";
+    public string EricAnimator = "Animations/Player_1";
+    public string NatalieAnimator = "Animations/Player_2";
 
 	public GameObject spirit;
 	public Vector3 spiritTargetPos;
@@ -23,6 +25,9 @@ public class Player : NetworkBehaviour
     public float timeToJumpApex;
     public Vector3 curCheckPoint;
     public float moveSpeed;
+    public Vector3 velocity;
+
+	public Vector2 cameraMin, cameraMax; 
 
     public bool[] haveKey;
     public int keyNum;
@@ -31,8 +36,9 @@ public class Player : NetworkBehaviour
 
     public float gravity;
     float jumpVelocity;
-    Vector3 velocity;
     float velocitySmoothing;
+
+    public bool playerJumping = false;
 
     private Vector3 offset;
 
@@ -45,8 +51,17 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     GameObject root;
 
+    [HideInInspector]
+    AudioManager audioManager;
+
+    [HideInInspector]
+    Animator animator;
+
     void Start()
     {
+        // get components
+        audioManager = FindObjectOfType<AudioManager>();
+        animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         pCC = GetComponent<PlayerCircleCollider>();
 
@@ -99,6 +114,12 @@ public class Player : NetworkBehaviour
 			CmdInitializeServer(NatalieTransform.position,EricTransform.position);
 			InitializeClient(EricTransform.position,NatalieTransform.position);
 		}
+
+        GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
+        if (animator == null)
+        {
+            print("no animation controller found!");
+        }
     }
 
     void Update()
@@ -111,6 +132,7 @@ public class Player : NetworkBehaviour
 
 		if (isLocalPlayer) {
 			Camera.main.transform.position = transform.position + tmp;
+			Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
 		}
 
 
@@ -134,6 +156,7 @@ public class Player : NetworkBehaviour
 			if(curNPC != null)
 			{
 				print("NPC says: " + curNPC.NPCtalk);
+                curNPC.showTalkText();
 			}
 		}
 
@@ -159,6 +182,18 @@ public class Player : NetworkBehaviour
                     CmdShare(sharedObject.name);
                 }
             }
+            else if (sharedObject.tag == "MovingPlatform")
+            {
+                Debug.Log("mv!");
+                if (isServer && isLocalPlayer)
+                {
+                    RpcShareMv(sharedObject.name);
+                }
+                if (!isServer && isLocalPlayer)
+                {
+                    CmdShareMv(sharedObject.name);
+                }
+            }
             else if (sharedObject.tag == "Box")
             {
                 Debug.Log("box found");
@@ -177,8 +212,17 @@ public class Player : NetworkBehaviour
 		// on the ground or on the ladder
 		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
 		{
+            if(playerJumping)
+            {
+                audioManager.Play("PlayerLand");
+            }
+            playerJumping = false;
 			velocity.y = 0;
 		}
+        else
+        {
+            playerJumping = true;
+        }
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -188,14 +232,31 @@ public class Player : NetworkBehaviour
 			velocity.y = input.y * moveSpeed;
 		}
 
+        // jump
 		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
 		{
+            audioManager.Play("PlayerJump");
 			velocity.y = jumpVelocity;
+            playerJumping = true;
 		}
 
 		velocity.x = input.x * moveSpeed;
+        if (velocity.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(velocity.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
-		controller.Move(velocity * Time.deltaTime);
+
+        animator.SetBool("playerJumping", playerJumping);
+        animator.SetBool("playerUp", velocity.y > 0);
+        animator.SetBool("playerStand", 
+            (velocity.x == 0 && !playerJumping) );
+
+        controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)
 		{
@@ -249,6 +310,40 @@ public class Player : NetworkBehaviour
         Debug.Log(newObj.name);
     }
 
+
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcShareMv(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		GameObject newObj = Instantiate(sObj);
+		newObj.transform.position = sObj.transform.position;
+		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
+			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		}
+    }
+
+    //sent by client, show object on server
+    [Command]
+    public void CmdShareMv(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+        GameObject newObj = Instantiate(sObj);
+		newObj.transform.position = sObj.transform.position;
+		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
+			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+		}
+    }
+
+
     //sent by server, show box on clients
     [ClientRpc]
     public void RpcBox(string sharedObject)
@@ -259,6 +354,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		Debug.Log (sObj.name);
 
     }
 
@@ -272,6 +368,8 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		Debug.Log (sObj.name);
+
     }
 
 

@@ -55,7 +55,7 @@ public class Controller2D : RaycastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if (hit)
             {
@@ -120,16 +120,22 @@ public class Controller2D : RaycastController
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
             if (hit)
             {
                 if(directionY == 1 && 
-                    hit.transform.gameObject.tag == "FloatingPlatform")
+                    (hit.transform.gameObject.tag == "FloatingPlatform" 
+                    || hit.transform.gameObject.tag == "MovingPlatform" ))
                 {
-                    //print("Hit bottom of the floating platform");
                     //hits bottom of the floating platform
                     //will not collide
+                    /* 
+                    if(hit.transform.gameObject.tag == "MovingPlatform")
+                        print("Hit the moving platform");
+                    else
+                        print("Hit bottom of the floating platform");
+                        */
                 }
                 else
                 {
@@ -143,8 +149,10 @@ public class Controller2D : RaycastController
                 }
 
                 collisions.below = directionY == -1;
-                collisions.above = (directionY == 1) && 
-                    (hit.transform.gameObject.tag != "FloatingPlatform");
+                collisions.above = (directionY == 1) &&
+                    ((hit.transform.gameObject.tag != "FloatingPlatform") &&
+                    (hit.transform.gameObject.tag != "MovingPlatform") 
+                    );
             }
         }
 

@@ -9,6 +9,9 @@ public class StepOnTriggerController : MonoBehaviour {
 
     int cnt = 0;
 
+    bool haveBox = false;
+    bool haveUser = false;
+
     MovingPlatformController mPC;
 
 	void Start () {
@@ -18,20 +21,30 @@ public class StepOnTriggerController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") cnt++;
-        if((collision.gameObject.tag == "Player" && cnt==2) || collision.gameObject.tag == "Box")
+        if ((collision.gameObject.tag == "Player" && cnt == 2))
         {
-            mPC.canMove = true;
+            haveUser = true;
         }
+        if(collision.gameObject.tag == "Box")
+        {
+            haveBox = true;
+        }
+        mPC.canMove = haveBox || haveUser;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (oneTimeTrigger) return; // then it's a one time trigger, there's no stopping
         if (collision.gameObject.tag == "Player") cnt--;
-        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Box")
+        if (collision.gameObject.tag == "Player")
         {
-            mPC.canMove = false;
+            haveUser = false;
         }
+        if(collision.gameObject.tag == "Box")
+        {
+            haveBox = false;
+        }
+        mPC.canMove = haveUser || haveBox;
     }
 
 }

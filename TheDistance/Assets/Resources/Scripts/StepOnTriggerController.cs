@@ -34,8 +34,8 @@ public class StepOnTriggerController : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (oneTimeTrigger) return; // then it's a one time trigger, there's no stopping
         if (collision.gameObject.tag == "Player") cnt--;
+        if (oneTimeTrigger) return; // then it's a one time trigger, there's no stopping
         if (collision.gameObject.tag == "Player")
         {
             haveUser = false;

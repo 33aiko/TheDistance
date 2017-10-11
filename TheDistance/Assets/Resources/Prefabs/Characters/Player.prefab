@@ -237,6 +237,7 @@ MonoBehaviour:
   playerJumping: 0
   controller: {fileID: 0}
   pCC: {fileID: 0}
+  canClimbLadder: 0
 --- !u!114 &114386261297146404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,7 +256,7 @@ MonoBehaviour:
     m_Bits: 2048
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   horizontalRayCount: 4
   verticalRayCount: 4
   horizontalRaySpacing: 0

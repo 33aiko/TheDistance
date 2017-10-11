@@ -93,7 +93,8 @@ public class Controller2D : RaycastController
                 // no slope or cannot climb
                 if (!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
-                    if(hit.transform.gameObject.tag != "FloatingPlatform")
+                    if(hit.transform.gameObject.tag != "FloatingPlatform" && 
+                        hit.transform.gameObject.tag != "Ladder")
                         velocity.x = (hit.distance - skinWidth) * directionX;
                     rayLength = hit.distance;
 
@@ -126,7 +127,8 @@ public class Controller2D : RaycastController
             {
                 if(directionY == 1 && 
                     (hit.transform.gameObject.tag == "FloatingPlatform" 
-                    || hit.transform.gameObject.tag == "MovingPlatform" ))
+                    || hit.transform.gameObject.tag == "MovingPlatform" 
+                    || hit.transform.gameObject.tag == "Ladder") )
                 {
                     //hits bottom of the floating platform
                     //will not collide
@@ -136,6 +138,11 @@ public class Controller2D : RaycastController
                     else
                         print("Hit bottom of the floating platform");
                         */
+                }
+                else if(directionY == -1 && collisions.canClimbLadder && hit.transform.gameObject.tag == "Ladder"
+                    && collisions.playerClimbLadder)
+                {
+
                 }
                 else
                 {
@@ -225,6 +232,8 @@ public class Controller2D : RaycastController
         public bool left, right;
 
         public bool climbingSlope;
+        public bool canClimbLadder;
+        public bool playerClimbLadder;
         public bool descendingSlope;
         public float slopeAngle, slopeAngleOld;
         public Vector3 velocityOld;

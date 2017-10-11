@@ -57,6 +57,9 @@ public class Player : NetworkBehaviour
     [HideInInspector]
     Animator animator;
 
+    [HideInInspector]
+    public bool canClimbLadder = false;
+
     void Start()
     {
         // get components
@@ -229,8 +232,19 @@ public class Player : NetworkBehaviour
 		// move in y axis if on the ladder
 		if(controller.collisions.onLadder)
 		{
+            print("Can move down!");
 			velocity.y = input.y * moveSpeed;
 		}
+
+        if(controller.collisions.canClimbLadder && input.y < 0)
+        {
+            print("Player want to go down!");
+            controller.collisions.playerClimbLadder = true;
+        }
+        else
+        {
+            controller.collisions.playerClimbLadder = false;
+        }
 
         // jump
 		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
@@ -251,10 +265,14 @@ public class Player : NetworkBehaviour
         }
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
 
+
         animator.SetBool("playerJumping", playerJumping);
         animator.SetBool("playerUp", velocity.y > 0);
         animator.SetBool("playerStand", 
             (velocity.x == 0 && !playerJumping) );
+        animator.SetBool("playerClimb", controller.collisions.onLadder);
+        if(controller.collisions.onLadder)
+            animator.speed = (velocity.y != 0)?1.0f:0;
 
         controller.Move(velocity * Time.deltaTime);
 

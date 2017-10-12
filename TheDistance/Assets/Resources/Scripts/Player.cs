@@ -398,7 +398,9 @@ public class Player : NetworkBehaviour
 		//print("Rpc Move");
 		if (!isServer)
 		{
-			GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+            if(isLocalPlayer)
+                this.spiritTargetPos = pos;
+			//GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
 		}
 	}
 
@@ -406,8 +408,10 @@ public class Player : NetworkBehaviour
 	[Command]
 	public void CmdMove(Vector3 pos)
 	{
-		//print("Cmd Move");
-		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+        //print("Cmd Move");
+        if (isLocalPlayer)
+            this.spiritTargetPos = pos;
+		//GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
 	}
 	[Command]
 	public void CmdInitializeServer(Vector3 spirit_pos, Vector3 player_pos)

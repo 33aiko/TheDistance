@@ -230,8 +230,11 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   cameraMin: {x: -262, y: -60}
   cameraMax: {x: 6539, y: 1000}
-  cameraOffset: 20
   haveKey: 000000
+  otherHaveKey: 000000
+  checkBothFlag: 0
+  EricCheckFlag: 
+  NatalieCheckFlag: 
   keyNum: 3
   curNPC: {fileID: 0}
   gravity: 0

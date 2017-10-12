@@ -16,7 +16,8 @@ public class KeyController : MonoBehaviour {
 		ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
 		if (ima == null)
 			print("Nothign found! something wrong");
-		ima.enabled = false;
+		ima.enabled = true;
+		ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +37,7 @@ public class KeyController : MonoBehaviour {
 					Debug.Log("need another player get key");
 				}
 				ima.enabled = true;
+				ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected") ;
 				print("Player got the key!");
 				gameObject.SetActive(false);
 			}

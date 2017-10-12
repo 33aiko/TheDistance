@@ -28,6 +28,7 @@ public class Player : NetworkBehaviour
     public Vector3 velocity;
 
 	public Vector2 cameraMin, cameraMax; 
+	public float cameraOffset;
 
     public bool[] haveKey;
     public int keyNum;
@@ -131,11 +132,13 @@ public class Player : NetworkBehaviour
 		KeyControlMove();
 
         //camera
-        Vector3 tmp = new Vector3(0, 0, offset.z);
+		Vector3 tmp = new Vector3(0, cameraOffset, offset.z);
 
 		if (isLocalPlayer) {
+			Debug.Log (Camera.main.transform.position);
 			Camera.main.transform.position = transform.position + tmp;
 			Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
+			Debug.Log ("new"+Camera.main.transform.position);
 		}
 
 

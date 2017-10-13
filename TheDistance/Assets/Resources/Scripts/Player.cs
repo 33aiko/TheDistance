@@ -28,7 +28,11 @@ public class Player : NetworkBehaviour
 	public float moveSpeed;
 	public Vector3 velocity;
 
+    // camera parameter
 	public Vector2 cameraMin, cameraMax; 
+	private Vector3 offset;
+    public float cameraZoomValue = 0;
+    float currentCameraZoomValue = 0;
 
 	public bool[] haveKey;
 	public bool[] otherHaveKey;
@@ -45,7 +49,6 @@ public class Player : NetworkBehaviour
 
 	public bool playerJumping = false;
 
-	private Vector3 offset;
 
 	[HideInInspector]
 	public Controller2D controller;
@@ -138,7 +141,11 @@ public class Player : NetworkBehaviour
 		KeyControlMove();
 
 		//camera
-		Vector3 tmp = new Vector3(0, 0, offset.z);
+        if(currentCameraZoomValue != cameraZoomValue)
+        {
+            currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
+        }
+		Vector3 tmp = new Vector3(0, 0, offset.z + currentCameraZoomValue);
 
 		if (isLocalPlayer) {
 			Camera.main.transform.position = transform.position + tmp;

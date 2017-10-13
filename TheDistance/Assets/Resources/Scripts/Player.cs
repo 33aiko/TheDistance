@@ -58,6 +58,7 @@ public class Player : NetworkBehaviour
 
 	[HideInInspector]
 	AudioManager audioManager;
+    bool playingWalkingMusic = false;
 
 	[HideInInspector]
 	Animator animator;
@@ -235,6 +236,21 @@ public class Player : NetworkBehaviour
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        // move audio
+        if(controller.collisions.below && input.x != 0)
+        {
+            if(!playingWalkingMusic)
+            {
+                audioManager.Play("PlayerWalking");
+                playingWalkingMusic = true;
+            }
+        }
+        else
+        {
+            audioManager.Stop("PlayerWalking");
+            playingWalkingMusic = false;
+        }
+
 		// move in y axis if on the ladder
 		if(controller.collisions.onLadder)
 		{
@@ -272,6 +288,7 @@ public class Player : NetworkBehaviour
 		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
 
 
+        // set the animator statemachine
 		animator.SetBool("playerJumping", playerJumping);
 		animator.SetBool("playerUp", velocity.y > 0);
 		animator.SetBool("playerStand", 

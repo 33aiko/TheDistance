@@ -5,8 +5,10 @@ using UnityEngine;
 public class CameraZoomTrigger : MonoBehaviour {
 
     public float changeZValue;
+	public float changeOffset; 
 
     int cnt = 0;
+	float currentOffset; 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +19,8 @@ public class CameraZoomTrigger : MonoBehaviour {
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.cameraZoomValue = changeZValue;
+				currentOffset = p.cameraOffset; 
+				p.cameraOffset = changeOffset;
             }
         }
     }
@@ -30,6 +34,7 @@ public class CameraZoomTrigger : MonoBehaviour {
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.cameraZoomValue = 0;
+				p.cameraOffset = currentOffset;
             }
         }
     }

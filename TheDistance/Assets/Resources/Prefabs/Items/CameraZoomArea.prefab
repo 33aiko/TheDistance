@@ -78,3 +78,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeZValue: 100
+  changeOffset: 10

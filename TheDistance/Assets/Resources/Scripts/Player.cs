@@ -30,6 +30,7 @@ public class Player : NetworkBehaviour
 
     // camera parameter
 	public Vector2 cameraMin, cameraMax; 
+	public float cameraOffset;
 	private Vector3 offset;
     public float cameraZoomValue = 0;
     float currentCameraZoomValue = 0;
@@ -145,7 +146,7 @@ public class Player : NetworkBehaviour
         {
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
         }
-		Vector3 tmp = new Vector3(0, 0, offset.z + currentCameraZoomValue);
+		Vector3 tmp = new Vector3(0, cameraOffset, offset.z + currentCameraZoomValue);
 
 		if (isLocalPlayer) {
 			Camera.main.transform.position = transform.position + tmp;

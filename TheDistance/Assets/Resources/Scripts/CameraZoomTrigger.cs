@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening; 
 
 public class CameraZoomTrigger : MonoBehaviour {
 
@@ -18,7 +19,8 @@ public class CameraZoomTrigger : MonoBehaviour {
             if(cnt == 2)
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
-                p.cameraZoomValue = changeZValue;
+               // p.cameraZoomValue = changeZValue;
+				DOTween.To (() => p.cameraZoomValue, x => p.cameraZoomValue = x, changeZValue, 3);
 				currentOffset = p.cameraOffset; 
 				p.cameraOffset = changeOffset;
             }

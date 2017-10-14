@@ -9,6 +9,8 @@ public class PlayerCircleCollider : MonoBehaviour {
     bool keyDown = false;
 
     GameObject shareObject = null; // share this object;
+    GameObject arrow;
+    int shareIdx;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -47,7 +49,8 @@ public class PlayerCircleCollider : MonoBehaviour {
         keyDown = flag;
         foreach (GameObject t in nearObjectList)
         {
-            (t.GetComponent("Halo") as Behaviour).enabled = flag;
+            Behaviour b = (t.GetComponent("Halo") as Behaviour);
+            b.enabled = flag;
         }
     }
 
@@ -71,7 +74,23 @@ public class PlayerCircleCollider : MonoBehaviour {
                 nearestObject = t;
             }
         }
+
+        shareIdx = nearObjectList.IndexOf(nearestObject);
         shareObject = nearestObject;
+
+        if (shareObject == null)
+            return;
+
+        createArrow();
+    }
+
+    public void getNextObject()
+    {
+        shareIdx += 1;
+        shareIdx = shareIdx % nearObjectList.Count;
+        shareObject = nearObjectList[shareIdx];
+        deletePrevArrow();
+        createArrow();
     }
 
     public GameObject shareSelectedObject()
@@ -80,8 +99,28 @@ public class PlayerCircleCollider : MonoBehaviour {
         {
             print("nothing can be shared");
         }
+        deletePrevArrow();
         // add share code here
         return shareObject;
         // share "shareObject"
+    }
+
+    void createArrow()
+    {
+        // create arrow on the share object
+        Vector2 v = shareObject.gameObject.GetComponent<SpriteRenderer>().bounds.size;
+        if (arrow == null)
+        {
+            arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
+        }
+        Vector3 tmp = new Vector3(0, v.y);
+        arrow.transform.position = shareObject.transform.position + tmp;
+    }
+
+    void deletePrevArrow()
+    {
+        if(arrow != null)
+            Destroy(arrow);
+        arrow = null;
     }
 }

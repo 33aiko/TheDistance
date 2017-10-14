@@ -54,8 +54,11 @@ public class Player : NetworkBehaviour
 	[HideInInspector]
 	public Controller2D controller;
 
+    // object sharing
 	[HideInInspector]
 	public PlayerCircleCollider pCC;
+	[HideInInspector]
+    bool selectShareObject = false;
 
 	[HideInInspector]
 	GameObject root;
@@ -183,14 +186,24 @@ public class Player : NetworkBehaviour
 		{
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
+            selectShareObject = true;
 		}
+
+        if(selectShareObject)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+                pCC.getNextObject();
+        }
+
 		if(Input.GetKeyUp(KeyCode.T))
 		{
+            selectShareObject = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();
 			if (sharedObject.tag=="FloatingPlatform")
 			{
 				Debug.Log("found");
+                Debug.Log(sharedObject.name);
 				if (isServer && isLocalPlayer)
 				{
 					RpcShare(sharedObject.name);

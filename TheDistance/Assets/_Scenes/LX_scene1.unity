@@ -1574,6 +1574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyIdx: 0
+  fragSprite: []
+  both: 
 --- !u!212 &170367497
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2035,6 +2037,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyIdx: 0
+  fragSprite:
+  - {fileID: 21300000, guid: 79b87fe8ded13429986d41c9eb352ff6, type: 3}
+  - {fileID: 21300000, guid: c1a49751f0a874f5d8642801f4236cf9, type: 3}
+  - {fileID: 21300000, guid: dea0fec3ac72f4168938ecc46df67099, type: 3}
+  both: 
 --- !u!58 &237720017
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6215,6 +6222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyIdx: 0
+  fragSprite: []
+  both: 
 --- !u!33 &507034312
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15169,6 +15178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyIdx: 1
+  fragSprite:
+  - {fileID: 21300000, guid: 79b87fe8ded13429986d41c9eb352ff6, type: 3}
+  - {fileID: 21300000, guid: c1a49751f0a874f5d8642801f4236cf9, type: 3}
+  - {fileID: 21300000, guid: dea0fec3ac72f4168938ecc46df67099, type: 3}
+  both: 
 --- !u!58 &1602536880
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16954,6 +16968,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyIdx: 2
+  fragSprite:
+  - {fileID: 21300000, guid: 79b87fe8ded13429986d41c9eb352ff6, type: 3}
+  - {fileID: 21300000, guid: c1a49751f0a874f5d8642801f4236cf9, type: 3}
+  - {fileID: 21300000, guid: dea0fec3ac72f4168938ecc46df67099, type: 3}
+  both: 
 --- !u!58 &1830582257
 CircleCollider2D:
   m_ObjectHideFlags: 0

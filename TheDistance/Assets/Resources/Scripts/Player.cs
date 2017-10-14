@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : NetworkBehaviour
@@ -336,7 +337,96 @@ public class Player : NetworkBehaviour
 		transform.position = curCheckPoint;
 	}
 
-	public void Die()
+    public void checkWho(int keyIdx)
+    {
+        if (isServer)
+        {
+            int keyIdxPlus = keyIdx + 1;
+            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            go.GetComponent<KeyController>().both[0] = 1;
+
+            RpcFrag(keyIdx);
+
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                ima.enabled = true;
+                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //gameObject.SetActive(false);
+                Debug.Log("both key");
+            }
+
+            go.GetComponent<KeyController>().setBoth();
+        }
+        else
+        {
+            int keyIdxPlus = keyIdx + 1;
+            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            go.GetComponent<KeyController>().both[1] = 1;
+            CmdFrag(keyIdx);
+
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                ima.enabled = true;
+                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //gameObject.SetActive(false);
+                Debug.Log("both key");
+            }
+
+            go.GetComponent<KeyController>().setBoth();
+        }
+    }
+
+    //sent by server, check on clients
+    [ClientRpc]
+    public void RpcFrag(int keyIdx)
+    {
+        if (!isServer)
+        {
+            int keyIdxPlus = keyIdx + 1;
+            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            go.GetComponent<KeyController>().both[0] = 1;
+
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                ima.enabled = true;
+                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //gameObject.SetActive(false);
+                Debug.Log("both key");
+            }
+
+            go.GetComponent<KeyController>().setBoth();
+
+        }
+    }
+
+    //sent by client, check on server
+    [Command]
+    public void CmdFrag(int keyIdx)
+    {
+        if (isServer)
+        {
+            int keyIdxPlus = keyIdx + 1;
+            Debug.Log("Ser shoudaole");
+            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            go.GetComponent<KeyController>().both[1] = 1;
+
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                ima.enabled = true;
+                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //gameObject.SetActive(false);
+                Debug.Log("both key");
+            }
+            go.GetComponent<KeyController>().setBoth();
+
+        }
+    }
+
+    public void Die()
 	{
 		Debug.Log("Player died!");
 		backToCheckPoint();

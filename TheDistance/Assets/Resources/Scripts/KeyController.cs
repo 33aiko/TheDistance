@@ -11,8 +11,15 @@ public class KeyController : MonoBehaviour {
 
 	Image ima;
 
+    public Sprite[] fragSprite; //array to store sprite
+
+    public int[] both;
+
 	private void Start()
 	{
+        both = new int[2];
+        both[0] = 0;
+        both[1] = 0;
 		ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
 		if (ima == null)
 			print("Nothign found! something wrong");
@@ -29,20 +36,10 @@ public class KeyController : MonoBehaviour {
 			{
 				Player p = collision.GetComponent<Player>();
 				p.haveKey[keyIdx] = true;
-				if (p.checkBothKey(keyIdx)) {
-					Debug.Log("both get");
-				}
-				else
-				{
-					Debug.Log("need another player get key");
-				}
-				ima.enabled = true;
-				ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected") ;
-				print("Player got the key!");
-				gameObject.SetActive(false);
-			}
+                p.checkWho(keyIdx);				
+            }
 
-		}
+        }
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
@@ -52,4 +49,9 @@ public class KeyController : MonoBehaviour {
 			cnt--;
 		}
 	}
+
+    public void setBoth()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = fragSprite[both[0] + both[1]];
+    }
 }

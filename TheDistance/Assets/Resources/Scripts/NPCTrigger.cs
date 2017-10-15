@@ -52,7 +52,7 @@ public class NPCTrigger : MonoBehaviour {
 
     public void showTalkText()
     {
-		blackmask.DOFade (1, 0);
+		blackmask.DOFade (0.8f, 0);
 		NPCcontent.SetActive (true);
         if(t == null)
         {

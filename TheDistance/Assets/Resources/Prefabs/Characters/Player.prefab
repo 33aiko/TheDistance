@@ -226,7 +226,7 @@ MonoBehaviour:
   jumpHeight: 150
   timeToJumpApex: 0.3
   curCheckPoint: {x: 0, y: 0, z: 0}
-  moveSpeed: 300
+  moveSpeed: 180
   velocity: {x: 0, y: 0, z: 0}
   cameraMin: {x: -262, y: -60}
   cameraMax: {x: 6539, y: 1000}

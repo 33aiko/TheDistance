@@ -228,9 +228,9 @@ MonoBehaviour:
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 300
   velocity: {x: 0, y: 0, z: 0}
-  cameraMin: {x: -262, y: -60}
+  cameraMin: {x: -262, y: 90}
   cameraMax: {x: 6539, y: 1000}
-  cameraOffset: 40
+  cameraOffset: 80
   cameraZoomValue: 0
   haveKey: 000000
   otherHaveKey: 000000
@@ -331,7 +331,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 545be35761d7d492ba9ba9290f401432, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -182,6 +182,13 @@ public class Player : NetworkBehaviour
 			}
 		}
 
+		if (Input.GetKeyDown (KeyCode.R)) {
+			if(curNPC != null)
+			{
+				curNPC.hideTalkText ();
+			}
+		}
+
 		// object sharing
 		if(Input.GetKeyDown(KeyCode.T))
 		{

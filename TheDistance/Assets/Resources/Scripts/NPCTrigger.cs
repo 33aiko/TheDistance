@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening; 
 
 public class NPCTrigger : MonoBehaviour {
 
+	public Image blackmask; 
+	public GameObject NPCcontent; 
     public string NPCtalk;
     Text t;
     Text instruct;
@@ -25,7 +28,8 @@ public class NPCTrigger : MonoBehaviour {
             cnt++;
             if(cnt == 2)
             {
-                instruct.text = "Press E to talk to the NPC";
+               // instruct.text = "Press E to talk to the NPC";
+				t.text = "Press E to view" ;
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = this;
             }
@@ -48,11 +52,20 @@ public class NPCTrigger : MonoBehaviour {
 
     public void showTalkText()
     {
+		blackmask.DOFade (1, 0);
+		NPCcontent.SetActive (true);
         if(t == null)
         {
             print("nothing found");
             return;
         }
-        t.text = NPCtalk;
+        t.text = "";
     }
+
+	public void hideTalkText()
+	{
+		t.text = "press E to view";
+		blackmask.DOFade (0, 0);
+		NPCcontent.SetActive (false);
+	}
 }

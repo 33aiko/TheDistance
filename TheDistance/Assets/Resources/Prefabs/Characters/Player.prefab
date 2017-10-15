@@ -228,7 +228,7 @@ MonoBehaviour:
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 300
   velocity: {x: 0, y: 0, z: 0}
-  cameraMin: {x: -262, y: 90}
+  cameraMin: {x: -262, y: -60}
   cameraMax: {x: 6539, y: 1000}
   cameraOffset: 80
   cameraZoomValue: 0

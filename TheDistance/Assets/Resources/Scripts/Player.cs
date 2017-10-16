@@ -351,9 +351,17 @@ public class Player : NetworkBehaviour
 			(velocity.x == 0 && !playerJumping) );
 		animator.SetBool("playerClimb", controller.collisions.onLadder);
 		if(controller.collisions.onLadder)
-			animator.speed = (velocity.y != 0)?1.0f:0;
+        {
+            animator.speed = (velocity.y != 0) ? 1.0f : 0;
+        }
+        else
+        {
+            animator.speed = 1.0f;
 
-		controller.Move(velocity * Time.deltaTime);
+        }
+
+
+        controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)
 		{

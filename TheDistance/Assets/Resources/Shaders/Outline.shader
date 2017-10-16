@@ -73,7 +73,7 @@
 
 				if(col1.a < hide_alpha || col2.a<hide_alpha || col3.a<hide_alpha || col4.a<hide_alpha){
 					if(col.a>hide_alpha){
-						col = rim_color*_BloomIntensity;
+						col.rgb = rim_color.rgb*_BloomIntensity;
 					}
 					else{
 						discard;

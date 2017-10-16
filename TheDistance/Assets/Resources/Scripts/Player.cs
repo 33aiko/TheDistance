@@ -123,7 +123,7 @@ public class Player : NetworkBehaviour
         //camera
         offset.z = Camera.main.transform.position.z - transform.position.z;
         Camera.main.transform.position = transform.position +
-            new Vector3(0, 0, offset.z);
+			new Vector3(0, cameraOffset, offset.z);
 
         root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
 		root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);
@@ -194,6 +194,7 @@ public class Player : NetworkBehaviour
 		else
 			controller.collisions.interact = false;
 
+		// press E to view NPC contents
 		if(Input.GetKeyDown(KeyCode.E))
 		{
 			//print("have NPC in range? " + (curNPC != null));
@@ -204,6 +205,7 @@ public class Player : NetworkBehaviour
 			}
 		}
 
+		// press R to close NPC contents 
 		if (Input.GetKeyDown (KeyCode.R)) {
 			if(curNPC != null)
 			{

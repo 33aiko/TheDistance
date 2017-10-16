@@ -10,7 +10,7 @@ public class LadderUpTrigger : MonoBehaviour {
 
     private void Start()
     {
-        instruct = GameObject.Find("NPCText").GetComponent<Text>();
+        instruct = GameObject.Find("Instruction").GetComponent<Text>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

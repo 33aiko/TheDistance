@@ -16,7 +16,7 @@ public class NPCTrigger : MonoBehaviour {
 
     private void Start()
     {
-        instruct = GameObject.Find("NPCText").GetComponent<Text>();
+        instruct = GameObject.Find("Instruction").GetComponent<Text>();
         t = GetComponentInChildren<Text>();
         t.text = "";
     }

@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class LevelFinishController : MonoBehaviour {
 
+	Text instruct; 
+
+	public void Start(){
+		instruct = GameObject.Find("Instruction").GetComponent<Text>();
+	}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -18,13 +24,15 @@ public class LevelFinishController : MonoBehaviour {
             }
             if(canFinish)
             {
-                Button bu = FindObjectOfType<Button>();
-                bu.GetComponentInChildren<Text>().text = "Try again!";
+//                Button bu = FindObjectOfType<Button>();
+//                bu.GetComponentInChildren<Text>().text = "Try again!";
+				instruct.text = "Level completed!" ;
                 print("Finished this level!");
                 // level finished
             }
             else
             {
+				instruct.text = "You need to collect all memory fragments.";
                 print("You need to collect the key first!");
                 // the player have to collect the key first
             }

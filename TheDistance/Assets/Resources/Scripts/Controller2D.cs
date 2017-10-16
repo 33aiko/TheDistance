@@ -156,6 +156,15 @@ public class Controller2D : RaycastController
                 {
                     GetComponent<FloatInWater>().SetInWater();
                 }
+
+                if(hit.transform.gameObject.tag == "Box" && 
+                    hit.transform.gameObject.GetComponent<FloatInWater>().isInWater)
+                {
+                    // player stands on a floating box
+                    print("On the floating platform");
+                    velocity.y = hit.transform.gameObject.GetComponent<FloatInWater>().move.y;
+                }
+
                 rayLength = hit.distance;
 
                 if (collisions.climbingSlope)

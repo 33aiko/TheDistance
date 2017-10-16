@@ -363,7 +363,6 @@ public class Player : NetworkBehaviour
 
         }
 
-
         controller.Move(velocity * Time.deltaTime);
 
 		if (isServer)

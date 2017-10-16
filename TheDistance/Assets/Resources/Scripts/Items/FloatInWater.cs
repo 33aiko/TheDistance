@@ -13,11 +13,13 @@ public class FloatInWater : MonoBehaviour {
 	public float velocity = 0;
 	public float a = 0;
 
-	bool isInWater = false; 
+	public bool isInWater = false; 
 
 	public void SetInWater(){
         print("This is in water!");
-		isInWater = true; 
+		isInWater = true;
+        GetComponent<BoxController>().haveGravity = false;
+        GetComponent<Controller2D>().collisionMask ^= LayerMask.NameToLayer("Water");
 	}
 	
 	// Update is called once per frame

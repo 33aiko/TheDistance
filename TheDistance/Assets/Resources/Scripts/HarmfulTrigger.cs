@@ -8,6 +8,7 @@ public class HarmfulTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Player")
         {
             cnt++;
             print(gameObject.name + " hits the player!");

@@ -150,6 +150,12 @@ public class Controller2D : RaycastController
                 {
                     velocity.y = (hit.distance - skinWidth) * directionY;
                 }
+
+                if(hit.transform.gameObject.tag == "Water" && 
+                    gameObject.tag == "Box" && (GetComponent<FloatInWater>()) )
+                {
+                    GetComponent<FloatInWater>().SetInWater();
+                }
                 rayLength = hit.distance;
 
                 if (collisions.climbingSlope)

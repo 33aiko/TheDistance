@@ -16,6 +16,7 @@ public class FloatInWater : MonoBehaviour {
 	bool isInWater = false; 
 
 	public void SetInWater(){
+        print("This is in water!");
 		isInWater = true; 
 	}
 	

@@ -260,15 +260,17 @@ public class Player : NetworkBehaviour
 			else if (sharedObject.tag == "Box")
 			{
 				Debug.Log("box found");
+                string boxname = sharedObject.name;
 				if(isServer && isLocalPlayer)
 				{
 					RpcBox(sharedObject.name);
-					root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find("Box").gameObject.SetActive(false);
+					root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
 				}
 				if(!isServer && isLocalPlayer)
 				{
 					CmdBox(sharedObject.name);
-				}
+                    root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                }
 			}
 		}
 

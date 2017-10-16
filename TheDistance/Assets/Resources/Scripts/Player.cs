@@ -16,6 +16,8 @@ public class Player : NetworkBehaviour
 	public string ShareWorldName="ShareWorld";
 	public string EricAnimator = "Animations/Player_1";
 	public string NatalieAnimator = "Animations/Player_2";
+	public string EricSpiritAnimator = "Animations/Spirit_1";
+	public string NatalieSpiritAnimator = "Animations/Spirit_2";
 
 	public GameObject spirit;
 	public Vector3 spiritTargetPos;
@@ -99,7 +101,9 @@ public class Player : NetworkBehaviour
 		//find root, because spirit is deactived, so we can only use transform to find it.
 		root = GameObject.Find("Root");
 		spirit = root.transform.Find("Spirit").gameObject;
-		spiritTargetPos = spirit.transform.position;
+        spirit.AddComponent<Animator>();
+        spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
+        spiritTargetPos = spirit.transform.position;
 
 		Transform EricTransform;//EricPos
 		Transform NatalieTransform;//NataliePos
@@ -145,27 +149,37 @@ public class Player : NetworkBehaviour
 		//input controlling move
 		KeyControlMove();
 
-		//camera
-        if(currentCameraZoomValue != cameraZoomValue)
-        {
-            currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
-        }
-		Vector3 tmp = new Vector3(0, cameraOffset, offset.z + currentCameraZoomValue);
-
 		if (isLocalPlayer) {
-			Camera.main.transform.position = transform.position + tmp;
-			Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
-		}
+            //camera
+            UpdateCameraPosition();
+            //Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
+        }
 
 
-		//interpolate move by frame rate, when position not equal, move
-		if (!spirit.transform.position.Equals(spiritTargetPos))
+        //interpolate move by frame rate, when position not equal, move
+        if (!spirit.transform.position.Equals(spiritTargetPos))
 		{
 			spirit.transform.Translate((spiritTargetPos - spirit.transform.position) / interpolateTime);
 		}
 	}
 
-	void KeyControlMove(){
+    void UpdateCameraPosition()
+    {
+        if (currentCameraZoomValue != cameraZoomValue)
+        {
+            currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
+        }
+        Vector3 tmp = new Vector3(0, cameraOffset, offset.z + currentCameraZoomValue);
+        Vector3 ttmp = transform.position - Camera.main.transform.position;
+        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
+        GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
+        Camera.main.transform.position = 
+            new Vector3(Camera.main.transform.position.x,
+            Camera.main.transform.position.y
+            , transform.position.z + offset.z + currentCameraZoomValue);
+    }
+
+    void KeyControlMove(){
 		// press Q to interact with the object
 		if(Input.GetKey(KeyCode.Q))
 			controller.collisions.interact = true;

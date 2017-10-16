@@ -176,10 +176,11 @@ public class Player : NetworkBehaviour
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
         }
         Vector3 ttmp = transform.position - Camera.main.transform.position;
-        Vector3 moveDistance = 
-            new Vector3(
-                Mathf.Min(ttmp.x, moveSpeed * Time.deltaTime), 
-                Mathf.Min(ttmp.y, moveSpeed*Time.deltaTime), 0);
+        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
+        //Vector3 moveDistance = 
+            //new Vector3(
+                //Mathf.Min(ttmp.x, moveSpeed * Time.deltaTime), 
+                //Mathf.Min(ttmp.y, moveSpeed*Time.deltaTime), 0);
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
         Camera.main.transform.position = 
             new Vector3(Camera.main.transform.position.x,

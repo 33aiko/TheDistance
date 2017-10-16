@@ -220,11 +220,13 @@ MonoBehaviour:
   ShareWorldName: ShareWorld
   EricAnimator: Animations/Player_1
   NatalieAnimator: Animations/Player_2
+  EricSpiritAnimator: Animations/Spirit_1
+  NatalieSpiritAnimator: Animations/Spirit_2
   spirit: {fileID: 1878287516793506, guid: 1bb0e7cec865944eb865db239881109c, type: 2}
   spiritTargetPos: {x: 0, y: 0, z: 0}
   interpolateTime: 10
-  jumpHeight: 150
-  timeToJumpApex: 0.3
+  jumpHeight: 140
+  timeToJumpApex: 0.36
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 180
   velocity: {x: 0, y: 0, z: 0}

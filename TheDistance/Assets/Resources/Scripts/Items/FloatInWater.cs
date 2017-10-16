@@ -12,21 +12,26 @@ public class FloatInWater : MonoBehaviour {
 	public float m = 0.05f;
 	public float velocity = 0;
 	public float a = 0;
-	// Use this for initialization
-	void Start () {
-		
+
+	bool isInWater = false; 
+
+	public void SetInWater(){
+		isInWater = true; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		F_float = RO * g * Volume;
-		a = (m * g - F_float) / m;
+		if (isInWater) {
+			F_float = RO * g * Volume;
+			a = (m * g - F_float) / m;
 
-		float v2 = velocity + a * Time.deltaTime;
-		move.y = -(v2 + velocity) / 2;
-		transform.Translate (move);
+			float v2 = velocity + a * Time.deltaTime;
+			move.y = -(v2 + velocity) / 2;
+			transform.Translate (move);
 
-		velocity = v2;
-		Volume += velocity* Time.deltaTime * BottomArea;
+			velocity = v2;
+			Volume += velocity * Time.deltaTime * BottomArea;
+		}
+
 	}
 }

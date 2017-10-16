@@ -32,7 +32,7 @@ public class Player : NetworkBehaviour
 	public Vector3 velocity;
 
     // camera parameter
-	public Vector2 cameraMin, cameraMax; 
+	public Vector2 cameraMin, cameraMax;
 	public float cameraOffset;
 	private Vector3 offset;
     public float cameraZoomValue = 0;
@@ -95,8 +95,6 @@ public class Player : NetworkBehaviour
 		// interact with objects
 		controller.collisions.interact = false;
 
-		//camera
-		offset = Camera.main.transform.position - transform.position;
 
 		//find root, because spirit is deactived, so we can only use transform to find it.
 		root = GameObject.Find("Root");
@@ -110,6 +108,9 @@ public class Player : NetworkBehaviour
 		EricTransform = root.transform.Find(ShareWorldName + "/" + EricPosName);
 		NatalieTransform = root.transform.Find(ShareWorldName + "/" + NataliePosName);
 
+
+
+
 		if (isLocalPlayer && isServer) {
 			transform.position = EricTransform.position;
 			curCheckPoint = EricTransform.position;
@@ -119,8 +120,12 @@ public class Player : NetworkBehaviour
 			curCheckPoint = NatalieTransform.position;
 		}
 
-		//
-		root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
+        //camera
+        offset.z = Camera.main.transform.position.z - transform.position.z;
+        Camera.main.transform.position = transform.position +
+            new Vector3(0, 0, offset.z);
+
+        root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
 		root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);
 
 		//hideRemotePlayer
@@ -142,6 +147,7 @@ public class Player : NetworkBehaviour
 		{
 			print("no animation controller found!");
 		}
+
 	}
 
 	void Update()
@@ -169,9 +175,11 @@ public class Player : NetworkBehaviour
         {
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
         }
-        Vector3 tmp = new Vector3(0, cameraOffset, offset.z + currentCameraZoomValue);
         Vector3 ttmp = transform.position - Camera.main.transform.position;
-        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
+        Vector3 moveDistance = 
+            new Vector3(
+                Mathf.Min(ttmp.x, moveSpeed * Time.deltaTime), 
+                Mathf.Min(ttmp.y, moveSpeed*Time.deltaTime), 0);
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
         Camera.main.transform.position = 
             new Vector3(Camera.main.transform.position.x,
@@ -356,6 +364,7 @@ public class Player : NetworkBehaviour
 	public void backToCheckPoint()
 	{
 		transform.position = curCheckPoint;
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
 	}
 
     public void checkWho(int keyIdx)

@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour {
     float xRaySpacing;
     float yRaySpacing;
 
+    Vector2 curSize;
+
     Vector3 bottomLeft;
     Vector3 bottomRight;
     Vector3 topLeft;
@@ -22,7 +24,7 @@ public class CameraController : MonoBehaviour {
 	}
 	
 	void UpdateCollisionBox() {
-        Vector2 curSize = new Vector2(200, 200);
+        curSize = new Vector2(200, 200);
         //Vector2 curSize = new Vector2(cam.pixelWidth, cam.pixelHeight);
         xRaySpacing = curSize.x / (rayCount - 1);
         yRaySpacing = curSize.y / (rayCount - 1);
@@ -39,15 +41,29 @@ public class CameraController : MonoBehaviour {
     public void Move(Vector3 velocity)
     {
         UpdateCollisionBox();
-        if (velocity.x != 0)
-            HorizontalCheck(ref velocity);
         if (velocity.y != 0)
+        {
             VerticalCheck(ref velocity);
+        }
+        if (velocity.x != 0)
+        {
+            HorizontalCheck(ref velocity);
+        }
         transform.Translate(velocity);
     }
 
     void HorizontalCheck(ref Vector3 velocity)
     {
+        Vector3 rayOrigin = transform.position;
+        float rayLength = curSize.x + Mathf.Abs(velocity.x);
+        float directionX = Mathf.Sign(velocity.x);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.right * directionX, rayLength, collisionMask);
+        Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+        if (hit)
+        {
+            velocity.x = 0;
+        }
+        /*
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x);
         for(int i = 0; i < rayCount; i++)
@@ -64,10 +80,21 @@ public class CameraController : MonoBehaviour {
                 rayLength = hit.distance;
             }
         }
+         */
     }
 
     void VerticalCheck(ref Vector3 velocity)
     {
+        Vector3 rayOrigin = transform.position;
+        float rayLength = curSize.y + Mathf.Abs(velocity.y);
+        float directionY = Mathf.Sign(velocity.y);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.up* directionY, rayLength, collisionMask);
+        Debug.DrawRay(rayOrigin, Vector2.up* directionY * rayLength, Color.red);
+        if (hit)
+        {
+            velocity.y = 0;
+        }
+        /*
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y);
         for (int i = 0; i < rayCount; i++)
@@ -84,5 +111,6 @@ public class CameraController : MonoBehaviour {
                 rayLength = hit.distance;
             }
         }
+         */
     }
 }

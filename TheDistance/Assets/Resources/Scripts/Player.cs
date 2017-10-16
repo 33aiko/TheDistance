@@ -549,6 +549,7 @@ public class Player : NetworkBehaviour
 		sObj.SetActive(true);
 		GameObject newObj = Instantiate(sObj);
 		newObj.transform.position = sObj.transform.position;
+        newObj.tag = "FloatingPlatformShared";
 
 	}
 
@@ -562,6 +563,7 @@ public class Player : NetworkBehaviour
 		sObj.SetActive(true);
 		GameObject newObj = Instantiate(sObj);
 		newObj.transform.position = sObj.transform.position;
+        newObj.tag = "FloatingPlatformShared";
 		Debug.Log(newObj.name);
 	}
 

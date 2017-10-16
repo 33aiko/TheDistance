@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4835017349242670}
   - component: {fileID: 212838877386622042}
   m_Layer: 0
-  m_Name: Spirit_Natalie_1
+  m_Name: Natalie_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1814639455176968
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4240316907222684}
   - component: {fileID: 122544823891541644}
+  - component: {fileID: 95558409658286648}
   m_Layer: 0
   m_Name: Spirit
   m_TagString: Untagged
@@ -183,7 +184,7 @@ GameObject:
   - component: {fileID: 4254019010510906}
   - component: {fileID: 212802537892627090}
   m_Layer: 0
-  m_Name: Spirit_Natalie_0
+  m_Name: Natalie_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,8 +226,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878287516793506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7e-45, y: -7e-45, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -2344.8, y: -343.1, z: 0}
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
   m_Children:
   - {fileID: 4949857875502430}
   - {fileID: 4639119806054992}
@@ -372,6 +373,23 @@ Transform:
   m_Father: {fileID: 4240316907222684}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95558409658286648
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878287516793506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d9e630262e62459788b8651693de06a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!122 &122013540621346322
 Halo:
   m_ObjectHideFlags: 1
@@ -392,8 +410,8 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279090431
-  m_Size: 10
+    rgba: 4278212969
+  m_Size: 25
 --- !u!198 &198463231923430272
 ParticleSystem:
   m_ObjectHideFlags: 1

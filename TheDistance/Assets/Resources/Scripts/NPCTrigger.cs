@@ -28,7 +28,7 @@ public class NPCTrigger : MonoBehaviour {
             cnt++;
             if(cnt == 2)
             {
-               // instruct.text = "Press E to talk to the NPC";
+               instruct.text = "";
 				t.text = "Press E to view" ;
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = this;

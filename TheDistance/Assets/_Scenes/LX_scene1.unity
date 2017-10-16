@@ -971,7 +971,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &128639700
 GameObject:
@@ -1635,7 +1635,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262095700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2401, y: -281, z: 0}
+  m_LocalPosition: {x: -2167, y: -219, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -1710,7 +1710,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &273637671
 GameObject:
@@ -2802,7 +2802,7 @@ SpriteRenderer:
   m_Size: {x: 163.86, y: 50.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &308172549
 GameObject:
@@ -5688,6 +5688,10 @@ Prefab:
       propertyPath: m_Name
       value: Box (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1514471295435982, guid: fe4b1a33c39de6040afe26bdecb39071, type: 2}
+      propertyPath: m_TagString
+      value: BoxCannotShare
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe4b1a33c39de6040afe26bdecb39071, type: 2}
   m_IsPrefabParent: 0
@@ -7204,7 +7208,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &773135025
 Prefab:
@@ -8387,7 +8391,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &967251553
 GameObject:
@@ -8828,7 +8832,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &988467112
 Prefab:
@@ -9303,7 +9307,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &1064456152
 Prefab:
@@ -9904,6 +9908,10 @@ Prefab:
     - target: {fileID: 1514471295435982, guid: fe4b1a33c39de6040afe26bdecb39071, type: 2}
       propertyPath: m_Name
       value: Box (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514471295435982, guid: fe4b1a33c39de6040afe26bdecb39071, type: 2}
+      propertyPath: m_TagString
+      value: BoxCannotShare
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe4b1a33c39de6040afe26bdecb39071, type: 2}
@@ -16221,7 +16229,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2018732063
 GameObject:

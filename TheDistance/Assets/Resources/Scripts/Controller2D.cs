@@ -60,7 +60,8 @@ public class Controller2D : RaycastController
             if (hit)
             {
                 // push the box
-                if(hit.transform.gameObject.tag == "Box" && collisions.interact) 
+                if((hit.transform.gameObject.tag == "Box" ||
+                    hit.transform.gameObject.tag == "BoxCannotShare" )&& collisions.interact) 
                 {
                     print("Pushing the box by" + gameObject.tag);
                     float pushX = velocity.x - (hit.distance) * directionX;

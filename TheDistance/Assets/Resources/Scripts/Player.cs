@@ -121,9 +121,12 @@ public class Player : NetworkBehaviour
 		}
 
         //camera
-        offset.z = Camera.main.transform.position.z - transform.position.z;
-        Camera.main.transform.position = transform.position +
-			new Vector3(0, cameraOffset, offset.z);
+        if(isLocalPlayer)
+        {
+            offset.z = Camera.main.transform.position.z - transform.position.z;
+            Camera.main.transform.position = transform.position +
+            new Vector3(0, cameraOffset, offset.z);
+        }
 
         root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
 		root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);

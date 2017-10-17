@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
+
 public class VignetteModify : MonoBehaviour {
 	public PostProcessingProfile profile;
 	public float intensity = 1;

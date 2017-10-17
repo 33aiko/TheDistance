@@ -68,7 +68,9 @@ public class AudioManager : MonoBehaviour
 	public Sound GetSound(string sound){
 		Sound s = Array.Find (sounds, item => item.name == sound);
 		if (s != null)
-			return s; 
+			return s;
+		else
+			return null; 
 	}
 
 	public void Stop(string sound)

@@ -204,6 +204,7 @@ public class Player : NetworkBehaviour
 			//print("have NPC in range? " + (curNPC != null));
 			if(curNPC != null)
 			{
+				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("NPCcontent");
 				print("NPC says: " + curNPC.NPCtalk);
 				curNPC.showTalkText();
 			}

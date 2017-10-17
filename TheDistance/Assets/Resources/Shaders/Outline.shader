@@ -10,11 +10,7 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" }
-		LOD 100
-		Cull Off
-		Zwrite Off
-		Blend SrcAlpha OneMinusSrcAlpha
+		Tags { "RenderType"="Opaque" }
 
 		Pass
 		{

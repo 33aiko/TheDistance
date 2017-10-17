@@ -225,6 +225,7 @@ public class Player : NetworkBehaviour
 			pCC.getDefaultShareObject();
             selectShareObject = true;
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("StartSharing");
 		}
 
         if(selectShareObject)
@@ -258,6 +259,7 @@ public class Player : NetworkBehaviour
 				{
 					CmdShare(sharedObject.name);
 				}
+				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
 			}
 			else if (sharedObject.tag == "MovingPlatform")
 			{
@@ -270,6 +272,7 @@ public class Player : NetworkBehaviour
 				{
 					CmdShareMv(sharedObject.name);
 				}
+				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
 			}
 			else if (sharedObject.tag == "Box")
 			{
@@ -285,6 +288,7 @@ public class Player : NetworkBehaviour
 					CmdBox(sharedObject.name);
                     root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
                 }
+				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
 			}
             }
 		}

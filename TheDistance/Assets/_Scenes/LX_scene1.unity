@@ -12151,6 +12151,24 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: StartSharing
+    clip: {fileID: 8300000, guid: d44ae711c7bdc407b99f5369737b079c, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.8
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ConfirmSharing
+    clip: {fileID: 8300000, guid: b88f71c45e0e546bdb80dd4aadb3c817, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.8
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &1460724796
 Transform:
   m_ObjectHideFlags: 0

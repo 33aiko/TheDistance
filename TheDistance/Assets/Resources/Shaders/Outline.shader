@@ -4,12 +4,15 @@
 	{
 		_RimColor ("RimColor", Color) = (1,1,1,1)
 		_MainTex ("Texture", 2D) = "white" {}
-		_BloomIntensity ("BloomIntensity", Range(0,10)) = 2
+		_BloomIntensity ("BloomIntensity", Range(0,100)) = 2
 	}
 	SubShader
 	{
 		Tags { "RenderType"="Transparent" }
 		LOD 100
+		Cull Off
+		Zwrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
 		{
@@ -36,7 +39,7 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			half _BloomIntensity;
+			float _BloomIntensity;
 			fixed4 _RimColor;
 
 			v2f vert (appdata v)
@@ -54,6 +57,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
+				fixed rim_alpha = 1;
 				fixed4 rim_color = _RimColor;
 				fixed hide_alpha = 0.5;
 				fixed accuracy = 0.04;
@@ -71,9 +75,19 @@
 				fixed4 col3 = tex2D(_MainTex, bottom_left);
 				fixed4 col4 = tex2D(_MainTex, bottom_right);
 
-				if(col1.a < hide_alpha || col2.a<hide_alpha || col3.a<hide_alpha || col4.a<hide_alpha){
+				if(i.uv[0]>=1-accuracy || i.uv[1]>=1-accuracy || i.uv[0]<=accuracy || i.uv[1]<=accuracy){
 					if(col.a>hide_alpha){
 						col.rgb = rim_color.rgb*_BloomIntensity;
+						col.a = rim_alpha;
+					}
+					else{
+						discard;
+					}
+				}
+				else if(col1.a < hide_alpha || col2.a<hide_alpha || col3.a<hide_alpha || col4.a<hide_alpha){
+					if(col.a>hide_alpha){
+						col.rgb = rim_color.rgb*_BloomIntensity;
+						col.a = rim_alpha;
 					}
 					else{
 						discard;

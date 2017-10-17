@@ -139,10 +139,10 @@ public class Player : NetworkBehaviour
 		}
 
 		//when client(Natalie) is connected and created, initialize server and itself
-		if (!isServer && isLocalPlayer)
+		if (isServer && !isLocalPlayer)
 		{
-			CmdInitializeServer(NatalieTransform.position,EricTransform.position);
-			InitializeClient(EricTransform.position,NatalieTransform.position);
+			InitializeServer(NatalieTransform.position,EricTransform.position);
+			RpcInitializeClient(EricTransform.position,NatalieTransform.position);
 		}
 
 		GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
@@ -650,23 +650,23 @@ public class Player : NetworkBehaviour
 		//print("Cmd Move");
 		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
 	}
-	[Command]
-	public void CmdInitializeServer(Vector3 spirit_pos, Vector3 player_pos)
+
+	public void InitializeServer(Vector3 spirit_pos, Vector3 player_pos)
 	{
 		//print("CmdIniatiateServer");
 		spirit.transform.position = spirit_pos;
-
 		spirit.SetActive(true);
 		GameObject.Find("Player").transform.position = player_pos;
 		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
 	}
-	public void InitializeClient(Vector3 spirit_pos, Vector3 player_pos)
+	[ClientRpc]
+	public void RpcInitializeClient(Vector3 spirit_pos, Vector3 player_pos)
 	{
 		//print("IniatiateClient");
 		spirit.transform.position = spirit_pos;
-		spiritTargetPos = spirit_pos;
 		spirit.SetActive(true);
 		GameObject.Find("Player").transform.position = player_pos;
+		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
 	}
 
 

@@ -8,6 +8,9 @@ TagManager:
   - FloatingPlatform
   - MovingPlatform
   - Ladder
+  - BoxCannotShare
+  - FloatingPlatformShared
+  - Water
   layers:
   - Default
   - TransparentFX

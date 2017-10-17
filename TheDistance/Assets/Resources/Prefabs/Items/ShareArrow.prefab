@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4372192886308552}
   - component: {fileID: 212719003907014248}
+  - component: {fileID: 122878822121371962}
   m_Layer: 0
   m_Name: ShareArrow
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!122 &122878822121371962
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109290538557286}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4291875024
+  m_Size: 20
 --- !u!212 &212719003907014248
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -71,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e10042a8c40822748a7030e68b2f7526, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

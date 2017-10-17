@@ -4,15 +4,13 @@
 	{
 		_RimColor ("RimColor", Color) = (1,1,1,1)
 		_MainTex ("Texture", 2D) = "white" {}
+		_RimWidth ("RimWidth", Range(0,1)) = 0.04
 		_BloomIntensity ("BloomIntensity", Range(0,100)) = 2
+		_HideAlpha ("HideAlpha", Range(0,1)) = 0.5
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" }
-		LOD 100
-		Cull Off
-		Zwrite Off
-		Blend SrcAlpha OneMinusSrcAlpha
+		Tags { "RenderType"="Opaque" }
 
 		Pass
 		{
@@ -41,6 +39,8 @@
 			float4 _MainTex_ST;
 			float _BloomIntensity;
 			fixed4 _RimColor;
+			fixed _RimWidth;
+			fixed _HideAlpha;
 
 			v2f vert (appdata v)
 			{
@@ -59,8 +59,8 @@
 			{
 				fixed rim_alpha = 1;
 				fixed4 rim_color = _RimColor;
-				fixed hide_alpha = 0.5;
-				fixed accuracy = 0.04;
+				fixed hide_alpha = _HideAlpha;
+				fixed accuracy = _RimWidth;
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
 				// apply fog

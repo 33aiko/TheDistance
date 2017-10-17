@@ -224,16 +224,18 @@ public class Player : NetworkBehaviour
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
             selectShareObject = true;
+			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
 		}
 
         if(selectShareObject)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.F))
                 pCC.getNextObject();
         }
 
 		if(Input.GetKeyUp(KeyCode.T))
 		{
+			Camera.main.GetComponent<VignetteModify> ().intensity = 0;
             selectShareObject = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();

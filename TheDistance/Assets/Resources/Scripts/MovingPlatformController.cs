@@ -15,8 +15,6 @@ public class MovingPlatformController : RaycastController
     public bool goingUp;
 	public bool isMoved; 
 
-	bool musicPlayed; 
-
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
 
@@ -28,71 +26,62 @@ public class MovingPlatformController : RaycastController
         //targetPos2 = defaultPosition;
         goingUp = true;
 		isMoved = false; 
-		musicPlayed = false; 
     }
 
     void Update()
     {
         UpdateRaycastOrigins();
 
-		if (canMove) { // if the step on trigger is triggered
-			if (!musicPlayed) {
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MovingPlatform");
-				musicPlayed = true; 
-			}
-			
-			Vector3 velocity;
-			if (goingUp || oneWay) {
-				Vector3 diff = (targetTranslate - curTranslate);
-				velocity = move * Time.deltaTime;
+        if(canMove) // if the step on trigger is triggered
+        {
+            Vector3 velocity;
+            if(goingUp || oneWay)
+            {
+                Vector3 diff = (targetTranslate - curTranslate);
+                velocity = move * Time.deltaTime;
 
-				// in case the platform exceeds the check point in one frame
-				if (diff.y < velocity.y) {
-					velocity.y = diff.y;
-					goingUp = false;
-					gameObject.tag = "MovingPlatform";
+                // in case the platform exceeds the check point in one frame
+                if (diff.y < velocity.y)
+                {
+                    velocity.y = diff.y;
+                    goingUp = false;
+                    gameObject.tag = "MovingPlatform";
 					isMoved = true; 
-					GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-					musicPlayed = false; 
-
-				}
-				if (diff.y < 0) {
-					gameObject.tag = "MovingPlatform";
-					goingUp = false;
+                }
+                if (diff.y < 0)
+                {
+                    gameObject.tag = "MovingPlatform";
+                    goingUp = false;
 					isMoved = true; 
-					GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-					musicPlayed = false; 
-				}
-				curTranslate += velocity;
-				//if (diff.x < velocity.x) velocity.x = diff.x;
-			} else {
-				Vector3 diff = curTranslate;
-				velocity = -move * Time.deltaTime;
+                }
+                curTranslate += velocity;
+                //if (diff.x < velocity.x) velocity.x = diff.x;
+            }
+            else
+            {
+                Vector3 diff = curTranslate;
+                velocity = -move * Time.deltaTime;
 
-				// in case the platform exceeds the check point in one frame
-				if (diff.y < Mathf.Abs (velocity.y)) {
-					velocity.y = -diff.y;
-					goingUp = true;
-				}
-				if (diff.y < 0)
-					goingUp = true;
-				curTranslate += velocity;
-				//if (diff.x < velocity.x) velocity.x = diff.x;
-			}
+                // in case the platform exceeds the check point in one frame
+                if (diff.y < Mathf.Abs(velocity.y))
+                {
+                    velocity.y = -diff.y;
+                    goingUp = true;
+                }
+                if (diff.y < 0) goingUp = true;
+                curTranslate += velocity;
+                //if (diff.x < velocity.x) velocity.x = diff.x;
+            }
 
-			if (velocity.y == 0) {
-			}
-			CalculatePassengerMovement (velocity);
+            if(velocity.y == 0)
+            {
+            }
+            CalculatePassengerMovement(velocity);
 
-			MovePassengers (true);
-			transform.Translate (velocity);
-			MovePassengers (false);
-		} else {
-			if (musicPlayed && oneWay) {
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-				musicPlayed = false; 
-			}
-		}
+            MovePassengers(true);
+            transform.Translate(velocity);
+            MovePassengers(false);
+        }
     }
 
     void MovePassengers(bool beforeMovePlatform)

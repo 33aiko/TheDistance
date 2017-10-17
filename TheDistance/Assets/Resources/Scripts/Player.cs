@@ -204,7 +204,6 @@ public class Player : NetworkBehaviour
 			//print("have NPC in range? " + (curNPC != null));
 			if(curNPC != null)
 			{
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("NPCcontent");
 				print("NPC says: " + curNPC.NPCtalk);
 				curNPC.showTalkText();
 			}
@@ -237,13 +236,6 @@ public class Player : NetworkBehaviour
             selectShareObject = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();
-            if(sharedObject == null)
-            {
-                print("We found a null here!!!!!!!");
-            }
-            else
-            {
-
 			if (sharedObject.tag=="FloatingPlatform")
 			{
 				Debug.Log("found");
@@ -284,7 +276,6 @@ public class Player : NetworkBehaviour
                     root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
                 }
 			}
-            }
 		}
 
 		// on the ground or on the ladder

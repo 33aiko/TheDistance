@@ -87,17 +87,10 @@ public class PlayerCircleCollider : MonoBehaviour {
     public void getNextObject()
     {
         shareIdx += 1;
-        if(nearObjectList.Count == 0)
-        {
-            shareObject = null;
-        }
-        else
-        {
-            shareIdx = shareIdx % nearObjectList.Count;
-            shareObject = nearObjectList[shareIdx];
-            deletePrevArrow();
-            createArrow();
-        }
+        shareIdx = shareIdx % nearObjectList.Count;
+        shareObject = nearObjectList[shareIdx];
+        deletePrevArrow();
+        createArrow();
     }
 
     public GameObject shareSelectedObject()
@@ -105,18 +98,9 @@ public class PlayerCircleCollider : MonoBehaviour {
         if(shareObject == null)
         {
             print("nothing can be shared");
-            return null;
         }
         deletePrevArrow();
         // add share code here
-        if(shareObject.tag == "Box")
-        {
-            print("Should be deleteing box!");
-            nearObjectList.Remove(shareObject);
-            GameObject res = shareObject;
-            getNextObject();
-            return res;
-        }
         return shareObject;
         // share "shareObject"
     }
@@ -124,17 +108,13 @@ public class PlayerCircleCollider : MonoBehaviour {
     void createArrow()
     {
         // create arrow on the share object
-        SpriteRenderer sp = shareObject.gameObject.GetComponent<SpriteRenderer>();
-        if(sp != null)
+        Vector2 v = shareObject.gameObject.GetComponent<SpriteRenderer>().bounds.size;
+        if (arrow == null)
         {
-            Vector2 v = shareObject.gameObject.GetComponent<SpriteRenderer>().bounds.size;
-            if (arrow == null)
-            {
-                arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
-            }
-            Vector3 tmp = new Vector3(0, v.y);
-            arrow.transform.position = shareObject.transform.position + tmp;
+            arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
         }
+        Vector3 tmp = new Vector3(0, v.y);
+        arrow.transform.position = shareObject.transform.position + tmp;
     }
 
     void deletePrevArrow()

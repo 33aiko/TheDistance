@@ -17,6 +17,7 @@ public class CheckPointController : MonoBehaviour {
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");
                 gameObject.SetActive(false);
+				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("Checkpoint");
             }
         }
     }

@@ -3379,6 +3379,7 @@ GameObject:
   - component: {fileID: 364592956}
   - component: {fileID: 364592955}
   - component: {fileID: 364592957}
+  - component: {fileID: 364592958}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3492,12 +3493,25 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364592949}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: ac91a17302fe2cc47aed682089d90b91, type: 2}
+--- !u!114 &364592958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364592949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0b96281c22ce742ad70c35020e283b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: ac91a17302fe2cc47aed682089d90b91, type: 2}
+  intensity: 1
 --- !u!1 &367683965
 GameObject:
   m_ObjectHideFlags: 0
@@ -11964,6 +11978,7 @@ MonoBehaviour:
   m: 0.05
   velocity: 0
   a: 0
+  isInWater: 0
 --- !u!212 &1478821646
 SpriteRenderer:
   m_ObjectHideFlags: 0

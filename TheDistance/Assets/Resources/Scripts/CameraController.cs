@@ -63,24 +63,6 @@ public class CameraController : MonoBehaviour {
         {
             velocity.x = 0;
         }
-        /*
-        float directionX = Mathf.Sign(velocity.x);
-        float rayLength = Mathf.Abs(velocity.x);
-        for(int i = 0; i < rayCount; i++)
-        {
-            Vector3 rayOrigin = (directionX == -1) ?
-                bottomLeft : bottomRight;
-            rayOrigin += Vector3.up * (xRaySpacing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
-            if (hit)
-            {
-                print("Hit something!" + hit.transform.name);
-                velocity.x = (hit.distance) * directionX;
-                rayLength = hit.distance;
-            }
-        }
-         */
     }
 
     void VerticalCheck(ref Vector3 velocity)
@@ -94,23 +76,5 @@ public class CameraController : MonoBehaviour {
         {
             velocity.y = 0;
         }
-        /*
-        float directionY = Mathf.Sign(velocity.y);
-        float rayLength = Mathf.Abs(velocity.y);
-        for (int i = 0; i < rayCount; i++)
-        {
-            Vector3 rayOrigin = (directionY == -1) ?
-                bottomLeft : topLeft;
-            rayOrigin += Vector3.up * (xRaySpacing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.up* directionY, rayLength, collisionMask);
-
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
-            if (hit)
-            {
-                velocity.y = (hit.distance) * directionY;
-                rayLength = hit.distance;
-            }
-        }
-         */
     }
 }

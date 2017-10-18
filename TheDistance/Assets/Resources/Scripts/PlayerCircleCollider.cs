@@ -108,13 +108,13 @@ public class PlayerCircleCollider : MonoBehaviour {
             return null;
         }
         deletePrevArrow();
-        // add share code here
         if(shareObject.tag == "Box")
         {
             print("Should be deleteing box!");
             nearObjectList.Remove(shareObject);
             GameObject res = shareObject;
             getNextObject();
+            deletePrevArrow();
             return res;
         }
         return shareObject;

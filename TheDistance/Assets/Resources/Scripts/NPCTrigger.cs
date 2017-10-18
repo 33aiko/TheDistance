@@ -40,12 +40,15 @@ public class NPCTrigger : MonoBehaviour {
         if (collision.transform.gameObject.tag == "Player")
         {
             cnt--;
-            if(cnt == 0)
+            if(cnt != 2)
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = null;
                 t.text = "";
                 instruct.text = "";
+                print("Player leaving NPC");
+                blackmask.DOFade(0, 0);
+                NPCcontent.SetActive(false);
             }
         }
     }

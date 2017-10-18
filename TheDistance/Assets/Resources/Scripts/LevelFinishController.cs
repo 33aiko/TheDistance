@@ -10,13 +10,6 @@ public class LevelFinishController : MonoBehaviour {
 
 	public void Start(){
 		instruct = GameObject.Find("Instruction").GetComponent<Text>();
-        int i = 0;
-        foreach (KeyController p in pKC)
-        {
-            print(p.name);
-            i++;
-        }
-        print("Number of PKC is " + i);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

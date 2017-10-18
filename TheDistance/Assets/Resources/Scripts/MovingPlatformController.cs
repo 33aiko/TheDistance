@@ -36,10 +36,10 @@ public class MovingPlatformController : RaycastController
         UpdateRaycastOrigins();
 
 		if (canMove) { // if the step on trigger is triggered
-			if (!musicPlayed) {
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MovingPlatform");
-				musicPlayed = true; 
-			}
+//			if (!musicPlayed) {
+//				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MovingPlatform");
+//				musicPlayed = true; 
+//			}
 			
 			Vector3 velocity;
 			if (goingUp || oneWay) {
@@ -52,16 +52,12 @@ public class MovingPlatformController : RaycastController
 					goingUp = false;
 					gameObject.tag = "MovingPlatform";
 					isMoved = true; 
-					GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-					musicPlayed = false; 
 
 				}
 				if (diff.y < 0) {
 					gameObject.tag = "MovingPlatform";
 					goingUp = false;
 					isMoved = true; 
-					GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-					musicPlayed = false; 
 				}
 				curTranslate += velocity;
 				//if (diff.x < velocity.x) velocity.x = diff.x;
@@ -87,12 +83,7 @@ public class MovingPlatformController : RaycastController
 			MovePassengers (true);
 			transform.Translate (velocity);
 			MovePassengers (false);
-		} else {
-			if (musicPlayed && oneWay) {
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Stop ("MovingPlatform");
-				musicPlayed = false; 
-			}
-		}
+		} 
     }
 
     void MovePassengers(bool beforeMovePlatform)

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : NetworkBehaviour
@@ -225,12 +226,12 @@ public class Player : NetworkBehaviour
 			pCC.getDefaultShareObject();
             selectShareObject = true;
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("StartSharing");
+			audioManager.Play ("StartSharing");
 		}
 
         if(selectShareObject)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+			if (Input.GetKeyDown(KeyCode.RightArrow))
                 pCC.getNextObject();
         }
 
@@ -249,7 +250,7 @@ public class Player : NetworkBehaviour
 
 			if (sharedObject.tag=="FloatingPlatform")
 			{
-				Debug.Log("found");
+
                 Debug.Log(sharedObject.name);
 				if (isServer && isLocalPlayer)
 				{
@@ -259,7 +260,8 @@ public class Player : NetworkBehaviour
 				{
 					CmdShare(sharedObject.name);
 				}
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
+				Debug.Log("found");
+				audioManager.Play ("ConfirmSharing");
 			}
 			else if (sharedObject.tag == "MovingPlatform")
 			{
@@ -272,7 +274,7 @@ public class Player : NetworkBehaviour
 				{
 					CmdShareMv(sharedObject.name);
 				}
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
+				audioManager.Play ("ConfirmSharing");
 			}
 			else if (sharedObject.tag == "Box")
 			{
@@ -288,7 +290,7 @@ public class Player : NetworkBehaviour
 					CmdBox(sharedObject.name);
                     root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
                 }
-				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("ConfirmSharing");
+				audioManager.Play ("ConfirmSharing");
 			}
             }
 		}
@@ -403,18 +405,27 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+
+			if (go.GetComponent<KeyController> ().both [0] != 1) {
+				audioManager.Play ("FragmentOne");
+				go.transform.DOScale (15, 0.4f);
+				go.transform.DOScale (12, 0.4f).SetDelay (0.8f);
+			}
             go.GetComponent<KeyController>().both[0] = 1;
 
             RpcFrag(keyIdx);
+
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+				go.GetComponent<KeyController> ().ShowEricMemory ();
                 //gameObject.SetActive(false);
-                Debug.Log("both key");
+               // Debug.Log("both key");
             }
+
 
             go.GetComponent<KeyController>().setBoth();
         }
@@ -422,7 +433,14 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            go.GetComponent<KeyController>().both[1] = 1;
+            
+			if (go.GetComponent<KeyController> ().both [1] != 1) {
+				audioManager.Play ("FragmentTwo");
+				go.transform.DOScale (15, 0.8f);
+				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
+			}
+
+			go.GetComponent<KeyController>().both[1] = 1;
             CmdFrag(keyIdx);
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
@@ -430,6 +448,7 @@ public class Player : NetworkBehaviour
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+				go.GetComponent<KeyController> ().ShowNatalieMemory ();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }
@@ -446,13 +465,21 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            go.GetComponent<KeyController>().both[0] = 1;
+            
+			if (go.GetComponent<KeyController> ().both [0] != 1) {
+				audioManager.Play ("FragmentOne");
+				go.transform.DOScale (15, 0.8f);
+				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
+			}
+
+			go.GetComponent<KeyController>().both[0] = 1;
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+				go.GetComponent<KeyController> ().ShowNatalieMemory ();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }
@@ -471,13 +498,22 @@ public class Player : NetworkBehaviour
             int keyIdxPlus = keyIdx + 1;
             Debug.Log("Ser shoudaole");
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            go.GetComponent<KeyController>().both[1] = 1;
+            
+			if (go.GetComponent<KeyController> ().both [1] != 1) {
+				audioManager.Play ("FragmentTwo");
+				go.transform.DOScale (15, 0.8f);
+				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
+			}
+
+			go.GetComponent<KeyController>().both[1] = 1;
+
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+				go.GetComponent<KeyController> ().ShowEricMemory ();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }

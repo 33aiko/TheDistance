@@ -117,20 +117,30 @@ public class MovingPlatformController : RaycastController
 
             for (int i = 0; i < verticalRayCount; i++)
             {
+                Vector2 rayOrigin = raycastOrigins.topLeft;
+                rayOrigin += Vector2.right * (verticalRaySpacing * i);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, passengerMask);
+                Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.yellow);
+                /*
                 Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, passengerMask);
                 Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.yellow);
+                 */
 
                 if (hit)
                 {
+                    if (hit.transform.gameObject.GetComponent<Player>().playerUp)
+                        continue;
+                    if(rayOrigin.y > hit.transform.gameObject.GetComponent<Player>().controller.raycastOrigins.bottomLeft.y)
+                        continue;
                     if (!movedPassengers.Contains(hit.transform))
                     {
                         movedPassengers.Add(hit.transform);
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
 
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, directionY==1));
                     }
                 }
             }

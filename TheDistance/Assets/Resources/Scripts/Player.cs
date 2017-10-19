@@ -53,6 +53,7 @@ public class Player : NetworkBehaviour
 	float velocitySmoothing;
 
 	public bool playerJumping = false;
+    public bool playerUp = false;
 
 
 	[HideInInspector]
@@ -365,8 +366,9 @@ public class Player : NetworkBehaviour
 
 
         // set the animator statemachine
+        playerUp = velocity.y > 0;
 		animator.SetBool("playerJumping", playerJumping);
-		animator.SetBool("playerUp", velocity.y > 0);
+		animator.SetBool("playerUp", playerUp);
 		animator.SetBool("playerStand", 
 			(velocity.x == 0 && !playerJumping) );
 		animator.SetBool("playerClimb", controller.collisions.onLadder);

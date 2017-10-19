@@ -80,6 +80,9 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
+        if (!isLocalPlayer)
+            return;
+
 		// get components
 		audioManager = FindObjectOfType<AudioManager>();
 		animator = GetComponent<Animator>();
@@ -100,54 +103,58 @@ public class Player : NetworkBehaviour
 
 		//find root, because spirit is deactived, so we can only use transform to find it.
 		root = GameObject.Find("Root");
-		spirit = root.transform.Find("Spirit").gameObject;
-        spirit.AddComponent<Animator>();
-        spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
-        spiritTargetPos = spirit.transform.position;
 
-		Transform EricTransform;//EricPos
-		Transform NatalieTransform;//NataliePos
-		EricTransform = root.transform.Find(ShareWorldName + "/" + EricPosName);
-		NatalieTransform = root.transform.Find(ShareWorldName + "/" + NataliePosName);
+        Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
+        Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
 
-
-
-
-		if (isLocalPlayer && isServer) {
-			transform.position = EricTransform.position;
-			curCheckPoint = EricTransform.position;
-		}
-		if (isLocalPlayer && !isServer) {
-			transform.position = NatalieTransform.position;
-			curCheckPoint = NatalieTransform.position;
-		}
-
-        //camera
-        if(isLocalPlayer)
+        // initialize local player position
+        if (isLocalPlayer && isServer)
         {
-            offset.z = Camera.main.transform.position.z - transform.position.z;
-            Camera.main.transform.position = transform.position +
-            new Vector3(0, cameraOffset, offset.z);
+            transform.position = EricStartPoint.position;
+            curCheckPoint = EricStartPoint.position;
+        }
+        if (isLocalPlayer && !isServer)
+        {
+            transform.position = NatalieStartPoint.position;
+            curCheckPoint = NatalieStartPoint.position;
         }
 
+        // initialize spirit
+        spirit = root.transform.Find("Spirit").gameObject;
+        if (spirit.GetComponent<Animator>() == null)
+        {
+            spirit.AddComponent<Animator>();
+            spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
+            spiritTargetPos = spirit.transform.position;
+        }
+
+        // init camera pos
+        if (isLocalPlayer)
+        {
+            offset.z = Camera.main.transform.position.z - transform.position.z;
+            Camera.main.transform.position = transform.position + new Vector3(0, cameraOffset, offset.z);
+        }
+
+        // init world
         root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
 		root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);
 
 		//hideRemotePlayer
 		if (!isLocalPlayer) {
-			gameObject.SetActive (false);
+			// gameObject.SetActive (false);
 		} else {
 			gameObject.name = "Player";
 		}
 
-		//when client(Natalie) is connected and created, initialize server and itself
-		if (isServer && !isLocalPlayer)
-		{
-			InitializeServer(NatalieTransform.position,EricTransform.position);
-			RpcInitializeClient(EricTransform.position,NatalieTransform.position);
-		}
+        ////when client(Natalie) is connected and created, initialize server and itself
+        //if (isServer && !isLocalPlayer)
+        //{
+        //	InitializeServer(NatalieTransform.position,EricTransform.position);
+        //	RpcInitializeClient(EricTransform.position,NatalieTransform.position);
+        //}
 
-		GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
+        // initialize player animator
+        GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
 		if (animator == null)
 		{
 			print("no animation controller found!");
@@ -157,6 +164,9 @@ public class Player : NetworkBehaviour
 
 	void Update()
 	{
+        if (!isLocalPlayer)
+            return;
+
 		//input controlling move
 		KeyControlMove();
 

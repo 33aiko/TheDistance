@@ -162,7 +162,13 @@ public class Controller2D : RaycastController
                 {
                     // player stands on a floating box
                     print("On the floating platform");
-                    velocity.y = hit.transform.gameObject.GetComponent<FloatInWater>().move.y;
+                    FloatInWater pFW = hit.transform.gameObject.GetComponent<FloatInWater>();
+                    if(pFW.p == null)
+                        pFW.p = GetComponent<Player>();
+                    pFW.playerOnTop = true;
+                    //pFW.movePlayer();
+                    //velocity.y = hit.transform.gameObject.GetComponent<FloatInWater>().move.y;
+
                 }
 
                 rayLength = hit.distance;

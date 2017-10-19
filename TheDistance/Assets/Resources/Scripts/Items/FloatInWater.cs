@@ -13,9 +13,13 @@ public class FloatInWater : MonoBehaviour {
 	public float velocity = 0;
 	public float a = 0;
 
+    public bool playerOnTop = false;
+    public Player p;
+
 	public bool isInWater = false; 
 
 	public void SetInWater(){
+        velocity = 0;
         print("This is in water!");
 		isInWater = true;
         GetComponent<BoxController>().haveGravity = false;
@@ -30,6 +34,12 @@ public class FloatInWater : MonoBehaviour {
 
 			float v2 = velocity + a * Time.deltaTime;
 			move.y = -(v2 + velocity) / 2;
+            if (playerOnTop)
+            {
+                movePlayer();
+                print("moving player on the platform");
+                playerOnTop = false;
+            }
 			transform.Translate (move);
 
 			velocity = v2;
@@ -37,4 +47,10 @@ public class FloatInWater : MonoBehaviour {
 		}
 
 	}
+
+    public void movePlayer()
+    {
+        p.controller.Move(new Vector3(0, move.y));
+        p.controller.collisions.below = true;
+    }
 }

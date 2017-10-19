@@ -80,11 +80,9 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
-        //find root, because spirit is deactived, so we can only use transform to find it.
+  
+        // init public variables:
         root = GameObject.Find("Root");
-
-        if (!isLocalPlayer)
-            return;
 
 		// get components
 		audioManager = FindObjectOfType<AudioManager>();
@@ -102,6 +100,9 @@ public class Player : NetworkBehaviour
 
 		// interact with objects
 		controller.collisions.interact = false;
+
+        if (!isLocalPlayer)
+            return;
 
         Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
         Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);

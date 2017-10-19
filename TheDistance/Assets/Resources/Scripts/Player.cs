@@ -80,6 +80,9 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
+        //find root, because spirit is deactived, so we can only use transform to find it.
+        root = GameObject.Find("Root");
+
         if (!isLocalPlayer)
             return;
 
@@ -99,10 +102,6 @@ public class Player : NetworkBehaviour
 
 		// interact with objects
 		controller.collisions.interact = false;
-
-
-		//find root, because spirit is deactived, so we can only use transform to find it.
-		root = GameObject.Find("Root");
 
         Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
         Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
@@ -510,7 +509,7 @@ public class Player : NetworkBehaviour
             int keyIdxPlus = keyIdx + 1;
             Debug.Log("Ser shoudaole");
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            
+
 			if (go.GetComponent<KeyController> ().both [1] != 1) {
 				audioManager.Play ("FragmentTwo");
 				go.transform.DOScale (15, 0.8f);
@@ -606,8 +605,7 @@ public class Player : NetworkBehaviour
 	{
 		if (isServer) { return; }
 		Debug.Log(sharedObject+" read");
-		GameObject remoteWorld=root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
-		GameObject sObj=remoteWorld.transform.Find(sharedObject).gameObject;
+        GameObject sObj = root.transform.Find("EricWorld/WorldA/" + sharedObject).gameObject;
 		sObj.SetActive(true);
 		GameObject newObj = Instantiate(sObj);
 		newObj.transform.position = sObj.transform.position;
@@ -620,8 +618,7 @@ public class Player : NetworkBehaviour
 	public void CmdShare(string sharedObject)
 	{
 		Debug.Log(sharedObject+" read");
-		GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
-		GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + sharedObject).gameObject;
 		sObj.SetActive(true);
 		GameObject newObj = Instantiate(sObj);
 		newObj.transform.position = sObj.transform.position;

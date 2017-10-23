@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0cb9bdf48feba4ba5800c020595626b7
-timeCreated: 1508527110
+timeCreated: 1508527334
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -933,7 +933,7 @@ TextureImporter:
       name: natalie_idle_55
       rect:
         serializedVersion: 2
-        x: 1725
+        x: 1730
         y: 2168
         width: 283
         height: 303

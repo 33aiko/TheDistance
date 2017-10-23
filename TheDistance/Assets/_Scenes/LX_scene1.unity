@@ -8472,7 +8472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -13500,7 +13500,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MusicTrack01WithAtmo
     clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
-    volume: 0.8
+    volume: 0.612
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -13544,7 +13544,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: StartSharing
-    clip: {fileID: 8300000, guid: d44ae711c7bdc407b99f5369737b079c, type: 3}
+    clip: {fileID: 8300000, guid: 3338601c575eb46458d1dddefa80ce71, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 0.8
@@ -13562,19 +13562,19 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: FragmentOne
-    clip: {fileID: 8300000, guid: d0c9caec531404adb8a4214399ebb33d, type: 3}
-    volume: 0.8
+    clip: {fileID: 8300000, guid: afcd01a893f754d7b9c3052437d81a57, type: 3}
+    volume: 1
     volumeVariance: 0
-    pitch: 0.8
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: FragmentTwo
-    clip: {fileID: 8300000, guid: 243eab927d71f49bfb899e37d4f8e178, type: 3}
-    volume: 0.8
+    clip: {fileID: 8300000, guid: 83361efbb20764f7d8b2545ca90584e6, type: 3}
+    volume: 1
     volumeVariance: 0
-    pitch: 0.8
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
@@ -13681,7 +13681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1470045511
 Transform:
   m_ObjectHideFlags: 0
@@ -19371,7 +19371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0

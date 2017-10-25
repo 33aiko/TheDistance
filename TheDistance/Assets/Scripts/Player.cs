@@ -253,6 +253,11 @@ public class Player : NetworkBehaviour
                 pCC.getNextObject();
         }
 
+        if(Input.GetKeyUp(KeyCode.T))
+        {
+            tryShare = false;
+        }
+
 		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)
 		{
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.3f;

@@ -13,7 +13,7 @@ public class CameraZoomTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
         {
             cnt++;
             if (cnt == 2)

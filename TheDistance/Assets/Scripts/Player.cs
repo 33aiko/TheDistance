@@ -56,6 +56,7 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
+    bool tryShare = false;
 
 	[HideInInspector]
 	public Controller2D controller;
@@ -232,7 +233,12 @@ public class Player : NetworkBehaviour
 		}
 
 		// object sharing
-		if(Input.GetKeyDown(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            tryShare = true;
+        }
+
+        if (tryShare && !playerJumping)
 		{
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
@@ -247,10 +253,11 @@ public class Player : NetworkBehaviour
                 pCC.getNextObject();
         }
 
-		if(Input.GetKeyUp(KeyCode.T))
+		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)
 		{
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.3f;
             selectShareObject = false;
+            tryShare = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();
             if(sharedObject == null)
@@ -360,7 +367,7 @@ public class Player : NetworkBehaviour
 		}
 
 		// jump
-		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
+		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject) )
 		{
 			audioManager.Play("PlayerJump");
 			velocity.y = jumpVelocity;
@@ -368,6 +375,8 @@ public class Player : NetworkBehaviour
 		}
 
 		velocity.x = input.x * moveSpeed;
+        if (selectShareObject) velocity.x = 0;
+
 		if (velocity.x < 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = true;
@@ -398,7 +407,8 @@ public class Player : NetworkBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-		if (isServer)
+
+        if (isServer)
 		{
 			RpcMove(transform.position);
 		}

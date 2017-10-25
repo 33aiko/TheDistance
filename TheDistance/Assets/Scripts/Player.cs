@@ -54,6 +54,7 @@ public class Player : NetworkBehaviour
 
 	public bool playerJumping = false;
     public bool playerUp = false;
+    float jumpTime = 0;
 
 
 	[HideInInspector]
@@ -311,14 +312,17 @@ public class Player : NetworkBehaviour
 		{
 			if(playerJumping)
 			{
-				audioManager.Play("PlayerLand");
-			}
-			playerJumping = false;
+                if(jumpTime > 0.1f)
+                    audioManager.Play("PlayerLand");
+            }
+            playerJumping = false;
 			velocity.y = 0;
+            jumpTime = 0;
 		}
 		else
 		{
 			playerJumping = true;
+            jumpTime += Time.deltaTime;
 		}
 
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -377,7 +381,7 @@ public class Player : NetworkBehaviour
 
         // set the animator statemachine
         playerUp = velocity.y > 0;
-		animator.SetBool("playerJumping", playerJumping);
+		animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) );
 		animator.SetBool("playerUp", playerUp);
 		animator.SetBool("playerStand", 
 			(velocity.x == 0 && !playerJumping) );

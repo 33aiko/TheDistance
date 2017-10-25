@@ -248,7 +248,7 @@ public class Player : NetworkBehaviour
 
 		if(Input.GetKeyUp(KeyCode.T))
 		{
-			Camera.main.GetComponent<VignetteModify> ().intensity = 0;
+			Camera.main.GetComponent<VignetteModify> ().intensity = 0.3f;
             selectShareObject = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();

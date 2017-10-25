@@ -3286,15 +3286,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364592949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f19108706fdce9469603d07980eb8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blendMode: 2
-  intensity: 1.5
-  texture: {fileID: 2800000, guid: f0f78a73c85610e4fac3ec3e5443b15b, type: 3}
-  overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!114 &364592957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3319,7 +3315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: ac91a17302fe2cc47aed682089d90b91, type: 2}
-  intensity: 0
+  intensity: 0.3
 --- !u!1 &380708844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8466,7 +8462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -12945,8 +12941,8 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: MusicTrack01WithAtmo
-    clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
-    volume: 0.612
+    clip: {fileID: 8300000, guid: efec0dd198ea74523ba29f48382d573e, type: 3}
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

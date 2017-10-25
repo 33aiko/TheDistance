@@ -6,7 +6,7 @@ using UnityEngine.PostProcessing;
 
 public class VignetteModify : MonoBehaviour {
 	public PostProcessingProfile profile;
-	public float intensity = 1;
+	public float intensity;
 
 	VignetteModel.Settings s;
 

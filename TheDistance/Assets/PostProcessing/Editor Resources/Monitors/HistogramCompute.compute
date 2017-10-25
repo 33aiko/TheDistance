@@ -11,7 +11,7 @@ CBUFFER_END
 
 groupshared uint4 gs_histogram[256];
 
-#define GROUP_SIZE 16
+#define GROUP_SIZE 32
 
 #pragma kernel KHistogramGather
 [numthreads(GROUP_SIZE, GROUP_SIZE,1)]

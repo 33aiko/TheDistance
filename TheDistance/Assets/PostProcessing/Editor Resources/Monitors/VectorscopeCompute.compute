@@ -8,7 +8,7 @@ CBUFFER_START (Params)
     float4 _Res;
 CBUFFER_END
 
-#define GROUP_SIZE 16
+#define GROUP_SIZE 32
 
 float3 RgbToYUV(float3 c)
 {

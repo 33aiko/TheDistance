@@ -1,0 +1,833 @@
+fileFormatVersion: 2
+guid: cedd0c2db88d743ae86508fb86af1d73
+timeCreated: 1509317226
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: natalie_idle_new_0
+    21300002: natalie_idle_new_1
+    21300004: natalie_idle_new_2
+    21300006: natalie_idle_new_3
+    21300008: natalie_idle_new_4
+    21300010: natalie_idle_new_5
+    21300012: natalie_idle_new_6
+    21300014: natalie_idle_new_7
+    21300016: natalie_idle_new_8
+    21300018: natalie_idle_new_9
+    21300020: natalie_idle_new_10
+    21300022: natalie_idle_new_11
+    21300024: natalie_idle_new_12
+    21300026: natalie_idle_new_13
+    21300028: natalie_idle_new_14
+    21300030: natalie_idle_new_15
+    21300032: natalie_idle_new_16
+    21300034: natalie_idle_new_17
+    21300036: natalie_idle_new_18
+    21300038: natalie_idle_new_19
+    21300040: natalie_idle_new_20
+    21300042: natalie_idle_new_21
+    21300044: natalie_idle_new_22
+    21300046: natalie_idle_new_23
+    21300048: natalie_idle_new_24
+    21300050: natalie_idle_new_25
+    21300052: natalie_idle_new_26
+    21300054: natalie_idle_new_27
+    21300056: natalie_idle_new_28
+    21300058: natalie_idle_new_29
+    21300060: natalie_idle_new_30
+    21300062: natalie_idle_new_31
+    21300064: natalie_idle_new_32
+    21300066: natalie_idle_new_33
+    21300068: natalie_idle_new_34
+    21300070: natalie_idle_new_35
+    21300072: natalie_idle_new_36
+    21300074: natalie_idle_new_37
+    21300076: natalie_idle_new_38
+    21300078: natalie_idle_new_39
+    21300080: natalie_idle_new_40
+    21300082: natalie_idle_new_41
+    21300084: natalie_idle_new_42
+    21300086: natalie_idle_new_43
+    21300088: natalie_idle_new_44
+    21300090: natalie_idle_new_45
+    21300092: natalie_idle_new_46
+    21300094: natalie_idle_new_47
+    21300096: natalie_idle_new_48
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: natalie_idle_new_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3791
+        width: 182
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_1
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 3792
+        width: 182
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_2
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 3792
+        width: 184
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_3
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 3792
+        width: 185
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_4
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 3791
+        width: 182
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_5
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 3792
+        width: 182
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_6
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 3792
+        width: 184
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_7
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 3792
+        width: 185
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_8
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3455
+        width: 182
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_9
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 3455
+        width: 180
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_10
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 3455
+        width: 181
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_11
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 3455
+        width: 180
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_12
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 3455
+        width: 180
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_13
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 3455
+        width: 180
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_14
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 3455
+        width: 181
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_15
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 3455
+        width: 178
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3117
+        width: 177
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_17
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 3117
+        width: 183
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_18
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 3117
+        width: 181
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_19
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 3119
+        width: 185
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_20
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 3119
+        width: 182
+        height: 305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_21
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 3119
+        width: 185
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_22
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 3119
+        width: 185
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_23
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 3119
+        width: 185
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_24
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2781
+        width: 182
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_25
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 2781
+        width: 182
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_26
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 2781
+        width: 183
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_27
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 2781
+        width: 185
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_28
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 2781
+        width: 182
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_29
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 2781
+        width: 182
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_30
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 2781
+        width: 182
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_31
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 2781
+        width: 185
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_32
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2445
+        width: 182
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_33
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 2445
+        width: 182
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_34
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 2445
+        width: 180
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_35
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 2445
+        width: 182
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_36
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 2445
+        width: 183
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_37
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 2445
+        width: 180
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_38
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 2445
+        width: 180
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_39
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 2445
+        width: 185
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_40
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2104
+        width: 182
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_41
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 2104
+        width: 182
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_42
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2104
+        width: 184
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_43
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 2107
+        width: 182
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_44
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 2104
+        width: 182
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_45
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 2104
+        width: 182
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_46
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 2104
+        width: 183
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_47
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 2107
+        width: 185
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: natalie_idle_new_48
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1768
+        width: 182
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

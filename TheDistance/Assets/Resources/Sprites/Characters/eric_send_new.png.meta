@@ -1,0 +1,1373 @@
+fileFormatVersion: 2
+guid: bf2267f1847ad4ace9df753d79b80d2d
+timeCreated: 1509329913
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: eric_send_new_0
+    21300002: eric_send_new_1
+    21300004: eric_send_new_2
+    21300006: eric_send_new_3
+    21300008: eric_send_new_4
+    21300010: eric_send_new_5
+    21300012: eric_send_new_6
+    21300014: eric_send_new_7
+    21300016: eric_send_new_8
+    21300018: eric_send_new_9
+    21300020: eric_send_new_10
+    21300022: eric_send_new_11
+    21300024: eric_send_new_12
+    21300026: eric_send_new_13
+    21300028: eric_send_new_14
+    21300030: eric_send_new_15
+    21300032: eric_send_new_16
+    21300034: eric_send_new_17
+    21300036: eric_send_new_18
+    21300038: eric_send_new_19
+    21300040: eric_send_new_20
+    21300042: eric_send_new_21
+    21300044: eric_send_new_22
+    21300046: eric_send_new_23
+    21300048: eric_send_new_24
+    21300050: eric_send_new_25
+    21300052: eric_send_new_26
+    21300054: eric_send_new_27
+    21300056: eric_send_new_28
+    21300058: eric_send_new_29
+    21300060: eric_send_new_30
+    21300062: eric_send_new_31
+    21300064: eric_send_new_32
+    21300066: eric_send_new_33
+    21300068: eric_send_new_34
+    21300070: eric_send_new_35
+    21300072: eric_send_new_36
+    21300074: eric_send_new_37
+    21300076: eric_send_new_38
+    21300078: eric_send_new_39
+    21300080: eric_send_new_40
+    21300082: eric_send_new_41
+    21300084: eric_send_new_42
+    21300086: eric_send_new_43
+    21300088: eric_send_new_44
+    21300090: eric_send_new_45
+    21300092: eric_send_new_46
+    21300094: eric_send_new_47
+    21300096: eric_send_new_48
+    21300098: eric_send_new_49
+    21300100: eric_send_new_50
+    21300102: eric_send_new_51
+    21300104: eric_send_new_52
+    21300106: eric_send_new_53
+    21300108: eric_send_new_54
+    21300110: eric_send_new_55
+    21300112: eric_send_new_56
+    21300114: eric_send_new_57
+    21300116: eric_send_new_58
+    21300118: eric_send_new_59
+    21300120: eric_send_new_60
+    21300122: eric_send_new_61
+    21300124: eric_send_new_62
+    21300126: eric_send_new_63
+    21300128: eric_send_new_64
+    21300130: eric_send_new_65
+    21300132: eric_send_new_66
+    21300134: eric_send_new_67
+    21300136: eric_send_new_68
+    21300138: eric_send_new_69
+    21300140: eric_send_new_70
+    21300142: eric_send_new_71
+    21300144: eric_send_new_72
+    21300146: eric_send_new_73
+    21300148: eric_send_new_74
+    21300150: eric_send_new_75
+    21300152: eric_send_new_76
+    21300154: eric_send_new_77
+    21300156: eric_send_new_78
+    21300158: eric_send_new_79
+    21300160: eric_send_new_80
+    21300162: eric_send_new_81
+    21300164: eric_send_new_82
+    21300166: eric_send_new_83
+    21300168: eric_send_new_84
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: eric_send_new_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_1
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_2
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_3
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_4
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_5
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_6
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_7
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_8
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_9
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_10
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_11
+      rect:
+        serializedVersion: 2
+        x: 2882
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_12
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_13
+      rect:
+        serializedVersion: 2
+        x: 3406
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_14
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 3768
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_16
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_17
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_18
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_19
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_20
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_21
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_22
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_23
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_24
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_25
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_26
+      rect:
+        serializedVersion: 2
+        x: 2882
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_27
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_28
+      rect:
+        serializedVersion: 2
+        x: 3406
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_29
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 3405
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_31
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_32
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_33
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_34
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_35
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_36
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_37
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_38
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_39
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_40
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_41
+      rect:
+        serializedVersion: 2
+        x: 2882
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_42
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_43
+      rect:
+        serializedVersion: 2
+        x: 3406
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_44
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 3042
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_46
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_47
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_48
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_49
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_50
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_51
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_52
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_53
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_54
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_55
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_56
+      rect:
+        serializedVersion: 2
+        x: 2882
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_57
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_58
+      rect:
+        serializedVersion: 2
+        x: 3406
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_59
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 2679
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_61
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_62
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_63
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_64
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_65
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_66
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_67
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_68
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_69
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_70
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_71
+      rect:
+        serializedVersion: 2
+        x: 2882
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_72
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_73
+      rect:
+        serializedVersion: 2
+        x: 3406
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_74
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 2316
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_76
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_77
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_78
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_79
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_80
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_81
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_82
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_83
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_send_new_84
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 1953
+        width: 227
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

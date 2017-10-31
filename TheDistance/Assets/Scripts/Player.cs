@@ -35,6 +35,7 @@ public class Player : NetworkBehaviour
     // camera parameter
 	public Vector2 cameraMin, cameraMax;
 	public float cameraOffset;
+	float currentCameraOffset = 0; 
 	private Vector3 offset;
     public float cameraZoomValue = 0;
     float currentCameraZoomValue = 0;
@@ -188,12 +189,14 @@ public class Player : NetworkBehaviour
 
     void UpdateCameraPosition()
     {
+		Debug.Log (currentCameraOffset);
         if (currentCameraZoomValue != cameraZoomValue)
         {
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
         }
+
         Vector3 ttmp = transform.position - Camera.main.transform.position;
-        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
+		Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
         //Vector3 moveDistance = 
             //new Vector3(
                 //Mathf.Min(ttmp.x, moveSpeed * Time.deltaTime), 
@@ -201,7 +204,7 @@ public class Player : NetworkBehaviour
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
         Camera.main.transform.position = 
             new Vector3(Camera.main.transform.position.x,
-            Camera.main.transform.position.y
+				Camera.main.transform.position.y
             , transform.position.z + offset.z + currentCameraZoomValue);
     }
 

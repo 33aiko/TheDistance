@@ -37,11 +37,11 @@ public class PlayerCircleCollider : MonoBehaviour {
             )
         {
             //print(collision.gameObject.name + "leaves the region");
+            nearObjectList.Remove(collision.gameObject);
             if(shareObject == collision.gameObject)
             {
-                shareObject = null;
+                getNextObject();
             }
-            nearObjectList.Remove(collision.gameObject);
 
             // remove the halo when it leaves the region
             (collision.gameObject.GetComponent("Halo") as Behaviour).enabled = false;

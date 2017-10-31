@@ -78,7 +78,7 @@ public class Player : NetworkBehaviour
 	[HideInInspector]
 	Animator animator;
     [HideInInspector]
-    float nextIdleTime = -1.0f;
+    float nextIdleTime = 10.0f;
 
 	[HideInInspector]
 	public bool canClimbLadder = false;
@@ -164,7 +164,6 @@ public class Player : NetworkBehaviour
 		{
 			print("no animation controller found!");
 		}
-
 	}
 
 	void Update()

@@ -77,6 +77,8 @@ public class Player : NetworkBehaviour
 
 	[HideInInspector]
 	Animator animator;
+    [HideInInspector]
+    float nextIdleTime = -1.0f;
 
 	[HideInInspector]
 	public bool canClimbLadder = false;
@@ -189,7 +191,6 @@ public class Player : NetworkBehaviour
 
     void UpdateCameraPosition()
     {
-		Debug.Log (currentCameraOffset);
         if (currentCameraZoomValue != cameraZoomValue)
         {
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
@@ -274,78 +275,80 @@ public class Player : NetworkBehaviour
             }
             else
             {
+                if (sharedObject.tag == "FloatingPlatform")
+                {
 
-			if (sharedObject.tag=="FloatingPlatform")
-			{
-
-                Debug.Log(sharedObject.name);
-				if (isServer && isLocalPlayer)
-				{
-					RpcShare(sharedObject.name);
-				}
-				if (!isServer && isLocalPlayer)
-				{
-					CmdShare(sharedObject.name);
-				}
-				Debug.Log("found");
-				audioManager.Play ("ConfirmSharing");
-			}
-			else if (sharedObject.tag == "MovingPlatform")
-			{
-				Debug.Log("mv!");
-				if (isServer && isLocalPlayer)
-				{
-					RpcShareMv(sharedObject.name);
-				}
-				if (!isServer && isLocalPlayer)
-				{
-					CmdShareMv(sharedObject.name);
-				}
-				audioManager.Play ("ConfirmSharing");
-			}
-			else if (sharedObject.tag == "Box")
-			{
-				Debug.Log("box found");
-                string boxname = sharedObject.name;
-				if(isServer && isLocalPlayer)
-				{
-					RpcBox(sharedObject.name);
-					root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
-				}
-				if(!isServer && isLocalPlayer)
-				{
-					CmdBox(sharedObject.name);
-                    root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                    Debug.Log(sharedObject.name);
+                    if (isServer && isLocalPlayer)
+                    {
+                        RpcShare(sharedObject.name);
+                    }
+                    if (!isServer && isLocalPlayer)
+                    {
+                        CmdShare(sharedObject.name);
+                    }
+                    Debug.Log("found");
+                    audioManager.Play("ConfirmSharing");
+                    animator.SetBool("sendSucceed", true);
                 }
-				audioManager.Play ("ConfirmSharing");
-			}
+                else if (sharedObject.tag == "MovingPlatform")
+                {
+                    Debug.Log("mv!");
+                    if (isServer && isLocalPlayer)
+                    {
+                        RpcShareMv(sharedObject.name);
+                    }
+                    if (!isServer && isLocalPlayer)
+                    {
+                        CmdShareMv(sharedObject.name);
+                    }
+                    audioManager.Play("ConfirmSharing");
+                    animator.SetBool("sendSucceed", true);
+                }
+                else if (sharedObject.tag == "Box")
+                {
+                    Debug.Log("box found");
+                    string boxname = sharedObject.name;
+                    if (isServer && isLocalPlayer)
+                    {
+                        RpcBox(sharedObject.name);
+                        root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                    }
+                    if (!isServer && isLocalPlayer)
+                    {
+                        CmdBox(sharedObject.name);
+                        root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                    }
+                    audioManager.Play("ConfirmSharing");
+                    animator.SetBool("sendSucceed", true);
+                }
             }
-		}
+        }
 
-		// on the ground or on the ladder
-		if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
-		{
-			if(playerJumping)
-			{
-                if(jumpTime > 0.1f)
+        // on the ground or on the ladder
+        if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
+        {
+            if (playerJumping)
+            {
+                if (jumpTime > 0.1f)
                     audioManager.Play("PlayerLand");
             }
             playerJumping = false;
-			velocity.y = 0;
+            velocity.y = 0;
             jumpTime = 0;
-		}
-		else
-		{
-			playerJumping = true;
+        }
+        else
+        {
+            playerJumping = true;
             jumpTime += Time.deltaTime;
-		}
+        }
 
-		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         // move audio
-        if(controller.collisions.below && input.x != 0)
+        if (controller.collisions.below && input.x != 0)
         {
-            if(!playingWalkingMusic)
+            if (!playingWalkingMusic)
             {
                 audioManager.Play("PlayerWalking");
                 playingWalkingMusic = true;
@@ -357,81 +360,101 @@ public class Player : NetworkBehaviour
             playingWalkingMusic = false;
         }
 
-		// move in y axis if on the ladder
-		if(controller.collisions.onLadder)
-		{
-			print("Can move down!");
-			velocity.y = input.y * moveSpeed;
-		}
+        // move in y axis if on the ladder
+        if (controller.collisions.onLadder)
+        {
+            print("Can move down!");
+            velocity.y = input.y * moveSpeed;
+        }
 
-		if(controller.collisions.canClimbLadder && input.y < 0)
-		{
-			print("Player want to go down!");
-			controller.collisions.playerClimbLadder = true;
-		}
-		else
-		{
-			controller.collisions.playerClimbLadder = false;
-		}
+        if (controller.collisions.canClimbLadder && input.y < 0)
+        {
+            print("Player want to go down!");
+            controller.collisions.playerClimbLadder = true;
+        }
+        else
+        {
+            controller.collisions.playerClimbLadder = false;
+        }
 
-		// jump
-		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject) )
-		{
-			audioManager.Play("PlayerJump");
-			velocity.y = jumpVelocity;
-			playerJumping = true;
-		}
+        // jump
+        bool keyspaceDown = false;
+        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
+        {
+            audioManager.Play("PlayerJump");
+            velocity.y = jumpVelocity;
+            playerJumping = true;
+            keyspaceDown = true;
+        }
 
-		velocity.x = input.x * moveSpeed;
+        velocity.x = input.x * moveSpeed;
         if (selectShareObject) velocity.x = 0;
 
-		if (velocity.x < 0)
-		{
-			GetComponent<SpriteRenderer>().flipX = true;
-		}
-		else if(velocity.x > 0)
-		{
-			GetComponent<SpriteRenderer>().flipX = false;
-		}
-		if(!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
+        if (velocity.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (velocity.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        if (!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
 
 
         // set the animator statemachine
+
+        //print("nextIdletime:" + nextIdleTime);
         playerUp = velocity.y > 0;
-		animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) );
-		animator.SetBool("playerUp", playerUp);
-		animator.SetBool("playerStand", 
-			(velocity.x == 0 && !playerJumping) );
-		animator.SetBool("playerClimb", controller.collisions.onLadder);
-		if(controller.collisions.onLadder)
+        bool playerStand = (velocity.x == 0 && (!playerJumping || !keyspaceDown));
+        animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) || keyspaceDown);
+        animator.SetBool("playerWalking", (velocity.x != 0));
+        animator.SetBool("playerUp", playerUp);
+        animator.SetBool("playerStand", playerStand);
+        animator.SetBool("playerClimb", controller.collisions.onLadder);
+        animator.SetBool("hasInput", keyspaceDown || input.x != 0 || tryShare);
+
+        if (playerStand && !tryShare)
+        {
+            nextIdleTime -= Time.deltaTime;
+            if (nextIdleTime < 0)
+            {
+                animator.SetBool("playerIdle", true);
+                nextIdleTime = Random.Range(8.0f, 15.0f);
+            }
+        }
+        else
+        {
+            nextIdleTime = Random.Range(2.0f, 3.0f);
+        }
+
+        if (controller.collisions.onLadder)
         {
             animator.speed = (velocity.y != 0) ? 1.0f : 0;
         }
         else
         {
             animator.speed = 1.0f;
-
         }
 
         controller.Move(velocity * Time.deltaTime);
 
 
         if (isServer)
-		{
-			RpcMove(transform.position);
-		}
-		else
-		{
-			//print("update cmd move");
-			CmdMove(transform.position);
-		}
-	}
+        {
+            RpcMove(transform.position);
+        }
+        else
+        {
+            //print("update cmd move");
+            CmdMove(transform.position);
+        }
+    }
 
-	public void backToCheckPoint()
-	{
-		transform.position = curCheckPoint;
+    public void backToCheckPoint()
+    {
+        transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
-	}
+    }
 
     public void checkWho(int keyIdx)
     {
@@ -440,11 +463,12 @@ public class Player : NetworkBehaviour
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
-			if (go.GetComponent<KeyController> ().both [0] != 1) {
-				audioManager.Play ("FragmentOne");
-				go.transform.DOScale (15, 0.4f);
-				go.transform.DOScale (12, 0.4f).SetDelay (0.8f);
-			}
+            if (go.GetComponent<KeyController>().both[0] != 1)
+            {
+                audioManager.Play("FragmentOne");
+                go.transform.DOScale(15, 0.4f);
+                go.transform.DOScale(12, 0.4f).SetDelay(0.8f);
+            }
             go.GetComponent<KeyController>().both[0] = 1;
 
             RpcFrag(keyIdx);
@@ -455,9 +479,9 @@ public class Player : NetworkBehaviour
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
-				go.GetComponent<KeyController> ().ShowEricMemory ();
+                go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
-               // Debug.Log("both key");
+                // Debug.Log("both key");
             }
 
 
@@ -467,14 +491,15 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            
-			if (go.GetComponent<KeyController> ().both [1] != 1) {
-				audioManager.Play ("FragmentTwo");
-				go.transform.DOScale (15, 0.8f);
-				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
-			}
 
-			go.GetComponent<KeyController>().both[1] = 1;
+            if (go.GetComponent<KeyController>().both[1] != 1)
+            {
+                audioManager.Play("FragmentTwo");
+                go.transform.DOScale(15, 0.8f);
+                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+            }
+
+            go.GetComponent<KeyController>().both[1] = 1;
             CmdFrag(keyIdx);
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
@@ -482,7 +507,7 @@ public class Player : NetworkBehaviour
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
-				go.GetComponent<KeyController> ().ShowNatalieMemory ();
+                go.GetComponent<KeyController>().ShowNatalieMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }
@@ -499,21 +524,22 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
-            
-			if (go.GetComponent<KeyController> ().both [0] != 1) {
-				audioManager.Play ("FragmentOne");
-				go.transform.DOScale (15, 0.8f);
-				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
-			}
 
-			go.GetComponent<KeyController>().both[0] = 1;
+            if (go.GetComponent<KeyController>().both[0] != 1)
+            {
+                audioManager.Play("FragmentOne");
+                go.transform.DOScale(15, 0.8f);
+                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+            }
+
+            go.GetComponent<KeyController>().both[0] = 1;
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
-				go.GetComponent<KeyController> ().ShowNatalieMemory ();
+                go.GetComponent<KeyController>().ShowNatalieMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }
@@ -533,13 +559,14 @@ public class Player : NetworkBehaviour
             Debug.Log("Ser shoudaole");
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
-			if (go.GetComponent<KeyController> ().both [1] != 1) {
-				audioManager.Play ("FragmentTwo");
-				go.transform.DOScale (15, 0.8f);
-				go.transform.DOScale (12, 0.8f).SetDelay (0.8f);
-			}
+            if (go.GetComponent<KeyController>().both[1] != 1)
+            {
+                audioManager.Play("FragmentTwo");
+                go.transform.DOScale(15, 0.8f);
+                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+            }
 
-			go.GetComponent<KeyController>().both[1] = 1;
+            go.GetComponent<KeyController>().both[1] = 1;
 
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
@@ -547,7 +574,7 @@ public class Player : NetworkBehaviour
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
-				go.GetComponent<KeyController> ().ShowEricMemory ();
+                go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
             }
@@ -557,218 +584,221 @@ public class Player : NetworkBehaviour
     }
 
     public void Die()
-	{
-		Debug.Log("Player died!");
-		backToCheckPoint();
+    {
+        Debug.Log("Player died!");
+        backToCheckPoint();
 
 
-		//call another player die
-		if (isServer)
-		{
-			Debug.Log("make nata die");
-			RpcDie();
-		}
-		else
-		{
-			Debug.Log("make eric die");
-			CmdDie();
-		}
-		//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	}
+        //call another player die
+        if (isServer)
+        {
+            Debug.Log("make nata die");
+            RpcDie();
+        }
+        else
+        {
+            Debug.Log("make eric die");
+            CmdDie();
+        }
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
-	//check if both players get the fragment
-	public bool checkBothKey(int keyIdx)
-	{
-		if (!haveKey[keyIdx])
-		{
-			return false;
-		}
-		if (isServer)
-		{
-			RpcCheckBoth(keyIdx);
-		}
-		else
-		{
-			CmdCheckBoth(keyIdx);
-		}
-		return otherHaveKey[keyIdx];
-	}
+    //check if both players get the fragment
+    public bool checkBothKey(int keyIdx)
+    {
+        if (!haveKey[keyIdx])
+        {
+            return false;
+        }
+        if (isServer)
+        {
+            RpcCheckBoth(keyIdx);
+        }
+        else
+        {
+            CmdCheckBoth(keyIdx);
+        }
+        return otherHaveKey[keyIdx];
+    }
 
-	/**
+    /**
      * 
      */
-	//sent by server, check on clients
-	[ClientRpc]
-	public void RpcCheckBoth(int keyIdx)
-	{
-		if (!isServer) {
-			Debug.Log("wo chi"+keyIdx);
-			Player p = GetComponent<Player>();
-			p.otherHaveKey[keyIdx] = true;
-		}
-	}
+    //sent by server, check on clients
+    [ClientRpc]
+    public void RpcCheckBoth(int keyIdx)
+    {
+        if (!isServer)
+        {
+            Debug.Log("wo chi" + keyIdx);
+            Player p = GetComponent<Player>();
+            p.otherHaveKey[keyIdx] = true;
+        }
+    }
 
-	//sent by client, check on server
-	[Command]
-	public void CmdCheckBoth(int keyIdx)
-	{
-		if (isServer)
-		{
-			Debug.Log("wo chii"+keyIdx+name);
-			Player p = GetComponent<Player>();
-			p.otherHaveKey[keyIdx] = true;
-		}
-	}
+    //sent by client, check on server
+    [Command]
+    public void CmdCheckBoth(int keyIdx)
+    {
+        if (isServer)
+        {
+            Debug.Log("wo chii" + keyIdx + name);
+            Player p = GetComponent<Player>();
+            p.otherHaveKey[keyIdx] = true;
+        }
+    }
 
 
 
-	//sent by server, show object on clients
-	[ClientRpc]
-	public void RpcShare(string sharedObject)
-	{
-		if (isServer) { return; }
-		Debug.Log(sharedObject+" read");
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcShare(string sharedObject)
+    {
+        if (isServer) { return; }
+        Debug.Log(sharedObject + " read");
         GameObject sObj = root.transform.Find("EricWorld/WorldA/" + sharedObject).gameObject;
-		sObj.SetActive(true);
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
 
-	}
+    }
 
-	//sent by client, show object on server
-	[Command]
-	public void CmdShare(string sharedObject)
-	{
-		Debug.Log(sharedObject+" read");
+    //sent by client, show object on server
+    [Command]
+    public void CmdShare(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
         GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + sharedObject).gameObject;
-		sObj.SetActive(true);
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-		Debug.Log(newObj.name);
-	}
+        Debug.Log(newObj.name);
+    }
 
 
-	//sent by server, show object on clients
-	[ClientRpc]
-	public void RpcShareMv(string sharedObject)
-	{
-		if (isServer) { return; }
-		Debug.Log(sharedObject + " read");
-		GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
-		GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-		sObj.SetActive(true);
-		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
-		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
-			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-		}
-	}
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcShareMv(string sharedObject)
+    {
+        if (isServer) { return; }
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+        if (!sObj.GetComponent<MovingPlatformController>().isMoved)
+        {
+            newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
+        }
+    }
 
-	//sent by client, show object on server
-	[Command]
-	public void CmdShareMv(string sharedObject)
-	{
-		Debug.Log(sharedObject + " read");
-		GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
-		GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-		sObj.SetActive(true);
-		//sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
-		if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
-			newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-		}
-	}
-
-
-	//sent by server, show box on clients
-	[ClientRpc]
-	public void RpcBox(string sharedObject)
-	{
-		if (isServer) { return; }
-		Debug.Log(sharedObject + " read");
-		GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
-		GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-		sObj.SetActive(true);
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
-		Debug.Log (sObj.name);
-
-	}
-
-	//sent by client, show box on server
-	[Command]
-	public void CmdBox(string sharedObject)
-	{
-		Debug.Log(sharedObject + " read");
-		GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
-		GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-		sObj.SetActive(true);
-		GameObject newObj = Instantiate(sObj);
-		newObj.transform.position = sObj.transform.position;
-		Debug.Log (sObj.name);
-
-	}
+    //sent by client, show object on server
+    [Command]
+    public void CmdShareMv(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+        if (!sObj.GetComponent<MovingPlatformController>().isMoved)
+        {
+            newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
+        }
+    }
 
 
-	//sent by server, run on all clients
-	[ClientRpc]
-	public void RpcMove(Vector3 pos)
-	{
-		//print("Rpc Move");
-		if (!isServer)
-		{
-			GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
-		}
-	}
+    //sent by server, show box on clients
+    [ClientRpc]
+    public void RpcBox(string sharedObject)
+    {
+        if (isServer) { return; }
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+        Debug.Log(sObj.name);
 
-	//sent by client, run on server
-	[Command]
-	public void CmdMove(Vector3 pos)
-	{
-		//print("Cmd Move");
-		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
-	}
+    }
 
-	public void InitializeServer(Vector3 spirit_pos, Vector3 player_pos)
-	{
-		//print("CmdIniatiateServer");
-		spirit.transform.position = spirit_pos;
-		spirit.SetActive(true);
-		GameObject.Find("Player").transform.position = player_pos;
-		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
-	}
-	[ClientRpc]
-	public void RpcInitializeClient(Vector3 spirit_pos, Vector3 player_pos)
-	{
-		//print("IniatiateClient");
-		spirit.transform.position = spirit_pos;
-		spirit.SetActive(true);
-		GameObject.Find("Player").transform.position = player_pos;
-		GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
-	}
+    //sent by client, show box on server
+    [Command]
+    public void CmdBox(string sharedObject)
+    {
+        Debug.Log(sharedObject + " read");
+        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.transform.position = sObj.transform.position;
+        Debug.Log(sObj.name);
+
+    }
 
 
-	//sent by server, make die on clients
-	[ClientRpc]
-	public void RpcDie()
-	{
-		if (isServer) { return; }
-		Debug.Log("client RPCdie");
-		Player p = GameObject.Find("Player").GetComponent<Player>();
-		p.backToCheckPoint();
+    //sent by server, run on all clients
+    [ClientRpc]
+    public void RpcMove(Vector3 pos)
+    {
+        //print("Rpc Move");
+        if (!isServer)
+        {
+            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+        }
+    }
 
-	}
+    //sent by client, run on server
+    [Command]
+    public void CmdMove(Vector3 pos)
+    {
+        //print("Cmd Move");
+        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+    }
 
-	//sent by client, make die on server
-	[Command]
-	public void CmdDie()
-	{
-		Debug.Log("server CMDdie");
-		Player p = GameObject.Find("Player").GetComponent<Player>();
-		p.backToCheckPoint();
-	}
+    public void InitializeServer(Vector3 spirit_pos, Vector3 player_pos)
+    {
+        //print("CmdIniatiateServer");
+        spirit.transform.position = spirit_pos;
+        spirit.SetActive(true);
+        GameObject.Find("Player").transform.position = player_pos;
+        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+    }
+    [ClientRpc]
+    public void RpcInitializeClient(Vector3 spirit_pos, Vector3 player_pos)
+    {
+        //print("IniatiateClient");
+        spirit.transform.position = spirit_pos;
+        spirit.SetActive(true);
+        GameObject.Find("Player").transform.position = player_pos;
+        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+    }
+
+
+    //sent by server, make die on clients
+    [ClientRpc]
+    public void RpcDie()
+    {
+        if (isServer) { return; }
+        Debug.Log("client RPCdie");
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        p.backToCheckPoint();
+
+    }
+
+    //sent by client, make die on server
+    [Command]
+    public void CmdDie()
+    {
+        Debug.Log("server CMDdie");
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        p.backToCheckPoint();
+    }
 }

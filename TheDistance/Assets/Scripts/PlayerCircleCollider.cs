@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCircleCollider : MonoBehaviour {
 
-    List<GameObject> nearObjectList = new List<GameObject>();
+    public List<GameObject> nearObjectList = new List<GameObject>();
 
     bool keyDown = false;
 
@@ -37,6 +37,10 @@ public class PlayerCircleCollider : MonoBehaviour {
             )
         {
             //print(collision.gameObject.name + "leaves the region");
+            if(shareObject == collision.gameObject)
+            {
+                shareObject = null;
+            }
             nearObjectList.Remove(collision.gameObject);
 
             // remove the halo when it leaves the region

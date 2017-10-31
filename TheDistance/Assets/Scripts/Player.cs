@@ -83,6 +83,8 @@ public class Player : NetworkBehaviour
 	[HideInInspector]
 	public bool canClimbLadder = false;
 
+	Color ericFilter, natalieFilter, currentFilter; 
+
 	void Start()
 	{
   
@@ -112,16 +114,21 @@ public class Player : NetworkBehaviour
         Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
         Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
 
-        // initialize local player position
+		ericFilter = new Color32 (23, 76, 113, 255); 
+		natalieFilter = new Color32 (50, 15, 100, 255);
+
+        // initialize local player position and camera filter
         if (isLocalPlayer && isServer)
         {
             transform.position = EricStartPoint.position;
             curCheckPoint = EricStartPoint.position;
+			Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
         }
         if (isLocalPlayer && !isServer)
         {
             transform.position = NatalieStartPoint.position;
             curCheckPoint = NatalieStartPoint.position;
+			Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
         }
 
         // initialize spirit
@@ -247,6 +254,8 @@ public class Player : NetworkBehaviour
 			pCC.getDefaultShareObject();
             selectShareObject = true;
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
+			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
+			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
 			audioManager.Play ("StartSharing");
 		}
 
@@ -259,6 +268,12 @@ public class Player : NetworkBehaviour
         if(Input.GetKeyUp(KeyCode.T))
         {
             tryShare = false;
+			if (isLocalPlayer && isServer) {
+				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+			}
+			if (isLocalPlayer && !isServer) {
+				Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+			}
         }
 
 		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)

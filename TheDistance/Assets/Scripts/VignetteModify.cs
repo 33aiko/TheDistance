@@ -7,14 +7,20 @@ using UnityEngine.PostProcessing;
 public class VignetteModify : MonoBehaviour {
 	public PostProcessingProfile profile;
 	public float intensity;
+	public Color color; 
 
 	VignetteModel.Settings s;
+
 
 	void Start () {
 		s = profile.vignette.settings;
 
 		s.intensity = intensity;
+		s.color = color;
+
 		profile.vignette.settings = s;
+
+
 
 		// v.settings reference!!!
 		/*
@@ -49,6 +55,7 @@ public class VignetteModify : MonoBehaviour {
 	void Update () {
 		//use the following 2 lines to change intensity
 		s.intensity = intensity;
+		s.color = color;
 		profile.vignette.settings = s;
 	}
 }

@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour {
         float rayLength = curSize.x + Mathf.Abs(velocity.x);
         float directionX = Mathf.Sign(velocity.x);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.right * directionX, rayLength, collisionMask);
-        Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+        //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
         if (hit)
         {
             velocity.x = 0;
@@ -71,7 +71,7 @@ public class CameraController : MonoBehaviour {
         float rayLength = curSize.y + Mathf.Abs(velocity.y);
         float directionY = Mathf.Sign(velocity.y);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.up* directionY, rayLength, collisionMask);
-        Debug.DrawRay(rayOrigin, Vector2.up* directionY * rayLength, Color.red);
+        //Debug.DrawRay(rayOrigin, Vector2.up* directionY * rayLength, Color.red);
         if (hit)
         {
             velocity.y = 0;

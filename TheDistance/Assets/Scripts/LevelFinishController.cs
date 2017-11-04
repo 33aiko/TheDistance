@@ -7,10 +7,13 @@ public class LevelFinishController : MonoBehaviour {
 
 	Text instruct;
     int cnt = 0;
+    GameObject root;
 
-	public void Start(){
+
+    public void Start(){
 		instruct = GameObject.Find("Instruction").GetComponent<Text>();
-	}
+        root = GameObject.Find("Root");
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +22,14 @@ public class LevelFinishController : MonoBehaviour {
             cnt++;
             if (cnt != 2) return;
             Player p = collision.GetComponent<Player>();
+            for (int i=1;i<=3;i++)
+            {
+                GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + i).gameObject;
+                if (go.GetComponent<KeyController>().both[0]+go.GetComponent<KeyController>().both[1] != 2)
+                {
+                    return;
+                }
+            }
             bool canFinish = true;
             KeyController[] pKC = FindObjectsOfType<KeyController>();
             foreach(KeyController k in pKC)

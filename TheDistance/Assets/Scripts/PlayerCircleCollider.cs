@@ -84,6 +84,9 @@ public class PlayerCircleCollider : MonoBehaviour {
 
         if (shareObject == null)
             return;
+		
+		shareObject.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
+
 
         createArrow();
     }
@@ -111,7 +114,10 @@ public class PlayerCircleCollider : MonoBehaviour {
             print("nothing can be shared");
             return null;
         }
+
         deletePrevArrow();
+		shareObject.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+
         if(shareObject.tag == "Box")
         {
             print("Should be deleteing box!");
@@ -136,7 +142,7 @@ public class PlayerCircleCollider : MonoBehaviour {
             {
                 arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
             }
-            Vector3 tmp = new Vector3(0, v.y);
+            Vector3 tmp = new Vector3(0, v.y/2);
             arrow.transform.position = shareObject.transform.position + tmp;
         }
     }

@@ -245,6 +245,7 @@ public class Player : NetworkBehaviour
 		// object sharing
         if(Input.GetKeyDown(KeyCode.T))
         {
+			audioManager.Play ("StartSharing");
             tryShare = true;
         }
 
@@ -253,10 +254,12 @@ public class Player : NetworkBehaviour
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
             selectShareObject = true;
+			cameraZoomValue = 40;
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
 			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
 			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
-			audioManager.Play ("StartSharing");
+
+
 		}
 
         if(selectShareObject)
@@ -268,12 +271,14 @@ public class Player : NetworkBehaviour
         if(Input.GetKeyUp(KeyCode.T))
         {
             tryShare = false;
+			cameraZoomValue = -40;
 			if (isLocalPlayer && isServer) {
 				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
 			}
 			if (isLocalPlayer && !isServer) {
 				Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
 			}
+
         }
 
 		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)

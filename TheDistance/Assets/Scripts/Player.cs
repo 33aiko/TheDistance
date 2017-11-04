@@ -807,8 +807,10 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log("client RPCdie");
-        Player p = GameObject.Find("Player").GetComponent<Player>();
-        p.backToCheckPoint();
+//        Player p = GameObject.Find("Player").GetComponent<Player>();
+		GetComponent<Animator> ().SetBool ("playerDie", true);
+		Wait1 ();
+//        p.backToCheckPoint();
 
     }
 
@@ -817,7 +819,17 @@ public class Player : NetworkBehaviour
     public void CmdDie()
     {
         Debug.Log("server CMDdie");
-        Player p = GameObject.Find("Player").GetComponent<Player>();
-        p.backToCheckPoint();
+        
+		GetComponent<Animator> ().SetBool ("playerDie", true);
+		Wait1();
+       
     }
+
+
+	IEnumerator Wait1()
+	{
+		yield return new WaitForSeconds (1);
+		Player p = GameObject.Find("Player").GetComponent<Player>();
+		p.backToCheckPoint();
+	}
 }

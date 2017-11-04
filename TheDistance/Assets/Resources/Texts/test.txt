@@ -1,7 +1,8 @@
 START::Notation!
 
 1.You have to wrap your texts with START::NAME and END::NAME
-2.You can have empty line (but do not make a line with whitespaces).
+2.You can have empty line (but do not make a line with whitespaces)
+3.Write story in Assets\Resources\Texts
 
 END::Notation!
 

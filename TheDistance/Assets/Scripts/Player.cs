@@ -93,7 +93,7 @@ public class Player : NetworkBehaviour
 
 		// get components
 		audioManager = FindObjectOfType<AudioManager>();
-		animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 		controller = GetComponent<Controller2D>();
 		pCC = GetComponent<PlayerCircleCollider>();
 
@@ -172,7 +172,7 @@ public class Player : NetworkBehaviour
 		{
 			print("no animation controller found!");
 		}
-	}
+    }
 
 	void Update()
 	{
@@ -810,11 +810,7 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log("client RPCdie");
-//        Player p = GameObject.Find("Player").GetComponent<Player>();
-		GetComponent<Animator> ().SetBool ("playerDie", true);
-		Wait1 ();
-//        p.backToCheckPoint();
-
+        StartCoroutine(WaitToDie());
     }
 
     //sent by client, make die on server
@@ -822,16 +818,16 @@ public class Player : NetworkBehaviour
     public void CmdDie()
     {
         Debug.Log("server CMDdie");
-        
-		GetComponent<Animator> ().SetBool ("playerDie", true);
-		Wait1();
-       
+        StartCoroutine(WaitToDie());
     }
 
 
-	IEnumerator Wait1()
+	IEnumerator WaitToDie()
 	{
-		yield return new WaitForSeconds (1);
+        print("Waiting to die at: " + Time.time);
+        GameObject.Find("Player").GetComponent<Animator>().SetTrigger("playerDie");
+		yield return new WaitForSeconds (1.3f);
+        print("Died at " + Time.time);
 		Player p = GameObject.Find("Player").GetComponent<Player>();
 		p.backToCheckPoint();
 	}

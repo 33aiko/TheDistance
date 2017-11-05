@@ -67,6 +67,7 @@ public class Controller2D : RaycastController
                     hit.transform.gameObject.tag == "BoxCannotShare" )&& collisions.interact) 
                 {
                     pushBox = true;
+                    velocity.x /= 2;
                     print("Pushing the box by " + gameObject.tag);
                     float pushX = velocity.x;
                     //float pushX = velocity.x - (hit.distance) * directionX;

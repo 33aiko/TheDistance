@@ -264,8 +264,8 @@ public class Player : NetworkBehaviour
 
         if(selectShareObject)
         {
-			if (Input.GetKeyDown(KeyCode.RightArrow))
-                pCC.getNextObject();
+			//if (Input.GetKeyDown(KeyCode.RightArrow))
+                //pCC.getNextObject();
         }
 
         if(Input.GetKeyUp(KeyCode.T))

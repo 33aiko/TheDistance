@@ -40,7 +40,7 @@ public class PlayerCircleCollider : MonoBehaviour {
             nearObjectList.Remove(collision.gameObject);
             if(shareObject == collision.gameObject)
             {
-                getNextObject();
+                //getNextObject();
             }
 
             // remove the halo when it leaves the region
@@ -71,7 +71,12 @@ public class PlayerCircleCollider : MonoBehaviour {
         float minDist = float.MaxValue;
         foreach (GameObject t in nearObjectList)
         {
-            float cur = Vector3.Magnitude(t.transform.position - transform.position);
+            float sizeY = GetComponent<BoxCollider2D>().size.y / 2;
+            Vector3 basePosition = transform.position - new Vector3(0, sizeY);
+            float platformY = t.GetComponent<SpriteRenderer>().bounds.size.y;
+            Vector3 platformPos = t.transform.position + new Vector3(0, platformY);
+            float cur = 
+                Vector3.Magnitude(platformPos- basePosition);
             if(cur < minDist)
             {
                 minDist = cur;

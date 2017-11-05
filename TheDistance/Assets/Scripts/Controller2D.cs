@@ -95,7 +95,8 @@ public class Controller2D : RaycastController
                 if (!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
                     if(hit.transform.gameObject.tag != "FloatingPlatform" && 
-                        hit.transform.gameObject.tag != "Ladder")
+                        hit.transform.gameObject.tag != "Ladder" &&
+                        hit.transform.gameObject.tag != "FloatingPlatformShared")
                         velocity.x = (hit.distance - skinWidth) * directionX;
                     rayLength = hit.distance;
 

@@ -424,7 +424,9 @@ public class Player : NetworkBehaviour
 
         //print("nextIdletime:" + nextIdleTime);
         playerUp = velocity.y > 0;
-        bool playerStand = (velocity.x == 0 && (!playerJumping || !keyspaceDown));
+        bool playerStand = 
+            (velocity.x == 0 && (!playerJumping && !keyspaceDown)
+            && controller.collisions.below);
         animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) || keyspaceDown);
         animator.SetBool("playerWalking", (velocity.x != 0));
         animator.SetBool("playerUp", playerUp);

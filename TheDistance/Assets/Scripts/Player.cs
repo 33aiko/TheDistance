@@ -139,6 +139,7 @@ public class Player : NetworkBehaviour
             spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
             spiritTargetPos = spirit.transform.position;
         }
+        spirit.SetActive(true);
 
         // init camera pos
         if (isLocalPlayer)

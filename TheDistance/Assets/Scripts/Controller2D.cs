@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Controller2D : RaycastController
 {
 
-    float maxClimbAngle = 80;
-    float maxDescendAngle = 80;
+    float maxClimbAngle = 70;
+    float maxDescendAngle = 70;
 
     public CollisionInfo collisions;
 
@@ -41,6 +42,7 @@ public class Controller2D : RaycastController
         {
             collisions.below = true;
         }
+
     }
 
     void HorizontalCollisions(ref Vector3 velocity)
@@ -60,14 +62,22 @@ public class Controller2D : RaycastController
             if (hit)
             {
                 // push the box
+                bool pushBox = false;
                 if((hit.transform.gameObject.tag == "Box" ||
                     hit.transform.gameObject.tag == "BoxCannotShare" )&& collisions.interact) 
                 {
-                    print("Pushing the box by" + gameObject.tag);
-                    float pushX = velocity.x - (hit.distance) * directionX;
-                    float pushY = -skinWidth;
+                    pushBox = true;
+                    print("Pushing the box by " + gameObject.tag);
+                    float pushX = velocity.x;
+                    //float pushX = velocity.x - (hit.distance) * directionX;
+                    //float pushY = -skinWidth;
+                    float pushY = 0;
                     BoxController bo = hit.transform.gameObject.GetComponent<BoxController>();
                     bo.controller.Move(new Vector3(pushX, pushY));
+                    if(bo.controller.collisions.left || bo.controller.collisions.right)
+                    {
+                        pushBox = false;
+                    }
                 }
 
 
@@ -94,10 +104,13 @@ public class Controller2D : RaycastController
                 // no slope or cannot climb
                 if (!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
-                    if(hit.transform.gameObject.tag != "FloatingPlatform" && 
+                    if (hit.transform.gameObject.tag != "FloatingPlatform" &&
                         hit.transform.gameObject.tag != "Ladder" &&
-                        hit.transform.gameObject.tag != "FloatingPlatformShared")
+                        hit.transform.gameObject.tag != "FloatingPlatformShared" &&
+                        !pushBox)
+                    {
                         velocity.x = (hit.distance - skinWidth) * directionX;
+                    }
                     rayLength = hit.distance;
 
                     if (collisions.climbingSlope)

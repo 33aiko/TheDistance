@@ -133,7 +133,7 @@ public class Player : NetworkBehaviour
 
         // initialize spirit
         spirit = root.transform.Find("Spirit").gameObject;
-        if (spirit.GetComponent<Animator>() == null)
+        //if (spirit.GetComponent<Animator>() == null)
         {
             spirit.AddComponent<Animator>();
             spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;

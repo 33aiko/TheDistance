@@ -474,6 +474,7 @@ public class Player : NetworkBehaviour
 
     public void backToCheckPoint()
     {
+		
         transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
     }
@@ -826,7 +827,7 @@ public class Player : NetworkBehaviour
 	{
         print("Waiting to die at: " + Time.time);
         GameObject.Find("Player").GetComponent<Animator>().SetTrigger("playerDie");
-		yield return new WaitForSeconds (1.3f);
+		yield return new WaitForSeconds (1.5f);
         print("Died at " + Time.time);
 		Player p = GameObject.Find("Player").GetComponent<Player>();
 		p.backToCheckPoint();

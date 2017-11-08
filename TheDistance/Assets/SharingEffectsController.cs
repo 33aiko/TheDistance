@@ -11,13 +11,21 @@ public class SharingEffectsController : MonoBehaviour {
 
 	void Start () {
 		if (defaultEffect != null) {
-			defaultEffect.Play ();
+			defaultEffect.Stop ();
 		}
 		if (selectedEffect != null) {
 			selectedEffect.Stop ();
 		}
 		if (sharedEffect != null) {
 			sharedEffect.Stop ();
+		}
+	}
+
+	void Update(){
+		if (this.CompareTag ("FloatingPlatform") || this.CompareTag("Box")) {
+			if (defaultEffect != null && !defaultEffect.isPlaying) {
+				defaultEffect.Play ();
+			}
 		}
 	}
 		

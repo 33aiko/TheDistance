@@ -228,7 +228,7 @@ MonoBehaviour:
   spiritTargetPos: {x: 0, y: 0, z: 0}
   interpolateTime: 10
   jumpHeight: 140
-  timeToJumpApex: 0.3
+  timeToJumpApex: 0.36
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 180
   velocity: {x: 0, y: 0, z: 0}

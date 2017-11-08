@@ -59,6 +59,8 @@ public class Player : NetworkBehaviour
 
     bool tryShare = false;
 
+    private int[] finishCheck;
+
 	[HideInInspector]
 	public Controller2D controller;
 
@@ -88,6 +90,7 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
+        finishCheck = new int[3];
   
         // init public variables:
         root = GameObject.Find("Root");
@@ -835,4 +838,13 @@ public class Player : NetworkBehaviour
 		Player p = GameObject.Find("Player").GetComponent<Player>();
 		p.backToCheckPoint();
 	}
+
+    public void setCheck(int level)
+    {
+        finishCheck[level-1] = 1;
+    }
+    public int getCheck(int level)
+    {
+        return finishCheck[level-1];
+    }
 }

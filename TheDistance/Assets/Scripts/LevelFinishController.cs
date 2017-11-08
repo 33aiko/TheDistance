@@ -9,8 +9,10 @@ public class LevelFinishController : MonoBehaviour {
     int cnt = 0;
     GameObject root;
 
+    int finishCount;
 
     public void Start(){
+        finishCount = 0;
 		instruct = GameObject.Find("Instruction").GetComponent<Text>();
         root = GameObject.Find("Root");
     }
@@ -22,6 +24,10 @@ public class LevelFinishController : MonoBehaviour {
             cnt++;
             if (cnt != 2) return;
             Player p = collision.GetComponent<Player>();
+            if (p.getCheck(1) == 1) { return; }
+            p.setCheck(1);//1 i level
+            finishCount++;
+            if (finishCount < 2) { return; }
             for (int i=1;i<=3;i++)
             {
                 GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + i).gameObject;

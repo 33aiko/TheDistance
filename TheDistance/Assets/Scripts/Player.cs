@@ -73,6 +73,7 @@ public class Player : NetworkBehaviour
 
 	[HideInInspector]
 	AudioManager audioManager;
+	GameObject transitionMask; 
     bool playingWalkingMusic = false;
 
 	[HideInInspector]
@@ -93,6 +94,7 @@ public class Player : NetworkBehaviour
 
 		// get components
 		audioManager = FindObjectOfType<AudioManager>();
+		transitionMask = GameObject.Find ("TransitionMask");
         animator = GetComponent<Animator>();
 		controller = GetComponent<Controller2D>();
 		pCC = GetComponent<PlayerCircleCollider>();
@@ -474,7 +476,7 @@ public class Player : NetworkBehaviour
 
     public void backToCheckPoint()
     {
-		
+		transitionMask.GetComponent<TransitionManager> ().BlackTransition ();
         transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
     }

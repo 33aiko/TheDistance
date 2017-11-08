@@ -75,6 +75,8 @@ public class LevelFinishController : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             cnt--;
+            Player p = collision.GetComponent<Player>();
+            p.clearCheck(1);
         }
     }
 }

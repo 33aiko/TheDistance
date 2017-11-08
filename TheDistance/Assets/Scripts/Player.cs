@@ -847,4 +847,8 @@ public class Player : NetworkBehaviour
     {
         return finishCheck[level-1];
     }
+    public void clearCheck(int level)
+    {
+        finishCheck[level - 1] = 0;
+    }
 }

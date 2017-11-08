@@ -205,12 +205,13 @@ public class Player : NetworkBehaviour
             currentCameraZoomValue += (cameraZoomValue - currentCameraZoomValue) / interpolateTime;
         }
 
-        Vector3 ttmp = transform.position - Camera.main.transform.position;
-		Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
-        //Vector3 moveDistance = 
-            //new Vector3(
-                //Mathf.Min(ttmp.x, moveSpeed * Time.deltaTime), 
-                //Mathf.Min(ttmp.y, moveSpeed*Time.deltaTime), 0);
+        CameraFollowBox pCFB = GetComponent<CameraFollowBox>();
+        //Vector3 targetCamereaPos = pCFB.focusArea.center - Vector3.up * pCFB.yOffset;
+
+        Vector3 ttmp = pCFB.focusArea.center - Camera.main.transform.position;
+        ttmp += new Vector3(0, pCFB.yOffset);
+        //Vector3 ttmp = transform.position - Camera.main.transform.position;
+        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0) / interpolateTime;
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
         Camera.main.transform.position = 
             new Vector3(Camera.main.transform.position.x,

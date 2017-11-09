@@ -21,6 +21,7 @@ public class Player : NetworkBehaviour
 	public string NatalieSpiritAnimator = "Animations/Spirit_2";
 
 	public GameObject spirit;
+    bool spiritCanMove = true;
 	public Vector3 spiritTargetPos;
 
 	public float interpolateTime = 10;
@@ -197,9 +198,9 @@ public class Player : NetworkBehaviour
         //interpolate move by frame rate, when position not equal, move
         if (!spirit.transform.position.Equals(spiritTargetPos))
 		{
-			spirit.transform.Translate((spiritTargetPos - spirit.transform.position) / interpolateTime);
-		}
-	}
+            spirit.transform.Translate((spiritTargetPos - spirit.transform.position) / interpolateTime);
+        }
+    }
 
     void UpdateCameraPosition()
     {
@@ -778,7 +779,7 @@ public class Player : NetworkBehaviour
     public void RpcMove(Vector3 pos)
     {
         //print("Rpc Move");
-        if (!isServer)
+        if (!isServer && spiritCanMove)
         {
             GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
         }
@@ -789,7 +790,8 @@ public class Player : NetworkBehaviour
     public void CmdMove(Vector3 pos)
     {
         //print("Cmd Move");
-        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+        if(spiritCanMove)
+            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
     }
 
     public void InitializeServer(Vector3 spirit_pos, Vector3 player_pos)
@@ -832,8 +834,10 @@ public class Player : NetworkBehaviour
 	IEnumerator WaitToDie()
 	{
         print("Waiting to die at: " + Time.time);
+        spiritCanMove = false;
         GameObject.Find("Player").GetComponent<Animator>().SetTrigger("playerDie");
 		yield return new WaitForSeconds (1.5f);
+        spiritCanMove = true;
         print("Died at " + Time.time);
 		Player p = GameObject.Find("Player").GetComponent<Player>();
 		p.backToCheckPoint();

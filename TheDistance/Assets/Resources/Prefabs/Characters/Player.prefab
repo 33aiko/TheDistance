@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focusAreaSize: {x: 120, y: 250}
-  yOffset: 0
+  yOffset: -40
 --- !u!212 &212070363774117324
 SpriteRenderer:
   m_ObjectHideFlags: 1

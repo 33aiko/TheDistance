@@ -48,3 +48,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 760021949
+    locked: 0
+  - name: BackgroundEffect
+    uniqueID: 3737439621
+    locked: 0
+  - name: Platform
+    uniqueID: 362336043
+    locked: 0
+  - name: Player
+    uniqueID: 3301016593
+    locked: 0
+  - name: ForgroundEffect
+    uniqueID: 1826627133
+    locked: 0

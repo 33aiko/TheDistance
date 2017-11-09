@@ -4,47 +4,95 @@ using UnityEngine;
 
 public class SharingEffectsController : MonoBehaviour {
 
-	[SerializeField] ParticleSystem defaultEffect;
-	[SerializeField] ParticleSystem selectedEffect;
+	[SerializeField] ParticleSystem[] defaultEffect;
+	[SerializeField] ParticleSystem[] selectedEffect;
 	[SerializeField] ParticleSystem sharedEffect;
+	[SerializeField] WindZone wind;
+	[SerializeField][Range(0,1000f)] float windIntensity = 200f;
 
+	public enum State
+	{
+		Default,
+		Selected,
+		Shared,
+		Stop,
+	}
+	public State state;
+
+	public void PlayParticles( ParticleSystem[] ps )
+	{
+		if (ps != null)
+			foreach (var p in ps)
+				if (!p.isPlaying)
+				p.Play ();
+	}
+
+	public void StopParticles( ParticleSystem[] ps )
+	{
+		if (ps != null)
+			foreach (var p in ps)
+				if ( p.isPlaying)
+				p.Stop ();
+	}
 
 	void Start () {
-		if (defaultEffect != null) {
-			defaultEffect.Stop ();
-		}
-		if (selectedEffect != null) {
-			selectedEffect.Stop ();
-		}
+		StopParticles (selectedEffect);
+
 		if (sharedEffect != null) {
 			sharedEffect.Stop ();
 		}
+		if (wind != null)
+			wind.windMain = 0;
+		state = State.Default;
 	}
 
 	void Update(){
-		if (this.CompareTag ("FloatingPlatform") || this.CompareTag("Box")) {
-			if (defaultEffect != null && !defaultEffect.isPlaying) {
-				defaultEffect.Play ();
+		if (state == State.Default) {
+			if (this.CompareTag ("FloatingPlatform") || this.CompareTag ("Box")) {
+//				if (defaultEffect != null && !defaultEffect.isPlaying) {
+//					defaultEffect.Play ();
+//				}
+				PlayParticles( defaultEffect);
 			}
 		}
 	}
 		
 
 	public void PlaySelectedEffect(){
-		if (selectedEffect != null && !selectedEffect.isPlaying) {
-			selectedEffect.Play ();
-		}
+
+		StopParticles (defaultEffect);
+		PlayParticles (selectedEffect);
+
+		if ( wind != null )
+			wind.windMain = windIntensity;
+		state = State.Selected;
 	}
 
 	public void StopSelectedEffect(){
-		if (selectedEffect != null && selectedEffect.isPlaying) {
-			selectedEffect.Stop ();
-		}
-	}
+		StopParticles (defaultEffect);
+		StopParticles (selectedEffect);
 
-	public void PlaySharedEffect(){
-		if (sharedEffect != null && !sharedEffect.isPlaying) {
+		if (sharedEffect != null) {
 			sharedEffect.Play ();
 		}
+
+		wind.windMain = - windIntensity;
+		state = State.Shared;
+
 	}
+
+//	public void PlaySharedEffect(){
+//		if (sharedEffect != null && !sharedEffect.isPlaying) {
+//			sharedEffect.Play ();
+//		}
+//
+//		if (defaultEffect != null) {
+//			defaultEffect.Stop ();
+//		}
+//		if (selectedEffect != null) {
+//			foreach (var e in selectedEffect) {
+//				e.Stop ();
+//			}
+//		}
+//		wind.windMain = - windIntensity;
 }

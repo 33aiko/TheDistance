@@ -49,14 +49,18 @@ public class SharingEffectsController : MonoBehaviour {
 	void Update(){
 		if (state == State.Default) {
 			if (this.CompareTag ("FloatingPlatform") || this.CompareTag ("Box")) {
-//				if (defaultEffect != null && !defaultEffect.isPlaying) {
-//					defaultEffect.Play ();
-//				}
 				PlayParticles( defaultEffect);
 			}
 		}
+
 	}
 		
+	public void StopAll(){
+		StopParticles (defaultEffect);
+		StopParticles (selectedEffect);
+		sharedEffect.Stop ();
+		state = State.Stop;
+	}
 
 	public void PlaySelectedEffect(){
 

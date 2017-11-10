@@ -695,7 +695,7 @@ public class Player : NetworkBehaviour
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-
+		newObj.GetComponent<SharingEffectsController> ().StopAll ();
     }
 
     //sent by client, show object on server
@@ -708,7 +708,8 @@ public class Player : NetworkBehaviour
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-        Debug.Log(newObj.name);
+		newObj.GetComponent<SharingEffectsController> ().StopAll ();
+       // Debug.Log(newObj.name);
     }
 
 

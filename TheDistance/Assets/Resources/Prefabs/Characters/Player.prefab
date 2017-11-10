@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a972ddebe5fb0b845831c2d2456a7c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusAreaSize: {x: 120, y: 250}
-  yOffset: -40
+  focusAreaSize: {x: 120, y: 200}
+  yOffset: -80
 --- !u!212 &212070363774117324
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -348,7 +348,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -993950703
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

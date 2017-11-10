@@ -60,6 +60,8 @@ public class PlayerCircleCollider : MonoBehaviour {
 
     public void getDefaultShareObject()
     {
+
+
         // set the nearest object as default one
         if(nearObjectList.Count == 0)
         {
@@ -82,6 +84,8 @@ public class PlayerCircleCollider : MonoBehaviour {
                 minDist = cur;
                 nearestObject = t;
             }
+
+			Debug.Log (t.name);
         }
 
         shareIdx = nearObjectList.IndexOf(nearestObject);
@@ -132,6 +136,9 @@ public class PlayerCircleCollider : MonoBehaviour {
             deletePrevArrow();
             return res;
         }
+
+		shareObject.tag = "FloatingPlatformShared";
+
         return shareObject;
         // share "shareObject"
     }

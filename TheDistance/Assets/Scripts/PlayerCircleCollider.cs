@@ -12,13 +12,16 @@ public class PlayerCircleCollider : MonoBehaviour {
     GameObject arrow;
     int shareIdx;
 
+    public List<string> sharableObjectTag = new List<string>();
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "FloatingPlatform" ||
-            collision.gameObject.tag == "Box" ||
-            (collision.gameObject.tag == "MovingPlatform" &&
-            collision.gameObject.GetComponent<MovingPlatformController>().oneWay)
-            )
+        //    if (collision.gameObject.tag == "FloatingPlatform" ||
+        //collision.gameObject.tag == "Box" ||
+        //(collision.gameObject.tag == "MovingPlatform" &&
+        //collision.gameObject.GetComponent<MovingPlatformController>().oneWay)
+        //)
+        if (sharableObjectTag.Contains(collision.gameObject.tag))
         {
             //print(collision.gameObject.name + "enters the region");
             nearObjectList.Add(collision.gameObject);
@@ -30,11 +33,12 @@ public class PlayerCircleCollider : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "FloatingPlatform" ||
-            collision.gameObject.tag == "Box" ||
-            (collision.gameObject.tag == "MovingPlatform" && 
-            collision.gameObject.GetComponent<MovingPlatformController>().oneWay)
-            )
+        //if (collision.gameObject.tag == "FloatingPlatform" ||
+        //    collision.gameObject.tag == "Box" ||
+        //    (collision.gameObject.tag == "MovingPlatform" && 
+        //    collision.gameObject.GetComponent<MovingPlatformController>().oneWay)
+        //    )
+        if (sharableObjectTag.Contains(collision.gameObject.tag))
         {
             //print(collision.gameObject.name + "leaves the region");
             nearObjectList.Remove(collision.gameObject);
@@ -60,8 +64,6 @@ public class PlayerCircleCollider : MonoBehaviour {
 
     public void getDefaultShareObject()
     {
-
-
         // set the nearest object as default one
         if(nearObjectList.Count == 0)
         {
@@ -71,8 +73,18 @@ public class PlayerCircleCollider : MonoBehaviour {
         }
         GameObject nearestObject = null;
         float minDist = float.MaxValue;
+        List<GameObject> removeList = new List<GameObject>();
+        print("object in the list!");
         foreach (GameObject t in nearObjectList)
         {
+            print(t.name);
+            if(!sharableObjectTag.Contains(t.tag))
+            {
+                // this gameObject is no longer sharable
+                print(t.name + " is not sharable anymore, removing it from the nearList");
+                removeList.Add(t);
+                continue;
+            }
             float sizeY = GetComponent<BoxCollider2D>().size.y / 2;
             Vector3 basePosition = transform.position - new Vector3(0, sizeY);
             float platformY = t.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -90,6 +102,11 @@ public class PlayerCircleCollider : MonoBehaviour {
 
         shareIdx = nearObjectList.IndexOf(nearestObject);
         shareObject = nearestObject;
+
+        foreach(GameObject t in removeList)
+        {
+            nearObjectList.Remove(t);
+        }
 
         if (shareObject == null)
             return;
@@ -137,10 +154,7 @@ public class PlayerCircleCollider : MonoBehaviour {
             return res;
         }
 
-		shareObject.tag = "FloatingPlatformShared";
-
         return shareObject;
-        // share "shareObject"
     }
 
     void createArrow()

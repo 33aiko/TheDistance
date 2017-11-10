@@ -23,7 +23,7 @@ public class Player : NetworkBehaviour
 	public GameObject spirit;
 	public Vector3 spiritTargetPos;
 
-	public float interpolateTime = 10;
+	public float interpolateTime = 20;
 
 
 	public float jumpHeight;
@@ -266,11 +266,10 @@ public class Player : NetworkBehaviour
 			pCC.getDefaultShareObject();
             selectShareObject = true;
 			cameraZoomValue = 40;
+            GetComponent<CameraFollowBox>().moveToCenter();
 			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
 			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
 			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
-
-
 		}
 
         if(selectShareObject)
@@ -299,6 +298,7 @@ public class Player : NetworkBehaviour
             tryShare = false;
 			pCC.highlightNearObject(false);
 			GameObject sharedObject = pCC.shareSelectedObject();
+            //print("got somethign with tag: " + sharedObject.tag);
             if(sharedObject == null)
             {
                 print("We found a null here!!!!!!!");
@@ -320,6 +320,8 @@ public class Player : NetworkBehaviour
                     Debug.Log("found");
                     audioManager.Play("ConfirmSharing");
                     animator.SetBool("sendSucceed", true);
+                    print("a platform here1");
+                    sharedObject.tag = "FloatingPlatformShared";
                 }
                 else if (sharedObject.tag == "MovingPlatform")
                 {

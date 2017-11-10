@@ -19,6 +19,11 @@ public class CameraFollowBox : MonoBehaviour {
         focusArea.Update(GetComponent<BoxCollider2D>().bounds);
     }
 
+    public void moveToCenter()
+    {
+        focusArea.focusTargetCenter(GetComponent<BoxCollider2D>().bounds, focusAreaSize, yOffset);
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, .5f);
@@ -36,10 +41,20 @@ public class CameraFollowBox : MonoBehaviour {
         {
             left = targetBounds.center.x - size.x / 2;
             right = targetBounds.center.x + size.x / 2;
-            bottom = targetBounds.min.y;
-            top = targetBounds.min.y + size.y;
+            bottom = targetBounds.center.y - size.y / 2;
+            top = targetBounds.center.y + size.y / 2;
 
             center = new Vector2((left + right) / 2, (top + bottom) / 2);
+        }
+
+        public void focusTargetCenter(Bounds targetBounds, Vector2 size, float yOffset)
+        {
+            left = targetBounds.center.x - size.x / 2;
+            right = targetBounds.center.x + size.x / 2;
+            bottom = targetBounds.center.y - size.y / 2;
+            top = targetBounds.center.y + size.y / 2;
+
+            center = new Vector2((left + right) / 2, (top + bottom) / 2 - yOffset);
         }
 
         public void Update(Bounds targetBounds)

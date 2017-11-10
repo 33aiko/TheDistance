@@ -33,9 +33,13 @@ public class MovingPlatformController : RaycastController
 
     void Update()
     {
+        if (gameObject.tag == "FloatingPlatform" || gameObject.tag == "FloatingPlatformShared")
+            return;
         UpdateRaycastOrigins();
 
-		if (canMove) { // if the step on trigger is triggered
+        // if the step on trigger is triggered
+        if (canMove)
+        { 
 //			if (!musicPlayed) {
 //				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MovingPlatform");
 //				musicPlayed = true; 
@@ -48,17 +52,20 @@ public class MovingPlatformController : RaycastController
 
 				// in case the platform exceeds the check point in one frame
 				if (diff.y < velocity.y) {
-					velocity.y = diff.y;
+                    velocity.y = (diff.y);
+                    Mathf.Clamp(velocity.y, 0, velocity.y);
 					goingUp = false;
-					gameObject.tag = "MovingPlatform";
-					isMoved = true; 
-
-				}
-				if (diff.y < 0) {
-					gameObject.tag = "MovingPlatform";
-					goingUp = false;
+                    if (oneWay)
+                    {
+                        gameObject.tag = "FloatingPlatform";
+                    }
 					isMoved = true; 
 				}
+				//if (diff.y < 0) {
+				//	gameObject.tag = "MovingPlatform";
+				//	goingUp = false;
+				//	isMoved = true; 
+				//}
 				curTranslate += velocity;
 				//if (diff.x < velocity.x) velocity.x = diff.x;
 			} else {

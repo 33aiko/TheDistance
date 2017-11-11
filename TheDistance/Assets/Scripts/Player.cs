@@ -58,6 +58,7 @@ public class Player : NetworkBehaviour
     float jumpTime = 0;
 
     bool tryShare = false;
+	GameObject appearParticle; 
 
     private int[] finishCheck;
 
@@ -710,6 +711,9 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject sObj = root.transform.Find("EricWorld/WorldA/" + sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
@@ -723,12 +727,16 @@ public class Player : NetworkBehaviour
     public void CmdShare(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
 		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+
        // Debug.Log(newObj.name);
     }
 
@@ -740,9 +748,9 @@ public class Player : NetworkBehaviour
 			return;
 		}
 		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
-		GameObject appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
-		appearParticle.transform.parent = sObj.transform;
+		//appearParticle.transform.parent = sObj.transform;
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 
 	}
@@ -751,9 +759,9 @@ public class Player : NetworkBehaviour
 	[Command]
 	public void CmdWaitForShare(string shareObject){
 		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
-		GameObject appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
-		appearParticle.transform.parent = sObj.transform;
+		//appearParticle.transform.parent = sObj.transform;
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 	}
 

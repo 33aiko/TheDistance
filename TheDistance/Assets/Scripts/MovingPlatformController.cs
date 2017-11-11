@@ -33,7 +33,7 @@ public class MovingPlatformController : RaycastController
 
     void Update()
     {
-        if (gameObject.tag == "FloatingPlatform" || gameObject.tag == "FloatingPlatformShared")
+        if (gameObject.tag == "MovingPlatformOneway")
             return;
         UpdateRaycastOrigins();
 
@@ -57,7 +57,7 @@ public class MovingPlatformController : RaycastController
 					goingUp = false;
                     if (oneWay)
                     {
-                        gameObject.tag = "FloatingPlatform";
+                        gameObject.tag = "MovingPlatformOneway";
                     }
 					isMoved = true; 
 				}

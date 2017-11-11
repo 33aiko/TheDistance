@@ -323,7 +323,7 @@ public class Player : NetworkBehaviour
                     print("a platform here1");
                     sharedObject.tag = "FloatingPlatformShared";
                 }
-                else if (sharedObject.tag == "MovingPlatform")
+                else if (sharedObject.tag == "MovingPlatformOneway")
                 {
                     Debug.Log("mv!");
                     if (isServer && isLocalPlayer)

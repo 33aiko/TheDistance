@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SharingEffectsController : MonoBehaviour {
 
 	[SerializeField] ParticleSystem[] defaultEffect;
 	[SerializeField] ParticleSystem[] selectedEffect;
-	[SerializeField] ParticleSystem sharedEffect;
+	[SerializeField] ParticleSystem[] sharedEffect;
 	[SerializeField] WindZone wind;
 	[SerializeField][Range(0,1000f)] float windIntensity = 200f;
+	[SerializeField] bool isTest = false;
 
 	public enum State
 	{
@@ -24,7 +26,7 @@ public class SharingEffectsController : MonoBehaviour {
 		if (ps != null)
 			foreach (var p in ps)
 				if (!p.isPlaying)
-				p.Play ();
+					p.Play ();
 	}
 
 	public void StopParticles( ParticleSystem[] ps )
@@ -35,14 +37,16 @@ public class SharingEffectsController : MonoBehaviour {
 				p.Stop ();
 	}
 
-	void Start () {
+	void Awake () {
+		
 		StopParticles (selectedEffect);
-
-		if (sharedEffect != null) {
-			sharedEffect.Stop ();
-		}
+		StopParticles (sharedEffect);
+//		if (sharedEffect != null) {
+//			sharedEffect.Stop ();
+//		}
 		if (wind != null)
 			wind.windMain = 0;
+		
 		state = State.Default;
 	}
 
@@ -53,17 +57,28 @@ public class SharingEffectsController : MonoBehaviour {
 			}
 		}
 
+		if (isTest) {
+			if (Input.GetKeyDown (KeyCode.I) && Input.GetKey (KeyCode.LeftControl)) {
+				PlaySelectedEffect ();
+			}
+
+			if (Input.GetKeyUp (KeyCode.I) && Input.GetKey (KeyCode.LeftControl)) {
+				StopSelectedEffect ();
+			}
+		}
 	}
 		
 	public void StopAll(){
+		Debug.Log ("Stop All " + name);
 		StopParticles (defaultEffect);
 		StopParticles (selectedEffect);
-		sharedEffect.Stop ();
+		StopParticles (sharedEffect);
 		state = State.Stop;
 	}
 
 	public void PlaySelectedEffect(){
 
+		Debug.Log ("Play Selected " + name);
 		StopParticles (defaultEffect);
 		PlayParticles (selectedEffect);
 
@@ -73,14 +88,14 @@ public class SharingEffectsController : MonoBehaviour {
 	}
 
 	public void StopSelectedEffect(){
+		Debug.Log ("Stop Selected " + name);
+
 		StopParticles (defaultEffect);
 		StopParticles (selectedEffect);
-
-		if (sharedEffect != null) {
-			sharedEffect.Play ();
-		}
+		PlayParticles (sharedEffect);
 
 		wind.windMain = - windIntensity;
+		DOTween.To (() => wind.windMain, (x) => wind.windMain = x, 0, 1f).SetDelay (1f);
 		state = State.Shared;
 
 	}

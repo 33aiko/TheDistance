@@ -55,11 +55,11 @@ public class PlayerCircleCollider : MonoBehaviour {
     public void highlightNearObject(bool flag = true)
     {
         keyDown = flag;
-        foreach (GameObject t in nearObjectList)
-        {
-            Behaviour b = (t.GetComponent("Halo") as Behaviour);
-            b.enabled = flag;
-        }
+//        foreach (GameObject t in nearObjectList)
+//        {
+//            Behaviour b = (t.GetComponent("Halo") as Behaviour);
+//            b.enabled = flag;
+//        }
     }
 
     public void getDefaultShareObject()
@@ -111,7 +111,7 @@ public class PlayerCircleCollider : MonoBehaviour {
         if (shareObject == null)
             return;
 		
-		shareObject.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
+		shareObject.GetComponentInChildren<SharingEffectsController> ().PlaySelectedEffect ();
 
 
         createArrow();
@@ -133,6 +133,14 @@ public class PlayerCircleCollider : MonoBehaviour {
         }
     }
 
+	public GameObject getShareObject()
+	{
+		if (shareObject == null) {
+			return null; 
+		} else
+			return shareObject;
+	}
+
     public GameObject shareSelectedObject()
     {
         if(shareObject == null)
@@ -142,7 +150,7 @@ public class PlayerCircleCollider : MonoBehaviour {
         }
 
         deletePrevArrow();
-		shareObject.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		shareObject.GetComponentInChildren<SharingEffectsController> ().StopSelectedEffect ();
 
         if(shareObject.tag == "Box")
         {

@@ -258,19 +258,36 @@ public class Player : NetworkBehaviour
         {
 			audioManager.Play ("StartSharing");
             tryShare = true;
-        }
 
-        if (tryShare && !playerJumping)
-		{
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
-            selectShareObject = true;
+
+			GameObject shareObject = pCC.getShareObject(); 
+
+			if (shareObject != null) {
+				if (isLocalPlayer && isServer) {
+					RpcWaitForShare (shareObject.name);
+				}
+				if (isLocalPlayer && !isServer) {
+					CmdWaitForShare (shareObject.name);
+				}
+			}
+
+			selectShareObject = true;
 			cameraZoomValue = 40;
-            GetComponent<CameraFollowBox>().moveToCenter();
-			Camera.main.GetComponent<VignetteModify> ().intensity = 0.6f;
+			GetComponent<CameraFollowBox>().moveToCenter();
+
+			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.5f,0.5f);
 			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
 			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
+		
+
+        }
+
+		if (tryShare && !playerJumping) {
+
 		}
+			
 
         if(selectShareObject)
         {
@@ -293,7 +310,7 @@ public class Player : NetworkBehaviour
 
 		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)
 		{
-			Camera.main.GetComponent<VignetteModify> ().intensity = 0.3f;
+			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
             selectShareObject = false;
             tryShare = false;
 			pCC.highlightNearObject(false);
@@ -351,6 +368,7 @@ public class Player : NetworkBehaviour
                         CmdBox(sharedObject.name);
                         root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
                     }
+					sharedObject.tag = "BoxCannotShare";
                     audioManager.Play("ConfirmSharing");
                     animator.SetBool("sendSucceed", true);
                 }
@@ -697,7 +715,7 @@ public class Player : NetworkBehaviour
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-		newObj.GetComponent<SharingEffectsController> ().StopAll ();
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
     }
 
     //sent by client, show object on server
@@ -710,9 +728,34 @@ public class Player : NetworkBehaviour
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-		newObj.GetComponent<SharingEffectsController> ().StopAll ();
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
        // Debug.Log(newObj.name);
     }
+
+
+	//sent by server, show particle effects on clients
+	[ClientRpc]
+	public void RpcWaitForShare(string shareObject){
+		if (isServer) {
+			return;
+		}
+		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
+		GameObject appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle.transform.position = sObj.transform.position;
+		appearParticle.transform.parent = sObj.transform;
+		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
+
+	}
+
+	//sent by client, show particle effects on server
+	[Command]
+	public void CmdWaitForShare(string shareObject){
+		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
+		GameObject appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle.transform.position = sObj.transform.position;
+		appearParticle.transform.parent = sObj.transform;
+		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
+	}
 
 
     //sent by server, show object on clients

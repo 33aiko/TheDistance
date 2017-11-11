@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4077428687367672}
   - component: {fileID: 114325957521879312}
   m_Layer: 0
-  m_Name: TranslateEffect
+  m_Name: TranslateEffect_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,6 +371,7 @@ MonoBehaviour:
   - {fileID: 198526066307940780}
   wind: {fileID: 182767226517990778}
   windIntensity: 120
+  isTest: 0
   state: 0
 --- !u!182 &182767226517990778
 WindZone:

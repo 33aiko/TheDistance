@@ -748,7 +748,7 @@ public class Player : NetworkBehaviour
 			return;
 		}
 		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
-		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Red") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
 		//appearParticle.transform.parent = sObj.transform;
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
@@ -759,7 +759,7 @@ public class Player : NetworkBehaviour
 	[Command]
 	public void CmdWaitForShare(string shareObject){
 		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
-		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect") as GameObject);
+		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Blue") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
 		//appearParticle.transform.parent = sObj.transform;
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();

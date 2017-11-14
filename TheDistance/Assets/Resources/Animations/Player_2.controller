@@ -601,6 +601,29 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+--- !u!1102 &1102996024111486338
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Natalie_push
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 72b28571ad1c64ea5a9db3c4b0ef6b5f, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
 --- !u!1107 &1107839531660799966
 AnimatorStateMachine:
   serializedVersion: 5
@@ -630,6 +653,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102178319420685098}
     m_Position: {x: -96, y: -96, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102996024111486338}
+    m_Position: {x: -61, y: -31, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1101109930007958348}

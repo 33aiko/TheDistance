@@ -464,7 +464,9 @@ public class Player : NetworkBehaviour
         animator.SetBool("playerUp", playerUp);
         animator.SetBool("playerStand", playerStand);
         animator.SetBool("playerClimb", controller.collisions.onLadder);
+        animator.SetBool("playerPushBox", controller.collisions.pushBox);
         animator.SetBool("hasInput", keyspaceDown || input.x != 0 || tryShare);
+
 
         if (playerStand && !tryShare)
         {

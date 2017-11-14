@@ -62,11 +62,12 @@ public class Controller2D : RaycastController
             if (hit)
             {
                 // push the box
-                bool pushBox = false;
+                bool moveBox = false;
                 if((hit.transform.gameObject.tag == "Box" ||
                     hit.transform.gameObject.tag == "BoxCannotShare" )&& collisions.interact) 
                 {
-                    pushBox = true;
+                    moveBox = true;
+                    collisions.pushBox = true;
                     velocity.x /= 2;
                     print("Pushing the box by " + gameObject.tag);
                     float pushX = velocity.x;
@@ -77,7 +78,7 @@ public class Controller2D : RaycastController
                     bo.controller.Move(new Vector3(pushX, pushY));
                     if(bo.controller.collisions.left || bo.controller.collisions.right)
                     {
-                        pushBox = false;
+                        moveBox = false;
                     }
                 }
 
@@ -108,7 +109,7 @@ public class Controller2D : RaycastController
                     if (hit.transform.gameObject.tag != "FloatingPlatform" &&
                         hit.transform.gameObject.tag != "Ladder" &&
                         hit.transform.gameObject.tag != "FloatingPlatformShared" &&
-                        !pushBox)
+                        !moveBox)
                     {
                         velocity.x = (hit.distance - skinWidth) * directionX;
                     }
@@ -277,6 +278,7 @@ public class Controller2D : RaycastController
         public float slopeAngle, slopeAngleOld;
         public Vector3 velocityOld;
         public bool onLadder;
+        public bool pushBox;
 
         public bool interact;
 
@@ -286,6 +288,7 @@ public class Controller2D : RaycastController
             left = right = false;
             climbingSlope = false;
             descendingSlope = false;
+            pushBox = false;
 
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;

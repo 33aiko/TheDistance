@@ -207,6 +207,7 @@ MonoBehaviour:
   sharableObjectTag:
   - FloatingPlatform
   - Box
+  - MovingPlatformSharable
 --- !u!114 &114126426605706722
 MonoBehaviour:
   m_ObjectHideFlags: 1

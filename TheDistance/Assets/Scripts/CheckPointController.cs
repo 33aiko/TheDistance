@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CheckPointController : MonoBehaviour {
 
@@ -16,7 +17,11 @@ public class CheckPointController : MonoBehaviour {
                 Player p = collision.GetComponent<Player>();
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+				this.GetComponent<SpriteRenderer>().DOColor(new Color32(255,217,8,255),0.5f);
+				this.transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
+				this.transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
+
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("Checkpoint");
             }
         }

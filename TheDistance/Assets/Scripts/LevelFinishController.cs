@@ -28,14 +28,21 @@ public class LevelFinishController : MonoBehaviour {
             p.setCheck(1);//1 i level
             finishCount++;
             if (finishCount < 2) { return; }
-            for (int i=1;i<=3;i++)
-            {
-                GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + i).gameObject;
-                if (go.GetComponent<KeyController>().both[0]+go.GetComponent<KeyController>().both[1] != 2)
-                {
-                    return;
-                }
-            }
+			if (collision.gameObject.GetComponent<Player> ().isServer) {
+				for (int i = 1; i <= 3; i++) {
+					GameObject go = root.transform.Find ("EricWorld").gameObject.transform.Find ("Fragment" + i).gameObject;
+					if (go.GetComponent<KeyController> ().both [0] + go.GetComponent<KeyController> ().both [1] != 2) {
+						return;
+					}
+				}
+			} else {
+				for (int i = 1; i <= 3; i++) {
+					GameObject go = root.transform.Find ("NatalieWorld").gameObject.transform.Find ("Fragment" + i).gameObject;
+					if (go.GetComponent<KeyController> ().both [0] + go.GetComponent<KeyController> ().both [1] != 2) {
+						return;
+					}
+				}
+			}
             bool canFinish = true;
             KeyController[] pKC = FindObjectsOfType<KeyController>();
             foreach(KeyController k in pKC)

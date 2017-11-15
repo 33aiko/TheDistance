@@ -517,13 +517,14 @@ public class Player : NetworkBehaviour
         if (isServer)
         {
             int keyIdxPlus = keyIdx + 1;
-            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            GameObject go = root.transform.Find("EricWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
                 audioManager.Play("FragmentOne");
-                go.transform.DOScale(15, 0.4f);
-                go.transform.DOScale(12, 0.4f).SetDelay(0.8f);
+				go.GetComponent<KeyController> ().PlayEffect ();
+//                go.transform.DOScale(15, 0.4f);
+//                go.transform.DOScale(12, 0.4f).SetDelay(0.8f);
             }
             go.GetComponent<KeyController>().both[0] = 1;
 
@@ -546,13 +547,14 @@ public class Player : NetworkBehaviour
         else
         {
             int keyIdxPlus = keyIdx + 1;
-            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            GameObject go = root.transform.Find("NatalieWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
             if (go.GetComponent<KeyController>().both[1] != 1)
             {
                 audioManager.Play("FragmentTwo");
-                go.transform.DOScale(15, 0.8f);
-                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+				go.GetComponent<KeyController> ().PlayEffect ();
+//                go.transform.DOScale(15, 0.8f);
+//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[1] = 1;
@@ -579,13 +581,14 @@ public class Player : NetworkBehaviour
         if (!isServer)
         {
             int keyIdxPlus = keyIdx + 1;
-            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            GameObject go = root.transform.Find("NatalieWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
                 audioManager.Play("FragmentOne");
-                go.transform.DOScale(15, 0.8f);
-                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+				go.GetComponent<KeyController> ().PlayEffect ();
+//                go.transform.DOScale(15, 0.8f);
+//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[0] = 1;
@@ -613,13 +616,14 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             Debug.Log("Ser shoudaole");
-            GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+            GameObject go = root.transform.Find("EricWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
             if (go.GetComponent<KeyController>().both[1] != 1)
             {
                 audioManager.Play("FragmentTwo");
-                go.transform.DOScale(15, 0.8f);
-                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+				go.GetComponent<KeyController> ().PlayEffect ();
+//                go.transform.DOScale(15, 0.8f);
+//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[1] = 1;

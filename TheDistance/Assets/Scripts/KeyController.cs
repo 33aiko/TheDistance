@@ -16,12 +16,14 @@ public class KeyController : MonoBehaviour {
     public Sprite[] fragSprite; //array to store sprite
 	public GameObject[] memoryContent ; 
     public int[] both;
+	public GameObject triggerEffect; 
 
 
 	Image memoryBackground; 
 	Text memoryHint; 
 
 	bool memoryShowed = false; 
+
 
 	private void Start()
 	{
@@ -102,4 +104,13 @@ public class KeyController : MonoBehaviour {
 		memoryShowed = true; 
 	}
 
+	public void PlayEffect(){
+		Debug.Log ("trigger");
+		if (!triggerEffect.GetComponent<ParticleSystem> ().isPlaying) {
+			triggerEffect.GetComponent<ParticleSystem> ().Play ();
+		}
+		triggerEffect.transform.DOScale (new Vector3 (0.3f, 1.4f, 1), 0);
+		triggerEffect.transform.DOScale (new Vector3 (0.5f, 1.5f, 1), 0.5f);
+		triggerEffect.transform.DOScale (new Vector3 (0.4f, 1.4f, 1), 0.5f).SetDelay(0.5f);
+	}
 }

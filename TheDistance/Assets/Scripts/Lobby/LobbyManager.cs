@@ -153,6 +153,10 @@ namespace Prototype.NetworkLobby
         {
             statusInfo.text = status;
             hostInfo.text = host;
+
+            this.transform.Find("MainPanel/LobbyPage/StatusInfo").GetComponent<Text>().text = status;
+            this.transform.Find("MainPanel/LobbyPage/HostingInfo").GetComponent<Text>().text = host;
+
         }
 
 
@@ -236,7 +240,7 @@ namespace Prototype.NetworkLobby
         {
             base.OnStartHost();
 
-            ChangeTo(lobbyPanel);
+            //ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
             SetServerInfo("Hosting", networkAddress);
         }

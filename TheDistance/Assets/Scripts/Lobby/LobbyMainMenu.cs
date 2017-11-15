@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Prototype.NetworkLobby
 {
@@ -14,32 +15,12 @@ namespace Prototype.NetworkLobby
         public InputField ipInput;
         public InputField matchNameInput;
 
-        //public void OnEnable()
-        //{
-        //    lobbyManager.topPanel.ToggleVisibility(true);
-
-        //    ipInput.onEndEdit.RemoveAllListeners();
-        //    ipInput.onEndEdit.AddListener(onEndEditIP);
-
-        //    matchNameInput.onEndEdit.RemoveAllListeners();
-        //    matchNameInput.onEndEdit.AddListener(onEndEditGameName);
-        //}
-
-
-        private void switchToPage(string pageName)
+        public void OnEnable()
         {
-            for (int i = 0; i < this.transform.childCount; i++)
-            {
-                GameObject tempChild = this.transform.GetChild(i).gameObject;
-                tempChild.SetActive(tempChild.name == pageName);
-            }
-        }   
-
-
-
-        void Start()
-        {
+<<<<<<< HEAD
             //switchToPage("InitPage");
+=======
+>>>>>>> parent of a0a2eee... add new lobby
             lobbyManager.topPanel.ToggleVisibility(true);
 
             ipInput.onEndEdit.RemoveAllListeners();
@@ -47,6 +28,7 @@ namespace Prototype.NetworkLobby
 
             matchNameInput.onEndEdit.RemoveAllListeners();
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);
+<<<<<<< HEAD
 
 
             
@@ -89,29 +71,22 @@ namespace Prototype.NetworkLobby
         {
             lobbyManager.StartHost();
             switchToPage("StartPage");
+=======
+>>>>>>> parent of a0a2eee... add new lobby
         }
 
         public void OnClickHost()
         {
+<<<<<<< HEAD
             //switchToPage("LobbyPage");
+=======
+>>>>>>> parent of a0a2eee... add new lobby
             lobbyManager.StartHost();
         }
 
-
-        public void OnClickBeClient()
-        {
-            switchToPage("ClientJoinPage");
-        }
-
-
         public void OnClickJoin()
         {
-            //lobbyManager.ChangeTo(lobbyPanel);
-            switchToPage("ClientJoinPage");
-
-            //InputField inputField = this.transform.Find("ClientJoinPage/InputFieldNew").GetComponent<InputField>();
-            //lobbyManager.networkAddress = inputField.text; //ipInput.text;
-
+            lobbyManager.ChangeTo(lobbyPanel);
 
             lobbyManager.networkAddress = ipInput.text;
             lobbyManager.StartClient();

@@ -153,10 +153,13 @@ namespace Prototype.NetworkLobby
         {
             statusInfo.text = status;
             hostInfo.text = host;
+<<<<<<< HEAD
 
             //this.transform.Find("MainPanel/LobbyPage/StatusInfo").GetComponent<Text>().text = status;
            // this.transform.Find("MainPanel/LobbyPage/HostingInfo").GetComponent<Text>().text = host;
 
+=======
+>>>>>>> parent of a0a2eee... add new lobby
         }
 
 

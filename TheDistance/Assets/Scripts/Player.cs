@@ -784,6 +784,7 @@ public class Player : NetworkBehaviour
         //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         if (!sObj.GetComponent<MovingPlatformController>().isMoved)
         {
             newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
@@ -801,6 +802,7 @@ public class Player : NetworkBehaviour
         //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         if (!sObj.GetComponent<MovingPlatformController>().isMoved)
         {
             newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
@@ -819,6 +821,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         Debug.Log(sObj.name);
 
     }
@@ -833,6 +836,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
+		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         Debug.Log(sObj.name);
 
     }

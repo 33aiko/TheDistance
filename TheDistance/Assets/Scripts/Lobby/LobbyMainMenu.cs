@@ -39,7 +39,7 @@ namespace Prototype.NetworkLobby
 
         void Start()
         {
-            switchToPage("InitPage");
+            //switchToPage("InitPage");
             lobbyManager.topPanel.ToggleVisibility(true);
 
             ipInput.onEndEdit.RemoveAllListeners();
@@ -50,9 +50,9 @@ namespace Prototype.NetworkLobby
 
 
             
-            regInitPageButtons();
-            regStartPageButtons();
-            regClientJoinPageButtons();
+           // regInitPageButtons();
+            //regStartPageButtons();
+            //regClientJoinPageButtons();
         }
 
         private void regInitPageButtons()
@@ -93,7 +93,7 @@ namespace Prototype.NetworkLobby
 
         public void OnClickHost()
         {
-            switchToPage("LobbyPage");
+            //switchToPage("LobbyPage");
             lobbyManager.StartHost();
         }
 

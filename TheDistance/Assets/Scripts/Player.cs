@@ -516,6 +516,11 @@ public class Player : NetworkBehaviour
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
 
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                return;
+            }
+
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
                 audioManager.Play("FragmentOne");
@@ -544,6 +549,11 @@ public class Player : NetworkBehaviour
         {
             int keyIdxPlus = keyIdx + 1;
             GameObject go = root.transform.Find("ShareWorld").gameObject.transform.Find("Fragment" + keyIdxPlus).gameObject;
+
+            if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
+            {
+                return;
+            }
 
             if (go.GetComponent<KeyController>().both[1] != 1)
             {

@@ -373,7 +373,7 @@ public class Player : NetworkBehaviour
                     audioManager.Play("ConfirmSharing");
                     animator.SetBool("sendSucceed", true);
                 }
-            }
+            } 
         }
 
         // on the ground or on the ladder
@@ -778,6 +778,9 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
@@ -796,6 +799,9 @@ public class Player : NetworkBehaviour
     public void CmdShareMv(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
@@ -816,10 +822,14 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
+		newObj.tag = "BoxCannotShare";
         newObj.transform.position = sObj.transform.position;
 		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         Debug.Log(sObj.name);
@@ -831,10 +841,14 @@ public class Player : NetworkBehaviour
     public void CmdBox(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		if (appearParticle != null) {
+			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
+		}
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
+		newObj.tag = "BoxCannotShare";
         newObj.transform.position = sObj.transform.position;
 		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
         Debug.Log(sObj.name);

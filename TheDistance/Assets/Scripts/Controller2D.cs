@@ -168,12 +168,12 @@ public class Controller2D : RaycastController
                 }
 
                 if(hit.transform.gameObject.tag == "Water" && 
-                    gameObject.tag == "Box" && (GetComponent<FloatInWater>()) )
+					( gameObject.tag == "Box" || gameObject.tag == "BoxCannotShare") && (GetComponent<FloatInWater>()) )
                 {
                     GetComponent<FloatInWater>().SetInWater();
                 }
 
-                if(hit.transform.gameObject.tag == "Box" && 
+				if( (hit.transform.gameObject.tag == "Box" || hit.transform.gameObject.tag == "BoxCannotShare") && 
                     hit.transform.gameObject.GetComponent<FloatInWater>().isInWater)
                 {
                     // player stands on a floating box

@@ -25,7 +25,7 @@ public class StepOnTriggerController : MonoBehaviour {
         {
             haveUser = true;
         }
-        if(collision.gameObject.tag == "Box")
+		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = true;
         }
@@ -40,7 +40,7 @@ public class StepOnTriggerController : MonoBehaviour {
         {
             haveUser = false;
         }
-        if(collision.gameObject.tag == "Box")
+		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = false;
         }

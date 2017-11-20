@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 187642601}
   - component: {fileID: 187642604}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,12 +134,12 @@ Rigidbody:
   m_GameObject: {fileID: 187642600}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.5
+  m_AngularDrag: 5
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!212 &187642602
 SpriteRenderer:
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42c67f190e5a2407f8e4b8166a5f9ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c314997918fa7d46a3bdfc0a4698508, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -208,7 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceX: 2
-  forceY: 2
+  forceY: 0.2
+  resistanceFactor: 0.02
+  height: 0
 --- !u!1 &1071130780
 GameObject:
   m_ObjectHideFlags: 0

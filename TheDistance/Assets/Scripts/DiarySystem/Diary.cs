@@ -16,6 +16,7 @@ public class Diary : MonoBehaviour {
             GameObject btnObj = Instantiate(StoryItemBtn, content);
             btnObj.transform.Find("Text").GetComponent<Text>().text = item.Key;
             btnObj.name = item.Key;
+			btnObj.SetActive (false);
 
             //construct texts with line break
             string total_s = "";

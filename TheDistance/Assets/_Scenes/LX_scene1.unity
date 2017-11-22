@@ -26277,7 +26277,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &967251553
 GameObject:
@@ -41048,7 +41048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9c2315dd4359a4e8f98566d2c7080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+    type: 2}
+  musicMixerGroup: {fileID: 243012178042902176, guid: f147812d010ee41d7910435c35836d27,
+    type: 2}
+  atmoMixerGroup: {fileID: 243374526274064404, guid: f147812d010ee41d7910435c35836d27,
+    type: 2}
   sounds:
   - name: PlayerWalking
     clip: {fileID: 8300000, guid: 5e277c64ac668664b8f61189bea2eaaa, type: 3}
@@ -41057,7 +41062,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: PlayerJump
     clip: {fileID: 8300000, guid: e95ad8447ef595b4e91ac4e56b54513d, type: 3}
@@ -41066,7 +41072,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: PlayerLand
     clip: {fileID: 8300000, guid: 566c187c67faac14fba7e9e7ab395cef, type: 3}
@@ -41075,25 +41082,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: MusicTrack01NoAtmo
-    clip: {fileID: 8300000, guid: 7bb4722e27e1cba4ea865a7cb98d029c, type: 3}
-    volume: 0.8
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: MusicTrack01WithAtmo
-    clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
-    volume: 1
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: Waterfall
     clip: {fileID: 8300000, guid: 8abaf092ddbec47cb87f9d9855f1a6d3, type: 3}
@@ -41102,7 +41092,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243374526274064404, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: Checkpoint
     clip: {fileID: 8300000, guid: eaa3cc0166775433b9eaebe8bb74b360, type: 3}
@@ -41111,7 +41102,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: MovingPlatform
     clip: {fileID: 8300000, guid: fd62873efbef14d148f40a037a102b82, type: 3}
@@ -41120,7 +41112,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: NPCcontent
     clip: {fileID: 8300000, guid: 4b87c228ac44e4452a69deb3e75fc704, type: 3}
@@ -41129,7 +41122,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: StartSharing
     clip: {fileID: 8300000, guid: d44ae711c7bdc407b99f5369737b079c, type: 3}
@@ -41138,7 +41132,8 @@ MonoBehaviour:
     pitch: 0.8
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: ConfirmSharing
     clip: {fileID: 8300000, guid: b88f71c45e0e546bdb80dd4aadb3c817, type: 3}
@@ -41147,7 +41142,8 @@ MonoBehaviour:
     pitch: 0.8
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: FragmentOne
     clip: {fileID: 8300000, guid: 83361efbb20764f7d8b2545ca90584e6, type: 3}
@@ -41156,7 +41152,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: FragmentTwo
     clip: {fileID: 8300000, guid: afcd01a893f754d7b9c3052437d81a57, type: 3}
@@ -41165,7 +41162,8 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
   - name: MemoryContent
     clip: {fileID: 8300000, guid: eaa3cc0166775433b9eaebe8bb74b360, type: 3}
@@ -41174,7 +41172,39 @@ MonoBehaviour:
     pitch: 0.8
     pitchVariance: 0
     loop: 0
+    mixerGroup: {fileID: 243689384570799600, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
+    source: {fileID: 0}
+  atmo:
+  - name: Atmo1
+    clip: {fileID: 8300000, guid: d5eeb025a08be45d299d9364ba3d09ce, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
     mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  music:
+  - name: music_loop1
+    clip: {fileID: 8300000, guid: cac8ee1054bdb4236a08e054a46066be, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 243012178042902176, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
+    source: {fileID: 0}
+  - name: music_loop2
+    clip: {fileID: 8300000, guid: 031783b9592794a868590671a1845fb6, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 243012178042902176, guid: f147812d010ee41d7910435c35836d27,
+      type: 2}
     source: {fileID: 0}
 --- !u!4 &1460724796
 Transform:
@@ -42543,7 +42573,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1586066493
 Transform:
@@ -59493,7 +59523,7 @@ SpriteRenderer:
   m_SortingLayerID: 760021949
   m_SortingLayer: 1
   m_SortingOrder: -20
-  m_Sprite: {fileID: 21300000, guid: 6ccf6bc57ad0a468790705bbf5bb6ef9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48592f2b0d55a43138624c796c73f469, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -60286,7 +60316,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2082159604
 GameObject:

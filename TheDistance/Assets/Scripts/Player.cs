@@ -585,7 +585,7 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
-                audioManager.Play("FragmentOne");
+				audioManager.Play ("FragmentOne");
 				go.GetComponent<KeyController> ().PlayEffect ();
 //                go.transform.DOScale(15, 0.8f);
 //                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);

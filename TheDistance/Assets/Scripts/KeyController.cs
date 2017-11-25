@@ -22,11 +22,15 @@ public class KeyController : MonoBehaviour {
 	Image memoryBackground; 
 	Text memoryHint; 
 
-	bool memoryShowed = false; 
+	bool memoryShowed = false;
+
+    Text t;
 
 
 	private void Start()
 	{
+        t = GetComponentInChildren<Text>();
+        t.text = "";
         both = new int[2];
         both[0] = 0;
         both[1] = 0;
@@ -56,7 +60,14 @@ public class KeyController : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    public void collectThis(Player p)
+    {
+        p.haveKey[keyIdx] = true;
+        p.checkWho(keyIdx);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Player")
 		{
@@ -64,10 +75,9 @@ public class KeyController : MonoBehaviour {
 			if (cnt == 2)
 			{
 				Player p = collision.GetComponent<Player>();
-				p.haveKey[keyIdx] = true;
-                p.checkWho(keyIdx);				
+                t.text = "Press E to examine";
+                p.curFragment = this;
             }
-
         }
 	}
 
@@ -76,6 +86,12 @@ public class KeyController : MonoBehaviour {
 		if(collision.gameObject.tag == "Player")
 		{
 			cnt--;
+            if(cnt != 2)
+            {
+				Player p = collision.GetComponent<Player>();
+                t.text = "";
+                p.curFragment = null;
+            }
 		}
 	}
 

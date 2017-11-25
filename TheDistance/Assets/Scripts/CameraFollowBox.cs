@@ -26,8 +26,8 @@ public class CameraFollowBox : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, .5f);
-        Gizmos.DrawCube(focusArea.center, focusAreaSize);
+        //Gizmos.color = new Color(1, 0, 0, .5f);
+        //Gizmos.DrawCube(focusArea.center, focusAreaSize);
     }
 
     public struct FocusArea

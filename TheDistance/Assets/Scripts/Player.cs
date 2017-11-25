@@ -48,6 +48,9 @@ public class Player : NetworkBehaviour
 	public int keyNum;
 
 	public NPCTrigger curNPC;
+    public Text shareNotificationText = null;
+    public KeyController curFragment = null;
+    public float shareTextTime = 2.0f;
 
 	public float gravity;
 	float jumpVelocity;
@@ -87,7 +90,8 @@ public class Player : NetworkBehaviour
 	[HideInInspector]
 	public bool canClimbLadder = false;
 
-	Color ericFilter, natalieFilter, currentFilter; 
+	Color ericFilter, natalieFilter, currentFilter;
+
 
 	void Start()
 	{
@@ -179,6 +183,10 @@ public class Player : NetworkBehaviour
 		{
 			print("no animation controller found!");
 		}
+
+        // get the text
+        shareNotificationText = GetComponentInChildren<Text>();
+        shareNotificationText.text = "";
     }
 
 	void Update()
@@ -244,6 +252,10 @@ public class Player : NetworkBehaviour
 				print("NPC says: " + curNPC.NPCtalk);
 				curNPC.showTalkText();
 			}
+            else if(curFragment != null)
+            {
+                curFragment.collectThis(this);
+            }
 		}
 
 		// press R to close NPC contents 
@@ -272,6 +284,7 @@ public class Player : NetworkBehaviour
 				if (isLocalPlayer && !isServer) {
 					CmdWaitForShare (shareObject.name);
 				}
+                shareNotificationText.text = "A platform selected, release T to share";
 			}
 
 			selectShareObject = true;
@@ -323,6 +336,8 @@ public class Player : NetworkBehaviour
             }
             else
             {
+                shareNotificationText.text = "A platform shared!";
+                Invoke("clearShareNotificationText", shareTextTime);
                 if (sharedObject.tag == "FloatingPlatform")
                 {
 
@@ -945,5 +960,10 @@ public class Player : NetworkBehaviour
     public void clearCheck(int level)
     {
         finishCheck[level - 1] = 0;
+    }
+
+    public void clearShareNotificationText()
+    {
+        shareNotificationText.text = "";
     }
 }

@@ -26,6 +26,9 @@ public class KeyController : MonoBehaviour {
 
     Text t;
 
+    bool collected = false;
+    bool playerNearby = false;
+
 
 	private void Start()
 	{
@@ -58,13 +61,36 @@ public class KeyController : MonoBehaviour {
 				memoryHint.DOFade (0, 1);
 			}
 		}
+        updateText();
 	}
+
+    private void updateText()
+    {
+        if (!playerNearby) t.text = "";
+        else if (collected == false)
+        {
+            t.text = "Press E to examine";
+        }
+        else if (both[0] + both[1] != 2)
+        {
+            t.text = "Wait for your partner to trigger \n another half of memory";
+        }
+        else
+        {
+            t.text = "Review content in the diary";
+        }
+    }
 
     public void collectThis(Player p)
     {
+        collected = true;
         p.haveKey[keyIdx] = true;
         p.checkWho(keyIdx);
+<<<<<<< HEAD
         if (both[0]==0||both[1]==0) return;
+=======
+        updateText();
+>>>>>>> parent of 44da275... Revert "help text  updated"
         GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
         showDiary.SetActive(true);
     }
@@ -78,8 +104,9 @@ public class KeyController : MonoBehaviour {
 			if (cnt == 2)
 			{
 				Player p = collision.GetComponent<Player>();
-                t.text = "Press E to examine";
+                playerNearby = true;
                 p.curFragment = this;
+                updateText();
             }
         }
 	}
@@ -92,6 +119,7 @@ public class KeyController : MonoBehaviour {
             if(cnt != 2)
             {
 				Player p = collision.GetComponent<Player>();
+                playerNearby = false;
                 t.text = "";
                 p.curFragment = null;
             }

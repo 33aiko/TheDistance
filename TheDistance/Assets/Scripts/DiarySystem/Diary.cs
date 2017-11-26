@@ -10,12 +10,14 @@ public class Diary : MonoBehaviour {
     public Transform storyContent;
     // Use this for initialization
     void Start () {
+        int diaryIndex = 0;
         foreach (var item in TextSystem.textDictionary)
         {
             //add story btn
             GameObject btnObj = Instantiate(StoryItemBtn, content);
             btnObj.transform.Find("Text").GetComponent<Text>().text = item.Key;
-            btnObj.name = item.Key;
+            btnObj.name = diaryIndex.ToString();
+            diaryIndex++;
 			btnObj.SetActive (false);
 
             //construct texts with line break

@@ -64,6 +64,7 @@ public class KeyController : MonoBehaviour {
     {
         p.haveKey[keyIdx] = true;
         p.checkWho(keyIdx);
+        if (both[0]==0||both[1]==0) return;
         GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
         showDiary.SetActive(true);
     }

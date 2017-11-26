@@ -18,7 +18,8 @@ public class Diary : MonoBehaviour {
             btnObj.transform.Find("Text").GetComponent<Text>().text = item.Key;
             btnObj.name = diaryIndex.ToString();
             diaryIndex++;
-			btnObj.SetActive (false);
+			btnObj.SetActive (true);
+            btnObj.SetActive(false);
 
             //construct texts with line break
             string total_s = "";

@@ -26168,7 +26168,7 @@ SpriteRenderer:
   m_Size: {x: 230.40001, y: 52.800003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &967251553
 GameObject:
@@ -40691,11 +40691,6 @@ Prefab:
       propertyPath: memoryContent.Array.data[1]
       value: 
       objectReference: {fileID: 2105948440}
-    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
-        type: 2}
-      propertyPath: keyIdx
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
   m_IsPrefabParent: 0
@@ -42619,7 +42614,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1586066493
 Transform:
@@ -59587,7 +59582,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1936993765
 GameObject:
@@ -60325,7 +60320,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2082159604
 GameObject:

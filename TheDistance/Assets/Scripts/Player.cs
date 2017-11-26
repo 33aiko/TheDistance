@@ -284,14 +284,10 @@ public class Player : NetworkBehaviour
 				if (isLocalPlayer && !isServer) {
 					CmdWaitForShare (shareObject.name);
 				}
-                if(shareObject.tag == "Box")
-                    shareNotificationText.text = "A box selected, release T to share";
-                else if(shareObject.tag == "FloatingPlatform" ||
-                    shareObject.tag == "MovingPlatformSharable")
-                    shareNotificationText.text = "A platform selected, release T to share";
-            }
+                shareNotificationText.text = "A platform selected, release T to share";
+			}
 
-            selectShareObject = true;
+			selectShareObject = true;
 			cameraZoomValue = 40;
 			GetComponent<CameraFollowBox>().moveToCenter();
 
@@ -340,10 +336,11 @@ public class Player : NetworkBehaviour
             }
             else
             {
+                shareNotificationText.text = "A platform shared!";
                 Invoke("clearShareNotificationText", shareTextTime);
                 if (sharedObject.tag == "FloatingPlatform")
                 {
-                    shareNotificationText.text = "A platform shared!";
+
                     Debug.Log(sharedObject.name);
                     if (isServer && isLocalPlayer)
                     {
@@ -361,7 +358,6 @@ public class Player : NetworkBehaviour
                 }
                 else if (sharedObject.tag == "MovingPlatformSharable")
                 {
-                    shareNotificationText.text = "A platform shared!";
                     Debug.Log("mv!");
                     if (isServer && isLocalPlayer)
                     {
@@ -376,7 +372,6 @@ public class Player : NetworkBehaviour
                 }
                 else if (sharedObject.tag == "Box")
                 {
-                    shareNotificationText.text = "A box shared!";
                     Debug.Log("box found");
                     string boxname = sharedObject.name;
                     if (isServer && isLocalPlayer)

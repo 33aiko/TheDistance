@@ -86,11 +86,10 @@ public class KeyController : MonoBehaviour {
         collected = true;
         p.haveKey[keyIdx] = true;
         p.checkWho(keyIdx);
-<<<<<<< HEAD
+
         if (both[0]==0||both[1]==0) return;
-=======
+
         updateText();
->>>>>>> parent of 44da275... Revert "help text  updated"
         GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
         showDiary.SetActive(true);
     }

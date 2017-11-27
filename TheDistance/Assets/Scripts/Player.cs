@@ -289,7 +289,7 @@ public class Player : NetworkBehaviour
 					CmdWaitForShare (shareObject.name);
 				}
                 if(shareObject.tag == "Box")
-                    shareNotificationText.text = "A box selected, release T to share";
+                    shareNotificationText.text = "An object selected, release T to share";
                 else if(shareObject.tag == "FloatingPlatform" ||
                     shareObject.tag == "MovingPlatformSharable")
                     shareNotificationText.text = "A platform selected, release T to share";
@@ -819,8 +819,14 @@ public class Player : NetworkBehaviour
 		}
 		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
 		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Red") as GameObject);
+
 		appearParticle.transform.position = sObj.transform.position;
-		//appearParticle.transform.parent = sObj.transform;
+		if (sObj.GetComponent<MovingPlatformController>()!=null) {
+			if (!sObj.GetComponent<MovingPlatformController>().isMoved)
+			{
+				appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
+			}
+		}
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 
 	}
@@ -831,7 +837,11 @@ public class Player : NetworkBehaviour
 		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
 		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Blue") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
-		//appearParticle.transform.parent = sObj.transform;
+		if (sObj.GetComponent<MovingPlatformController> () != null) {
+			if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
+				appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
+			}
+		}
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 	}
 

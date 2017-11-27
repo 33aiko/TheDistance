@@ -56,7 +56,7 @@ public class SharingEffectsController : MonoBehaviour {
 
 	void Update(){
 		if (state == State.Default) {
-			if (this.CompareTag ("FloatingPlatform") || this.CompareTag ("Box")) {
+			if (transform.parent.CompareTag ("FloatingPlatform") || transform.parent.CompareTag ("Box")|| transform.parent.CompareTag("MovingPlatformSharable")) {
 				PlayParticles( defaultEffect);
 			}
 		}
@@ -104,18 +104,5 @@ public class SharingEffectsController : MonoBehaviour {
 
 	}
 
-//	public void PlaySharedEffect(){
-//		if (sharedEffect != null && !sharedEffect.isPlaying) {
-//			sharedEffect.Play ();
-//		}
-//
-//		if (defaultEffect != null) {
-//			defaultEffect.Stop ();
-//		}
-//		if (selectedEffect != null) {
-//			foreach (var e in selectedEffect) {
-//				e.Stop ();
-//			}
-//		}
-//		wind.windMain = - windIntensity;
+
 }

@@ -33,7 +33,7 @@ public class SharingEffectsController : MonoBehaviour {
 	{
 		if (ps != null)
 			foreach (var p in ps)
-				if ( p.isPlaying && p != null)
+				if ( p != null && p.isPlaying )
 				p.Stop ();
 	}
 

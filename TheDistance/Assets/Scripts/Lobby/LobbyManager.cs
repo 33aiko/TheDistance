@@ -47,11 +47,14 @@ namespace Prototype.NetworkLobby
         [HideInInspector]
         public bool _isMatchmaking = false;
 
+		protected bool _isStarting = false; 
+
         protected bool _disconnectServer = false;
         
         protected ulong _currentMatchID;
 
         protected LobbyHook _lobbyHooks;
+
 
         private void switchToPage(string pageName)
         {
@@ -361,7 +364,7 @@ namespace Prototype.NetworkLobby
 					allready &= lobbySlots[i].readyToBegin;
 			}
 
-			if(allready)
+			if(allready && !_isStarting)
 				StartCoroutine(ServerCountdownCoroutine());
         }
 
@@ -400,6 +403,7 @@ namespace Prototype.NetworkLobby
                 }
             }
 
+			_isStarting = true; 
             ServerChangeScene(playScene);
         }
 

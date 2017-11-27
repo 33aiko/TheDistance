@@ -243,9 +243,13 @@ public class Player : NetworkBehaviour
 			controller.collisions.interact = false;
 
 		// press E to view NPC contents
-		if(Input.GetKeyDown(KeyCode.E))
+		if(Input.GetButtonDown("Talk"))
 		{
-			//print("have NPC in range? " + (curNPC != null));
+			
+			foreach (string s in Input.GetJoystickNames()) {
+				Debug.Log (s);
+			}
+
 			if(curNPC != null)
 			{
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("NPCcontent");
@@ -450,7 +454,8 @@ public class Player : NetworkBehaviour
 
         // jump
         bool keyspaceDown = false;
-        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
+//        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
+		if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
         {
             audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;
@@ -564,6 +569,9 @@ public class Player : NetworkBehaviour
                 go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
                 // Debug.Log("both key");
+				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				Debug.Log ("1show" + keyIdx);
+				showDiary.SetActive(true);
             }
 
 
@@ -598,6 +606,9 @@ public class Player : NetworkBehaviour
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
+				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				showDiary.SetActive(true);
+				Debug.Log ("2show" + keyIdx);
             }
 
             go.GetComponent<KeyController>().setBoth();
@@ -631,6 +642,9 @@ public class Player : NetworkBehaviour
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
+				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				showDiary.SetActive(true);
+				Debug.Log ("3show" + keyIdx);
             }
 
             go.GetComponent<KeyController>().setBoth();
@@ -667,6 +681,9 @@ public class Player : NetworkBehaviour
                 go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
+				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				showDiary.SetActive(true);
+				Debug.Log ("4show" + keyIdx);
             }
             go.GetComponent<KeyController>().setBoth();
 

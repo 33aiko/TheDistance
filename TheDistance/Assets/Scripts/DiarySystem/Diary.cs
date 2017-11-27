@@ -8,8 +8,11 @@ public class Diary : MonoBehaviour {
     public GameObject StoryContentItem;
     public Transform content;
     public Transform storyContent;
+
+
+
     // Use this for initialization
-    void Start () {
+    public void Initiate () {
         int diaryIndex = 0;
         foreach (var item in TextSystem.textDictionary)
         {
@@ -64,8 +67,7 @@ public class Diary : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-		
+	public void ShowContents(){
 	}
+ 
 }

@@ -60458,6 +60458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252c2562a54f52a499cbe2b65f3c548d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  d: {fileID: 539581524}
   filename: test.txt
 --- !u!1 &2099108417
 GameObject:

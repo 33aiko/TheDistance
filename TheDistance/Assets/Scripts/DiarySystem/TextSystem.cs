@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Text;
+using UnityEngine.UI;
 
 public class TextSystem : MonoBehaviour {
+
+	public Diary d; 
     public string filename = null;
 
     public static Dictionary<string, List<string>> textDictionary = new Dictionary<string, List<string>>();
@@ -16,11 +19,12 @@ public class TextSystem : MonoBehaviour {
         textPath = Application.dataPath + "/Resources/Texts/";
         if (filename != null) { Construct(textPath + filename); };
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void Start(){
+		d.Initiate ();
+
 	}
+	
 
     public static void Construct(string path)
     {

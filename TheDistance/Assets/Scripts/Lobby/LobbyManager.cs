@@ -53,15 +53,6 @@ namespace Prototype.NetworkLobby
 
         protected LobbyHook _lobbyHooks;
 
-        private void switchToPage(string pageName)
-        {
-            for (int i = 0; i < this.transform.childCount; i++)
-            {
-                GameObject tempChild = this.transform.GetChild(i).gameObject;
-                tempChild.SetActive(tempChild.name == pageName);
-            }
-        }
-
         void Start()
         {
             s_Singleton = this;
@@ -74,8 +65,6 @@ namespace Prototype.NetworkLobby
             DontDestroyOnLoad(gameObject);
 
             SetServerInfo("Offline", "None");
-
-            switchToPage("MainPanel");
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
@@ -164,10 +153,6 @@ namespace Prototype.NetworkLobby
         {
             statusInfo.text = status;
             hostInfo.text = host;
-
-            this.transform.Find("LobbyPanel/LobbyPage/StatusInfo").GetComponent<Text>().text = status;
-            this.transform.Find("LobbyPanel/LobbyPage/HostingInfo").GetComponent<Text>().text = host;
-
         }
 
 
@@ -293,7 +278,7 @@ namespace Prototype.NetworkLobby
             GameObject obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
 
             LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
-            //newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
+            newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
 
 
             for (int i = 0; i < lobbySlots.Length; ++i)
@@ -383,10 +368,9 @@ namespace Prototype.NetworkLobby
 
                     for (int i = 0; i < lobbySlots.Length; ++i)
                     {
-                   
                         if (lobbySlots[i] != null)
                         {//there is maxPlayer slots, so some could be == null, need to test it before accessing!
-                            (lobbySlots[i] as LobbyPlayerTheDistance).RpcUpdateCountdown(floorTime);
+                            (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
                         }
                     }
                 }
@@ -396,7 +380,7 @@ namespace Prototype.NetworkLobby
             {
                 if (lobbySlots[i] != null)
                 {
-                    (lobbySlots[i] as LobbyPlayerTheDistance).RpcUpdateCountdown(0);
+                    (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
                 }
             }
 

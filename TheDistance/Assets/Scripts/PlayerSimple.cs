@@ -17,7 +17,6 @@ public class PlayerSimple : MonoBehaviour{
     float jumpVelocity;
     float velocitySmoothing;
     bool playerJumping;
-    bool canMove = true;
 
     [HideInInspector]
     public Controller2D controller;
@@ -50,14 +49,8 @@ public class PlayerSimple : MonoBehaviour{
         KeyControlMove();
     }
 
-    public void Change2ReadyState()
-    {
-        canMove = false;
-    }
-
     void KeyControlMove()
     {
-
         if (controller.collisions.above || controller.collisions.below)
         {
             playerJumping = false;
@@ -82,7 +75,7 @@ public class PlayerSimple : MonoBehaviour{
             playingWalkingMusic = false;
         }
         bool keyspaceDown = false;
-        if (canMove && Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
+        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
         {
             //audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;
@@ -90,7 +83,7 @@ public class PlayerSimple : MonoBehaviour{
             keyspaceDown = true;
         }
         velocity.x = input.x * moveSpeed;
-        if (!canMove) velocity.x = 0;
+
         if (velocity.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;

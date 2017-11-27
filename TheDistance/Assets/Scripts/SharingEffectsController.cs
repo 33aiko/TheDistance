@@ -24,29 +24,23 @@ public class SharingEffectsController : MonoBehaviour {
 	public void PlayParticles( ParticleSystem[] ps )
 	{
 		if (ps != null)
-			foreach (var p in ps) {
+			foreach (var p in ps)
 				if (!p.isPlaying)
 					p.Play ();
-			}
 	}
 
 	public void StopParticles( ParticleSystem[] ps )
 	{
 		if (ps != null)
-			foreach (var p in ps) {
-				if (p.isPlaying && p != null)
-					p.Stop ();
-			}
+			foreach (var p in ps)
+				if ( p.isPlaying && p != null)
+				p.Stop ();
 	}
 
 	void Awake () {
-
-		if (selectedEffect != null) {
-			StopParticles (selectedEffect);
-		}
-		if (sharedEffect != null) {
-			StopParticles (sharedEffect);
-		}
+		
+		StopParticles (selectedEffect);
+		StopParticles (sharedEffect);
 //		if (sharedEffect != null) {
 //			sharedEffect.Stop ();
 //		}

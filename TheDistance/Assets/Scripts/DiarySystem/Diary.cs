@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Diary : MonoBehaviour {
     public GameObject StoryItemBtn;
@@ -20,9 +21,12 @@ public class Diary : MonoBehaviour {
             GameObject btnObj = Instantiate(StoryItemBtn, content);
             btnObj.transform.Find("Text").GetComponent<Text>().text = item.Key;
             btnObj.name = diaryIndex.ToString();
-            diaryIndex++;
+
+			diaryIndex++;
+
 			btnObj.SetActive (true);
-            btnObj.SetActive(false);
+          btnObj.SetActive(false);
+
 
             //construct texts with line break
             string total_s = "";

@@ -22,7 +22,7 @@ public class TextSystem : MonoBehaviour {
 
 	void Start(){
 		d.Initiate ();
-		d.gameObject.SetActive (false);
+//		d.gameObject.SetActive (false);
 	}
 	
 

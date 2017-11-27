@@ -570,14 +570,11 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 // Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-<<<<<<< HEAD
 				//GameObject showDiary = GameObject.FindGameObjectWithTag("DiaryContent"+keyIdx.ToString());
 
-=======
-				Debug.Log ("1show" + keyIdx);
->>>>>>> parent of 5bcdf5b... TAT TAT TAT TAT TAT
 				if (showDiary != null) {
 					showDiary.SetActive (true);
+					//showDiary.GetComponentInChildren<Text> ().DOFade (1, 1);
 				}
             }
 
@@ -614,8 +611,10 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				//GameObject showDiary = GameObject.FindGameObjectWithTag("DiaryContent"+keyIdx.ToString());
 				if (showDiary != null) {
 					showDiary.SetActive (true);
+					//showDiary.GetComponentInChildren<Text> ().DOFade (1, 1);
 				}
 
             }
@@ -652,8 +651,10 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				//GameObject showDiary = GameObject.FindGameObjectWithTag("DiaryContent"+keyIdx.ToString());
 				if (showDiary != null) {
 					showDiary.SetActive (true);
+					//showDiary.GetComponentInChildren<Text> ().DOFade (1, 1);
 				}
 			
             }
@@ -693,8 +694,10 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
+				//GameObject showDiary = GameObject.FindGameObjectWithTag("DiaryContent"+keyIdx.ToString());
 				if (showDiary != null) {
 					showDiary.SetActive (true);
+//					showDiary.GetComponentInChildren<Text> ().DOFade (1, 1);
 				}
 
 

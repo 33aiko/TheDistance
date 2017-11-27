@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace Prototype.NetworkLobby
 {
@@ -15,8 +14,34 @@ namespace Prototype.NetworkLobby
         public InputField ipInput;
         public InputField matchNameInput;
 
-        public void OnEnable()
+        public GameObject platform_temp;
+
+        //public void OnEnable()
+        //{
+        //    lobbyManager.topPanel.ToggleVisibility(true);
+
+        //    ipInput.onEndEdit.RemoveAllListeners();
+        //    ipInput.onEndEdit.AddListener(onEndEditIP);
+
+        //    matchNameInput.onEndEdit.RemoveAllListeners();
+        //    matchNameInput.onEndEdit.AddListener(onEndEditGameName);
+        //}
+
+
+        private void switchToPage(string pageName)
         {
+            for (int i = 0; i < this.transform.childCount; i++)
+            {
+                GameObject tempChild = this.transform.GetChild(i).gameObject;
+                tempChild.SetActive(tempChild.name == pageName);
+            }
+        }   
+
+
+
+        void Start()
+        {
+            switchToPage("InitPage");
             lobbyManager.topPanel.ToggleVisibility(true);
 
             ipInput.onEndEdit.RemoveAllListeners();
@@ -24,17 +49,74 @@ namespace Prototype.NetworkLobby
 
             matchNameInput.onEndEdit.RemoveAllListeners();
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);
+
+
+
+            regInitPageButtons();
+            //regStartPageButtons();
+            //regClientJoinPageButtons();
+        }
+
+        private void regInitPageButtons()
+        {
+            Button startBttn = this.transform.Find("InitPage/Btn_start").GetComponent<Button>();
+            startBttn.onClick.AddListener(OnClickStart);
+        }
+
+        private void regStartPageButtons()
+        {
+            Transform startPage = this.transform.Find("StartPage");
+            Button inviteBttn = startPage.Find("InviteBttn").GetComponent<Button>();
+            inviteBttn.onClick.AddListener(OnClickInvite);
+
+            Button joinBttn = startPage.Find("JoinBttn").GetComponent<Button>();
+            joinBttn.onClick.AddListener(OnClickBeClient);
+        }
+
+        private void regClientJoinPageButtons()
+        {
+            Transform clientJoinPage = this.transform.Find("ClientJoinPage");
+            Button joinButton = clientJoinPage.Find("JoinButton").GetComponent<Button>();
+            joinButton.onClick.AddListener(OnClickJoin);
+        }
+
+
+
+        public void OnClickStart()
+        {
+            switchToPage("DirectPlaySubPanel");
+        }
+
+        public void OnClickInvite()
+        {
+            lobbyManager.StartHost();
+            switchToPage("StartPage");
         }
 
         public void OnClickHost()
         {
+            //switchToPage("LobbyPage");
             lobbyManager.StartHost();
+
+            platform_temp.SetActive(true);
         }
+
+
+        public void OnClickBeClient()  // join a game
+        {
+            this.transform.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
+            this.transform.Find("DirectPlaySubPanel/ClientJoinPage").gameObject.SetActive(true);
+
+            platform_temp.SetActive(true);
+        }
+
 
         public void OnClickJoin()
         {
-            lobbyManager.ChangeTo(lobbyPanel);
+            Debug.Log("onclickjoin");
 
+            lobbyManager.ChangeTo(lobbyPanel);
+           
             lobbyManager.networkAddress = ipInput.text;
             lobbyManager.StartClient();
 

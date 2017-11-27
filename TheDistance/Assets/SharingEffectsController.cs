@@ -39,8 +39,12 @@ public class SharingEffectsController : MonoBehaviour {
 
 	void Awake () {
 		
-		StopParticles (selectedEffect);
-		StopParticles (sharedEffect);
+		if (selectedEffect != null) {
+			StopParticles (selectedEffect);
+		}
+		if (sharedEffect != null) {
+			StopParticles (sharedEffect);
+		}
 //		if (sharedEffect != null) {
 //			sharedEffect.Stop ();
 //		}

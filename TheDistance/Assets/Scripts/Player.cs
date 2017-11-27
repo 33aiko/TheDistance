@@ -571,7 +571,9 @@ public class Player : NetworkBehaviour
                 // Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
 				Debug.Log ("1show" + keyIdx);
-				showDiary.SetActive(true);
+				if (showDiary != null) {
+					showDiary.SetActive (true);
+				}
             }
 
 
@@ -607,7 +609,9 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				showDiary.SetActive(true);
+				if (showDiary != null) {
+					showDiary.SetActive (true);
+				}
 				Debug.Log ("2show" + keyIdx);
             }
 
@@ -643,8 +647,10 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				showDiary.SetActive(true);
-				Debug.Log ("3show" + keyIdx);
+				if (showDiary != null) {
+					showDiary.SetActive (true);
+				}
+			
             }
 
             go.GetComponent<KeyController>().setBoth();
@@ -682,8 +688,11 @@ public class Player : NetworkBehaviour
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				showDiary.SetActive(true);
+				if (showDiary != null) {
+					showDiary.SetActive (true);
+				}
 				Debug.Log ("4show" + keyIdx);
+
             }
             go.GetComponent<KeyController>().setBoth();
 

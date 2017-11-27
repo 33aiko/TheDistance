@@ -12,10 +12,6 @@ TagManager:
   - FloatingPlatformShared
   - Water
   - MovingPlatformSharable
-  - DiaryContent0
-  - DiaryContent1
-  - DiaryContent2
-  - DiaryContent3
   layers:
   - Default
   - TransparentFX

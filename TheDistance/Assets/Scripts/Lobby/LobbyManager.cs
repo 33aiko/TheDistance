@@ -163,7 +163,7 @@ namespace Prototype.NetworkLobby
             infoPanel.Display("Connecting...", "Cancel", () => { _this.backDelegate(); });
         }
 
-        public void SetServerInfo(string status, string host)
+        public void SetServerInfo(string host, string status)
         {
             statusInfo.text = status;
             hostInfo.text = host;

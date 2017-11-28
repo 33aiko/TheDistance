@@ -8,27 +8,29 @@ public class AudioManager : MonoBehaviour
 	public static AudioManager instance;
 
 	public AudioMixerGroup mixerGroup;
+	public AudioMixerGroup musicMixerGroup;
+	public AudioMixerGroup atmoMixerGroup;
 
 	public Sound[] sounds;
+	public Sound[] atmo;
+	public Sound[] music;
+	//int musicIndex;
 
-    //	TODO: implement
-    //	public float masterVolume;
-    //	public float effectVolume;
-    //	public float musicVolume;
-    //	public float ambientVolume;
-
-    private void Start()
-    {
-        print("Playing music!");
-        Play("MusicTrack01WithAtmo");
-    }
-
-    void Awake()
+	private void Start()
 	{
-//		masterVolume = 1f;
-//		effectVolume = 1f;
-//		musicVolume = 1f;
-//		ambientVolume = 1f;
+		//        print("Playing music!");
+		//        Play("MusicTrack01WithAtmo");
+
+		print ("playing atmo to start");
+		PlayAtmo ( "atmosphere01");
+	}
+
+	void Awake()
+	{
+		//		masterVolume = 1f;
+		//		effectVolume = 1f;
+		//		musicVolume = 1f;
+		//		ambientVolume = 1f;
 
 		if (instance != null)
 		{
@@ -48,6 +50,25 @@ public class AudioManager : MonoBehaviour
 
 			s.source.outputAudioMixerGroup = mixerGroup;
 		}
+
+		foreach (Sound a in atmo) {
+			a.source = gameObject.AddComponent<AudioSource>();
+			a.source.clip = a.clip;
+			a.source.loop = a.loop;
+
+			a.source.outputAudioMixerGroup = atmoMixerGroup;
+		}
+
+		foreach (Sound m in music) {
+			m.source = gameObject.AddComponent<AudioSource> ();
+			m.source.clip = m.clip;
+			m.source.loop = m.loop;
+
+			m.source.outputAudioMixerGroup = musicMixerGroup;
+
+		}
+
+		//musicIndex = 0;
 	}
 
 	public void Play(string sound)
@@ -59,10 +80,29 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		if (!s.source.isPlaying) {
-			s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
-			s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
+			//			s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
+			//			s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+			s.source.volume = 1f;
+			s.source.pitch = 1f;
 
 			s.source.Play ();
+		}
+	}
+
+	//TEMP Method
+	public void PlayAtmo( string atmoName ){
+		Sound a = Array.Find(atmo, item => item.name == atmoName);
+		if (a == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+		if (!a.source.isPlaying) {
+			a.source.volume = 1f;
+			a.source.pitch = 1f;
+
+			a.source.Play ();
 		}
 	}
 
@@ -71,7 +111,7 @@ public class AudioManager : MonoBehaviour
 		if (s != null)
 			return s;
 		else
-			return null; 
+			return null;
 	}
 
 	public void Stop(string sound)
@@ -83,6 +123,28 @@ public class AudioManager : MonoBehaviour
 		}
 
 		s.source.Stop();
+	}
+
+	//music
+	public void PlayMusicTrack( string trackName ){
+		print ("play next music track");
+
+		Sound m = Array.Find(music, item => item.name == trackName);
+		if (m == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+		if (!m.source.isPlaying) {
+
+			m.source.volume = 1f;
+			m.source.pitch = 1f;
+
+			m.source.Play ();
+
+			//TODO: duck any tracks playing now
+		}
+
 	}
 
 }

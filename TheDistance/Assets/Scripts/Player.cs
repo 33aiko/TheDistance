@@ -239,6 +239,7 @@ public class Player : NetworkBehaviour
 		// press Q to interact with the object
 		if(Input.GetKey(KeyCode.Q))
 			controller.collisions.interact = true;
+			//audioManager.Play()
 		else
 			controller.collisions.interact = false;
 

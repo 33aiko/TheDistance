@@ -135,6 +135,9 @@ public class KeyController : MonoBehaviour {
 	public void ShowEricMemory()
 	{
 		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
+		if (keyIdx == 0) {
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack("musicTrack01");
+		}
 		memoryBackground.DOFade (1, 0.5f).SetDelay(0.5f);
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 				memoryContent [0].SetActive (true);
@@ -144,6 +147,9 @@ public class KeyController : MonoBehaviour {
 
 	public void ShowNatalieMemory(){
 		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
+		if (keyIdx == 0) {
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack01");
+		}
 		memoryBackground.DOFade (1, 0.5f).SetDelay(0.5f);
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 			memoryContent [1].SetActive (true);

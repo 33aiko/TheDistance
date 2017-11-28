@@ -2115,7 +2115,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262095700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3113, y: 502, z: 0}
+  m_LocalPosition: {x: -1046, y: 75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -2458,8 +2458,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282765214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 357, y: -353, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 35}
+  m_LocalPosition: {x: 357, y: -366, z: 0}
+  m_LocalScale: {x: 39.375328, y: 35, z: 35}
   m_Children:
   - {fileID: 1634455292}
   m_Father: {fileID: 1208449545}
@@ -6688,7 +6688,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 362336043
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 663278c4c0f48457ea8c3a49ccafc7ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -14316,10 +14316,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9c2315dd4359a4e8f98566d2c7080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: 243789902792828686, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
+  musicMixerGroup: {fileID: 243034195703369674, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
+  atmoMixerGroup: {fileID: 243493121255138504, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
   sounds:
   - name: PlayerWalking
-    clip: {fileID: 8300000, guid: 5e277c64ac668664b8f61189bea2eaaa, type: 3}
+    clip: {fileID: 8300000, guid: 246f9c13649f94ceb8b592036748e3fa, type: 3}
     volume: 0.6
     volumeVariance: 0
     pitch: 1
@@ -14343,24 +14348,6 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: MusicTrack01NoAtmo
-    clip: {fileID: 8300000, guid: 7bb4722e27e1cba4ea865a7cb98d029c, type: 3}
-    volume: 0.8
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: MusicTrack01WithAtmo
-    clip: {fileID: 8300000, guid: 8e84d23120517d84199de293458b5a70, type: 3}
-    volume: 1
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 0
-    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Waterfall
@@ -14442,6 +14429,35 @@ MonoBehaviour:
     pitch: 0.8
     pitchVariance: 0
     loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: WalkWithBox
+    clip: {fileID: 8300000, guid: 857acf4f1036c44eab4806e21fe1bc2d, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 0.8
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  atmo:
+  - name: atmosphere01
+    clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  music:
+  - name: musicTrack01
+    clip: {fileID: 8300000, guid: 8168e77b0f4ec43388383cfdad6adf97, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &1460724796
@@ -18682,7 +18698,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885479941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3100, y: 527, z: 0}
+  m_LocalPosition: {x: -1101, y: -288, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}

@@ -205,13 +205,11 @@ public class Player : NetworkBehaviour
 
 
         //interpolate move by frame rate, when position not equal, move
-		if (!spirit.transform.position.Equals(spiritTargetPos))
-		{
-            spirit.transform.Translate((spiritTargetPos - spirit.transform.position) / interpolateTime);
-        }
-
-
-
+		if (!spirit.transform.position.Equals (spiritTargetPos)) {
+			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
+//			audioManager.Play ("SpiritMove");
+		} 
+			
     }
 
     void UpdateCameraPosition()
@@ -237,11 +235,13 @@ public class Player : NetworkBehaviour
 
     void KeyControlMove(){
 		// press Q to interact with the object
-		if(Input.GetKey(KeyCode.Q))
+		if (Input.GetKey (KeyCode.Q)) {
 			controller.collisions.interact = true;
+
 			//audioManager.Play()
-		else
+		} else {
 			controller.collisions.interact = false;
+		}
 
 		// press E to view NPC contents
 		if(Input.GetButtonDown("Talk"))
@@ -275,6 +275,7 @@ public class Player : NetworkBehaviour
         if(Input.GetKeyDown(KeyCode.T))
         {
 			audioManager.Play ("StartSharing");
+			audioManager.Play ("SharingHold");
             tryShare = true;
 
 			pCC.highlightNearObject();
@@ -321,6 +322,7 @@ public class Player : NetworkBehaviour
         if(Input.GetKeyUp(KeyCode.T))
         {
             tryShare = false;
+			audioManager.Stop ("SharingHold");
 			cameraZoomValue = -40;
 			if (isLocalPlayer && isServer) {
 				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
@@ -436,21 +438,43 @@ public class Player : NetworkBehaviour
             playingWalkingMusic = false;
         }
 
+		//Debug.Log ("pushBox" + controller.collisions.pushBox);
+
+		//push box audio
+		if (controller.collisions.pushBox) {
+
+			audioManager.Stop ("PlayerWalking");
+			if (!audioManager.GetSound ("WalkWithBox").source.isPlaying) {
+				audioManager.Play ("WalkWithBox");
+			}
+		} else {
+			audioManager.Stop("WalkWithBox");
+		}
+
         // move in y axis if on the ladder
-        if (controller.collisions.onLadder)
-        {
-            print("Can move down!");
-            velocity.y = input.y * moveSpeed;
-        }
+		if (controller.collisions.onLadder) {
+			print ("Can move down!");
+			velocity.y = input.y * moveSpeed;
+
+			if (input.y != 0) {
+				audioManager.Play ("ClimbLadder");
+			} else {
+				audioManager.Stop ("ClimbLadder");
+			}
+		} else {
+			audioManager.Stop ("ClimbLadder");
+		}
 
         if (controller.collisions.canClimbLadder && input.y < 0)
         {
             print("Player want to go down!");
             controller.collisions.playerClimbLadder = true;
+
         }
         else
         {
             controller.collisions.playerClimbLadder = false;
+
         }
 
         // jump
@@ -534,6 +558,7 @@ public class Player : NetworkBehaviour
     public void backToCheckPoint()
     {
 		transitionMask.GetComponent<TransitionManager> ().BlackTransition ();
+		transitionMask.GetComponent<TransitionManager> ().transitionTime = 2; 
         transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
     }
@@ -712,8 +737,10 @@ public class Player : NetworkBehaviour
     {
         Debug.Log("Player died!");
 
-        backToCheckPoint();
+		audioManager.Play ("Death");
 
+		transitionMask.GetComponent<TransitionManager> ().transitionTime = 6; 
+		backToCheckPoint ();
 
         //call another player die
         if (isServer)
@@ -782,6 +809,7 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
+		audioManager.Stop ("SharingHold");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -798,6 +826,7 @@ public class Player : NetworkBehaviour
     public void CmdShare(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		audioManager.Stop ("SharingHold");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -818,6 +847,8 @@ public class Player : NetworkBehaviour
 		if (isServer) {
 			return;
 		}
+
+		audioManager.Play ("SharingHold");
 		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
 		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Red") as GameObject);
 
@@ -835,6 +866,7 @@ public class Player : NetworkBehaviour
 	//sent by client, show particle effects on server
 	[Command]
 	public void CmdWaitForShare(string shareObject){
+		audioManager.Play ("SharingHold");
 		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
 		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Blue") as GameObject);
 		appearParticle.transform.position = sObj.transform.position;
@@ -852,6 +884,7 @@ public class Player : NetworkBehaviour
     public void RpcShareMv(string sharedObject)
     {
         if (isServer) { return; }
+		audioManager.Stop ("SharingHold");
         Debug.Log(sharedObject + " read");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
@@ -874,6 +907,7 @@ public class Player : NetworkBehaviour
     public void CmdShareMv(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		audioManager.Stop ("SharingHold");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -897,6 +931,7 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
+		audioManager.Stop ("SharingHold");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -916,6 +951,7 @@ public class Player : NetworkBehaviour
     public void CmdBox(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
+		audioManager.Stop ("SharingHold");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -992,12 +1028,14 @@ public class Player : NetworkBehaviour
 	{
         print("Waiting to die at: " + Time.time);
         GameObject.Find("Player").GetComponent<Animator>().SetTrigger("playerDie");
-		yield return new WaitForSeconds (1.5f);
+		yield return new WaitForSeconds (2f);
         print("Died at " + Time.time);
+		audioManager.Play ("Death");
 		Player p = GameObject.Find("Player").GetComponent<Player>();
 		p.backToCheckPoint();
 		spirit.transform.position = p.transform.position; 
 	}
+
 
     public void setCheck(int level)
     {

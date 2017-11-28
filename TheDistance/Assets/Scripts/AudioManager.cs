@@ -80,11 +80,11 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		if (!s.source.isPlaying) {
-			//			s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
-			//			s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
+			s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
+			s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
-			s.source.volume = 1f;
-			s.source.pitch = 1f;
+			//s.source.volume = 1f;
+			//s.source.pitch = 1f;
 
 			s.source.Play ();
 		}
@@ -145,6 +145,10 @@ public class AudioManager : MonoBehaviour
 			//TODO: duck any tracks playing now
 		}
 
+	}
+
+	public void IsPlaying(string soundName){
+		
 	}
 
 }

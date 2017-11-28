@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskColor: {r: 0, g: 0, b: 0, a: 0}
-  transitionTime: 1
+  transitionTime: 2
 --- !u!1001 &207667604
 Prefab:
   m_ObjectHideFlags: 0
@@ -2939,6 +2939,46 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 11.418612
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -319058645
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1962939564
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5955882
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.3206874
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.10948312
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.072
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
@@ -8652,7 +8692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -13992,6 +14032,46 @@ Prefab:
       propertyPath: m_Size.y
       value: 10.366201
       objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1962939564
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5955882
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.3206874
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.10948312
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -319058645
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
   m_IsPrefabParent: 0
@@ -14325,7 +14405,7 @@ MonoBehaviour:
   sounds:
   - name: PlayerWalking
     clip: {fileID: 8300000, guid: e1b19ac12d24b4506ad2001c4b8b8802, type: 3}
-    volume: 0.6
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -14334,7 +14414,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerJump
     clip: {fileID: 8300000, guid: e95ad8447ef595b4e91ac4e56b54513d, type: 3}
-    volume: 0.6
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -14343,7 +14423,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerLand
     clip: {fileID: 8300000, guid: 566c187c67faac14fba7e9e7ab395cef, type: 3}
-    volume: 0.6
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -14433,9 +14513,45 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WalkWithBox
     clip: {fileID: 8300000, guid: 857acf4f1036c44eab4806e21fe1bc2d, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SharingHold
+    clip: {fileID: 8300000, guid: 39ff4680c424749df8725ef3d502d9e3, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ClimbLadder
+    clip: {fileID: 8300000, guid: 0b45e66e382c8483ea23600dcf2f6427, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SpiritMove
+    clip: {fileID: 8300000, guid: 4a35bdeb6796d4201b9513894d26c0eb, type: 3}
     volume: 0.8
     volumeVariance: 0
-    pitch: 0.8
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 9d55c98ef972940d1a75327a8486e55f, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
@@ -18649,7 +18765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0
@@ -19044,6 +19160,60 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 11.591831
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -319058645
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199929501519191560, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1962939564
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759259979863136, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 198740555473678874, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198740555473678874, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: randomSeed
+      value: 621827593
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5955882
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.3206874
+      objectReference: {fileID: 0}
+    - target: {fileID: 198713499785302840, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.10948312
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}

@@ -364,8 +364,10 @@ namespace Prototype.NetworkLobby
 					allready &= lobbySlots[i].readyToBegin;
 			}
 
-			if(allready && !_isStarting)
-				StartCoroutine(ServerCountdownCoroutine());
+			if (allready && !_isStarting) {
+				StartCoroutine (ServerCountdownCoroutine ());
+				_isStarting = true; 
+			}
         }
 
         public IEnumerator ServerCountdownCoroutine()
@@ -403,7 +405,7 @@ namespace Prototype.NetworkLobby
                 }
             }
 
-			_isStarting = true; 
+		
             ServerChangeScene(playScene);
         }
 

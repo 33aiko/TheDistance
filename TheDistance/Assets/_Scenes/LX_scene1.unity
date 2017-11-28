@@ -14324,7 +14324,7 @@ MonoBehaviour:
     type: 2}
   sounds:
   - name: PlayerWalking
-    clip: {fileID: 8300000, guid: 246f9c13649f94ceb8b592036748e3fa, type: 3}
+    clip: {fileID: 8300000, guid: e1b19ac12d24b4506ad2001c4b8b8802, type: 3}
     volume: 0.6
     volumeVariance: 0
     pitch: 1

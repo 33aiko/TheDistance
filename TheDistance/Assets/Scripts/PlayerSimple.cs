@@ -66,7 +66,7 @@ public class PlayerSimple : MonoBehaviour{
 
 
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        print(input);
+       // print(input);
         // move audio
         if (controller.collisions.below && input.x != 0)
         {

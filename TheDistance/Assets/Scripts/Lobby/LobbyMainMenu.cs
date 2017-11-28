@@ -107,7 +107,7 @@ namespace Prototype.NetworkLobby
             this.transform.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
             this.transform.Find("DirectPlaySubPanel/ClientJoinPage").gameObject.SetActive(true);
 
-            platform_temp.SetActive(true);
+            
         }
 
 
@@ -124,6 +124,8 @@ namespace Prototype.NetworkLobby
             lobbyManager.DisplayIsConnecting();
 
             lobbyManager.SetServerInfo("Connecting...", lobbyManager.networkAddress);
+
+            platform_temp.SetActive(true);
         }
 
         public void OnClickDedicated()

@@ -812,6 +812,7 @@ public class Player : NetworkBehaviour
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -829,6 +830,7 @@ public class Player : NetworkBehaviour
     {
         Debug.Log(sharedObject + " read");
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -887,6 +889,7 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
         Debug.Log(sharedObject + " read");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
@@ -910,6 +913,7 @@ public class Player : NetworkBehaviour
     {
         Debug.Log(sharedObject + " read");
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -934,6 +938,7 @@ public class Player : NetworkBehaviour
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}
@@ -954,6 +959,7 @@ public class Player : NetworkBehaviour
     {
         Debug.Log(sharedObject + " read");
 		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
 		if (appearParticle != null) {
 			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
 		}

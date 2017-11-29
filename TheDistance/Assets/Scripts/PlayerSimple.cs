@@ -82,7 +82,7 @@ public class PlayerSimple : MonoBehaviour{
             playingWalkingMusic = false;
         }
         bool keyspaceDown = false;
-        if (canMove && Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder))
+		if (canMove && Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
         {
             //audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;

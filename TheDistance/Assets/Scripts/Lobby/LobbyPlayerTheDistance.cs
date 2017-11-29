@@ -41,7 +41,7 @@ namespace Prototype.NetworkLobby
         void Update()
         {
            
-            if (Input.GetKeyDown(KeyCode.X))
+			if (Input.GetButtonDown("Submit"))
             {
                 SendReadyToBeginMessage();
             }

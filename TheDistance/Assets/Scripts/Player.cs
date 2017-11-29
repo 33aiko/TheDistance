@@ -385,7 +385,7 @@ public class Player : NetworkBehaviour
                 }
                 else if (sharedObject.tag == "Box")
                 {
-                    shareNotificationText.text = "A box is shared!";
+                    shareNotificationText.text = "An object is shared!";
                     Debug.Log("box found");
                     string boxname = sharedObject.name;
                     if (isServer && isLocalPlayer)

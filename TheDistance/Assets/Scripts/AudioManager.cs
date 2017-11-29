@@ -99,11 +99,21 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		if (!a.source.isPlaying) {
-			a.source.volume = 1f;
-			a.source.pitch = 1f;
+			a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
+			a.source.pitch = a.pitch * (1f + UnityEngine.Random.Range (-a.pitchVariance / 2f, a.pitchVariance / 2f));
 
 			a.source.Play ();
 		}
+	}
+
+	public void StopAtmo( string atmoName ){
+		Sound a = Array.Find(atmo, item => item.name == atmoName);
+		if (a == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+		a.source.Stop ();
 	}
 
 	public Sound GetSound(string sound){
@@ -137,8 +147,8 @@ public class AudioManager : MonoBehaviour
 		}
 		if (!m.source.isPlaying) {
 
-			m.source.volume = 1f;
-			m.source.pitch = 1f;
+			m.source.volume = m.volume * (1f + UnityEngine.Random.Range (-m.volumeVariance / 2f, m.volumeVariance / 2f));;
+			m.source.pitch = m.pitch * (1f + UnityEngine.Random.Range (-m.pitchVariance / 2f, m.pitchVariance / 2f));
 
 			m.source.Play ();
 
@@ -147,8 +157,17 @@ public class AudioManager : MonoBehaviour
 
 	}
 
-	public void IsPlaying(string soundName){
+	public void StopMusicTrack( string trackName ){
 		
+
+		Sound m = Array.Find(music, item => item.name == trackName);
+		if (m == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+		m.source.Stop ();
 	}
+
 
 }

@@ -7183,7 +7183,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1775351149259702, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_Name
@@ -31361,6 +31361,74 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005087205}
+--- !u!1 &1012049705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1012049706}
+  - component: {fileID: 1012049708}
+  - component: {fileID: 1012049707}
+  m_Layer: 0
+  m_Name: AudioTriggerArea (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012049706
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012049705}
+  m_LocalRotation: {x: -0, y: -0, z: -0.068115845, w: 0.9976775}
+  m_LocalPosition: {x: 1000, y: -537, z: 0}
+  m_LocalScale: {x: 1.4610437, y: 0.37510914, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1896040291}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8120003}
+--- !u!61 &1012049707
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012049705}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 250.46533, y: 362.09576}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 664.14844, y: 868.31995}
+  m_EdgeRadius: 0
+--- !u!114 &1012049708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012049705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0593e85dcf247928d4f51cf1c7eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: Cave
+  audioManager: {fileID: 1460724795}
 --- !u!224 &1027248432 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224269450421290102, guid: 0f027edd2680345dc8449c48c2ed240d,
@@ -38596,7 +38664,7 @@ Transform:
   m_LocalScale: {x: 17.124205, y: 17.124205, z: 17.124205}
   m_Children: []
   m_Father: {fileID: 1896040291}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1448595432
 SpriteRenderer:
@@ -39042,6 +39110,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Cave
+    clip: {fileID: 8300000, guid: 55c3421d481ed4da19a9b04b5b20358a, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}
@@ -39056,6 +39133,24 @@ MonoBehaviour:
   - name: musicTrack01
     clip: {fileID: 8300000, guid: 8168e77b0f4ec43388383cfdad6adf97, type: 3}
     volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: musicTrack02
+    clip: {fileID: 8300000, guid: a73c8f13659c7451da20cafee9e98986, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: musicTrack03
+    clip: {fileID: 8300000, guid: 6f511c861fc9c438980328212b43678c, type: 3}
+    volume: 0.8
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -57603,6 +57698,7 @@ Transform:
   - {fileID: 1432978362}
   - {fileID: 1783428069}
   - {fileID: 740597466}
+  - {fileID: 1012049706}
   - {fileID: 1448595431}
   - {fileID: 1481521607}
   m_Father: {fileID: 1291404951}

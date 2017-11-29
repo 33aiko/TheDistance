@@ -10,7 +10,7 @@ public class SharingEffectsController : MonoBehaviour {
 	[SerializeField] ParticleSystem[] sharedEffect;
 	[SerializeField] WindZone wind;
 	[SerializeField][Range(0,1000f)] float windIntensity = 200f;
-	[SerializeField] bool isTest = false;
+
 
 	public enum State
 	{
@@ -60,16 +60,7 @@ public class SharingEffectsController : MonoBehaviour {
 				PlayParticles( defaultEffect);
 			}
 		}
-
-		if (isTest) {
-			if (Input.GetKeyDown (KeyCode.I) && Input.GetKey (KeyCode.LeftControl)) {
-				PlaySelectedEffect ();
-			}
-
-			if (Input.GetKeyUp (KeyCode.I) && Input.GetKey (KeyCode.LeftControl)) {
-				StopSelectedEffect ();
-			}
-		}
+			
 	}
 		
 	public void StopAll(){

@@ -49,8 +49,9 @@ public class Player : NetworkBehaviour
 
 	public NPCTrigger curNPC;
     public Text shareNotificationText = null;
+	public Image shareNotificationBG; 
     public KeyController curFragment = null;
-    public float shareTextTime = 2.0f;
+    public float shareTextTime = 1.5f;
 
 	public float gravity;
 	float jumpVelocity;
@@ -62,6 +63,8 @@ public class Player : NetworkBehaviour
 
     bool tryShare = false;
 	GameObject appearParticle; 
+
+	bool showNPCcontent = false; 
 
     private int[] finishCheck;
 
@@ -184,9 +187,11 @@ public class Player : NetworkBehaviour
 			print("no animation controller found!");
 		}
 
-        // get the text
+        // get the text &BG
         shareNotificationText = GetComponentInChildren<Text>();
         shareNotificationText.text = "";
+		shareNotificationBG = GetComponentInChildren<Image> ();
+		shareNotificationBG.DOFade (0, 0);
     }
 
 	void Update()
@@ -235,21 +240,17 @@ public class Player : NetworkBehaviour
 
     void KeyControlMove(){
 		// press Q to interact with the object
-		if (Input.GetKey (KeyCode.Q)) {
+		if (Input.GetButton("Push")) {
 			controller.collisions.interact = true;
-
-			//audioManager.Play()
 		} else {
 			controller.collisions.interact = false;
 		}
 
+
+
 		// press E to view NPC contents
 		if(Input.GetButtonDown("Talk"))
 		{
-			
-			foreach (string s in Input.GetJoystickNames()) {
-				Debug.Log (s);
-			}
 
 			if(curNPC != null)
 			{
@@ -264,7 +265,7 @@ public class Player : NetworkBehaviour
 		}
 
 		// press R to close NPC contents 
-		if (Input.GetKeyDown (KeyCode.R)) {
+		if (Input.GetButtonDown("Submit")) {
 			if(curNPC != null)
 			{
 				curNPC.hideTalkText ();
@@ -272,7 +273,7 @@ public class Player : NetworkBehaviour
 		}
 
 		// object sharing
-        if(Input.GetKeyDown(KeyCode.T))
+		if(Input.GetButtonDown("Share"))
         {
 			audioManager.Play ("StartSharing");
 			audioManager.Play ("SharingHold");
@@ -290,11 +291,12 @@ public class Player : NetworkBehaviour
 				if (isLocalPlayer && !isServer) {
 					CmdWaitForShare (shareObject.name);
 				}
+				shareNotificationBG.DOFade (1, 0);
                 if(shareObject.tag == "Box")
-                    shareNotificationText.text = "An object selected, release T to share";
+                    shareNotificationText.text = "An object is selected";
                 else if(shareObject.tag == "FloatingPlatform" ||
                     shareObject.tag == "MovingPlatformSharable")
-                    shareNotificationText.text = "A platform selected, release T to share";
+                    shareNotificationText.text = "A platform is selected";
             }
 
             selectShareObject = true;
@@ -319,7 +321,7 @@ public class Player : NetworkBehaviour
                 //pCC.getNextObject();
         }
 
-        if(Input.GetKeyUp(KeyCode.T))
+		if(Input.GetButtonUp("Share"))
         {
             tryShare = false;
 			audioManager.Stop ("SharingHold");
@@ -333,7 +335,7 @@ public class Player : NetworkBehaviour
 
         }
 
-		if(Input.GetKeyUp(KeyCode.T) && selectShareObject)
+		if(Input.GetButtonUp("Share") && selectShareObject)
 		{
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
             selectShareObject = false;
@@ -350,7 +352,7 @@ public class Player : NetworkBehaviour
                 Invoke("clearShareNotificationText", shareTextTime);
                 if (sharedObject.tag == "FloatingPlatform")
                 {
-                    shareNotificationText.text = "A platform shared!";
+                    shareNotificationText.text = "A platform is shared!";
                     Debug.Log(sharedObject.name);
                     if (isServer && isLocalPlayer)
                     {
@@ -368,7 +370,7 @@ public class Player : NetworkBehaviour
                 }
                 else if (sharedObject.tag == "MovingPlatformSharable")
                 {
-                    shareNotificationText.text = "A platform shared!";
+					shareNotificationText.text = "A platform is shared!";
                     Debug.Log("mv!");
                     if (isServer && isLocalPlayer)
                     {
@@ -383,7 +385,7 @@ public class Player : NetworkBehaviour
                 }
                 else if (sharedObject.tag == "Box")
                 {
-                    shareNotificationText.text = "A box shared!";
+                    shareNotificationText.text = "A box is shared!";
                     Debug.Log("box found");
                     string boxname = sharedObject.name;
                     if (isServer && isLocalPlayer)
@@ -1053,5 +1055,6 @@ public class Player : NetworkBehaviour
     public void clearShareNotificationText()
     {
         shareNotificationText.text = "";
+		shareNotificationBG.DOFade (0, 0);
     }
 }

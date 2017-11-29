@@ -25,6 +25,7 @@ public class KeyController : MonoBehaviour {
 	bool memoryShowed = false;
 
     Text t;
+	Image inputUI;
 
     bool collected = false;
     bool playerNearby = false;
@@ -32,6 +33,8 @@ public class KeyController : MonoBehaviour {
 
 	private void Start()
 	{
+		inputUI = GetComponentInChildren <Image> ();
+		inputUI.gameObject.SetActive (false);
         t = GetComponentInChildren<Text>();
         t.text = "";
         both = new int[2];
@@ -53,7 +56,7 @@ public class KeyController : MonoBehaviour {
 	}
 
 	private void Update(){
-		if(Input.GetKeyUp(KeyCode.R)){
+		if(Input.GetButtonDown("Submit")){
 			if (memoryShowed) {
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);
@@ -69,14 +72,18 @@ public class KeyController : MonoBehaviour {
         if (!playerNearby) t.text = "";
         else if (collected == false)
         {
-            t.text = "Press E to examine";
+           // t.text = "Press E to examine";
+			inputUI.gameObject.SetActive(true);
+
         }
         else if (both[0] + both[1] != 2)
         {
-            t.text = "Wait for your partner to trigger \n another half of memory";
+			inputUI.gameObject.SetActive(false);
+            t.text = "Wait for your partner...";
         }
         else
         {
+			inputUI.gameObject.SetActive(false);
             t.text = "Review content in the diary";
         }
     }
@@ -121,6 +128,7 @@ public class KeyController : MonoBehaviour {
 				Player p = collision.GetComponent<Player>();
                 playerNearby = false;
                 t.text = "";
+				inputUI.gameObject.SetActive (false);
                 p.curFragment = null;
             }
 		}

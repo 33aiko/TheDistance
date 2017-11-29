@@ -9,6 +9,8 @@ public class NPCTrigger : MonoBehaviour {
 	public Image blackmask; 
 	public GameObject NPCcontent; 
     public string NPCtalk;
+
+	Image inputUI;
     Text t;
     Text instruct;
 
@@ -17,6 +19,8 @@ public class NPCTrigger : MonoBehaviour {
     private void Start()
     {
         instruct = GameObject.Find("Instruction").GetComponent<Text>();
+		inputUI = GetComponentInChildren<Image> ();
+		inputUI.gameObject.SetActive (false);
         t = GetComponentInChildren<Text>();
         t.text = "";
     }
@@ -28,8 +32,9 @@ public class NPCTrigger : MonoBehaviour {
             cnt++;
             if(cnt == 2)
             {
-               instruct.text = "";
-				t.text = "Press E to view" ;
+                instruct.text = "";
+				//t.text = "Press E to view" ;
+				inputUI.gameObject.SetActive(true);
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = this;
             }
@@ -44,7 +49,8 @@ public class NPCTrigger : MonoBehaviour {
             {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.curNPC = null;
-                t.text = "";
+               // t.text = "";
+				inputUI.gameObject.SetActive(false);
                 instruct.text = "";
                 print("Player leaving NPC");
                 blackmask.DOFade(0, 0);
@@ -57,17 +63,19 @@ public class NPCTrigger : MonoBehaviour {
     {
 		blackmask.DOFade (0.8f, 0);
 		NPCcontent.SetActive (true);
-        if(t == null)
-        {
-            print("nothing found");
-            return;
-        }
-        t.text = "";
+//        if(t == null)
+//        {
+//            print("nothing found");
+//            return;
+//        }
+       // t.text = "";
+		inputUI.gameObject.SetActive(false);
     }
 
 	public void hideTalkText()
 	{
-		t.text = "press E to view";
+		//t.text = "press E to view";
+		inputUI.gameObject.SetActive(true);
 		blackmask.DOFade (0, 0);
 		NPCcontent.SetActive (false);
 	}

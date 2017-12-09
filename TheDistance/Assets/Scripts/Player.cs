@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : NetworkBehaviour
@@ -98,6 +100,7 @@ public class Player : NetworkBehaviour
     bool keyspaceDown;
     Vector2 input;
 
+    public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
 
 	void Start()
 	{
@@ -195,6 +198,7 @@ public class Player : NetworkBehaviour
         shareNotificationText.text = "";
 		shareNotificationBG = GetComponentInChildren<Image> ();
 		shareNotificationBG.DOFade (0, 0);
+
     }
 
 	void Update()
@@ -501,6 +505,96 @@ public class Player : NetworkBehaviour
         }
 
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if(Input.anyKey)
+        {
+            currentInputDevice = getInputDevice();
+            print("Input device is: " + currentInputDevice.ToString());
+        }
+
+        if(curNPC != null)
+        {
+            curNPC.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
+        }
+
+        if(curFragment != null)
+        {
+            curFragment.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
+
+        }
+    }
+
+    public enum InputDeviceType
+    {
+        XBOX,
+        KEYBOARD,
+        PS4,
+        OTHER,
+    }
+
+    private InputDeviceType getInputDevice() 
+    {
+        string k = "";
+        if (Input.anyKey)
+        {
+            foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
+            {
+                if(Input.GetKey(kc))
+                {
+                    if (kc.ToString().Length > 0)
+                    {
+                        k = kc.ToString();
+                        print(k + " pressed");
+                        break;
+                    }
+                }
+            }
+        }
+        if(k.Contains("Joystick"))
+        {
+            for(int i = 0; i < Input.GetJoystickNames().Length; i++)
+            {
+                if(Input.GetJoystickNames()[i].Length > 0)
+                {
+                    return getJoystickName(Input.GetJoystickNames()[i]);
+                }
+            }
+        }
+        return InputDeviceType.KEYBOARD;
+        
+        // TODO: distinguish the controller when both XBOX and PS4 controller is inserted
+        // CURRENT: use joystick[0] 
+        /*
+        if(k.Contains("Joystick1"))
+        {
+            if(Input.GetJoystickNames().Length > 1)
+            {
+                string js1Name = Input.GetJoystickNames()[1];
+                return getJoystickName(js1Name);
+            }
+        }
+        if(k.Contains("Joystick"))
+        {
+            if(Input.GetJoystickNames().Length > 0)
+            {
+                string js0Name = Input.GetJoystickNames()[0];
+                return getJoystickName(js0Name);
+            }
+        }
+         */ 
+    }
+
+    private InputDeviceType getJoystickName(string str)
+    {
+        print("Inputstr is :" + str);
+        if(str.Contains("Windows"))
+        {
+            return InputDeviceType.XBOX;
+        }
+        if(str.Contains("Wireless"))
+        {
+            return InputDeviceType.PS4;
+        }
+        return InputDeviceType.OTHER;
     }
 
     private void updatePlayerAnimator()

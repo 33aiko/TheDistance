@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.Networking;
 using DG.Tweening;
 
@@ -30,11 +31,16 @@ public class KeyController : MonoBehaviour {
     bool collected = false;
     bool playerNearby = false;
 
+    string UIPath = "Sprites/UI/controls/input hint UI";
+    string ps4UIName = "inputUI_tri";
+    string keyboardUIName = "inputUI_keyE";
+    bool currentIsKeyboard = true;
 
-	private void Start()
+    private void Start()
 	{
-		inputUI = GetComponentInChildren <Image> ();
-		inputUI.gameObject.SetActive (false);
+        loadSprite(UIPath, keyboardUIName);
+        inputUI.gameObject.SetActive(false);
+
         t = GetComponentInChildren<Text>();
         t.text = "";
         both = new int[2];
@@ -66,6 +72,29 @@ public class KeyController : MonoBehaviour {
 		}
         updateText();
 	}
+
+    private void loadSprite(string path, string UIname)
+    {
+        inputUI = GetComponentInChildren<Image>();
+        Sprite[] sprites;
+        sprites = Resources.LoadAll<Sprite>(path);
+        inputUI.sprite = sprites.Where(tmp => tmp.name == UIname).First();
+    }
+
+    public void setImage(bool isKeyboard)
+    {
+        if (isKeyboard == currentIsKeyboard) return;
+        if (isKeyboard)
+        {
+            loadSprite(UIPath, keyboardUIName);
+        }
+        else
+        {
+            loadSprite(UIPath, ps4UIName);
+        }
+
+        currentIsKeyboard = isKeyboard;
+    }
 
     private void updateText()
     {
@@ -113,6 +142,7 @@ public class KeyController : MonoBehaviour {
 				Player p = collision.GetComponent<Player>();
                 playerNearby = true;
                 p.curFragment = this;
+                inputUI.gameObject.SetActive(true);
                 updateText();
             }
         }

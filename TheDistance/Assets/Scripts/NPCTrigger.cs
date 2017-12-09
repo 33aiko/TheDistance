@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using DG.Tweening; 
 
 public class NPCTrigger : MonoBehaviour {
@@ -14,15 +15,44 @@ public class NPCTrigger : MonoBehaviour {
     Text t;
     Text instruct;
 
+    string UIPath = "Sprites/UI/controls/input hint UI";
+    string ps4UIName = "inputUI_tri";
+    string keyboardUIName = "inputUI_keyE";
+
     int cnt = 0;
+
+    bool currentIsKeyboard = true;
 
     private void Start()
     {
-        instruct = GameObject.Find("Instruction").GetComponent<Text>();
 		inputUI = GetComponentInChildren<Image> ();
+        instruct = GameObject.Find("Instruction").GetComponent<Text>();
+        loadSprite(UIPath, keyboardUIName);
 		inputUI.gameObject.SetActive (false);
         t = GetComponentInChildren<Text>();
         t.text = "";
+    }
+
+    private void loadSprite(string path, string UIname)
+    {
+        Sprite[] sprites;
+        sprites = Resources.LoadAll<Sprite>(path);
+        inputUI.sprite = sprites.Where(tmp => tmp.name == UIname).First();
+    }
+
+    public void setImage(bool isKeyboard)
+    {
+        if (isKeyboard == currentIsKeyboard) return;
+        if (isKeyboard)
+        {
+            loadSprite(UIPath, keyboardUIName);
+        }
+        else
+        {
+            loadSprite(UIPath, ps4UIName);
+        }
+
+        currentIsKeyboard = isKeyboard;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +88,7 @@ public class NPCTrigger : MonoBehaviour {
             }
         }
     }
+
 
     public void showTalkText()
     {

@@ -95,6 +95,9 @@ public class Player : NetworkBehaviour
 
 	Color ericFilter, natalieFilter, currentFilter;
 
+    bool keyspaceDown;
+    Vector2 input;
+
 
 	void Start()
 	{
@@ -239,14 +242,119 @@ public class Player : NetworkBehaviour
     }
 
     void KeyControlMove(){
+
+        handleInput();
+
+        // on the ground or on the ladder
+        if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
+        {
+            if (playerJumping)
+            {
+                if (jumpTime > 0.1f)
+                    audioManager.Play("PlayerLand");
+            }
+            playerJumping = false;
+            velocity.y = 0;
+            jumpTime = 0;
+        }
+        else
+        {
+            playerJumping = true;
+            jumpTime += Time.deltaTime;
+        }
+
+
+        // move audio
+        if (controller.collisions.below && input.x != 0)
+        {
+            if (!playingWalkingMusic)
+            {
+                audioManager.Play("PlayerWalking");
+                playingWalkingMusic = true;
+            }
+        }
+        else
+        {
+            audioManager.Stop("PlayerWalking");
+            playingWalkingMusic = false;
+        }
+
+		//push box audio
+		if (controller.collisions.pushBox) {
+
+			audioManager.Stop ("PlayerWalking");
+			if (!audioManager.GetSound ("WalkWithBox").source.isPlaying) {
+				audioManager.Play ("WalkWithBox");
+			}
+		} else {
+			audioManager.Stop("WalkWithBox");
+		}
+
+        // move in y axis if on the ladder
+		if (controller.collisions.onLadder) {
+			print ("Can move down!");
+			velocity.y = input.y * moveSpeed;
+
+			if (input.y != 0) {
+				audioManager.Play ("ClimbLadder");
+			} else {
+				audioManager.Stop ("ClimbLadder");
+			}
+		} else {
+			audioManager.Stop ("ClimbLadder");
+		}
+
+        if (controller.collisions.canClimbLadder && input.y < 0)
+        {
+            print("Player want to go down!");
+            controller.collisions.playerClimbLadder = true;
+
+        }
+        else
+        {
+            controller.collisions.playerClimbLadder = false;
+
+        }
+
+        // jump
+        keyspaceDown = false;
+//        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
+		if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
+        {
+            audioManager.Play("PlayerJump");
+            velocity.y = jumpVelocity;
+            playerJumping = true;
+            keyspaceDown = true;
+        }
+
+        velocity.x = input.x * moveSpeed;
+
+
+        updatePlayerAnimator();
+
+        if (!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+
+        if (isServer)
+        {
+            RpcMove(transform.position);
+        }
+        else
+        {
+            //print("update cmd move");
+            CmdMove(transform.position);
+        }
+    }
+
+    private void handleInput()
+    {
 		// press Q to interact with the object
 		if (Input.GetButton("Push")) {
 			controller.collisions.interact = true;
 		} else {
 			controller.collisions.interact = false;
 		}
-
-
 
 		// press E to view NPC contents
 		if(Input.GetButtonDown("Talk"))
@@ -306,19 +414,6 @@ public class Player : NetworkBehaviour
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.5f,0.5f);
 			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
 			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
-		
-
-        }
-
-		if (tryShare && !playerJumping) {
-
-		}
-			
-
-        if(selectShareObject)
-        {
-			//if (Input.GetKeyDown(KeyCode.RightArrow))
-                //pCC.getNextObject();
         }
 
 		if(Input.GetButtonUp("Share"))
@@ -405,92 +500,11 @@ public class Player : NetworkBehaviour
             } 
         }
 
-        // on the ground or on the ladder
-        if (controller.collisions.above || controller.collisions.below || controller.collisions.onLadder)
-        {
-            if (playerJumping)
-            {
-                if (jumpTime > 0.1f)
-                    audioManager.Play("PlayerLand");
-            }
-            playerJumping = false;
-            velocity.y = 0;
-            jumpTime = 0;
-        }
-        else
-        {
-            playerJumping = true;
-            jumpTime += Time.deltaTime;
-        }
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
 
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        // move audio
-        if (controller.collisions.below && input.x != 0)
-        {
-            if (!playingWalkingMusic)
-            {
-                audioManager.Play("PlayerWalking");
-                playingWalkingMusic = true;
-            }
-        }
-        else
-        {
-            audioManager.Stop("PlayerWalking");
-            playingWalkingMusic = false;
-        }
-
-		//Debug.Log ("pushBox" + controller.collisions.pushBox);
-
-		//push box audio
-		if (controller.collisions.pushBox) {
-
-			audioManager.Stop ("PlayerWalking");
-			if (!audioManager.GetSound ("WalkWithBox").source.isPlaying) {
-				audioManager.Play ("WalkWithBox");
-			}
-		} else {
-			audioManager.Stop("WalkWithBox");
-		}
-
-        // move in y axis if on the ladder
-		if (controller.collisions.onLadder) {
-			print ("Can move down!");
-			velocity.y = input.y * moveSpeed;
-
-			if (input.y != 0) {
-				audioManager.Play ("ClimbLadder");
-			} else {
-				audioManager.Stop ("ClimbLadder");
-			}
-		} else {
-			audioManager.Stop ("ClimbLadder");
-		}
-
-        if (controller.collisions.canClimbLadder && input.y < 0)
-        {
-            print("Player want to go down!");
-            controller.collisions.playerClimbLadder = true;
-
-        }
-        else
-        {
-            controller.collisions.playerClimbLadder = false;
-
-        }
-
-        // jump
-        bool keyspaceDown = false;
-//        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
-		if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
-        {
-            audioManager.Play("PlayerJump");
-            velocity.y = jumpVelocity;
-            playerJumping = true;
-            keyspaceDown = true;
-        }
-
-        velocity.x = input.x * moveSpeed;
+    private void updatePlayerAnimator()
+    {
         if (selectShareObject) velocity.x = 0;
 
         if (velocity.x < 0)
@@ -501,12 +515,8 @@ public class Player : NetworkBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
-
 
         // set the animator statemachine
-
-        //print("nextIdletime:" + nextIdleTime);
         playerUp = velocity.y > 0;
         bool playerStand = 
             (velocity.x == 0 && (!playerJumping && !keyspaceDown)
@@ -518,7 +528,6 @@ public class Player : NetworkBehaviour
         animator.SetBool("playerClimb", controller.collisions.onLadder);
         animator.SetBool("playerPushBox", controller.collisions.pushBox);
         animator.SetBool("hasInput", keyspaceDown || input.x != 0 || tryShare);
-
 
         if (playerStand && !tryShare)
         {
@@ -541,19 +550,6 @@ public class Player : NetworkBehaviour
         else
         {
             animator.speed = 1.0f;
-        }
-
-        controller.Move(velocity * Time.deltaTime);
-
-
-        if (isServer)
-        {
-            RpcMove(transform.position);
-        }
-        else
-        {
-            //print("update cmd move");
-            CmdMove(transform.position);
         }
     }
 

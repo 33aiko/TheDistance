@@ -504,11 +504,18 @@ public class Player : NetworkBehaviour
             } 
         }
 
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if(Input.anyKey)
         {
             currentInputDevice = getInputDevice();
             print("Input device is: " + currentInputDevice.ToString());
+        }
+        else
+        {
+            if (input.x != 0) // no key input && input != 0 => joystick handle moved
+            {
+                currentInputDevice = InputDeviceType.PS4;
+            }
         }
 
         if(curNPC != null)
@@ -519,7 +526,6 @@ public class Player : NetworkBehaviour
         if(curFragment != null)
         {
             curFragment.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
-
         }
     }
 

@@ -27,10 +27,11 @@ public class BoxController : MonoBehaviour {
         velocity.y = 0;
         haveGravity = true;
         inputUI = GetComponentInChildren<Image>();
-        inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
-	}
-	
-	void Update () {
+        if(inputUI != null)
+            inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
+    }
+
+    void Update () {
         if (controller.collisions.above || controller.collisions.below)
         {
             //print("box on the ground");
@@ -40,22 +41,29 @@ public class BoxController : MonoBehaviour {
             velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        Player p = GameObject.Find("Player").GetComponent<Player>();
-        bool isKeyboard = p.currentInputDevice == Player.InputDeviceType.KEYBOARD;
-        if(isKeyboard != currentIsKeyboard)
+        GameObject pGO = GameObject.Find("Player");
+        if(pGO != null)
         {
-            if(isKeyboard)
+            Player p = pGO.GetComponent<Player>();
+            bool isKeyboard = (p.currentInputDevice == Player.InputDeviceType.KEYBOARD);
+            if (isKeyboard != currentIsKeyboard)
             {
-                inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
-            }
-            else
-            {
-                Sprite[] sprites;
-                sprites = Resources.LoadAll<Sprite>(UIPath);
-                inputUI.sprite = sprites.Where(tmp => tmp.name == ps4UIName).First();
-            }
+                print("rua!");
+                if (isKeyboard)
+                {
+                    if (inputUI != null)
+                        inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
+                }
+                else
+                {
+                    Sprite[] sprites;
+                    sprites = Resources.LoadAll<Sprite>(UIPath);
+                    if (inputUI != null)
+                        inputUI.sprite = sprites.Where(tmp => tmp.name == ps4UIName).First();
+                }
 
-            currentIsKeyboard = isKeyboard;
+                currentIsKeyboard = isKeyboard;
+            }
         }
     }
 

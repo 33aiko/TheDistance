@@ -104,6 +104,19 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
+        //Text load
+        GameObject UIobject = GameObject.Find("UI");
+        TextSystem textSystem = UIobject.GetComponent<TextSystem>();
+        if (isServer)
+        {
+            textSystem.HandAwake(1);
+        }
+        else
+        {
+            textSystem.HandAwake(2);
+        }
+        
+
         finishCheck = new int[3];
   
         // init public variables:

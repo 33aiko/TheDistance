@@ -107,13 +107,17 @@ public class Player : NetworkBehaviour
         //Text load
         GameObject UIobject = GameObject.Find("UI");
         TextSystem textSystem = UIobject.GetComponent<TextSystem>();
-        if (isServer)
+        if (isServer && isLocalPlayer)
         {
             textSystem.HandAwake(1);
+            textSystem.already = 1;
+            textSystem.HandStart();
         }
-        else
+        else if(!isServer && isLocalPlayer)
         {
             textSystem.HandAwake(2);
+            textSystem.already = 1;
+            textSystem.HandStart();
         }
         
 

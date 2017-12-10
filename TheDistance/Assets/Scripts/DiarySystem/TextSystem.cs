@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class TextSystem : MonoBehaviour {
 
-	public Diary d; 
+	public Diary d;
+    public int already = 0;
     public string filename = null;
 
     public static Dictionary<string, List<string>> textDictionary = new Dictionary<string, List<string>>();
@@ -16,11 +17,12 @@ public class TextSystem : MonoBehaviour {
 
     // Use this for initialization
     public void HandAwake (int EorN) {
+        if (already > 0) return;
         textPath = Application.dataPath + "/Resources/Texts/";
         if (filename != null) { Construct(textPath + filename, EorN); };
 	}
 
-	void Start(){
+	public void HandStart(){
 		d.Initiate ();
 //		d.gameObject.SetActive (false);
 	}

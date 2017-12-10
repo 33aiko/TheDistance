@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/NetworkLobby.unity
     guid: 3c0d76c55eed6214f9d3b070caede5d3
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/StartScreen.unity
     guid: a5e30b4332651452cab3a2c744c75b2d
   - enabled: 1

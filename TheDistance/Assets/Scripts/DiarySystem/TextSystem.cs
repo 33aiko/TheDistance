@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine.UI;
 
 public class TextSystem : MonoBehaviour {
-
+    //xiao gai dong
 	public Diary d;
     public int already = 0;
     public string filename = null;

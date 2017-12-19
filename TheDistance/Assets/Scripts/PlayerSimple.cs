@@ -17,6 +17,7 @@ public class PlayerSimple : MonoBehaviour{
     float jumpVelocity;
     float velocitySmoothing;
     bool playerJumping;
+    bool canControlMove = true;
     bool canMove = true;
 
     [HideInInspector]
@@ -32,6 +33,10 @@ public class PlayerSimple : MonoBehaviour{
     float jumpTime;
     float nextIdleTime;
 
+    public Vector3 targetPos;
+    public float interpolateTime = 20;
+    public bool controllerEnteredLobby = false;
+
 
     // Use this for initialization
     void Start () {
@@ -42,17 +47,27 @@ public class PlayerSimple : MonoBehaviour{
 
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+
+        targetPos = transform.position;
     }
 	
 	// Update is called once per frame
 	void Update () {
         //input controlling move
         KeyControlMove();
+
+        
+        
     }
 
     public void Change2ReadyState()
     {
         canMove = false;
+    }
+
+    public void ControlledByOthers()
+    {
+        canControlMove = false;
     }
 
     void KeyControlMove()
@@ -82,7 +97,7 @@ public class PlayerSimple : MonoBehaviour{
             playingWalkingMusic = false;
         }
         bool keyspaceDown = false;
-		if (canMove && Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
+		if (canMove && canControlMove && Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
         {
             //audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;
@@ -91,6 +106,7 @@ public class PlayerSimple : MonoBehaviour{
         }
         velocity.x = input.x * moveSpeed;
         if (!canMove) velocity.x = 0;
+        if (!canControlMove) velocity.x = 0;
         if (velocity.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -101,13 +117,18 @@ public class PlayerSimple : MonoBehaviour{
         }
         velocity.y -= gravity * Time.deltaTime;
 
+        //interpolate move by frame rate, when position not equal, move
+        if (!canControlMove && controllerEnteredLobby && !this.transform.position.Equals(targetPos))
+        {
+            this.transform.Translate((targetPos - this.transform.position) / interpolateTime);
+        }
 
         bool playerUp = velocity.y > 0;
         bool playerStand =
             (velocity.x == 0 && (!playerJumping && !keyspaceDown)
             && controller.collisions.below);
         animator.SetBool("playerJumping", (playerJumping) || keyspaceDown);
-        animator.SetBool("playerWalking", (velocity.x != 0));
+        animator.SetBool("playerWalking", (velocity.x != 0 || (!canControlMove && controllerEnteredLobby && !this.transform.position.Equals(targetPos))));
         animator.SetBool("playerUp", playerUp);
         animator.SetBool("playerStand", playerStand);
         animator.SetBool("hasInput", keyspaceDown || input.x != 0 );

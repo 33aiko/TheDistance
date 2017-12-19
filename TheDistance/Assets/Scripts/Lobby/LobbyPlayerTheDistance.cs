@@ -13,6 +13,9 @@ namespace Prototype.NetworkLobby
     {
         //public Button readyButton;
         public GameObject playerAtLobby;
+        public GameObject friendAtLobby;
+        public GameObject ericAtLobby;
+        public GameObject natalieAtLobby;
         public GameObject spiritAtLobby;
         public GameObject platform_temp;
         public GameObject lobbyPage;
@@ -33,6 +36,10 @@ namespace Prototype.NetworkLobby
         static Color ReadyColor = new Color(0.0f, 204.0f / 255.0f, 204.0f / 255.0f, 1.0f);
         static Color TransparentColor = new Color(0, 0, 0, 0);
 
+
+        private bool someoneReady = false;
+
+        static int playerNum = 0;
         //void Start()
         //{
             
@@ -40,22 +47,48 @@ namespace Prototype.NetworkLobby
 
         void Update()
         {
-           
+            if (readyToBegin)
+                return;
 			if (Input.GetButtonDown("Submit"))
             {
                 SendReadyToBeginMessage();
+            }
+
+            if (!someoneReady && playerAtLobby && friendAtLobby)
+            {
+                Debug.Log("checking move");
+                if (isServer)
+                {
+                    RpcMove(playerAtLobby.transform.position);
+                }
+                else
+                {
+                    //print("update cmd move");
+                    CmdMove(playerAtLobby.transform.position);
+                }
             }
 
         }
         
         public override void OnClientEnterLobby()
         {
+
+            playerNum++;
+
             lobbyPage = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage");
             //playerAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/player");
             //spiritAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/Spirit");
             platform_temp = GameObject.Find("platform_temp");
-            playerAtLobby = platform_temp.transform.Find("player").gameObject;
+
+            ericAtLobby = platform_temp.transform.Find("eric").gameObject;
+            natalieAtLobby = platform_temp.transform.Find("natalie").gameObject;
+            playerAtLobby = isServer ? ericAtLobby : natalieAtLobby;
+            friendAtLobby = !isServer ? ericAtLobby : natalieAtLobby;
+            //playerAtLobby = platform_temp.transform.Find("player").gameObject;
             spiritAtLobby = platform_temp.transform.Find("Spirit").gameObject;
+
+            friendAtLobby.GetComponent<PlayerSimple>().ControlledByOthers(); // cannot control friend move on this side
+
 
 
             //this.gameObject.SetActive(false); // make it invisible
@@ -74,15 +107,17 @@ namespace Prototype.NetworkLobby
 
             if (playerAtLobby)
             {
-                Debug.Log("you playerAtLobby");
+                Debug.Log("have playerAtLobby");
             }
             else
             {
-                Debug.Log("mei you playerAtLobby");
+                Debug.Log("playerAtLobby not exist");
             }
-            playerAtLobby.SetActive(true);
-            playerAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;
+            //playerAtLobby.SetActive(true);
+            //playerAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;
 
+            if(playerNum == 2)
+                friendAtLobby.GetComponent<PlayerSimple>().controllerEnteredLobby = true;
 
             if (isLocalPlayer)
             {
@@ -103,9 +138,10 @@ namespace Prototype.NetworkLobby
                 else
                 {
                     Debug.Log("OnClientEnterLobby, is NOT LocalPlayer - is not Server");
+                    
                 }
                 spiritAtLobby.SetActive(false);
-                
+
                 //spiritAtLobby.AddComponent<Animator>();
                 //spiritAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
                 
@@ -171,7 +207,9 @@ namespace Prototype.NetworkLobby
                 {
                     Debug.Log("bie ren ready");
                     lobbyPage.transform.Find("YourFriendReady").gameObject.SetActive(true);
+                    spiritAtLobby.transform.position = friendAtLobby.transform.position;
                     spiritAtLobby.SetActive(true);
+                    friendAtLobby.SetActive(false);
                 }
                 else
                 {
@@ -199,6 +237,7 @@ namespace Prototype.NetworkLobby
 
         public void OnReadyClicked()
         {
+            someoneReady = true;
             SendReadyToBeginMessage();
         }
 
@@ -220,6 +259,25 @@ namespace Prototype.NetworkLobby
             LobbyManager.s_Singleton.countdownPanel.gameObject.SetActive(countdown != 0);
         }
 
-        
+
+        //sent by server, run on all clients
+        [ClientRpc]
+        public void RpcMove(Vector3 pos)
+        {
+            //print("Rpc Move");
+            if (!isServer && friendAtLobby)
+            {
+                friendAtLobby.GetComponent<PlayerSimple>().targetPos = pos;
+            }
+        }
+
+        //sent by client, run on server
+        [Command]
+        public void CmdMove(Vector3 pos)
+        {
+            //print("Cmd Move");
+            if(friendAtLobby)
+                friendAtLobby.GetComponent<PlayerSimple>().targetPos = pos;
+        }
     }
 }

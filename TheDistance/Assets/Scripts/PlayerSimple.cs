@@ -118,17 +118,20 @@ public class PlayerSimple : MonoBehaviour{
         velocity.y -= gravity * Time.deltaTime;
 
         //interpolate move by frame rate, when position not equal, move
+        bool isForcedX = false;
+        bool isForcedUp = (!canControlMove && controllerEnteredLobby && this.transform.position.y != targetPos.y);
         if (!canControlMove && controllerEnteredLobby && !this.transform.position.Equals(targetPos))
         {
+            isForcedX = true;
             this.transform.Translate((targetPos - this.transform.position) / interpolateTime);
         }
 
-        bool playerUp = velocity.y > 0;
+        bool playerUp = (velocity.y > 0) || isForcedUp;
         bool playerStand =
             (velocity.x == 0 && (!playerJumping && !keyspaceDown)
-            && controller.collisions.below);
+            && controller.collisions.below && !isForcedX && !isForcedUp);
         animator.SetBool("playerJumping", (playerJumping) || keyspaceDown);
-        animator.SetBool("playerWalking", (velocity.x != 0 || (!canControlMove && controllerEnteredLobby && !this.transform.position.Equals(targetPos))));
+        animator.SetBool("playerWalking", (velocity.x != 0 || (isForcedX && !isForcedUp)));
         animator.SetBool("playerUp", playerUp);
         animator.SetBool("playerStand", playerStand);
         animator.SetBool("hasInput", keyspaceDown || input.x != 0 );

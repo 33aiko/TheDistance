@@ -85,6 +85,7 @@ namespace Prototype.NetworkLobby
             playerAtLobby = isServer ? ericAtLobby : natalieAtLobby;
             friendAtLobby = !isServer ? ericAtLobby : natalieAtLobby;
             //playerAtLobby = platform_temp.transform.Find("player").gameObject;
+            friendAtLobby.SetActive(false);
             spiritAtLobby = platform_temp.transform.Find("Spirit").gameObject;
 
             friendAtLobby.GetComponent<PlayerSimple>().ControlledByOthers(); // cannot control friend move on this side
@@ -117,7 +118,11 @@ namespace Prototype.NetworkLobby
             //playerAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;
 
             if(playerNum == 2)
+            {
                 friendAtLobby.GetComponent<PlayerSimple>().controllerEnteredLobby = true;
+                friendAtLobby.SetActive(true);
+            }
+                
 
             if (isLocalPlayer)
             {

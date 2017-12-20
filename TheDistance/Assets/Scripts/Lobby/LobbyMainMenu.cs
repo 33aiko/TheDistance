@@ -61,6 +61,9 @@ namespace Prototype.NetworkLobby
         {
             Button startBttn = this.transform.Find("InitPage/Btn_start").GetComponent<Button>();
             startBttn.onClick.AddListener(OnClickStart);
+
+            Button settingBttn = this.transform.Find("InitPage/Btn_settings").GetComponent<Button>();
+            settingBttn.onClick.AddListener(OnClickSettings);
         }
 
         private void regStartPageButtons()
@@ -85,6 +88,11 @@ namespace Prototype.NetworkLobby
         public void OnClickStart()
         {
             switchToPage("DirectPlaySubPanel");
+        }
+
+        public void OnClickSettings()
+        {
+            switchToPage("SettingsSubPanel");
         }
 
         public void OnClickInvite()

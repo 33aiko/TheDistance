@@ -7791,7 +7791,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'O: close'
+  m_Text: O / Enter to close
 --- !u!222 &143442851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8278,7 +8278,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'O: close'
+  m_Text: O / Enter to close
 --- !u!222 &157022141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25966,8 +25966,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'HOLD down L1 to enter sharing mode, platform pointed by a white arrow will
-    be shared once you RELEASE L1. '
+  m_Text: 'HOLD down L1 / T to enter sharing mode, platform pointed by a white arrow
+    will be shared once you RELEASE L1 / T. '
 --- !u!222 &790890405
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35443,7 +35443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'O: close'
+  m_Text: O / Enter to close
 --- !u!222 &1092665915
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -57543,7 +57543,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!4 &1586066493
 Transform:
@@ -57817,8 +57817,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'HOLD down L1 to enter transforming mode, object pointed by a white arrow
-    will be transformed once you RELEASE L1. '
+  m_Text: 'HOLD down L1 / T  to enter transforming mode, object pointed by a white
+    arrow will be transformed once you RELEASE L1 / T . '
 --- !u!222 &1588479333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -68384,7 +68384,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &1936993765
 GameObject:
@@ -72758,7 +72758,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &2078170962
 GameObject:

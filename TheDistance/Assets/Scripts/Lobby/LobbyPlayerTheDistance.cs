@@ -59,14 +59,16 @@ namespace Prototype.NetworkLobby
                 Debug.Log("checking move");
                 if (isServer)
                 {
-                    RpcMove(playerAtLobby.transform.position);
+					RpcMove(playerAtLobby.transform.position, playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
                 else
                 {
                     //print("update cmd move");
-                    CmdMove(playerAtLobby.transform.position);
+					CmdMove(playerAtLobby.transform.position,playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
+					
             }
+
 
         }
         
@@ -267,22 +269,25 @@ namespace Prototype.NetworkLobby
 
         //sent by server, run on all clients
         [ClientRpc]
-        public void RpcMove(Vector3 pos)
+        public void RpcMove(Vector3 pos, bool isJumping)
         {
             //print("Rpc Move");
             if (!isServer && friendAtLobby)
             {
                 friendAtLobby.GetComponent<PlayerSimple>().targetPos = pos;
+				friendAtLobby.GetComponent<Animator> ().SetBool ("playerJumping", isJumping);
             }
         }
 
         //sent by client, run on server
         [Command]
-        public void CmdMove(Vector3 pos)
+        public void CmdMove(Vector3 pos, bool isJumping)
         {
             //print("Cmd Move");
-            if(friendAtLobby)
-                friendAtLobby.GetComponent<PlayerSimple>().targetPos = pos;
+			if (friendAtLobby) {
+				friendAtLobby.GetComponent<PlayerSimple> ().targetPos = pos;
+				friendAtLobby.GetComponent<Animator> ().SetBool ("playerJumping", isJumping);
+			}
         }
     }
 }

@@ -6236,6 +6236,7 @@ MonoBehaviour:
   jumpHeight: 2
   timeToJumpApex: 0.4
   gravity: 0
+  playerJumping: 0
   controller: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   interpolateTime: 20
@@ -7726,7 +7727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -437}
+  m_AnchoredPosition: {x: 0, y: -446}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1282401152
@@ -10916,6 +10917,7 @@ MonoBehaviour:
   jumpHeight: 2
   timeToJumpApex: 0.4
   gravity: 0
+  playerJumping: 0
   controller: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   interpolateTime: 20
@@ -11850,7 +11852,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060352972}
   m_HandleRect: {fileID: 293548600}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

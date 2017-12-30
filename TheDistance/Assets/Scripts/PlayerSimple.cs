@@ -16,7 +16,7 @@ public class PlayerSimple : MonoBehaviour{
     public float gravity;
     float jumpVelocity;
     float velocitySmoothing;
-    bool playerJumping;
+    public bool playerJumping;
     bool canControlMove = true;
     bool canMove = true;
 

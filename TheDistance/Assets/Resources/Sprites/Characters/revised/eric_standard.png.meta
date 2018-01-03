@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: a27fefb8e8e144ee9b35b3bdd9fa6d2d
+timeCreated: 1514946989
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: eric_standard_0
+    21300002: eric_standard_1
+    21300004: eric_standard_2
+    21300006: eric_standard_3
+    21300008: eric_standard_4
+    21300010: eric_standard_5
+    21300012: eric_standard_6
+    21300014: eric_standard_7
+    21300016: eric_standard_8
+    21300018: eric_standard_9
+    21300020: eric_standard_10
+    21300022: eric_standard_11
+    21300024: eric_standard_12
+    21300026: eric_standard_13
+    21300028: eric_standard_14
+    21300030: eric_standard_15
+    21300032: eric_standard_16
+    21300034: eric_standard_17
+    21300036: eric_standard_18
+    21300038: eric_standard_19
+    21300040: eric_standard_20
+    21300042: eric_standard_21
+    21300044: eric_standard_22
+    21300046: eric_standard_23
+    21300048: eric_standard_24
+    21300050: eric_standard_25
+    21300052: eric_standard_26
+    21300054: eric_standard_27
+    21300056: eric_standard_28
+    21300058: eric_standard_29
+    21300060: eric_standard_30
+    21300062: eric_standard_31
+    21300064: eric_standard_32
+    21300066: eric_standard_33
+    21300068: eric_standard_34
+    21300070: eric_standard_35
+    21300072: eric_standard_36
+    21300074: eric_standard_37
+    21300076: eric_standard_38
+    21300078: eric_standard_39
+    21300080: eric_standard_40
+    21300082: eric_standard_41
+    21300084: eric_standard_42
+    21300086: eric_standard_43
+    21300088: eric_standard_44
+    21300090: eric_standard_45
+    21300092: eric_standard_46
+    21300094: eric_standard_47
+    21300096: eric_standard_48
+    21300098: eric_standard_49
+    21300100: eric_standard_50
+    21300102: eric_standard_51
+    21300104: eric_standard_52
+    21300106: eric_standard_53
+    21300108: eric_standard_54
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: eric_standard_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 3765
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_12
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_13
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_14
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_15
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 3399
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_20
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_21
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_23
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 3033
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_28
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_29
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_30
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_31
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2667
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_33
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_34
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_35
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_36
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_37
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_38
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_39
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2301
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_42
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_43
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_45
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_46
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_47
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1935
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_49
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_50
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_51
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_52
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_53
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eric_standard_54
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1569
+        width: 221
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

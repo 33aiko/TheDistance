@@ -54,17 +54,24 @@ namespace Prototype.NetworkLobby
                 SendReadyToBeginMessage();
             }
 
+            print("updating!!!");
+
             if (!someoneReady && playerAtLobby && friendAtLobby)
             {
                 Debug.Log("checking move");
                 if (isServer)
                 {
-					RpcMove(playerAtLobby.transform.position, playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
+                    print("sending to client");
+                    RpcMove(playerAtLobby.GetComponent<PlayerSimple>().input,
+                        playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
+					//RpcMove(playerAtLobby.transform.position, playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
                 else
                 {
+                    CmdMove(playerAtLobby.GetComponent<PlayerSimple>().input,
+                        playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                     //print("update cmd move");
-					CmdMove(playerAtLobby.transform.position,playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
+					//CmdMove(playerAtLobby.transform.position,playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
 					
             }
@@ -269,24 +276,25 @@ namespace Prototype.NetworkLobby
 
         //sent by server, run on all clients
         [ClientRpc]
-        public void RpcMove(Vector3 pos, bool isJumping)
+        public void RpcMove(Vector2 input, bool isJumping)
         {
-            //print("Rpc Move");
+            print("Rpc Move");
             if (!isServer && friendAtLobby)
             {
-                friendAtLobby.GetComponent<PlayerSimple>().targetPos = pos;
-				friendAtLobby.GetComponent<Animator> ().SetBool ("playerJumping", isJumping);
+                print("input: " + input.x);
+                friendAtLobby.GetComponent<PlayerSimple>().movePlayer(input, true, isJumping);
             }
         }
 
         //sent by client, run on server
         [Command]
-        public void CmdMove(Vector3 pos, bool isJumping)
+        public void CmdMove(Vector2 input, bool isJumping)
         {
-            //print("Cmd Move");
-			if (friendAtLobby) {
-				friendAtLobby.GetComponent<PlayerSimple> ().targetPos = pos;
-				friendAtLobby.GetComponent<Animator> ().SetBool ("playerJumping", isJumping);
+            print("Cmd Move");
+			if (friendAtLobby)
+            {
+                print("input: " + input.x);
+                friendAtLobby.GetComponent<PlayerSimple>().movePlayer(input, true, isJumping);
 			}
         }
     }

@@ -19,6 +19,8 @@ public class PlayerSimple : MonoBehaviour{
     public bool playerJumping;
     bool canControlMove = true;
     bool canMove = true;
+    bool keyspaceDown = false;
+    public Vector2 input;
 
     [HideInInspector]
     public Controller2D controller;
@@ -28,7 +30,7 @@ public class PlayerSimple : MonoBehaviour{
 
     bool playingWalkingMusic = false;
     [HideInInspector]
-    Animator animator;
+    public Animator animator;
 
     float jumpTime;
     float nextIdleTime;
@@ -54,10 +56,10 @@ public class PlayerSimple : MonoBehaviour{
 	// Update is called once per frame
 	void Update () {
         //input controlling move
-        KeyControlMove();
-
-        
-        
+        if(canControlMove)
+        {
+            KeyControlMove();
+        }
     }
 
     public void Change2ReadyState()
@@ -80,10 +82,39 @@ public class PlayerSimple : MonoBehaviour{
         }
 
 
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-       // print(input);
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        // print(input);
+
+
+        if(canControlMove)
+        {
+            movePlayer(input);
+        }
+    }
+
+    public void movePlayer(Vector2 _input, bool fromOther = false, bool jumpingInfo = false)
+    {
+        if (fromOther)
+        {
+            playerJumping = jumpingInfo;
+        }
+
+        keyspaceDown = false;
+        if (canMove && 
+            (
+                (Input.GetButtonDown("Jump") && canControlMove) || 
+                (jumpingInfo && !canControlMove)
+            ) &&
+            controller.collisions.below && !controller.collisions.onLadder) 
+        {
+            //audioManager.Play("PlayerJump");
+            velocity.y = jumpVelocity;
+            playerJumping = true;
+            keyspaceDown = true;
+        }
+
         // move audio
-        if (controller.collisions.below && input.x != 0)
+        if (controller.collisions.below && _input.x != 0)
         {
             if (!playingWalkingMusic)
             {
@@ -96,17 +127,16 @@ public class PlayerSimple : MonoBehaviour{
             //audioManager.Stop("PlayerWalking");
             playingWalkingMusic = false;
         }
-        bool keyspaceDown = false;
-		if (canMove && canControlMove && Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
+
+        velocity.x = _input.x * moveSpeed;
+
+        if(fromOther)
         {
-            //audioManager.Play("PlayerJump");
-            velocity.y = jumpVelocity;
-            playerJumping = true;
-            keyspaceDown = true;
+            print("moving other player at velocity:" + velocity.x);
+            print("actual moveming:" + velocity.x * Time.deltaTime);
         }
-        velocity.x = input.x * moveSpeed;
+
         if (!canMove) velocity.x = 0;
-        if (!canControlMove) velocity.x = 0;
         if (velocity.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -117,6 +147,7 @@ public class PlayerSimple : MonoBehaviour{
         }
         velocity.y -= gravity * Time.deltaTime;
 
+        /*
         //interpolate move by frame rate, when position not equal, move
         bool isForcedX = false;
         bool isForcedUp = (!canControlMove && controllerEnteredLobby && this.transform.position.y != targetPos.y);
@@ -125,16 +156,18 @@ public class PlayerSimple : MonoBehaviour{
             isForcedX = true;
             this.transform.Translate((targetPos - this.transform.position) / interpolateTime);
         }
+        */
 
-        bool playerUp = (velocity.y > 0) || isForcedUp;
+
+        bool playerUp = (velocity.y > 0);
         bool playerStand =
             (velocity.x == 0 && (!playerJumping && !keyspaceDown)
-            && controller.collisions.below && !isForcedX && !isForcedUp);
+            && controller.collisions.below);
         animator.SetBool("playerJumping", (playerJumping) || keyspaceDown);
-        animator.SetBool("playerWalking", (velocity.x != 0 || (isForcedX && !isForcedUp)));
+        animator.SetBool("playerWalking", (velocity.x != 0));
         animator.SetBool("playerUp", playerUp);
         animator.SetBool("playerStand", playerStand);
-        animator.SetBool("hasInput", keyspaceDown || input.x != 0 );
+        animator.SetBool("hasInput", keyspaceDown || _input.x != 0 );
 
         if (playerStand)
         {

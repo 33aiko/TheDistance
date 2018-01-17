@@ -13,12 +13,16 @@ public class TextSystem : MonoBehaviour {
 
     public static Dictionary<string, List<string>> textDictionary = new Dictionary<string, List<string>>();
     public static Dictionary<string, bool> showDictionary = new Dictionary<string, bool>();
-    static string textPath;
+    public static string textPath;
+
+	void Start(){
+		//print (Application.streamingAssetsPath);
+	}
 
     // Use this for initialization
     public void HandAwake (int EorN) {
         if (already > 0) return;
-        textPath = Application.dataPath + "/Resources/Texts/";
+		textPath = Application.streamingAssetsPath + "/Texts/";
         if (filename != null) { Construct(textPath + filename, EorN); };
 	}
 

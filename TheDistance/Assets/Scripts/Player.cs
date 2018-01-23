@@ -63,6 +63,8 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
+    int sceneState;
+
     bool tryShare = false;
 	GameObject appearParticle; 
 
@@ -100,10 +102,13 @@ public class Player : NetworkBehaviour
     bool keyspaceDown;
     Vector2 input;
 
+    RowBoat boat;
+
     public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
 
 	void Start()
 	{
+        //sceneState = 1;!!!!
         //Text load
         GameObject UIobject = GameObject.Find("UI");
         TextSystem textSystem = UIobject.GetComponent<TextSystem>();
@@ -370,6 +375,15 @@ public class Player : NetworkBehaviour
 
     private void handleInput()
     {
+        //if boat found
+        //press v to exciting
+        if (Input.GetKeyDown("v"))
+        {
+            Debug.Log("V pressed");
+            boatControl(boat);
+        }
+        //else:
+
 		// press Q to interact with the object
 		if (Input.GetButton("Push")) {
 			controller.collisions.interact = true;
@@ -678,6 +692,9 @@ public class Player : NetworkBehaviour
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
     }
 
+    /***********************************************************************
+     * Fragment status
+     ***********************************************************************/
     public void checkWho(int keyIdx)
     {
         if (isServer)
@@ -848,29 +865,10 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public void Die()
-    {
-        Debug.Log("Player died!");
 
-		audioManager.Play ("Death");
-
-		transitionMask.GetComponent<TransitionManager> ().transitionTime = 6; 
-		backToCheckPoint ();
-
-        //call another player die
-        if (isServer)
-        {
-            Debug.Log("make nata die");
-            RpcDie();
-        }
-        else
-        {
-            Debug.Log("make eric die");
-            CmdDie();
-        }
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
+    /***********************************************************************
+     * 2-player fragment status
+     ***********************************************************************/
     //check if both players get the fragment
     public bool checkBothKey(int keyIdx)
     {
@@ -889,9 +887,6 @@ public class Player : NetworkBehaviour
         return otherHaveKey[keyIdx];
     }
 
-    /**
-     * 
-     */
     //sent by server, check on clients
     [ClientRpc]
     public void RpcCheckBoth(int keyIdx)
@@ -917,7 +912,9 @@ public class Player : NetworkBehaviour
     }
 
 
-
+    /***********************************************************************
+     * Platform share
+     ***********************************************************************/
     //sent by server, show object on clients
     [ClientRpc]
     public void RpcShare(string sharedObject)
@@ -995,7 +992,9 @@ public class Player : NetworkBehaviour
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 	}
 
-
+    /***********************************************************************
+     * Moving platform share
+     ***********************************************************************/
     //sent by server, show object on clients
     [ClientRpc]
     public void RpcShareMv(string sharedObject)
@@ -1043,7 +1042,9 @@ public class Player : NetworkBehaviour
         }
     }
 
-
+    /***********************************************************************
+     * Box share
+     ***********************************************************************/
     //sent by server, show box on clients
     [ClientRpc]
     public void RpcBox(string sharedObject)
@@ -1087,7 +1088,9 @@ public class Player : NetworkBehaviour
 
     }
 
-
+    /***********************************************************************
+     * 2-player position sync
+     ***********************************************************************/
     //sent by server, run on all clients
     [ClientRpc]
     public void RpcMove(Vector3 pos)
@@ -1107,6 +1110,9 @@ public class Player : NetworkBehaviour
         GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
     }
 
+    /***********************************************************************
+     * initialization
+     ***********************************************************************/
     public void InitializeServer(Vector3 spirit_pos, Vector3 player_pos)
     {
         //print("CmdIniatiateServer");
@@ -1125,7 +1131,31 @@ public class Player : NetworkBehaviour
         GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
     }
 
+    /***********************************************************************
+     * Die sync
+     ***********************************************************************/
+    public void Die()
+    {
+        Debug.Log("Player died!");
 
+        audioManager.Play("Death");
+
+        transitionMask.GetComponent<TransitionManager>().transitionTime = 6;
+        backToCheckPoint();
+
+        //call another player die
+        if (isServer)
+        {
+            Debug.Log("make nata die");
+            RpcDie();
+        }
+        else
+        {
+            Debug.Log("make eric die");
+            CmdDie();
+        }
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     //sent by server, make die on clients
     [ClientRpc]
     public void RpcDie()
@@ -1156,6 +1186,41 @@ public class Player : NetworkBehaviour
 		p.backToCheckPoint();
 		spirit.transform.position = p.transform.position; 
 	}
+
+
+    /***********************************************************************
+     * Boat control
+     ***********************************************************************/
+    public void boatControl(RowBoat boat)
+    {
+        if (isServer)
+        {
+            boat.move(1);
+            RpcBoat();
+        }
+        else
+        {
+            boat.move(0);
+            CmdBoat();
+        }
+    }
+    [ClientRpc]
+    public void RpcBoat()
+    {
+        if (!isServer)
+        {
+            //
+        }
+    }
+
+    //sent by client, run on server
+    [Command]
+    public void CmdBoat()
+    {
+        //
+    }
+
+
 
 
     public void setCheck(int level)

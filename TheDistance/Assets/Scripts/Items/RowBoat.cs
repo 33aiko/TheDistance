@@ -11,7 +11,6 @@ public class RowBoat : MonoBehaviour {
 	void Start () {
         r = GetComponent<Rigidbody>();
         height = GetComponent<Renderer>().bounds.size.y;
-
     }
 	
 	// Update is called once per frame
@@ -20,6 +19,7 @@ public class RowBoat : MonoBehaviour {
         {
             Vector3 bottom = (transform.position - transform.up * height / 2);
             Vector3 top = (transform.position + transform.up * height / 2);
+            /*
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 r.AddForceAtPosition(-transform.up * forceY + transform.right * forceX, new Vector3(top.x, top.y, transform.position.z));
@@ -28,9 +28,25 @@ public class RowBoat : MonoBehaviour {
             {
                 // r.AddForce(forceX, forceY, 0);
                 r.AddForceAtPosition(transform.up * forceY + transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
-            }
+            }*/
 
         }
         
 	}
+
+    public void move(int direction)
+    {
+        Debug.Log("V detected");
+        Vector3 bottom = (transform.position - transform.up * height / 2);
+        Vector3 top = (transform.position + transform.up * height / 2);
+        if (direction==0)
+        {
+            r.AddForceAtPosition(-transform.up * forceY + transform.right * forceX, new Vector3(top.x, top.y, transform.position.z));
+        }
+        else if (direction==1)
+        {
+            // r.AddForce(forceX, forceY, 0);
+            r.AddForceAtPosition(transform.up * forceY + transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
+        }
+    }
 }

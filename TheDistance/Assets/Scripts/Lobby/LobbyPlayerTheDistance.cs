@@ -62,14 +62,16 @@ namespace Prototype.NetworkLobby
                 if (isServer)
                 {
                     print("sending to client");
-                    RpcMove(playerAtLobby.GetComponent<PlayerSimple>().input,
-                        playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
+                   // if (playerAtLobby.GetComponent<PlayerSimple>().input != Vector2.zero)
+                        RpcMove(playerAtLobby.GetComponent<PlayerSimple>().input,
+                            playerAtLobby.GetComponent<PlayerSimple>().keyspaceDown);
 					//RpcMove(playerAtLobby.transform.position, playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
                 else
                 {
-                    CmdMove(playerAtLobby.GetComponent<PlayerSimple>().input,
-                        playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
+                    //if (playerAtLobby.GetComponent<PlayerSimple>().input != Vector2.zero)
+                        CmdMove(playerAtLobby.GetComponent<PlayerSimple>().input,
+                            playerAtLobby.GetComponent<PlayerSimple>().keyspaceDown);
                     //print("update cmd move");
 					//CmdMove(playerAtLobby.transform.position,playerAtLobby.GetComponent<PlayerSimple>().playerJumping);
                 }
@@ -278,7 +280,9 @@ namespace Prototype.NetworkLobby
         [ClientRpc]
         public void RpcMove(Vector2 input, bool isJumping)
         {
-            print("Rpc Move");
+
+            if (isJumping)
+                print("Rpc jump");
             if (!isServer && friendAtLobby)
             {
                 print("input: " + input.x);
@@ -290,7 +294,8 @@ namespace Prototype.NetworkLobby
         [Command]
         public void CmdMove(Vector2 input, bool isJumping)
         {
-            print("Cmd Move");
+            if (isJumping)
+                print("Cmd jump");
 			if (friendAtLobby)
             {
                 print("input: " + input.x);

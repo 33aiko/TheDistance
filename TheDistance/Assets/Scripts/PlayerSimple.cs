@@ -19,7 +19,7 @@ public class PlayerSimple : MonoBehaviour{
     public bool playerJumping;
     bool canControlMove = true;
     bool canMove = true;
-    bool keyspaceDown = false;
+    public bool keyspaceDown = false;
     public Vector2 input;
 
     [HideInInspector]
@@ -75,13 +75,6 @@ public class PlayerSimple : MonoBehaviour{
     void KeyControlMove()
     {
 
-        if (controller.collisions.above || controller.collisions.below)
-        {
-            playerJumping = false;
-            velocity.y = 0;
-        }
-
-
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         // print(input);
 
@@ -97,6 +90,12 @@ public class PlayerSimple : MonoBehaviour{
         if (fromOther)
         {
             playerJumping = jumpingInfo;
+        }
+
+        if (controller.collisions.above || controller.collisions.below)
+        {
+            playerJumping = false;
+            velocity.y = 0;
         }
 
         keyspaceDown = false;

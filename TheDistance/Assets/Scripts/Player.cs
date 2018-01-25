@@ -1140,7 +1140,7 @@ public class Player : NetworkBehaviour
 
         audioManager.Play("Death");
 
-        transitionMask.GetComponent<TransitionManager>().transitionTime = 6;
+        transitionMask.GetComponent<TransitionManager>().transitionTime = 7;
         backToCheckPoint();
 
         //call another player die

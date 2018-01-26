@@ -14,13 +14,15 @@ public class PlayerSimple : MonoBehaviour{
     public float jumpHeight;
     public float timeToJumpApex;
     public float gravity;
-    float jumpVelocity;
-    float velocitySmoothing;
     public bool playerJumping;
-    bool canControlMove = true;
-    bool canMove = true;
     public bool keyspaceDown = false;
     public Vector2 input;
+
+    bool canControlMove = true;
+    bool canMove = true;
+    float jumpVelocity;
+    float velocitySmoothing;
+    Rigidbody2D m_rb;
 
     [HideInInspector]
     public Controller2D controller;
@@ -45,6 +47,7 @@ public class PlayerSimple : MonoBehaviour{
         //audioManager = FindObjectOfType<AudioManager>();
         animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
+        m_rb = GetComponent<Rigidbody2D>();
         gameObject.SetActive(true);
 
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
@@ -183,6 +186,35 @@ public class PlayerSimple : MonoBehaviour{
         }
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void UpdatePosAndAnimator(float x, bool isJumping, Vector3 targetPos)
+    {
+        // only for friend player control
+        if (canControlMove)
+            return;
+
+
+        print("input at other is: " + x);
+
+        bool playerUp = isJumping && targetPos.y > transform.position.y;
+        bool playerStand = (!isJumping && x == 0);
+        animator.SetBool("playerJumping", isJumping);
+        animator.SetBool("playerWalking", x != 0);
+        animator.SetBool("playerUp", playerUp);
+        animator.SetBool("playerStand", playerStand);
+        animator.SetBool("hasInput", isJumping || x != 0 );
+
+        if(x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        transform.position = targetPos;
     }
 
 }

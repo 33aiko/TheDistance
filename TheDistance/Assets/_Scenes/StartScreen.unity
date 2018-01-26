@@ -6237,6 +6237,7 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   gravity: 0
   playerJumping: 0
+  keyspaceDown: 0
   input: {x: 0, y: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}
@@ -10920,6 +10921,7 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   gravity: 0
   playerJumping: 0
+  keyspaceDown: 0
   input: {x: 0, y: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}

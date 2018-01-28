@@ -1189,6 +1189,37 @@ public class Player : NetworkBehaviour
 
 
     /***********************************************************************
+     * Step on trigger control
+     ***********************************************************************/
+    // i don't know why i should put it here
+    // but after putting the rpc and cmd command in player
+    // bug fixed!
+    // sent by server, run on all clients
+    [ClientRpc]
+    public void RpcSetPlatformMoveable(bool _canMove, string mpName)
+    {
+        if (!isServer)
+            SetPlatformMovealbe(_canMove, mpName);
+    }
+
+    // sent by client, run on server
+    [Command]
+    public void CmdSetPlatformMoveable(bool _canMove, string mpName)
+    {
+        print("Got input from client!");
+        SetPlatformMovealbe(_canMove, mpName);
+    }
+
+    void SetPlatformMovealbe(bool _canMove, string mpName)
+    {
+        MovingPlatformController pMPC = GameObject.Find(mpName).GetComponent<MovingPlatformController>();
+        pMPC.canMove = _canMove;
+    }
+
+
+
+
+    /***********************************************************************
      * Boat control
      ***********************************************************************/
     public void boatControl(RowBoat boat)

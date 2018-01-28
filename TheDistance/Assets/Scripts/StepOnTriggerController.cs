@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class StepOnTriggerController : MonoBehaviour {
+public class StepOnTriggerController : NetworkBehaviour{
 
     public string mpName;
     public bool oneTimeTrigger;
+    public bool moveOnOtherWorld = false;
 
     int cnt = 0;
 
@@ -18,6 +20,30 @@ public class StepOnTriggerController : MonoBehaviour {
         mPC = GameObject.Find(mpName).GetComponent<MovingPlatformController>();
 	}
 
+    void SetCanMove (bool _canMove)
+    {
+        if(moveOnOtherWorld)
+        {
+            // the code is actually in Player.cs
+            // don't know why
+            // just bug fixed
+            Player pP = GameObject.Find("Player").GetComponent<Player>();
+            if (isServer)
+            {
+                pP.RpcSetPlatformMoveable(_canMove, mpName);
+            }
+            else
+            {
+                print("sending moving platform!");
+                pP.CmdSetPlatformMoveable(_canMove, mpName);
+            }
+        }
+        else
+        {
+            mPC.canMove = _canMove;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") cnt++;
@@ -29,7 +55,7 @@ public class StepOnTriggerController : MonoBehaviour {
         {
             haveBox = true;
         }
-        mPC.canMove = haveBox || haveUser;
+        SetCanMove(haveBox || haveUser);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -44,7 +70,7 @@ public class StepOnTriggerController : MonoBehaviour {
         {
             haveBox = false;
         }
-        mPC.canMove = haveUser || haveBox;
+        SetCanMove(haveBox || haveUser);
     }
 
 }

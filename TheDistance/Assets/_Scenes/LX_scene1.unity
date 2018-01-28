@@ -14694,6 +14694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mpName: Level1_Eric_MovingPlatform
   oneTimeTrigger: 1
+  moveOnOtherWorld: 0
 --- !u!1 &415569120
 GameObject:
   m_ObjectHideFlags: 0
@@ -15962,6 +15963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mpName: Level1_Natalie_MovingPlatform
   oneTimeTrigger: 0
+  moveOnOtherWorld: 0
 --- !u!1 &491148987
 GameObject:
   m_ObjectHideFlags: 0
@@ -26404,7 +26406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -57594,7 +57596,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1586066493
 Transform:
@@ -67646,7 +67648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0
@@ -68435,7 +68437,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1936993765
 GameObject:
@@ -72809,7 +72811,7 @@ SpriteRenderer:
   m_Size: {x: 183.27, y: 42.000004}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2078170962
 GameObject:

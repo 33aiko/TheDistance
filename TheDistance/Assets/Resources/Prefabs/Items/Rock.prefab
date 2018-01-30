@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4367306120216526}
   - component: {fileID: 23109559192824308}
   - component: {fileID: 33554525482664000}
-  - component: {fileID: 61553016406850962}
+  - component: {fileID: 61872656609513466}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -35,13 +35,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348328892425084}
-  m_LocalRotation: {x: -0, y: -0, z: 0.07998912, w: 0.9967958}
-  m_LocalPosition: {x: -51.5, y: 6.8, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.031965066, w: 0.999489}
+  m_LocalPosition: {x: -51.5, y: -6, z: 0}
   m_LocalScale: {x: 13.707285, y: 2.4936705, z: 2.4466772}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.176001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.6640003}
 --- !u!23 &23109559192824308
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -81,7 +81,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348328892425084}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!61 &61553016406850962
+--- !u!61 &61872656609513466
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,5 +104,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9999999, y: 0.9999999}
   m_EdgeRadius: 0

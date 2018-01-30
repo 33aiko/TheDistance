@@ -6,10 +6,10 @@ public class RowBoat : MonoBehaviour {
     public float forceX = 2;
     public float forceY = 2;
     float height;
-    Rigidbody r;
+    Rigidbody2D r;
 	// Use this for initialization
 	void Start () {
-        r = GetComponent<Rigidbody>();
+        r = GetComponent<Rigidbody2D>();
         height = GetComponent<Renderer>().bounds.size.y;
     }
 	

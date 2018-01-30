@@ -109,7 +109,7 @@ namespace Prototype.NetworkLobby
 
             if (!spiritAtLobby.GetComponent<Animator>())
                 spiritAtLobby.AddComponent<Animator>();
-            spiritAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;
+            spiritAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator: NatalieSpiritAnimator)) as RuntimeAnimatorController;
 
             //playerAtLobby.AddComponent<Animator>();
             //playerAtLobby.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;

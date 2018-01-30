@@ -41,12 +41,12 @@ public class RowBoat : MonoBehaviour {
         Vector3 top = (transform.position + transform.up * height / 2);
         if (direction==0)
         {
-            r.AddForceAtPosition(-transform.up * forceY + transform.right * forceX, new Vector3(top.x, top.y, transform.position.z));
+            r.AddForceAtPosition(-4*transform.up * forceY + 4*transform.right * forceX, new Vector3(top.x, top.y, transform.position.z));
         }
         else if (direction==1)
         {
             // r.AddForce(forceX, forceY, 0);
-            r.AddForceAtPosition(transform.up * forceY + transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
+            r.AddForceAtPosition(4*transform.up * forceY + 4*transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
         }
     }
 }

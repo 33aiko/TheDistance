@@ -109,6 +109,7 @@ public class Player : NetworkBehaviour
 	void Start()
 	{
         //sceneState = 1;!!!!
+        boat = GameObject.Find("boat").GetComponent<RowBoat>();
         //Text load
         GameObject UIobject = GameObject.Find("UI");
         TextSystem textSystem = UIobject.GetComponent<TextSystem>();
@@ -1192,7 +1193,7 @@ public class Player : NetworkBehaviour
      * Step on trigger control
      ***********************************************************************/
     // i don't know why i should put it here
-    // but after putting the rpc and cmd command in player
+    // but after putting the rpc and cmd command in player   Answer:Because only the player class is NetworkBehavior while others are MonoBehavior!
     // bug fixed!
     // sent by server, run on all clients
     [ClientRpc]
@@ -1228,11 +1229,13 @@ public class Player : NetworkBehaviour
         {
             boat.move(1);
             RpcBoat();
+            RpcBoatMove(boat.GetComponent<Transform>().position);
         }
         else
         {
             boat.move(0);
             CmdBoat();
+            CmdBoatMove(boat.GetComponent<Transform>().position);
         }
     }
     [ClientRpc]
@@ -1249,6 +1252,25 @@ public class Player : NetworkBehaviour
     public void CmdBoat()
     {
         //
+    }
+
+    //sent by server, run on all clients
+    [ClientRpc]
+    public void RpcBoatMove(Vector3 pos)
+    {
+        //print("Rpc Move");
+        if (!isServer)
+        {
+            GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
+        }
+    }
+
+    //sent by client, run on server
+    [Command]
+    public void CmdBoatMove(Vector3 pos)
+    {
+        //print("Cmd Move");
+        GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
     }
 
 

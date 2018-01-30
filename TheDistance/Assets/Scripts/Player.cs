@@ -1229,13 +1229,13 @@ public class Player : NetworkBehaviour
         {
             boat.move(1);
             RpcBoat();
-            RpcBoatMove(boat.GetComponent<Transform>().position);
+            RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
         }
         else
         {
             boat.move(0);
             CmdBoat();
-            CmdBoatMove(boat.GetComponent<Transform>().position);
+            CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
     }
     [ClientRpc]
@@ -1256,21 +1256,23 @@ public class Player : NetworkBehaviour
 
     //sent by server, run on all clients
     [ClientRpc]
-    public void RpcBoatMove(Vector3 pos)
+    public void RpcBoatMove(Vector3 pos, Quaternion rot)
     {
         //print("Rpc Move");
         if (!isServer)
         {
             GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
+            GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
         }
     }
 
     //sent by client, run on server
     [Command]
-    public void CmdBoatMove(Vector3 pos)
+    public void CmdBoatMove(Vector3 pos, Quaternion rot)
     {
         //print("Cmd Move");
         GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
+        GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
     }
 
 

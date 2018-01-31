@@ -109,7 +109,7 @@ public class Player : NetworkBehaviour
 	void Start()
 	{
         //sceneState = 1;!!!!
-		 boat = GameObject.Find("boat").GetComponent<RowBoat>();
+		// boat = GameObject.Find("boat").GetComponent<RowBoat>();
 
         //Text load
         GameObject UIobject = GameObject.Find("UI");
@@ -229,7 +229,18 @@ public class Player : NetworkBehaviour
 	{
         if (!isLocalPlayer)
             return;
+		if (isServer)
+		{
 
+		//	RpcBoat();
+		//	RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
+		}
+		else
+		{
+
+		//	CmdBoat();
+		//	CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+		}
 		//input controlling move
 		KeyControlMove();
 

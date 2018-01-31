@@ -26406,7 +26406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -27334,7 +27334,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -953854730
+  randomSeed: -1143467071
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -37239,7 +37239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1263292517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42223,6 +42223,7 @@ MonoBehaviour:
   - {fileID: 720547333}
   both: 
   triggerEffect: {fileID: 0}
+  diaryBtn: {fileID: 0}
 --- !u!61 &1448595434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -58324,6 +58325,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: diaryBtn
+      value: 
+      objectReference: {fileID: 1263292516}
     m_RemovedComponents:
     - {fileID: 122413744852225500, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
@@ -58661,6 +58667,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224450250293837914, guid: 9478645da9aed4c0a8d5eb00215b49a1,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: -0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9478645da9aed4c0a8d5eb00215b49a1, type: 2}
@@ -67648,7 +67659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0
@@ -68221,6 +68232,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: diaryBtn
+      value: 
+      objectReference: {fileID: 1263292516}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
   m_IsPrefabParent: 0

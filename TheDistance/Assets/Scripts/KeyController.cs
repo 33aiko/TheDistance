@@ -18,6 +18,7 @@ public class KeyController : MonoBehaviour {
 	public GameObject[] memoryContent ; 
     public int[] both;
 	public GameObject triggerEffect; 
+	public GameObject diaryBtn; 
 
 
 	Image memoryBackground; 
@@ -175,6 +176,9 @@ public class KeyController : MonoBehaviour {
 		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
 		if (keyIdx == 0) {
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack01");
+			if (diaryBtn != null) {
+				diaryBtn.SetActive (true);
+			}
 		} else if (keyIdx == 1) {
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack01");
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack02");
@@ -193,6 +197,15 @@ public class KeyController : MonoBehaviour {
 		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
 		if (keyIdx == 0) {
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack01");
+			if (diaryBtn != null) {
+				diaryBtn.SetActive (true);
+			}
+		}else if (keyIdx == 1) {
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack01");
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack02");
+		} else if (keyIdx == 2) {
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack02");
+			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack03");
 		}
 		memoryBackground.DOFade (1, 0.5f).SetDelay(0.5f);
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {

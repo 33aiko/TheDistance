@@ -63,9 +63,13 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
+
     int sceneState;
 
     bool tryShare = false;
+    float tPressedTime = 0.0f;
+    bool tCanShare = false;
+    public float tNeededTime = 3.0f;
 	GameObject appearParticle; 
 
 	bool showNPCcontent = false; 
@@ -428,6 +432,7 @@ public class Player : NetworkBehaviour
 			}
 		}
 
+        tCanShare = false;
 		// object sharing
 		if(Input.GetButtonDown("Share"))
         {
@@ -464,8 +469,24 @@ public class Player : NetworkBehaviour
 			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
         }
 
-		if(Input.GetButtonUp("Share"))
+        if(tryShare)
         {
+            tPressedTime += Time.deltaTime;
+            print("t pressed time is : " + tPressedTime);
+        }
+
+        if (Input.GetButtonUp("Share"))
+        {
+            if(tPressedTime >= tNeededTime)
+            {
+                tCanShare = true;
+                print("t pressed time: " + tPressedTime);
+            }
+            else
+            {
+                tCanShare = false;
+            }
+            tPressedTime = 0;
             tryShare = false;
 			audioManager.Stop ("SharingHold");
 			cameraZoomValue = -40;
@@ -480,72 +501,76 @@ public class Player : NetworkBehaviour
 
 		if(Input.GetButtonUp("Share") && selectShareObject)
 		{
-			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
             selectShareObject = false;
             tryShare = false;
+			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
 			pCC.highlightNearObject(false);
-			GameObject sharedObject = pCC.shareSelectedObject();
-            //print("got somethign with tag: " + sharedObject.tag);
-            if(sharedObject == null)
+            if (tCanShare)
             {
-                print("We found a null here!!!!!!!");
+                GameObject sharedObject = pCC.shareSelectedObject();
+
+                //print("got somethign with tag: " + sharedObject.tag);
+                if (sharedObject == null)
+                {
+                    print("We found a null here!!!!!!!");
+                }
+                else
+                {
+                    Invoke("clearShareNotificationText", shareTextTime);
+                    if (sharedObject.tag == "FloatingPlatform")
+                    {
+                        shareNotificationText.text = "A platform is shared!";
+                        Debug.Log(sharedObject.name);
+                        if (isServer && isLocalPlayer)
+                        {
+                            RpcShare(sharedObject.name);
+                        }
+                        if (!isServer && isLocalPlayer)
+                        {
+                            CmdShare(sharedObject.name);
+                        }
+                        Debug.Log("found");
+                        audioManager.Play("ConfirmSharing");
+                        animator.SetBool("sendSucceed", true);
+                        print("a platform here1");
+                        sharedObject.tag = "FloatingPlatformShared";
+                    }
+                    else if (sharedObject.tag == "MovingPlatformSharable")
+                    {
+                        shareNotificationText.text = "A platform is shared!";
+                        Debug.Log("mv!");
+                        if (isServer && isLocalPlayer)
+                        {
+                            RpcShareMv(sharedObject.name);
+                        }
+                        if (!isServer && isLocalPlayer)
+                        {
+                            CmdShareMv(sharedObject.name);
+                        }
+                        audioManager.Play("ConfirmSharing");
+                        animator.SetBool("sendSucceed", true);
+                    }
+                    else if (sharedObject.tag == "Box")
+                    {
+                        shareNotificationText.text = "An object is shared!";
+                        Debug.Log("box found");
+                        string boxname = sharedObject.name;
+                        if (isServer && isLocalPlayer)
+                        {
+                            RpcBox(sharedObject.name);
+                            root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                        }
+                        if (!isServer && isLocalPlayer)
+                        {
+                            CmdBox(sharedObject.name);
+                            root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                        }
+                        sharedObject.tag = "BoxCannotShare";
+                        audioManager.Play("ConfirmSharing");
+                        animator.SetBool("sendSucceed", true);
+                    }
+                }
             }
-            else
-            {
-                Invoke("clearShareNotificationText", shareTextTime);
-                if (sharedObject.tag == "FloatingPlatform")
-                {
-                    shareNotificationText.text = "A platform is shared!";
-                    Debug.Log(sharedObject.name);
-                    if (isServer && isLocalPlayer)
-                    {
-                        RpcShare(sharedObject.name);
-                    }
-                    if (!isServer && isLocalPlayer)
-                    {
-                        CmdShare(sharedObject.name);
-                    }
-                    Debug.Log("found");
-                    audioManager.Play("ConfirmSharing");
-                    animator.SetBool("sendSucceed", true);
-                    print("a platform here1");
-                    sharedObject.tag = "FloatingPlatformShared";
-                }
-                else if (sharedObject.tag == "MovingPlatformSharable")
-                {
-					shareNotificationText.text = "A platform is shared!";
-                    Debug.Log("mv!");
-                    if (isServer && isLocalPlayer)
-                    {
-                        RpcShareMv(sharedObject.name);
-                    }
-                    if (!isServer && isLocalPlayer)
-                    {
-                        CmdShareMv(sharedObject.name);
-                    }
-                    audioManager.Play("ConfirmSharing");
-                    animator.SetBool("sendSucceed", true);
-                }
-                else if (sharedObject.tag == "Box")
-                {
-                    shareNotificationText.text = "An object is shared!";
-                    Debug.Log("box found");
-                    string boxname = sharedObject.name;
-                    if (isServer && isLocalPlayer)
-                    {
-                        RpcBox(sharedObject.name);
-                        root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
-                    }
-                    if (!isServer && isLocalPlayer)
-                    {
-                        CmdBox(sharedObject.name);
-                        root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
-                    }
-					sharedObject.tag = "BoxCannotShare";
-                    audioManager.Play("ConfirmSharing");
-                    animator.SetBool("sendSucceed", true);
-                }
-            } 
         }
 
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

@@ -134,9 +134,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1.6
 --- !u!61 &61359329358718218
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -241,9 +241,11 @@ MonoBehaviour:
   gravity: 0
   playerJumping: 0
   playerUp: 0
+  tNeededTime: 3
   controller: {fileID: 0}
   pCC: {fileID: 0}
   canClimbLadder: 0
+  currentInputDevice: 1
 --- !u!114 &114386261297146404
 MonoBehaviour:
   m_ObjectHideFlags: 1

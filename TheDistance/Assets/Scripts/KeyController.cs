@@ -37,6 +37,8 @@ public class KeyController : MonoBehaviour {
     string keyboardUIName = "inputUI_keyE";
     bool currentIsKeyboard = true;
 
+	float blurFocalLength = 100, normalFocalLength = 50; 
+
     private void Start()
 	{
         loadSprite(UIPath, keyboardUIName);
@@ -65,6 +67,7 @@ public class KeyController : MonoBehaviour {
 	private void Update(){
 		if(Input.GetButtonDown("Submit")){
 			if (memoryShowed) {
+				Camera.main.GetComponent<DOVModify> ().SetActive (false);
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);
 				memoryBackground.DOFade (0, 1);
@@ -186,7 +189,9 @@ public class KeyController : MonoBehaviour {
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack02");
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack03");
 		}
-		memoryBackground.DOFade (1, 0.5f).SetDelay(0.5f);
+		Camera.main.GetComponent<DOVModify> ().SetActive (true);
+		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
+		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 				memoryContent [0].SetActive (true);
 			});
@@ -207,7 +212,10 @@ public class KeyController : MonoBehaviour {
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack02");
 			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack03");
 		}
-		memoryBackground.DOFade (1, 0.5f).SetDelay(0.5f);
+
+		Camera.main.GetComponent<DOVModify> ().SetActive (true);
+		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
+		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 			memoryContent [1].SetActive (true);
 		});

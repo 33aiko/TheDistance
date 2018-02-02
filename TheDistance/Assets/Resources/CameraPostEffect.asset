@@ -73,9 +73,9 @@ MonoBehaviour:
     m_Settings:
       focusDistance: 80
       aperture: 0.1
-      focalLength: 48
+      focalLength: 46
       useCameraFov: 0
-      kernelSize: 1
+      kernelSize: 0
   motionBlur:
     m_Enabled: 0
     m_Settings:
@@ -296,7 +296,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 0}
+      color: {r: 0.09019608, g: 0.29803923, b: 0.44313726, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.3
       smoothness: 0.707

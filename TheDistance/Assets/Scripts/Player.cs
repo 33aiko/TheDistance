@@ -491,6 +491,7 @@ public class Player : NetworkBehaviour
             if (!tCanShare)
             {
                 print("trying to stop sharing");
+                pCC.StopSharingEffect();
                 if (isLocalPlayer && isServer)
                 {
                     print("server trying to stop!");

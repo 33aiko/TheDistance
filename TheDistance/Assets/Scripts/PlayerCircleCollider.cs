@@ -170,6 +170,12 @@ public class PlayerCircleCollider : MonoBehaviour {
         return shareObject;
     }
 
+    public void StopSharingEffect()
+    {
+		if(shareObject.GetComponentInChildren<SharingEffectsController> () != null)
+            shareObject.GetComponentInChildren<SharingEffectsController>().StopSelectedEffect();
+    }
+
     void createArrow()
     {
         // create arrow on the share object

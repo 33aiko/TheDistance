@@ -11,6 +11,7 @@ public class SharingEffectsController : MonoBehaviour {
 	[SerializeField] WindZone wind;
 	[SerializeField][Range(0,1000f)] float windIntensity = 200f;
 
+    float otherPressedTime;
 
 	public enum State
 	{
@@ -52,6 +53,7 @@ public class SharingEffectsController : MonoBehaviour {
 			wind.windMain = 0;
 		
 		state = State.Default;
+        otherPressedTime = 0.0f;
 	}
 
 	void Update(){
@@ -60,7 +62,15 @@ public class SharingEffectsController : MonoBehaviour {
 				PlayParticles( defaultEffect);
 			}
 		}
-			
+        if (state == State.Selected)
+        {
+            otherPressedTime += Time.deltaTime;
+            print("your teammate pressed for " + otherPressedTime + "s");
+        }
+        else
+        {
+            otherPressedTime = 0;
+        }
 	}
 		
 	public void StopAll(){

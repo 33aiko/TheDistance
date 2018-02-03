@@ -1193,6 +1193,7 @@ public class Player : NetworkBehaviour
 
     void ShareRock(string sharedObject, bool isEricWorld)
     {
+        StopShare();
 		audioManager.Stop ("SharingHold");
 		audioManager.Play ("ConfirmSharing");
         GameObject remoteWorld = root.transform.Find(isEricWorld?"EricWorld":"NatalieWorld").gameObject.transform.Find(isEricWorld?"WorldA":"WorldB").gameObject;

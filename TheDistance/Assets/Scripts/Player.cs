@@ -63,7 +63,6 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
-
     int sceneState;
 
     bool tryShare = false;
@@ -489,6 +488,19 @@ public class Player : NetworkBehaviour
             {
                 tCanShare = false;
             }
+            if (!tCanShare)
+            {
+                print("trying to stop sharing");
+                if (isLocalPlayer && isServer)
+                {
+                    print("server trying to stop!");
+                    RpcStopShare();
+                }
+                if (isLocalPlayer && !isServer)
+                {
+                    CmdStopShare();
+                }
+            }
             tPressedTime = 0;
             tryShare = false;
 			audioManager.Stop ("SharingHold");
@@ -509,6 +521,7 @@ public class Player : NetworkBehaviour
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
 			pCC.highlightNearObject(false);
             Invoke("clearShareNotificationText", shareTextTime);
+
             if (tCanShare)
             {
                 GameObject sharedObject = pCC.shareSelectedObject();
@@ -1039,6 +1052,33 @@ public class Player : NetworkBehaviour
 		}
 		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
 	}
+
+    //sent by server, show particle effects on clients
+    [ClientRpc]
+    public void RpcStopShare()
+    {
+        if (isServer)
+            return;
+        StopShare();
+    }
+
+    //sent by client, show particle effects on server
+    [Command]
+    public void CmdStopShare()
+    {
+        StopShare();
+    }
+
+    void StopShare()
+    {
+        audioManager.Stop("SharingHold");
+        print("stopping share!");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
+    }
+
 
     /***********************************************************************
      * Moving platform share

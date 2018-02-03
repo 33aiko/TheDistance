@@ -27,7 +27,7 @@ public class PlayerCircleCollider : MonoBehaviour {
             nearObjectList.Add(collision.gameObject);
 
             //show the halo when the key is down & platform inside the region
-            (collision.gameObject.GetComponent("Halo") as Behaviour).enabled = keyDown;
+            //(collision.gameObject.GetComponent("Halo") as Behaviour).enabled = keyDown;
         }
     }
 
@@ -48,7 +48,7 @@ public class PlayerCircleCollider : MonoBehaviour {
             }
 
             // remove the halo when it leaves the region
-            (collision.gameObject.GetComponent("Halo") as Behaviour).enabled = false;
+            //(collision.gameObject.GetComponent("Halo") as Behaviour).enabled = false;
         }
     }
 
@@ -87,7 +87,12 @@ public class PlayerCircleCollider : MonoBehaviour {
             }
             float sizeY = GetComponent<BoxCollider2D>().size.y / 2;
             Vector3 basePosition = transform.position - new Vector3(0, sizeY);
-            float platformY = t.GetComponent<SpriteRenderer>().bounds.size.y;
+            var rend = t.GetComponent<SpriteRenderer>();
+            float platformY;
+            if (rend == null)
+                platformY = t.GetComponent<MeshRenderer>().bounds.size.y;
+            else
+                platformY = t.GetComponent<SpriteRenderer>().bounds.size.y;
             Vector3 platformPos = t.transform.position + new Vector3(0, platformY);
             float cur = 
                 Vector3.Magnitude(platformPos- basePosition);
@@ -96,8 +101,6 @@ public class PlayerCircleCollider : MonoBehaviour {
                 minDist = cur;
                 nearestObject = t;
             }
-
-			Debug.Log (t.name);
         }
 
         shareIdx = nearObjectList.IndexOf(nearestObject);
@@ -111,7 +114,8 @@ public class PlayerCircleCollider : MonoBehaviour {
         if (shareObject == null)
             return;
 		
-		shareObject.GetComponentInChildren<SharingEffectsController> ().PlaySelectedEffect ();
+		if(shareObject.GetComponentInChildren<SharingEffectsController> () != null)
+            shareObject.GetComponentInChildren<SharingEffectsController>().PlaySelectedEffect();
 
 
         createArrow();
@@ -150,9 +154,10 @@ public class PlayerCircleCollider : MonoBehaviour {
         }
 
         deletePrevArrow();
-		shareObject.GetComponentInChildren<SharingEffectsController> ().StopSelectedEffect ();
+		if(shareObject.GetComponentInChildren<SharingEffectsController> () != null)
+            shareObject.GetComponentInChildren<SharingEffectsController>().StopSelectedEffect();
 
-        if(shareObject.tag == "Box")
+        if (shareObject.tag == "Box")
         {
             print("Should be deleteing box!");
             nearObjectList.Remove(shareObject);

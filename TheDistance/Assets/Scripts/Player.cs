@@ -444,6 +444,7 @@ public class Player : NetworkBehaviour
 			pCC.getDefaultShareObject();
 
 			GameObject shareObject = pCC.getShareObject(); 
+            print("got " + shareObject.name + " here");
 
 			if (shareObject != null) {
 				if (isLocalPlayer && isServer) {
@@ -458,6 +459,8 @@ public class Player : NetworkBehaviour
                 else if(shareObject.tag == "FloatingPlatform" ||
                     shareObject.tag == "MovingPlatformSharable")
                     shareNotificationText.text = "A platform is selected";
+                else if(shareObject.tag == "Rock")
+                    shareNotificationText.text = "A rock is selected";
             }
 
             selectShareObject = true;
@@ -505,18 +508,19 @@ public class Player : NetworkBehaviour
             tryShare = false;
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
 			pCC.highlightNearObject(false);
+            Invoke("clearShareNotificationText", shareTextTime);
             if (tCanShare)
             {
                 GameObject sharedObject = pCC.shareSelectedObject();
+                print(sharedObject.name + " is going to be shared");
 
-                //print("got somethign with tag: " + sharedObject.tag);
+                print("got somethign with tag: " + sharedObject.tag);
                 if (sharedObject == null)
                 {
                     print("We found a null here!!!!!!!");
                 }
                 else
                 {
-                    Invoke("clearShareNotificationText", shareTextTime);
                     if (sharedObject.tag == "FloatingPlatform")
                     {
                         shareNotificationText.text = "A platform is shared!";
@@ -569,6 +573,24 @@ public class Player : NetworkBehaviour
                         audioManager.Play("ConfirmSharing");
                         animator.SetBool("sendSucceed", true);
                     }
+                    else if (sharedObject.tag == "Rock")
+                    {
+                        shareNotificationText.text = "A rock is shared";
+                        string rockname = sharedObject.name;
+                        if (isServer && isLocalPlayer)
+                        {
+                            RpcRock(sharedObject.name);
+                            root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(rockname).gameObject.SetActive(false);
+                        }
+                        if (!isServer && isLocalPlayer)
+                        {
+                            CmdRock(sharedObject.name);
+                            root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(rockname).gameObject.SetActive(false);
+                        }
+                        sharedObject.tag = "CannotShare";
+                        audioManager.Play("ConfirmSharing");
+                        animator.SetBool("sendSucceed", true);
+                    }
                 }
             }
         }
@@ -618,7 +640,7 @@ public class Player : NetworkBehaviour
                     if (kc.ToString().Length > 0)
                     {
                         k = kc.ToString();
-                        print(k + " pressed");
+                        //print(k + " pressed");
                         break;
                     }
                 }
@@ -724,10 +746,10 @@ public class Player : NetworkBehaviour
 
     public void backToCheckPoint()
     {
-		transitionMask.GetComponent<TransitionManager> ().BlackTransition ();
-		transitionMask.GetComponent<TransitionManager> ().transitionTime = 2; 
         transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+		transitionMask.GetComponent<TransitionManager> ().BlackTransition ();
+		transitionMask.GetComponent<TransitionManager> ().transitionTime = 2; 
     }
 
     /***********************************************************************
@@ -1114,6 +1136,33 @@ public class Player : NetworkBehaviour
 
     }
 
+    // sent by server, show rock on clients
+    [ClientRpc]
+    public void RpcRock(string sharedObject)
+    {
+        if (isServer) return;
+        ShareRock(sharedObject, true);
+    }
+
+    // sent by client, show box on server
+    [Command]
+    public void CmdRock(string sharedObject)
+    {
+        ShareRock(sharedObject, false);
+    }
+
+    void ShareRock(string sharedObject, bool isEricWorld)
+    {
+		audioManager.Stop ("SharingHold");
+		audioManager.Play ("ConfirmSharing");
+        GameObject remoteWorld = root.transform.Find(isEricWorld?"EricWorld":"NatalieWorld").gameObject.transform.Find(isEricWorld?"WorldA":"WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+		newObj.tag = "CannotShare";
+        newObj.transform.position = sObj.transform.position;
+    }
+
     /***********************************************************************
      * 2-player position sync
      ***********************************************************************/
@@ -1166,7 +1215,8 @@ public class Player : NetworkBehaviour
 
         audioManager.Play("Death");
 
-        transitionMask.GetComponent<TransitionManager>().transitionTime = 7;
+        if(transitionMask != null && transitionMask.GetComponent<TransitionManager>() != null)
+            transitionMask.GetComponent<TransitionManager>().transitionTime = 7;
         backToCheckPoint();
 
         //call another player die

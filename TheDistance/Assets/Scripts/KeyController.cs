@@ -19,9 +19,10 @@ public class KeyController : MonoBehaviour {
     public int[] both;
 	public GameObject triggerEffect; 
 	public GameObject diaryBtn; 
-
+	public Image[] divideLine; 
 
 	Image memoryBackground; 
+	Text memoryTitle; 
 	Text memoryHint; 
 
 	bool memoryShowed = false;
@@ -54,8 +55,15 @@ public class KeyController : MonoBehaviour {
 			print("Nothign found! something wrong");
 		ima.enabled = true;
 		ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
+
 		memoryBackground = GameObject.Find ("MemoryBackground").GetComponent<Image> ();
 		memoryHint = GameObject.Find ("MemoryHint").GetComponent<Text> ();
+		memoryTitle = GameObject.Find ("MemoryTitle").GetComponent<Text> ();
+		memoryTitle.DOFade (0, 0);
+		if (divideLine.Length == 2) {
+			divideLine [0].DOFade (0, 0);
+			divideLine [1].DOFade (0, 0);
+		}
 		memoryBackground.DOFade (0, 0);
 		memoryHint.DOFade (0, 0);
 		if (memoryContent.Length == 2) {
@@ -71,7 +79,10 @@ public class KeyController : MonoBehaviour {
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);
 				memoryBackground.DOFade (0, 1);
+				memoryTitle.DOFade (0, 1);
 				memoryHint.DOFade (0, 1);
+				divideLine [0].DOFade (0, 1);
+				divideLine [1].DOFade (0, 1);
 			}
 		}
         updateText();
@@ -192,6 +203,12 @@ public class KeyController : MonoBehaviour {
 		Camera.main.GetComponent<DOVModify> ().SetActive (true);
 		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
 		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
+		memoryTitle.text = "Fragment " + (keyIdx + 1).ToString ();
+		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
+		if (divideLine.Length == 2) {
+			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
+			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);
+		}
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 				memoryContent [0].SetActive (true);
 			});
@@ -216,6 +233,12 @@ public class KeyController : MonoBehaviour {
 		Camera.main.GetComponent<DOVModify> ().SetActive (true);
 		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
 		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
+		memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString ();
+		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
+		if (divideLine.Length == 2) {
+			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
+			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);
+		}
 		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
 			memoryContent [1].SetActive (true);
 		});

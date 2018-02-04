@@ -76,6 +76,18 @@ namespace Prototype.NetworkLobby
             joinBttn.onClick.AddListener(OnClickBeClient);
         }
 
+        public void BackToInitPage()
+        {
+            switchToPage("InitPage");
+            lobbyManager.topPanel.ToggleVisibility(true);
+
+            ipInput.onEndEdit.RemoveAllListeners();
+            ipInput.onEndEdit.AddListener(onEndEditIP);
+
+            matchNameInput.onEndEdit.RemoveAllListeners();
+            matchNameInput.onEndEdit.AddListener(onEndEditGameName);
+        }
+
         private void regClientJoinPageButtons()
         {
             Transform clientJoinPage = this.transform.Find("ClientJoinPage");

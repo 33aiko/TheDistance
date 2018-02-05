@@ -51,7 +51,7 @@ public class Player : NetworkBehaviour
 
 	public NPCTrigger curNPC;
     public Text shareNotificationText = null;
-	public Image shareNotificationBG; 
+	public Image shareBarBg, shareBar; 
     public KeyController curFragment = null;
     public float shareTextTime = 1.5f;
 
@@ -223,8 +223,12 @@ public class Player : NetworkBehaviour
         // get the text &BG
         shareNotificationText = GetComponentInChildren<Text>();
         shareNotificationText.text = "";
-		shareNotificationBG = GetComponentInChildren<Image> ();
-		shareNotificationBG.DOFade (0, 0);
+		if (shareBar != null) {
+			shareBar.DOFade (0, 0);
+		}
+		if (shareBarBg != null) {
+			shareBarBg.DOFade (0, 0);
+		}
 
     }
 
@@ -452,14 +456,15 @@ public class Player : NetworkBehaviour
 				if (isLocalPlayer && !isServer) {
 					CmdWaitForShare (shareObject.name);
 				}
-				shareNotificationBG.DOFade (1, 0);
+				shareBarBg.DOFade (1, 0);
+				//start progress bar 
                 if(shareObject.tag == "Box")
-                    shareNotificationText.text = "An object is selected";
+                    shareNotificationText.text = "Sharing the box";
                 else if(shareObject.tag == "FloatingPlatform" ||
                     shareObject.tag == "MovingPlatformSharable")
-                    shareNotificationText.text = "A platform is selected";
+                    shareNotificationText.text = "Sharing the platform";
                 else if(shareObject.tag == "Rock")
-                    shareNotificationText.text = "A rock is selected";
+                    shareNotificationText.text = "Sharing the rock";
             }
 
             selectShareObject = true;
@@ -1411,6 +1416,7 @@ public class Player : NetworkBehaviour
     public void clearShareNotificationText()
     {
         shareNotificationText.text = "";
-		shareNotificationBG.DOFade (0, 0);
+		shareBarBg.DOFade (0, 0);
+		// clear progress bar
     }
 }

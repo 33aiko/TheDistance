@@ -16,6 +16,8 @@ TagManager:
   - DiaryContent1
   - DiaryContent2
   - DiaryContent3
+  - Rock
+  - CannotShare
   layers:
   - Default
   - TransparentFX

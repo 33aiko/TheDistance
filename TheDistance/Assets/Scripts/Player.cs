@@ -457,6 +457,7 @@ public class Player : NetworkBehaviour
 					CmdWaitForShare (shareObject.name);
 				}
 				shareBarBg.DOFade (1, 0);
+				shareBar.DOFade (1, 0);
 				//start progress bar 
                 if(shareObject.tag == "Box")
                     shareNotificationText.text = "Sharing the box";
@@ -1417,6 +1418,6 @@ public class Player : NetworkBehaviour
     {
         shareNotificationText.text = "";
 		shareBarBg.DOFade (0, 0);
-		// clear progress bar
+		shareBar.DOFade (0, 0);
     }
 }

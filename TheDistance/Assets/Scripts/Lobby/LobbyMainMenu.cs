@@ -115,10 +115,13 @@ namespace Prototype.NetworkLobby
 
         public void OnClickHost()
         {
+            Debug.Log("on click host");
             //switchToPage("LobbyPage");
             lobbyManager.StartHost();
 
             platform_temp.SetActive(true);
+
+            lobbyManager.backDelegate = lobbyManager.SimpleBackClbk;
         }
 
 
@@ -127,7 +130,7 @@ namespace Prototype.NetworkLobby
             this.transform.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
             this.transform.Find("DirectPlaySubPanel/ClientJoinPage").gameObject.SetActive(true);
 
-            
+            lobbyManager.backDelegate = lobbyManager.SimpleBackClbk;
         }
 
 

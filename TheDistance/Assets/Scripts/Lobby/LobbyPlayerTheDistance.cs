@@ -54,14 +54,14 @@ namespace Prototype.NetworkLobby
                 SendReadyToBeginMessage();
             }
 
-            print("updating!!!");
+            //print("updating!!!");
 
             if (!someoneReady && playerAtLobby && friendAtLobby)
             {
-                Debug.Log("checking move");
+                //Debug.Log("checking move");
                 if (isServer)
                 {
-                    print("sending to client");
+                    //print("sending to client");
                     PlayerSimple pPS = playerAtLobby.GetComponent<PlayerSimple>();
                     RpcMove(pPS.input.x, pPS.playerJumping, pPS.transform.position);
                 }

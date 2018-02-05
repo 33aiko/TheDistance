@@ -197,6 +197,7 @@ namespace Prototype.NetworkLobby
         public void SimpleBackClbk()
         {
             ChangeTo(mainMenuPanel);
+            Debug.Log("simple back clbk");
         }
                  
         public void StopHostClbk()

@@ -192,7 +192,7 @@ public class PlayerCircleCollider : MonoBehaviour {
         }
     }
 
-    void deletePrevArrow()
+    public void deletePrevArrow()
     {
         if(arrow != null)
             Destroy(arrow);

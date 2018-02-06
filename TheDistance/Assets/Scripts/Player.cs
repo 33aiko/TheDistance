@@ -520,6 +520,7 @@ public class Player : NetworkBehaviour
                     CmdStopShare();
                 }
 				shareNotificationText.text = "";
+                pCC.deletePrevArrow();
             }
             tPressedTime = 0;
             tryShare = false;

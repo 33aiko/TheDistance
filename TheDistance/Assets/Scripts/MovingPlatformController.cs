@@ -26,7 +26,7 @@ public class MovingPlatformController : RaycastController
         canMove = false;
         //transform.position = defaultPosition;
         //targetPos2 = defaultPosition;
-        goingUp = true;
+        goingUp = targetTranslate.y > 0;
 		isMoved = false; 
 		musicPlayed = false; 
     }
@@ -51,7 +51,7 @@ public class MovingPlatformController : RaycastController
 				velocity = move * Time.deltaTime;
 
 				// in case the platform exceeds the check point in one frame
-				if (diff.y < velocity.y) {
+				if (Mathf.Abs(diff.y) < Mathf.Abs(velocity.y)) {
                     velocity.y = (diff.y);
                     Mathf.Clamp(velocity.y, 0, velocity.y);
 					goingUp = false;
@@ -73,12 +73,12 @@ public class MovingPlatformController : RaycastController
 				velocity = -move * Time.deltaTime;
 
 				// in case the platform exceeds the check point in one frame
-				if (diff.y < Mathf.Abs (velocity.y)) {
+				if (Mathf.Abs(diff.y) < Mathf.Abs (velocity.y)) {
 					velocity.y = -diff.y;
 					goingUp = true;
 				}
-				if (diff.y < 0)
-					goingUp = true;
+				//if (diff.y < 0)
+					//goingUp = true;
 				curTranslate += velocity;
 				//if (diff.x < velocity.x) velocity.x = diff.x;
 			}

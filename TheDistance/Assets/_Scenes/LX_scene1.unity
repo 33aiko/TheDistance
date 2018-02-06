@@ -18274,47 +18274,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1309638351721858, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1412307107183450, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1511873991715528, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114716481496747850, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_Text
-      value: Sharing
-      objectReference: {fileID: 0}
-    - target: {fileID: 114716481496747850, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517793485444372, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517793485444372, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517793485444372, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114716481496747850, guid: be916c5f9e5ef794d8b45678f04f894b,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 8db665b0df8b44ec68815088dc3f8709,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
   m_IsPrefabParent: 0

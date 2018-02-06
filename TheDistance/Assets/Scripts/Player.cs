@@ -240,20 +240,25 @@ public class Player : NetworkBehaviour
 	{
         if (!isLocalPlayer)
             return;
-		if (isServer)
-		{
+        if (SceneManager.GetActiveScene().name == "Boat")
+        {
+            if (isServer)
+            {
 
-		//	RpcBoat();
-		//	RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
-		}
-		else
-		{
+                RpcBoat();
+                RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
+            }
+            else
+            {
 
-		//	CmdBoat();
-		//	CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
-		}
-		//input controlling move
-		KeyControlMove();
+                CmdBoat();
+                CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+            }
+
+        }
+
+        //input controlling move
+        KeyControlMove();
 
 		if (isLocalPlayer) {
             //camera
@@ -401,11 +406,15 @@ public class Player : NetworkBehaviour
     {
         //if boat found
         //press v to exciting
-        if (Input.GetKeyDown("v"))
+        if (SceneManager.GetActiveScene().name == "Boat")
         {
-            Debug.Log("V pressed");
-            boatControl(boat);
+            if (Input.GetKeyDown("v"))
+            {
+                Debug.Log("V pressed");
+                boatControl(boat);
+            }
         }
+
         //else:
 
 		// press Q to interact with the object

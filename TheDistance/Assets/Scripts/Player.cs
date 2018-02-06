@@ -68,7 +68,7 @@ public class Player : NetworkBehaviour
     bool tryShare = false;
     float tPressedTime = 0.0f;
     bool tCanShare = false;
-    public float tNeededTime = 3.0f;
+    public float tNeededTime = 2.0f;
 	GameObject appearParticle; 
 
 	bool showNPCcontent = false; 
@@ -427,7 +427,7 @@ public class Player : NetworkBehaviour
             }
 		}
 
-		// press R to close NPC contents 
+		// press Enter to close NPC contents 
 		if (Input.GetButtonDown("Submit")) {
 			if(curNPC != null)
 			{
@@ -435,21 +435,27 @@ public class Player : NetworkBehaviour
 			}
 		}
 
+
+
+	/***********************************************************************
+     * Objects Sharing
+     ***********************************************************************/
         tCanShare = false;
-		// object sharing
+
+		// press T to start sharing
 		if(Input.GetButtonDown("Share"))
         {
 			audioManager.Play ("StartSharing");
 			audioManager.Play ("SharingHold");
-            tryShare = true;
+          
 
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
 
 			GameObject shareObject = pCC.getShareObject(); 
-            print("got " + shareObject.name + " here");
 
 			if (shareObject != null) {
+				tryShare = true;
 				if (isLocalPlayer && isServer) {
 					RpcWaitForShare (shareObject.name);
 				}
@@ -459,13 +465,14 @@ public class Player : NetworkBehaviour
 				shareBarBg.DOFade (1, 0);
 				shareBar.DOFade (1, 0);
 				//start progress bar 
-                if(shareObject.tag == "Box")
-                    shareNotificationText.text = "Sharing the box";
-                else if(shareObject.tag == "FloatingPlatform" ||
-                    shareObject.tag == "MovingPlatformSharable")
-                    shareNotificationText.text = "Sharing the platform";
-                else if(shareObject.tag == "Rock")
-                    shareNotificationText.text = "Sharing the rock";
+//                if(shareObject.tag == "Box")
+//                    shareNotificationText.text = "Sharing the box";
+//                else if(shareObject.tag == "FloatingPlatform" ||
+//                    shareObject.tag == "MovingPlatformSharable")
+//                    shareNotificationText.text = "Sharing the platform";
+//                else if(shareObject.tag == "Rock")
+//                    shareNotificationText.text = "Sharing the rock";
+				shareNotificationText.text = "Sharing";
             }
 
             selectShareObject = true;
@@ -481,8 +488,12 @@ public class Player : NetworkBehaviour
         {
             tPressedTime += Time.deltaTime;
             print("t pressed time is : " + tPressedTime);
-        }
+			if (tPressedTime <= tNeededTime) {
+				shareBar.transform.DOScale (new Vector3 ((tPressedTime / tNeededTime) * 0.27f, 0.27f, 0), Time.deltaTime);
+			}
+        } 
 
+		//release T to share. if press time is longer than need time, sharing succeed. 
         if (Input.GetButtonUp("Share"))
         {
             if(tPressedTime >= tNeededTime)
@@ -498,6 +509,7 @@ public class Player : NetworkBehaviour
             {
                 print("trying to stop sharing");
                 pCC.StopSharingEffect();
+
                 if (isLocalPlayer && isServer)
                 {
                     print("server trying to stop!");
@@ -507,10 +519,15 @@ public class Player : NetworkBehaviour
                 {
                     CmdStopShare();
                 }
+				shareNotificationText.text = "";
             }
             tPressedTime = 0;
             tryShare = false;
 			audioManager.Stop ("SharingHold");
+
+			shareBarBg.DOFade (0, 0.5f);
+			shareBar.DOFade (0, 0.5f);
+
 			cameraZoomValue = -40;
 			if (isLocalPlayer && isServer) {
 				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
@@ -527,10 +544,11 @@ public class Player : NetworkBehaviour
             tryShare = false;
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.3f,0.5f);
 			pCC.highlightNearObject(false);
-            Invoke("clearShareNotificationText", shareTextTime);
+         
 
             if (tCanShare)
             {
+				Invoke("clearShareNotificationText", shareTextTime);
                 GameObject sharedObject = pCC.shareSelectedObject();
                 print(sharedObject.name + " is going to be shared");
 
@@ -1082,7 +1100,7 @@ public class Player : NetworkBehaviour
         print("stopping share!");
         if (appearParticle != null)
         {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+			appearParticle.GetComponent<SharingEffectsController>().FadeOutEffect();
         }
     }
 
@@ -1341,7 +1359,7 @@ public class Player : NetworkBehaviour
     }
 
 
-
+	 
 
     /***********************************************************************
      * Boat control
@@ -1417,7 +1435,5 @@ public class Player : NetworkBehaviour
     public void clearShareNotificationText()
     {
         shareNotificationText.text = "";
-		shareBarBg.DOFade (0, 0);
-		shareBar.DOFade (0, 0);
     }
 }

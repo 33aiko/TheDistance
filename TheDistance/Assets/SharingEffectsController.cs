@@ -92,6 +92,14 @@ public class SharingEffectsController : MonoBehaviour {
 		state = State.Selected;
 	}
 
+	public void FadeOutEffect(){
+		StopParticles (defaultEffect);
+		StopParticles (selectedEffect);
+		if (wind != null) {
+			wind.windMain = 0; 
+		}
+	}
+
 	public void StopSelectedEffect(){
 		Debug.Log ("Stop Selected " + name);
 

@@ -113,6 +113,10 @@ public class Player : NetworkBehaviour
 	{
         //sceneState = 1;!!!!
 		// boat = GameObject.Find("boat").GetComponent<RowBoat>();
+        if (SceneManager.GetActiveScene().name=="Boat")
+        {
+            boat = GameObject.Find("boat").GetComponent<RowBoat>();
+        }
 
         //Text load
         GameObject UIobject = GameObject.Find("UI");

@@ -456,6 +456,7 @@ public class Player : NetworkBehaviour
 
 			if (shareObject != null) {
 				tryShare = true;
+				animator.SetBool ("sendPrepare", true);
 				if (isLocalPlayer && isServer) {
 					RpcWaitForShare (shareObject.name);
 				}
@@ -507,6 +508,7 @@ public class Player : NetworkBehaviour
             }
             if (!tCanShare)
             {
+				animator.SetBool ("sendPrepare", false);
                 print("trying to stop sharing");
                 pCC.StopSharingEffect();
 

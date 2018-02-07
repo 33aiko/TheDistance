@@ -460,8 +460,8 @@ public class Player : NetworkBehaviour
         {
 			audioManager.Play ("StartSharing");
 			audioManager.Play ("SharingHold");
-          
 
+            animator.SetBool("sendSucceed", false);
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
 
@@ -523,6 +523,7 @@ public class Player : NetworkBehaviour
             if (!tCanShare)
             {
 				animator.SetBool ("sendPrepare", false);
+                animator.SetBool("sendSucceed", false);
                 print("trying to stop sharing");
                 pCC.StopSharingEffect();
 
@@ -576,6 +577,8 @@ public class Player : NetworkBehaviour
                 }
                 else
                 {
+                    animator.SetBool("sendSucceed", true);
+                    animator.SetBool("sendPrepare", false);
                     if (sharedObject.tag == "FloatingPlatform")
                     {
                         shareNotificationText.text = "A platform is shared!";
@@ -590,7 +593,6 @@ public class Player : NetworkBehaviour
                         }
                         Debug.Log("found");
                         audioManager.Play("ConfirmSharing");
-                        animator.SetBool("sendSucceed", true);
                         print("a platform here1");
                         sharedObject.tag = "FloatingPlatformShared";
                     }
@@ -607,7 +609,6 @@ public class Player : NetworkBehaviour
                             CmdShareMv(sharedObject.name);
                         }
                         audioManager.Play("ConfirmSharing");
-                        animator.SetBool("sendSucceed", true);
                     }
                     else if (sharedObject.tag == "Box")
                     {
@@ -626,7 +627,6 @@ public class Player : NetworkBehaviour
                         }
                         sharedObject.tag = "BoxCannotShare";
                         audioManager.Play("ConfirmSharing");
-                        animator.SetBool("sendSucceed", true);
                     }
                     else if (sharedObject.tag == "Rock")
                     {
@@ -643,16 +643,15 @@ public class Player : NetworkBehaviour
                             root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(rockname).gameObject.SetActive(false);
                         }
                         sharedObject.tag = "CannotShare";
-						sharedObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
+                        sharedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                         audioManager.Play("ConfirmSharing");
-                        animator.SetBool("sendSucceed", true);
                     }
                 }
             }
         }
 
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(Input.anyKey)
+        if (Input.anyKey)
         {
             currentInputDevice = getInputDevice();
             print("Input device is: " + currentInputDevice.ToString());
@@ -665,12 +664,12 @@ public class Player : NetworkBehaviour
             }
         }
 
-        if(curNPC != null)
+        if (curNPC != null)
         {
             curNPC.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
         }
 
-        if(curFragment != null)
+        if (curFragment != null)
         {
             curFragment.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
         }
@@ -684,14 +683,14 @@ public class Player : NetworkBehaviour
         OTHER,
     }
 
-    private InputDeviceType getInputDevice() 
+    private InputDeviceType getInputDevice()
     {
         string k = "";
         if (Input.anyKey)
         {
             foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
             {
-                if(Input.GetKey(kc))
+                if (Input.GetKey(kc))
                 {
                     if (kc.ToString().Length > 0)
                     {
@@ -702,18 +701,18 @@ public class Player : NetworkBehaviour
                 }
             }
         }
-        if(k.Contains("Joystick"))
+        if (k.Contains("Joystick"))
         {
-            for(int i = 0; i < Input.GetJoystickNames().Length; i++)
+            for (int i = 0; i < Input.GetJoystickNames().Length; i++)
             {
-                if(Input.GetJoystickNames()[i].Length > 0)
+                if (Input.GetJoystickNames()[i].Length > 0)
                 {
                     return getJoystickName(Input.GetJoystickNames()[i]);
                 }
             }
         }
         return InputDeviceType.KEYBOARD;
-        
+
         // TODO: distinguish the controller when both XBOX and PS4 controller is inserted
         // CURRENT: use joystick[0] 
         /*
@@ -733,17 +732,17 @@ public class Player : NetworkBehaviour
                 return getJoystickName(js0Name);
             }
         }
-         */ 
+         */
     }
 
     private InputDeviceType getJoystickName(string str)
     {
         print("Inputstr is :" + str);
-        if(str.Contains("Windows"))
+        if (str.Contains("Windows"))
         {
             return InputDeviceType.XBOX;
         }
-        if(str.Contains("Wireless"))
+        if (str.Contains("Wireless"))
         {
             return InputDeviceType.PS4;
         }
@@ -765,7 +764,7 @@ public class Player : NetworkBehaviour
 
         // set the animator statemachine
         playerUp = velocity.y > 0;
-        bool playerStand = 
+        bool playerStand =
             (velocity.x == 0 && (!playerJumping && !keyspaceDown)
             && controller.collisions.below);
         animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) || keyspaceDown);
@@ -804,8 +803,8 @@ public class Player : NetworkBehaviour
     {
         transform.position = curCheckPoint;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
-		transitionMask.GetComponent<TransitionManager> ().BlackTransition ();
-		transitionMask.GetComponent<TransitionManager> ().transitionTime = 2; 
+        transitionMask.GetComponent<TransitionManager>().BlackTransition();
+        transitionMask.GetComponent<TransitionManager>().transitionTime = 2;
     }
 
     /***********************************************************************
@@ -826,9 +825,9 @@ public class Player : NetworkBehaviour
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
                 audioManager.Play("FragmentOne");
-				go.GetComponent<KeyController> ().PlayEffect ();
-//                go.transform.DOScale(15, 0.4f);
-//                go.transform.DOScale(12, 0.4f).SetDelay(0.8f);
+                go.GetComponent<KeyController>().PlayEffect();
+                //                go.transform.DOScale(15, 0.4f);
+                //                go.transform.DOScale(12, 0.4f).SetDelay(0.8f);
             }
             go.GetComponent<KeyController>().both[0] = 1;
 
@@ -841,11 +840,12 @@ public class Player : NetworkBehaviour
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowEricMemory();
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				Debug.Log ("1show" + keyIdx);
-				if (showDiary != null) {
-					showDiary.SetActive (true);
-				}
+                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+                Debug.Log("1show" + keyIdx);
+                if (showDiary != null)
+                {
+                    showDiary.SetActive(true);
+                }
             }
 
 
@@ -864,9 +864,9 @@ public class Player : NetworkBehaviour
             if (go.GetComponent<KeyController>().both[1] != 1)
             {
                 audioManager.Play("FragmentTwo");
-				go.GetComponent<KeyController> ().PlayEffect ();
-//                go.transform.DOScale(15, 0.8f);
-//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+                go.GetComponent<KeyController>().PlayEffect();
+                //                go.transform.DOScale(15, 0.8f);
+                //                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[1] = 1;
@@ -879,11 +879,12 @@ public class Player : NetworkBehaviour
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				if (showDiary != null) {
-					showDiary.SetActive (true);
-				}
-				Debug.Log ("2show" + keyIdx);
+                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+                if (showDiary != null)
+                {
+                    showDiary.SetActive(true);
+                }
+                Debug.Log("2show" + keyIdx);
             }
 
             go.GetComponent<KeyController>().setBoth();
@@ -902,9 +903,9 @@ public class Player : NetworkBehaviour
             if (go.GetComponent<KeyController>().both[0] != 1)
             {
                 audioManager.Play("FragmentOne");
-				go.GetComponent<KeyController> ().PlayEffect ();
-//                go.transform.DOScale(15, 0.8f);
-//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+                go.GetComponent<KeyController>().PlayEffect();
+                //                go.transform.DOScale(15, 0.8f);
+                //                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[0] = 1;
@@ -916,11 +917,12 @@ public class Player : NetworkBehaviour
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				if (showDiary != null) {
-					showDiary.SetActive (true);
-				}
-			
+                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+                if (showDiary != null)
+                {
+                    showDiary.SetActive(true);
+                }
+
             }
 
             go.GetComponent<KeyController>().setBoth();
@@ -941,9 +943,9 @@ public class Player : NetworkBehaviour
             if (go.GetComponent<KeyController>().both[1] != 1)
             {
                 audioManager.Play("FragmentTwo");
-				go.GetComponent<KeyController> ().PlayEffect ();
-//                go.transform.DOScale(15, 0.8f);
-//                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
+                go.GetComponent<KeyController>().PlayEffect();
+                //                go.transform.DOScale(15, 0.8f);
+                //                go.transform.DOScale(12, 0.8f).SetDelay(0.8f);
             }
 
             go.GetComponent<KeyController>().both[1] = 1;
@@ -957,11 +959,12 @@ public class Player : NetworkBehaviour
                 go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/"+keyIdx.ToString());
-				if (showDiary != null) {
-					showDiary.SetActive (true);
-				}
-				Debug.Log ("4show" + keyIdx);
+                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+                if (showDiary != null)
+                {
+                    showDiary.SetActive(true);
+                }
+                Debug.Log("4show" + keyIdx);
 
             }
             go.GetComponent<KeyController>().setBoth();
@@ -1025,17 +1028,18 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject sObj = root.transform.Find("EricWorld/WorldA/" + sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
     }
 
     //sent by client, show object on server
@@ -1043,58 +1047,65 @@ public class Player : NetworkBehaviour
     public void CmdShare(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
 
-       // Debug.Log(newObj.name);
+        // Debug.Log(newObj.name);
     }
 
 
-	//sent by server, show particle effects on clients
-	[ClientRpc]
-	public void RpcWaitForShare(string shareObject){
-		if (isServer) {
-			return;
-		}
+    //sent by server, show particle effects on clients
+    [ClientRpc]
+    public void RpcWaitForShare(string shareObject)
+    {
+        if (isServer)
+        {
+            return;
+        }
 
-		audioManager.Play ("SharingHold");
-		GameObject sObj = root.transform.Find ("EricWorld/WorldA/" + shareObject).gameObject;
-		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Red") as GameObject);
+        audioManager.Play("SharingHold");
+        GameObject sObj = root.transform.Find("EricWorld/WorldA/" + shareObject).gameObject;
+        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_Red") as GameObject);
 
-		appearParticle.transform.position = sObj.transform.position;
-		if (sObj.GetComponent<MovingPlatformController>()!=null) {
-			if (!sObj.GetComponent<MovingPlatformController>().isMoved)
-			{
-				appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-			}
-		}
-		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
+        appearParticle.transform.position = sObj.transform.position;
+        if (sObj.GetComponent<MovingPlatformController>() != null)
+        {
+            if (!sObj.GetComponent<MovingPlatformController>().isMoved)
+            {
+                appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
+            }
+        }
+        appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
 
-	}
+    }
 
-	//sent by client, show particle effects on server
-	[Command]
-	public void CmdWaitForShare(string shareObject){
-		audioManager.Play ("SharingHold");
-		GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
-		appearParticle = Instantiate (Resources.Load ("Prefabs/Levels/Appeareffect_Blue") as GameObject);
-		appearParticle.transform.position = sObj.transform.position;
-		if (sObj.GetComponent<MovingPlatformController> () != null) {
-			if (!sObj.GetComponent<MovingPlatformController> ().isMoved) {
-				appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-			}
-		}
-		appearParticle.GetComponent<SharingEffectsController> ().PlaySelectedEffect ();
-	}
+    //sent by client, show particle effects on server
+    [Command]
+    public void CmdWaitForShare(string shareObject)
+    {
+        audioManager.Play("SharingHold");
+        GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
+        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_Blue") as GameObject);
+        appearParticle.transform.position = sObj.transform.position;
+        if (sObj.GetComponent<MovingPlatformController>() != null)
+        {
+            if (!sObj.GetComponent<MovingPlatformController>().isMoved)
+            {
+                appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
+            }
+        }
+        appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
+    }
 
     //sent by server, show particle effects on clients
     [ClientRpc]
@@ -1118,7 +1129,7 @@ public class Player : NetworkBehaviour
         print("stopping share!");
         if (appearParticle != null)
         {
-			appearParticle.GetComponent<SharingEffectsController>().FadeOutEffect();
+            appearParticle.GetComponent<SharingEffectsController>().FadeOutEffect();
         }
     }
 
@@ -1131,19 +1142,20 @@ public class Player : NetworkBehaviour
     public void RpcShareMv(string sharedObject)
     {
         if (isServer) { return; }
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
         Debug.Log(sharedObject + " read");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         if (!sObj.GetComponent<MovingPlatformController>().isMoved)
         {
             newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
@@ -1155,18 +1167,19 @@ public class Player : NetworkBehaviour
     public void CmdShareMv(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
         newObj.transform.position = sObj.transform.position;
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         if (!sObj.GetComponent<MovingPlatformController>().isMoved)
         {
             newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
@@ -1182,18 +1195,19 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log(sharedObject + " read");
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-		newObj.tag = "BoxCannotShare";
+        newObj.tag = "BoxCannotShare";
         newObj.transform.position = sObj.transform.position;
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         Debug.Log(sObj.name);
 
     }
@@ -1203,18 +1217,19 @@ public class Player : NetworkBehaviour
     public void CmdBox(string sharedObject)
     {
         Debug.Log(sharedObject + " read");
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-		if (appearParticle != null) {
-			appearParticle.GetComponent<SharingEffectsController> ().StopSelectedEffect ();
-		}
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-		newObj.tag = "BoxCannotShare";
+        newObj.tag = "BoxCannotShare";
         newObj.transform.position = sObj.transform.position;
-		newObj.GetComponentInChildren<SharingEffectsController> ().StopAll ();
+        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         Debug.Log(sObj.name);
 
     }
@@ -1237,13 +1252,13 @@ public class Player : NetworkBehaviour
     void ShareRock(string sharedObject, bool isEricWorld)
     {
         StopShare();
-		audioManager.Stop ("SharingHold");
-		audioManager.Play ("ConfirmSharing");
-        GameObject remoteWorld = root.transform.Find(isEricWorld?"EricWorld":"NatalieWorld").gameObject.transform.Find(isEricWorld?"WorldA":"WorldB").gameObject;
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-		newObj.tag = "CannotShare";
+        newObj.tag = "CannotShare";
         newObj.transform.position = sObj.transform.position;
     }
 
@@ -1299,7 +1314,7 @@ public class Player : NetworkBehaviour
 
         audioManager.Play("Death");
 
-        if(transitionMask != null && transitionMask.GetComponent<TransitionManager>() != null)
+        if (transitionMask != null && transitionMask.GetComponent<TransitionManager>() != null)
             transitionMask.GetComponent<TransitionManager>().transitionTime = 7;
         backToCheckPoint();
 
@@ -1322,7 +1337,7 @@ public class Player : NetworkBehaviour
     {
         if (isServer) { return; }
         Debug.Log("client RPCdie");
-		spirit.GetComponent<Animator> ().SetBool ("SpiritDie", true);
+        spirit.GetComponent<Animator>().SetBool("SpiritDie", true);
         StartCoroutine(WaitToDie());
     }
 
@@ -1331,21 +1346,21 @@ public class Player : NetworkBehaviour
     public void CmdDie()
     {
         Debug.Log("server CMDdie");
-		spirit.GetComponent<Animator> ().SetBool ("SpiritDie", true); 
+        spirit.GetComponent<Animator>().SetBool("SpiritDie", true);
         StartCoroutine(WaitToDie());
     }
 
-	IEnumerator WaitToDie()
-	{
+    IEnumerator WaitToDie()
+    {
         print("Waiting to die at: " + Time.time);
         GameObject.Find("Player").GetComponent<Animator>().SetTrigger("playerDie");
-		yield return new WaitForSeconds (2f);
+        yield return new WaitForSeconds(2f);
         print("Died at " + Time.time);
-		audioManager.Play ("Death");
-		Player p = GameObject.Find("Player").GetComponent<Player>();
-		p.backToCheckPoint();
-		spirit.transform.position = p.transform.position; 
-	}
+        audioManager.Play("Death");
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        p.backToCheckPoint();
+        spirit.transform.position = p.transform.position;
+    }
 
 
     /***********************************************************************
@@ -1377,7 +1392,7 @@ public class Player : NetworkBehaviour
     }
 
 
-	 
+
 
     /***********************************************************************
      * Boat control
@@ -1388,7 +1403,7 @@ public class Player : NetworkBehaviour
         {
             boat.move(1);
             RpcBoat();
-            RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
+            RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
         else
         {
@@ -1439,11 +1454,11 @@ public class Player : NetworkBehaviour
 
     public void setCheck(int level)
     {
-        finishCheck[level-1] = 1;
+        finishCheck[level - 1] = 1;
     }
     public int getCheck(int level)
     {
-        return finishCheck[level-1];
+        return finishCheck[level - 1];
     }
     public void clearCheck(int level)
     {

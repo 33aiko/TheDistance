@@ -632,6 +632,7 @@ public class Player : NetworkBehaviour
                     {
                         shareNotificationText.text = "A rock is shared";
                         string rockname = sharedObject.name;
+
                         if (isServer && isLocalPlayer)
                         {
                             RpcRock(sharedObject.name);
@@ -643,7 +644,7 @@ public class Player : NetworkBehaviour
                             root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(rockname).gameObject.SetActive(false);
                         }
                         sharedObject.tag = "CannotShare";
-                        sharedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                       
                         audioManager.Play("ConfirmSharing");
                     }
                 }
@@ -1256,6 +1257,7 @@ public class Player : NetworkBehaviour
         audioManager.Play("ConfirmSharing");
         GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+		sObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.tag = "CannotShare";

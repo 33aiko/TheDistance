@@ -510,6 +510,7 @@ public class Player : NetworkBehaviour
 		//release T to share. if press time is longer than need time, sharing succeed. 
         if (Input.GetButtonUp("Share"))
         {
+			
             if(tPressedTime >= tNeededTime)
             {
                 tCanShare = true;
@@ -642,6 +643,7 @@ public class Player : NetworkBehaviour
                             root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(rockname).gameObject.SetActive(false);
                         }
                         sharedObject.tag = "CannotShare";
+						sharedObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
                         audioManager.Play("ConfirmSharing");
                         animator.SetBool("sendSucceed", true);
                     }

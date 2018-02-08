@@ -18274,22 +18274,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1309638351721858, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95181682958443200, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 2765baf46db554bfb83a08b1bd6e1ba7, type: 2}
+      objectReference: {fileID: 9100000, guid: 04502f360427f40a89ff86fdfc5dd3e8, type: 2}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
       propertyPath: m_Size.x
-      value: 2
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
       propertyPath: m_Size.y
-      value: 3.28
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}

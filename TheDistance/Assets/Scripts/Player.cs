@@ -18,7 +18,7 @@ public class Player : NetworkBehaviour
 	public string NataliePosName = "NataliePos";
 	public string ShareWorldName="ShareWorld";
 	public string EricAnimator = "Animations/Player_1";
-	public string NatalieAnimator = "Animations/Player_2";
+	public string NatalieAnimator = "Animations/Player_2_Override";
 	public string EricSpiritAnimator = "Animations/Spirit_1";
 	public string NatalieSpiritAnimator = "Animations/Spirit_2";
 
@@ -419,9 +419,11 @@ public class Player : NetworkBehaviour
 
 		// press Q to interact with the object
 		if (Input.GetButton("Push")) {
+            animator.SetBool("pushPrepare", true);
 			controller.collisions.interact = true;
 		} else {
 			controller.collisions.interact = false;
+            animator.SetBool("pushPrepare", false);
 		}
 
 		// press E to view NPC contents

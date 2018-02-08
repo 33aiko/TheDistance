@@ -18280,16 +18280,16 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 04502f360427f40a89ff86fdfc5dd3e8, type: 2}
+      objectReference: {fileID: 9100000, guid: 2765baf46db554bfb83a08b1bd6e1ba7, type: 2}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
       propertyPath: m_Size.x
-      value: 2.27
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
       propertyPath: m_Size.y
-      value: 3.07
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 212070363774117324, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
@@ -26536,7 +26536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -68087,7 +68087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0

@@ -84,7 +84,7 @@ namespace Prototype.NetworkLobby
 
             playerNum++;
 
-            lobbyPage = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage");
+            lobbyPage = GameObject.Find("LobbyManagerTheDistance/LobbyPanel/LobbyPage");
             //playerAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/player");
             //spiritAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/Spirit");
             platform_temp = GameObject.Find("platform_temp");

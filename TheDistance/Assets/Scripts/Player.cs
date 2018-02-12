@@ -251,8 +251,8 @@ public class Player : NetworkBehaviour
             else
             {
 
-                CmdBoat();
-                CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+                //CmdBoat();
+                //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
             }
 
         }
@@ -1411,9 +1411,9 @@ public class Player : NetworkBehaviour
         }
         else
         {
-            boat.move(0);
+            //boat.move(0);
             CmdBoat();
-            CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+            //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
     }
     [ClientRpc]
@@ -1430,6 +1430,8 @@ public class Player : NetworkBehaviour
     public void CmdBoat()
     {
         //
+        boat.move(0);
+        RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
     }
 
     //sent by server, run on all clients

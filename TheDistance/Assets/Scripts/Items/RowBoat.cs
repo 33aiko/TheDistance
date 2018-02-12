@@ -39,11 +39,11 @@ public class RowBoat : MonoBehaviour {
         Debug.Log("V detected");
         Vector3 bottom = (transform.position - transform.up * height / 2);
         Vector3 top = (transform.position + transform.up * height / 2);
-        if (direction==0)
+        if (direction==1)
         {
             r.AddForceAtPosition(-4*transform.up * forceY + 4*transform.right * forceX, new Vector3(top.x, top.y, transform.position.z));
         }
-        else if (direction==1)
+        else if (direction==0)
         {
             // r.AddForce(forceX, forceY, 0);
             r.AddForceAtPosition(4*transform.up * forceY + 4*transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));

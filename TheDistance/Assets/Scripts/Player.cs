@@ -66,6 +66,7 @@ public class Player : NetworkBehaviour
     int sceneState;
 
     bool tryShare = false;
+	bool shareBarFull = false; 
     float tPressedTime = 0.0f;
     bool tCanShare = false;
     public float tNeededTime = 2.0f;
@@ -503,10 +504,16 @@ public class Player : NetworkBehaviour
         if(tryShare)
         {
             tPressedTime += Time.deltaTime;
-            print("t pressed time is : " + tPressedTime);
+            //print("t pressed time is : " + tPressedTime);
 			if (tPressedTime <= tNeededTime) {
 				shareBar.transform.DOScale (new Vector3 ((tPressedTime / tNeededTime) * 0.27f, 0.27f, 0), Time.deltaTime);
 			}
+			if (tPressedTime > tNeededTime && !shareBarFull ) {
+				shareBar.GetComponent<Image> ().DOColor (Color.gray, 6f).SetEase (Ease.Flash, 48, 1);
+				shareBarFull = true; 
+				Debug.Log ("I am here!");
+			}
+
         } 
 
 		//release T to share. if press time is longer than need time, sharing succeed. 
@@ -546,7 +553,10 @@ public class Player : NetworkBehaviour
 			audioManager.Stop ("SharingHold");
 
 			shareBarBg.DOFade (0, 0.5f);
+			shareBar.DOPause ();
 			shareBar.DOFade (0, 0.5f);
+			shareBar.GetComponent<Image> ().DOColor (Color.white, 0);
+			shareBarFull = false; 
 
 			cameraZoomValue = -40;
 			if (isLocalPlayer && isServer) {

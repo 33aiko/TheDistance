@@ -65,7 +65,7 @@ public class SharingEffectsController : MonoBehaviour {
         if (state == State.Selected)
         {
             otherPressedTime += Time.deltaTime;
-            print("your teammate pressed for " + otherPressedTime + "s");
+            //print("your teammate pressed for " + otherPressedTime + "s");
         }
         else
         {

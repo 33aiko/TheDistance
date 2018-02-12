@@ -307,11 +307,15 @@ public class Player : NetworkBehaviour
             if (playerJumping)
             {
                 if (jumpTime > 0.1f)
-                    audioManager.Play("PlayerLand");
+                    if(controller.collisions.below)
+                        audioManager.Play("PlayerLand");
             }
-            playerJumping = false;
+            if(controller.collisions.below)
+            {
+                playerJumping = false;
+                jumpTime = 0;
+            }
             velocity.y = 0;
-            jumpTime = 0;
         }
         else
         {
@@ -377,9 +381,12 @@ public class Player : NetworkBehaviour
 //        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
 		if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
         {
+            /*
             audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;
             playerJumping = true;
+             */
+            PlayerJump();
             keyspaceDown = true;
         }
 
@@ -400,6 +407,23 @@ public class Player : NetworkBehaviour
         {
             //print("update cmd move");
             CmdMove(transform.position);
+        }
+    }
+
+    public void PlayerJump(bool isExternal = false, float externalFactor = 1.0f)
+    {
+        if(controller.collisions.below && !controller.collisions.onLadder && !selectShareObject)
+        {
+            print("here in jumping!");
+            audioManager.Play("PlayerJump");
+            if (isExternal)
+                velocity.y = jumpVelocity * externalFactor;
+            else
+                velocity.y = jumpVelocity;
+
+            playerJumping = true;
+            if (isExternal)
+                controller.Move(velocity * Time.deltaTime);
         }
     }
 
@@ -667,7 +691,7 @@ public class Player : NetworkBehaviour
         if (Input.anyKey)
         {
             currentInputDevice = getInputDevice();
-            print("Input device is: " + currentInputDevice.ToString());
+            //print("Input device is: " + currentInputDevice.ToString());
         }
         else
         {

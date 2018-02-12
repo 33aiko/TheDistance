@@ -17,8 +17,16 @@ public class StepOnTriggerController : NetworkBehaviour{
     MovingPlatformController mPC;
 
 	void Start () {
-        mPC = GameObject.Find(mpName).GetComponent<MovingPlatformController>();
-	}
+        try
+        {
+            mPC = GameObject.Find(mpName).GetComponent<MovingPlatformController>();
+        }
+        catch(System.NullReferenceException e)
+        {
+            Debug.LogWarning("Cannot find moving platform");
+        }
+
+    }
 
     void SetCanMove (bool _canMove)
     {

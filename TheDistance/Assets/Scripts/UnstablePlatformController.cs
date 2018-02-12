@@ -5,14 +5,15 @@ using DG.Tweening;
 
 public class UnstablePlatformController : MonoBehaviour {
 
-    public float respawnTime = 5.0f;
+    public float respawnTime = 6.0f;
+    public float lifetime = 3.0f;
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Player")
         {
-            GetComponent<SpriteRenderer>().DOFade(0, 2);
-            Invoke("setToTrigger", 2.0f);
+            GetComponent<SpriteRenderer>().DOFade(0, lifetime);
+            Invoke("setToTrigger", lifetime);
             Invoke("Respawn", respawnTime);
         }
     }

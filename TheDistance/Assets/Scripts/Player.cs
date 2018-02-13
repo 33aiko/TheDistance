@@ -414,8 +414,7 @@ public class Player : NetworkBehaviour
     {
         if(controller.collisions.below && !controller.collisions.onLadder && !selectShareObject)
         {
-            print("here in jumping!");
-            audioManager.Play("PlayerJump");
+
             if (isExternal)
                 velocity.y = jumpVelocity * externalFactor;
             else

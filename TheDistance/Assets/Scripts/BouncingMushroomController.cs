@@ -26,7 +26,7 @@ public class BouncingMushroomController : MonoBehaviour {
             {
                 // can jump
                 Player p = coll.gameObject.GetComponent<Player>();
-                print("trying to jump!");
+
                 p.PlayerJump(true, jumpFactor);
 
                 // bouncing effect

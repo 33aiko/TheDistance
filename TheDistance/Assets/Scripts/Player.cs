@@ -683,6 +683,25 @@ public class Player : NetworkBehaviour
                        
                         audioManager.Play("ConfirmSharing");
                     }
+                    else if(sharedObject.tag == "Mushroom")
+                    {
+                        shareNotificationText.text = "A rock is shared";
+                        string thisname = sharedObject.name;
+
+                        if (isServer && isLocalPlayer)
+                        {
+                            RpcMushroom(sharedObject.name);
+                            root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(thisname).gameObject.SetActive(false);
+                        }
+                        if (!isServer && isLocalPlayer)
+                        {
+                            CmdMushroom(sharedObject.name);
+                            root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(thisname).gameObject.SetActive(false);
+                        }
+                        sharedObject.tag = "CannotShare";
+
+                        audioManager.Play("ConfirmSharing");
+                    }
                 }
             }
         }
@@ -1294,6 +1313,34 @@ public class Player : NetworkBehaviour
         GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
 		sObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(sObj);
+        newObj.tag = "CannotShare";
+        newObj.transform.position = sObj.transform.position;
+    }
+
+    // sent by server, show rock on clients
+    [ClientRpc]
+    public void RpcMushroom(string sharedObject)
+    {
+        if (isServer) return;
+        ShareMushroom(sharedObject, true);
+    }
+
+    // sent by client, show box on server
+    [Command]
+    public void CmdMushroom(string sharedObject)
+    {
+        ShareMushroom(sharedObject, false);
+    }
+
+    void ShareMushroom(string sharedObject, bool isEricWorld)
+    {
+        StopShare();
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.tag = "CannotShare";

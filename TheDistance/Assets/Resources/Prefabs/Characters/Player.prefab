@@ -215,6 +215,7 @@ MonoBehaviour:
   - Box
   - MovingPlatformSharable
   - Rock
+  - Mushroom
 --- !u!114 &114111649574722406
 MonoBehaviour:
   m_ObjectHideFlags: 1

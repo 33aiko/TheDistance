@@ -180,16 +180,21 @@ public class PlayerCircleCollider : MonoBehaviour {
     {
         // create arrow on the share object
         SpriteRenderer sp = shareObject.gameObject.GetComponent<SpriteRenderer>();
-        if(sp != null)
+        Vector2 v;
+        if (sp)
         {
-            Vector2 v = shareObject.gameObject.GetComponent<SpriteRenderer>().bounds.size;
-            if (arrow == null)
-            {
-                arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
-            }
-            Vector3 tmp = new Vector3(0, v.y/2);
-            arrow.transform.position = shareObject.transform.position + tmp;
+            v = shareObject.gameObject.GetComponent<SpriteRenderer>().bounds.size;
         }
+        else
+        {
+            v = shareObject.gameObject.GetComponent<MeshRenderer>().bounds.size;
+        }
+        if (arrow == null)
+        {
+            arrow = Instantiate(Resources.Load("Prefabs/Items/ShareArrow")) as GameObject;
+        }
+        Vector3 tmp = new Vector3(0, v.y/2);
+        arrow.transform.position = shareObject.transform.position + tmp;
     }
 
     public void deletePrevArrow()

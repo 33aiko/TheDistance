@@ -20,6 +20,7 @@ public class KeyController : MonoBehaviour {
 	public GameObject triggerEffect; 
 	public GameObject diaryBtn; 
 	public Image[] divideLine; 
+	public Image diaryBG;
 
 	Image memoryBackground; 
 	Text memoryTitle; 
@@ -64,6 +65,7 @@ public class KeyController : MonoBehaviour {
 			divideLine [0].DOFade (0, 0);
 			divideLine [1].DOFade (0, 0);
 		}
+		diaryBG.DOFade (0, 0);
 		memoryBackground.DOFade (0, 0);
 		memoryHint.DOFade (0, 0);
 		if (memoryContent.Length == 2) {
@@ -81,6 +83,7 @@ public class KeyController : MonoBehaviour {
 				memoryBackground.DOFade (0, 1);
 				memoryTitle.DOFade (0, 1);
 				memoryHint.DOFade (0, 1);
+				diaryBG.DOFade (0, 1);
 				divideLine [0].DOFade (0, 1);
 				divideLine [1].DOFade (0, 1);
 			}
@@ -205,6 +208,7 @@ public class KeyController : MonoBehaviour {
 		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
 		memoryTitle.text = "Fragment " + (keyIdx + 1).ToString ();
 		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
+		diaryBG.DOFade (1, 0.5f).SetDelay (0.5f);
 		if (divideLine.Length == 2) {
 			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
 			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);
@@ -235,6 +239,7 @@ public class KeyController : MonoBehaviour {
 		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
 		memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString ();
 		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
+		diaryBG.DOFade (1, 0.5f).SetDelay (0.5f);
 		if (divideLine.Length == 2) {
 			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
 			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);

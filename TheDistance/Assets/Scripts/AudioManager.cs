@@ -7,30 +7,27 @@ public class AudioManager : MonoBehaviour
 
 	public static AudioManager instance;
 
+	//I think these can go.
 	public AudioMixerGroup mixerGroup;
-	public AudioMixerGroup musicMixerGroup;
 	public AudioMixerGroup atmoMixerGroup;
+	public AudioMixerGroup envMixerGroup;
+	public AudioMixerGroup musicMixerGroup;
+	//END
 
 	public Sound[] sounds;
 	public Sound[] atmo;
+	public EnvSound[] env;
 	public Sound[] music;
-	//int musicIndex;
 
 	private void Start()
 	{
-		//        print("Playing music!");
-		//        Play("MusicTrack01WithAtmo");
-
-		print ("playing atmo to start");
-		PlayAtmo ( "atmosphere01");
+//		print ("playing atmo to start");
+//		PlayAtmo ( "atmosphere01");
 	}
 
+	//On game load
 	void Awake()
 	{
-		//		masterVolume = 1f;
-		//		effectVolume = 1f;
-		//		musicVolume = 1f;
-		//		ambientVolume = 1f;
 
 		if (instance != null)
 		{
@@ -59,6 +56,14 @@ public class AudioManager : MonoBehaviour
 			a.source.outputAudioMixerGroup = atmoMixerGroup;
 		}
 
+		foreach (EnvSound e in env) {
+			e.source = gameObject.AddComponent<AudioSource>();
+			e.source.clip = e.clip;
+			e.source.loop = e.loop;
+
+			e.source.outputAudioMixerGroup = envMixerGroup;
+		}
+
 		foreach (Sound m in music) {
 			m.source = gameObject.AddComponent<AudioSource> ();
 			m.source.clip = m.clip;
@@ -71,6 +76,19 @@ public class AudioManager : MonoBehaviour
 		//musicIndex = 0;
 	}
 
+
+
+	//
+	public Sound GetSound(string sound){
+		Sound s = Array.Find (sounds, item => item.name == sound);
+		if (s != null)
+			return s;
+		else
+			return null;
+	}
+
+	//generic sound accessor method
+	//sound triggers are handled elsewhere
 	public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
@@ -90,7 +108,23 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	//TEMP Method
+	//Stop sound.
+	public void Stop(string sound)
+	{
+		Sound s = Array.Find (sounds, item => item.name == sound);
+		if (s == null) {
+			Debug.LogWarning ("Sound: " + name + " not found!");
+			return;
+		}
+
+		s.source.Stop();
+	}
+
+
+
+	//Atmos
+
+	//atmo sound accessor method
 	public void PlayAtmo( string atmoName ){
 		Sound a = Array.Find(atmo, item => item.name == atmoName);
 		if (a == null)
@@ -116,24 +150,24 @@ public class AudioManager : MonoBehaviour
 		a.source.Stop ();
 	}
 
-	public Sound GetSound(string sound){
-		Sound s = Array.Find (sounds, item => item.name == sound);
-		if (s != null)
-			return s;
-		else
-			return null;
-	}
+// 	//Using for Env Sounds
+// 	public void Update(){
+// 		foreach(EnvSound e in env){
+// 			e.source.volume = ( 1 / ( (e.dto * e.dto) + 1));
+// 		}
+//
+// //		Sound e = Array.Find (env, item => item.name == env);
+// //		if (e != null)
+// //		{
+// //			e.source.volume = ( 1 / ( (distanceToObject * distanceToObject) + 1));
+// //		}
+// //		else
+// //		{
+// //
+// //		}
+// 	}
 
-	public void Stop(string sound)
-	{
-		Sound s = Array.Find (sounds, item => item.name == sound);
-		if (s == null) {
-			Debug.LogWarning ("Sound: " + name + " not found!");
-			return;
-		}
-
-		s.source.Stop();
-	}
+	//Music
 
 	//music
 	public void PlayMusicTrack( string trackName ){
@@ -158,7 +192,7 @@ public class AudioManager : MonoBehaviour
 	}
 
 	public void StopMusicTrack( string trackName ){
-		
+
 
 		Sound m = Array.Find(music, item => item.name == trackName);
 		if (m == null)
@@ -171,3 +205,15 @@ public class AudioManager : MonoBehaviour
 
 
 }
+
+
+/**
+ * for atmo's... make a new array of Environment sounds. Use Audio trigger areas to trigger the sound.
+ * On enter, play sound.
+ * Create a source object at the location of the Env sound.
+ * Use distance to the Env sound to adjust its volume
+ *
+ * Use location of waterfall image for waterfall.
+ * Create empty game object for cave
+ *
+ * /

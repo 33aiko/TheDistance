@@ -190,7 +190,7 @@ Animator:
   m_GameObject: {fileID: 1309638351721858}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d3da85fc707ce6048ab25e380ecf528e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   NataliePosName: NataliePos
   ShareWorldName: ShareWorld
   EricAnimator: Animations/Player_1
-  NatalieAnimator: Animations/Player_2
+  NatalieAnimator: Animations/Player_2_Override
   EricSpiritAnimator: Animations/Spirit_1
   NatalieSpiritAnimator: Animations/Spirit_2
   spirit: {fileID: 1878287516793506, guid: 1bb0e7cec865944eb865db239881109c, type: 2}
@@ -262,6 +262,8 @@ MonoBehaviour:
   cameraMax: {x: 6539, y: 1000}
   cameraOffset: 110
   cameraZoomValue: 0
+  areaCameraZoomValue: 0
+  currentCameraZoomValue: 0
   haveKey: 000000
   otherHaveKey: 000000
   checkBothFlag: 0

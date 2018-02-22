@@ -82,7 +82,7 @@ public class NPCTrigger : MonoBehaviour {
                // t.text = "";
 				inputUI.gameObject.SetActive(false);
                 instruct.text = "";
-                print("Player leaving NPC");
+                //print("Player leaving NPC");
                 blackmask.DOFade(0, 0);
                 NPCcontent.SetActive(false);
             }

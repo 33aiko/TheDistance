@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CheckPointController : MonoBehaviour {
 
     int cnt = 0;
+    bool isCollected = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,6 +15,8 @@ public class CheckPointController : MonoBehaviour {
             cnt++;
             if(cnt == 2)
             {
+                if (isCollected) return;
+                isCollected = true;
                 Player p = collision.GetComponent<Player>();
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");

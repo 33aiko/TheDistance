@@ -69,6 +69,7 @@ public class PlayerCircleCollider : MonoBehaviour {
         {
             //no near object here
             print("nothing can be shared");
+            shareObject = null;
             return;
         }
         GameObject nearestObject = null;

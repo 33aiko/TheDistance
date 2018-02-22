@@ -40,7 +40,9 @@ public class Player : NetworkBehaviour
 	float currentCameraOffset = 0; 
 	private Vector3 offset;
     public float cameraZoomValue = 0;
+    public float areaCameraZoomValue = 0;
     float currentCameraZoomValue = 0;
+    float prevCameraZoomValue = 0;
 
 	public bool[] haveKey;
 	public bool[] otherHaveKey;
@@ -491,7 +493,9 @@ public class Player : NetworkBehaviour
 			pCC.highlightNearObject();
 			pCC.getDefaultShareObject();
 
-			GameObject shareObject = pCC.getShareObject(); 
+			GameObject shareObject = pCC.getShareObject();
+            if (shareObject != null)
+                print("not null!");
 
 			if (shareObject != null) {
 				tryShare = true;
@@ -575,13 +579,17 @@ public class Player : NetworkBehaviour
             tryShare = false;
 			audioManager.Stop ("SharingHold");
 
-			shareBarBg.DOFade (0, 0.5f);
-			shareBar.DOPause ();
-			shareBar.DOFade (0, 0.5f);
-			shareBar.GetComponent<Image> ().DOColor (Color.white, 0);
-			shareBarFull = false; 
+            if(pCC.getShareObject() != null)
+            {
+                shareBarBg.DOFade(0, 0.5f);
+                shareBar.DOPause ();
+                shareBar.DOFade(0, 0.5f);
+                shareBar.GetComponent<Image> ().DOColor (Color.white, 0);
+            }
+            shareBarFull = false;
 
-			cameraZoomValue = -40;
+            cameraZoomValue = areaCameraZoomValue;
+            //cameraZoomValue -= 40;
 			if (isLocalPlayer && isServer) {
 				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
 			}

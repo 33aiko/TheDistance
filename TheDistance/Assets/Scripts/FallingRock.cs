@@ -17,7 +17,7 @@ public class FallingRock : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        print("Hit!");
+        //print("Hit!");
         if(coll.gameObject.tag == "Player")
         {
             print("hits player");
@@ -25,7 +25,7 @@ public class FallingRock : MonoBehaviour {
         }
         else
         {
-            print("hit ground!");
+            //print("hit ground!");
             RespawnRock();
         }
     }

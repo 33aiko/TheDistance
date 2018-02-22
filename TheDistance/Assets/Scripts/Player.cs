@@ -40,7 +40,9 @@ public class Player : NetworkBehaviour
 	float currentCameraOffset = 0; 
 	private Vector3 offset;
     public float cameraZoomValue = 0;
+    public float areaCameraZoomValue = 0;
     float currentCameraZoomValue = 0;
+    float prevCameraZoomValue = 0;
 
 	public bool[] haveKey;
 	public bool[] otherHaveKey;
@@ -484,7 +486,46 @@ public class Player : NetworkBehaviour
 		// press T to start sharing
 		if(Input.GetButtonDown("Share"))
         {
-            InputEvent_Share_Down();
+			audioManager.Play ("StartSharing");
+			audioManager.Play ("SharingHold");
+
+            animator.SetBool("sendSucceed", false);
+			pCC.highlightNearObject();
+			pCC.getDefaultShareObject();
+
+			GameObject shareObject = pCC.getShareObject();
+            if (shareObject != null)
+                print("not null!");
+
+			if (shareObject != null) {
+				tryShare = true;
+				animator.SetBool ("sendPrepare", true);
+				if (isLocalPlayer && isServer) {
+					RpcWaitForShare (shareObject.name);
+				}
+				if (isLocalPlayer && !isServer) {
+					CmdWaitForShare (shareObject.name);
+				}
+				shareBarBg.DOFade (1, 0);
+				shareBar.DOFade (1, 0);
+				//start progress bar 
+//                if(shareObject.tag == "Box")
+//                    shareNotificationText.text = "Sharing the box";
+//                else if(shareObject.tag == "FloatingPlatform" ||
+//                    shareObject.tag == "MovingPlatformSharable")
+//                    shareNotificationText.text = "Sharing the platform";
+//                else if(shareObject.tag == "Rock")
+//                    shareNotificationText.text = "Sharing the rock";
+				shareNotificationText.text = "Sharing";
+            }
+
+            selectShareObject = true;
+			cameraZoomValue = 40;
+			GetComponent<CameraFollowBox>().moveToCenter();
+
+			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.5f,0.5f);
+			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
+			Camera.main.GetComponent<VignetteModify> ().color = Color.black;
         }
 
         if(tryShare)
@@ -505,7 +546,57 @@ public class Player : NetworkBehaviour
 		//release T to share. if press time is longer than need time, sharing succeed. 
         if (Input.GetButtonUp("Share"))
         {
-            InputEvent_Share_Up();
+			
+            if(tPressedTime >= tNeededTime)
+            {
+                tCanShare = true;
+                print("t pressed time: " + tPressedTime);
+            }
+            else
+            {
+                tCanShare = false;
+            }
+            if (!tCanShare)
+            {
+				animator.SetBool ("sendPrepare", false);
+                animator.SetBool("sendSucceed", false);
+                print("trying to stop sharing");
+                pCC.StopSharingEffect();
+
+                if (isLocalPlayer && isServer)
+                {
+                    print("server trying to stop!");
+                    RpcStopShare();
+                }
+                if (isLocalPlayer && !isServer)
+                {
+                    CmdStopShare();
+                }
+				shareNotificationText.text = "";
+                pCC.deletePrevArrow();
+            }
+            tPressedTime = 0;
+            tryShare = false;
+			audioManager.Stop ("SharingHold");
+
+            if(pCC.getShareObject() != null)
+            {
+                shareBarBg.DOFade(0, 0.5f);
+                shareBar.DOPause ();
+                shareBar.DOFade(0, 0.5f);
+                shareBar.GetComponent<Image> ().DOColor (Color.white, 0);
+            }
+            shareBarFull = false;
+
+            cameraZoomValue = areaCameraZoomValue;
+            //cameraZoomValue -= 40;
+			if (isLocalPlayer && isServer) {
+				Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+			}
+			if (isLocalPlayer && !isServer) {
+				Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+			}
+
         }
 
 		if(Input.GetButtonUp("Share") && selectShareObject)
@@ -646,132 +737,6 @@ public class Player : NetworkBehaviour
             curFragment.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
         }
     }
-
-    void InputEvent_Share_Down()
-    {
-        audioManager.Play("StartSharing");
-        audioManager.Play("SharingHold");
-
-        animator.SetBool("sendSucceed", false);
-        pCC.highlightNearObject();
-        pCC.getDefaultShareObject();
-
-        GameObject shareObject = pCC.getShareObject();
-
-        if (shareObject != null)
-        {
-            tryShare = true;
-            animator.SetBool("sendPrepare", true);
-            if (isLocalPlayer && isServer)
-            {
-                RpcWaitForShare(shareObject.name);
-            }
-            if (isLocalPlayer && !isServer)
-            {
-                CmdWaitForShare(shareObject.name);
-            }
-            shareBarBg.DOFade(1, 0);
-            shareBar.DOFade(1, 0);
-            //start progress bar 
-            //                if(shareObject.tag == "Box")
-            //                    shareNotificationText.text = "Sharing the box";
-            //                else if(shareObject.tag == "FloatingPlatform" ||
-            //                    shareObject.tag == "MovingPlatformSharable")
-            //                    shareNotificationText.text = "Sharing the platform";
-            //                else if(shareObject.tag == "Rock")
-            //                    shareNotificationText.text = "Sharing the rock";
-            shareNotificationText.text = "Sharing";
-        }
-
-        selectShareObject = true;
-        cameraZoomValue = 40;
-        GetComponent<CameraFollowBox>().moveToCenter();
-
-        DOTween.To(() => Camera.main.GetComponent<VignetteModify>().intensity, (x) => Camera.main.GetComponent<VignetteModify>().intensity = x, 0.5f, 0.5f);
-        currentFilter = Camera.main.GetComponent<VignetteModify>().color;
-        Camera.main.GetComponent<VignetteModify>().color = Color.black;
-    }
-
-    void InputEvent_Share_Up()
-    {
-        if (tPressedTime >= tNeededTime)
-        {
-            tCanShare = true;
-            print("t pressed time: " + tPressedTime);
-        }
-        else
-        {
-            tCanShare = false;
-        }
-        if (!tCanShare)
-        {
-            animator.SetBool("sendPrepare", false);
-            animator.SetBool("sendSucceed", false);
-            print("trying to stop sharing");
-            pCC.StopSharingEffect();
-
-            if (isLocalPlayer && isServer)
-            {
-                print("server trying to stop!");
-                RpcStopShare();
-            }
-            if (isLocalPlayer && !isServer)
-            {
-                CmdStopShare();
-            }
-            shareNotificationText.text = "";
-            pCC.deletePrevArrow();
-        }
-        tPressedTime = 0;
-        tryShare = false;
-        audioManager.Stop("SharingHold");
-
-        shareBarBg.DOFade(0, 0.5f);
-        shareBar.DOPause();
-        shareBar.DOFade(0, 0.5f);
-        shareBar.GetComponent<Image>().DOColor(Color.white, 0);
-        shareBarFull = false;
-
-        cameraZoomValue = -40;
-        if (isLocalPlayer && isServer)
-        {
-            Camera.main.GetComponent<VignetteModify>().color = ericFilter;
-        }
-        if (isLocalPlayer && !isServer)
-        {
-            Camera.main.GetComponent<VignetteModify>().color = natalieFilter;
-        }
-
-    }
-
-    void OnApplicationFocus(bool hasFocus)
-    {
-        if (hasFocus)
-        {
-            print("have focus");
-            if(Input.GetButtonDown("Share"))
-            {
-                //InputEvent_Share_Down();
-            }
-        }
-        else
-        {
-            print("lose focus!");
-            InputEvent_Share_Up();
-        }
-    }
-
-
-    /*
-  _____                   _         _            _          
- |_   _|                 | |       | |          (_)         
-   | |  _ __  _ __  _   _| |_    __| | _____   ___  ___ ___ 
-   | | | '_ \| '_ \| | | | __|  / _` |/ _ \ \ / / |/ __/ _ \
-  _| |_| | | | |_) | |_| | |_  | (_| |  __/\ V /| | (_|  __/
- |_____|_| |_| .__/ \__,_|\__|  \__,_|\___| \_/ |_|\___\___|
-             | |                                            
-             |_|                                            
-     */
 
     public enum InputDeviceType
     {

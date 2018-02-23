@@ -24,6 +24,7 @@ public class Player : NetworkBehaviour
 
 	public GameObject spirit;
 	public Vector3 spiritTargetPos;
+    bool inCave = true;
 
 	public float interpolateTime = 20;
 
@@ -270,27 +271,57 @@ public class Player : NetworkBehaviour
             //Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
         }
 
+        if(inCave)
+        {
+            //MoveVignette(transform.position, "Player Vignette");
+        }
 
         //interpolate move by frame rate, when position not equal, move
 		if (!spirit.transform.position.Equals (spiritTargetPos)) {
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
 
-            Vector3 rua = Camera.main.WorldToViewportPoint(spirit.transform.position);
-            print("spirit position: " + rua);
-            rua.x = Mathf.Clamp(rua.x, 0, 1);
-            rua.y = Mathf.Clamp(rua.y, 0, 1);
-            GameObject sv = GameObject.Find("Spirit Vignette");
-            if(sv != null)
+            if(inCave)
             {
-                sv.transform.position = new Vector3(rua.x * Screen.width, rua.y * Screen.height - 50, 0);
+                //MoveVignette(spirit.transform.position, "Spirit Vignette");
             }
-            else
-            {
-                print("sv is null!");
-            }
-            //			audioManager.Play ("SpiritMove");
-        } 
-			
+        }
+
+    }
+
+    void MoveVignette(Vector3 pos, string n)
+    {
+        Vector3 rua = Camera.main.WorldToViewportPoint(pos);
+        rua.x = Mathf.Clamp(rua.x, 0, 1);
+        rua.y = Mathf.Clamp(rua.y, 0, 1);
+        GameObject v = GameObject.Find(n);
+        if (v != null)
+        {
+            v.transform.position = new Vector3(rua.x * Screen.width, rua.y * Screen.height - 50, 0);
+        }
+        else
+        {
+            print("cannot find " + n);
+        }
+    }
+
+    public void EnterCave()
+    {
+        inCave = true;
+        GameObject sv = GameObject.Find("Spirit Vignette");
+        if(sv)
+        {
+            sv.GetComponent<Image>().DOFade(1, 2.0f);
+        }
+    }
+
+    public void LeaveCave()
+    {
+        inCave = false;
+        GameObject sv = GameObject.Find("Spirit Vignette");
+        if(sv)
+        {
+            sv.GetComponent<Image>().DOFade(0, 2.0f);
+        }
     }
 
     public void TweenCameraZoomValue(float changeZValue)

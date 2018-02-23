@@ -271,19 +271,19 @@ public class Player : NetworkBehaviour
             //Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
         }
 
-        if(inCave)
-        {
-            //MoveVignette(transform.position, "Player Vignette");
-        }
+        //if(inCave)
+        //{
+        //    //MoveVignette(transform.position, "Player Vignette");
+        //}
 
         //interpolate move by frame rate, when position not equal, move
 		if (!spirit.transform.position.Equals (spiritTargetPos)) {
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
 
-            if(inCave)
-            {
-                //MoveVignette(spirit.transform.position, "Spirit Vignette");
-            }
+            //if(inCave)
+            //{
+            //    //MoveVignette(spirit.transform.position, "Spirit Vignette");
+            //}
         }
 
     }
@@ -307,21 +307,15 @@ public class Player : NetworkBehaviour
     public void EnterCave()
     {
         inCave = true;
-        GameObject sv = GameObject.Find("Spirit Vignette");
-        if(sv)
-        {
-            sv.GetComponent<Image>().DOFade(1, 2.0f);
-        }
+        GameObject g = transform.Find("Masked Background").gameObject;
+        g.SetActive(true);
     }
 
     public void LeaveCave()
     {
         inCave = false;
-        GameObject sv = GameObject.Find("Spirit Vignette");
-        if(sv)
-        {
-            sv.GetComponent<Image>().DOFade(0, 2.0f);
-        }
+        GameObject g = transform.Find("Masked Background").gameObject;
+        g.SetActive(false);
     }
 
     public void TweenCameraZoomValue(float changeZValue)

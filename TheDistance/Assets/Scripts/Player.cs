@@ -274,8 +274,22 @@ public class Player : NetworkBehaviour
         //interpolate move by frame rate, when position not equal, move
 		if (!spirit.transform.position.Equals (spiritTargetPos)) {
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
-//			audioManager.Play ("SpiritMove");
-		} 
+
+            Vector3 rua = Camera.main.WorldToViewportPoint(spirit.transform.position);
+            print("spirit position: " + rua);
+            rua.x = Mathf.Clamp(rua.x, 0, 1);
+            rua.y = Mathf.Clamp(rua.y, 0, 1);
+            GameObject sv = GameObject.Find("Spirit Vignette");
+            if(sv != null)
+            {
+                sv.transform.position = new Vector3(rua.x * Screen.width, rua.y * Screen.height - 50, 0);
+            }
+            else
+            {
+                print("sv is null!");
+            }
+            //			audioManager.Play ("SpiritMove");
+        } 
 			
     }
 

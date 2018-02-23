@@ -22,7 +22,8 @@ public class CameraZoomTrigger : MonoBehaviour {
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 p.areaCameraZoomValue = changeZValue;
                 //DOTween.To(() => p.currentCameraZoomValue, x => p.currentCameraZoomValue= x, changeZValue, 3);
-                DOTween.To(() => p.cameraZoomValue, x => p.cameraZoomValue = x, changeZValue, 3);
+                //DOTween.To(() => p.cameraZoomValue, x => p.cameraZoomValue = x, changeZValue, 3);
+                p.TweenCameraZoomValue(changeZValue);
                 currentOffset = p.cameraOffset;
                 p.cameraOffset = changeOffset;
             }

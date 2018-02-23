@@ -41,8 +41,9 @@ public class Player : NetworkBehaviour
 	private Vector3 offset;
     public float cameraZoomValue = 0;
     public float areaCameraZoomValue = 0;
-    float currentCameraZoomValue = 0;
+    public float currentCameraZoomValue = 0;
     float prevCameraZoomValue = 0;
+    Tween cameraTween;
 
 	public bool[] haveKey;
 	public bool[] otherHaveKey;
@@ -276,6 +277,11 @@ public class Player : NetworkBehaviour
 //			audioManager.Play ("SpiritMove");
 		} 
 			
+    }
+
+    public void TweenCameraZoomValue(float changeZValue)
+    {
+        cameraTween = DOTween.To(()=>cameraZoomValue, x => cameraZoomValue = x, changeZValue, 3);
     }
 
     void UpdateCameraPosition()
@@ -520,8 +526,9 @@ public class Player : NetworkBehaviour
             }
 
             selectShareObject = true;
+            cameraTween.Kill();
 			cameraZoomValue = 40;
-			GetComponent<CameraFollowBox>().moveToCenter();
+            GetComponent<CameraFollowBox>().moveToCenter();
 
 			DOTween.To (() => Camera.main.GetComponent<VignetteModify> ().intensity , (x) => Camera.main.GetComponent<VignetteModify> ().intensity  = x,0.5f,0.5f);
 			currentFilter = Camera.main.GetComponent<VignetteModify> ().color;
@@ -560,12 +567,12 @@ public class Player : NetworkBehaviour
             {
 				animator.SetBool ("sendPrepare", false);
                 animator.SetBool("sendSucceed", false);
-                print("trying to stop sharing");
+                //print("trying to stop sharing");
                 pCC.StopSharingEffect();
 
                 if (isLocalPlayer && isServer)
                 {
-                    print("server trying to stop!");
+                    //print("server trying to stop!");
                     RpcStopShare();
                 }
                 if (isLocalPlayer && !isServer)

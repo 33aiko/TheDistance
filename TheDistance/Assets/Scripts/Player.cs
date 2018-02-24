@@ -278,8 +278,7 @@ public class Player : NetworkBehaviour
         }
 
         caveMaterial.SetVector("_RUA", transform.position);
-
-
+        caveMaterial.SetVector("_SpiritPos", spirit.transform.position);
 
     }
 

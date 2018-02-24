@@ -277,7 +277,7 @@ public class Player : NetworkBehaviour
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
         }
 
-        caveMaterial.SetVector("_RUA", transform.position);
+        caveMaterial.SetVector("_PlayerPos", transform.position);
         caveMaterial.SetVector("_SpiritPos", spirit.transform.position);
 
     }

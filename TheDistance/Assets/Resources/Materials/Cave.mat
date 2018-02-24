@@ -78,5 +78,6 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0.33793116, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RUA: {r: 2996.668, g: 344.18, b: 0, a: 0}
-    - _SpiritPos: {r: 3270.1558, g: 655.1802, b: 0, a: 0}
+    - _PlayerPos: {r: 3695.984, g: 653.18005, b: 0, a: 0}
+    - _RUA: {r: 3420.1482, g: 653.18005, b: 0, a: 0}
+    - _SpiritPos: {r: 546.1553, g: 1013.76514, b: 0, a: 0}

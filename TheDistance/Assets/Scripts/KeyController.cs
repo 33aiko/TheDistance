@@ -22,6 +22,9 @@ public class KeyController : MonoBehaviour {
 	public Image[] divideLine; 
 	public Image diaryBG;
 
+    public bool isInCave = false;
+    Material caveMaterial;
+
 	Image memoryBackground; 
 	Text memoryTitle; 
 	Text memoryHint; 
@@ -72,7 +75,13 @@ public class KeyController : MonoBehaviour {
 			memoryContent [0].SetActive (false);
 			memoryContent [1].SetActive (false);
 		}
-	}
+
+        if (isInCave)
+        {
+            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
+            caveMaterial.SetVector("_FragmentPos", transform.position);
+        }
+    }
 
 	private void Update(){
 		if(Input.GetButtonDown("Submit")){

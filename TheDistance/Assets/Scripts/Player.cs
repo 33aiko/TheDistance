@@ -28,7 +28,7 @@ public class Player : NetworkBehaviour
 
 	public float interpolateTime = 20;
 
-    public Material caveMaterial;
+    Material caveMaterial = null;
 
 	public float jumpHeight;
 	public float timeToJumpApex;
@@ -197,6 +197,11 @@ public class Player : NetworkBehaviour
         }
         spirit.SetActive(true);
 
+        /* initial the cave effect material */
+        if (caveMaterial == null)
+            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
+        caveMaterial.SetVector("_SpiritPos", new Vector3(0, 0, -1));
+
 
         // init camera pos
         if (isLocalPlayer)
@@ -277,6 +282,8 @@ public class Player : NetworkBehaviour
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
         }
 
+        if(caveMaterial == null)
+            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
         caveMaterial.SetVector("_PlayerPos", transform.position);
         caveMaterial.SetVector("_SpiritPos", spirit.transform.position);
 

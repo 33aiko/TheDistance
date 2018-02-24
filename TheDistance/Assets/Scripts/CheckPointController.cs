@@ -5,8 +5,20 @@ using DG.Tweening;
 
 public class CheckPointController : MonoBehaviour {
 
+    public bool isInCave = false;
+
     int cnt = 0;
     bool isCollected = false;
+    Material caveMaterial;
+
+    void Start()
+    {
+        if(isInCave)
+        {
+            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,9 +33,11 @@ public class CheckPointController : MonoBehaviour {
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");
                 //gameObject.SetActive(false);
-				this.GetComponent<SpriteRenderer>().DOFade(1,0.5f);
-				this.transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
-				this.transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
+				GetComponent<SpriteRenderer>().DOFade(1,0.5f);
+				transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
+				transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
+
+                caveMaterial.SetVector("_CheckpointPos", transform.position);
 
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("Checkpoint");
             }

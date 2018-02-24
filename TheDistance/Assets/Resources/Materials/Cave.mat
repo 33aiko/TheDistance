@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Cave
   m_Shader: {fileID: 4800000, guid: c9907206173a40342b74d2964815b9a5, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -56,16 +56,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CheckpointLightRadius: 400
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _Float: 1.5
+    - _FragmentLightRadius: 500
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightRadius: 300
+    - _LightRadius: 500
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RUA: 0.44806215
@@ -74,10 +76,12 @@ Material:
     - _SpiritLightRadius: 500
     - _SrcBlend: 1
     - _UVSec: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
+    - _ChekpointPos: {r: 0, g: 0, b: -1, a: 1}
     - _Color: {r: 0, g: 0.33793116, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlayerPos: {r: 3695.984, g: 653.18005, b: 0, a: 0}
+    - _FragmentPos: {r: 3048.1553, g: 79.76514, b: 0, a: 0}
+    - _PlayerPos: {r: 3344.2625, g: 33.065666, b: 0, a: 0}
     - _RUA: {r: 3420.1482, g: 653.18005, b: 0, a: 0}
-    - _SpiritPos: {r: 546.1553, g: 1013.76514, b: 0, a: 0}
+    - _SpiritPos: {r: -198.84473, g: 47.765137, b: 0, a: 0}

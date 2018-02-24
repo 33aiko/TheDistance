@@ -5,6 +5,10 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_PlayerPos("Player Pos", Vector)=(0,0,0)
 		_SpiritPos("Spirit Pos", Vector)=(0,0,-1)
+		_FragmentPos("Fragment pos", Vector)=(0,0,-1)
+		_ChekpointPos("Checkpoint pos", Vector)=(0,0,-1)
+		_FragmentLightRadius("Fragment Light Radius", float) = 500
+		_CheckpointLightRadius("Checkpoint Light Radius", float) = 500
 		_SpiritLightRadius("Spirit Light Radius", float) = 800
 		_LightRadius("Light Radius", float) = 300
 	}
@@ -51,10 +55,17 @@
 			};
 
 			sampler2D _MainTex;
+
 			float3 _PlayerPos;
 			float3 _SpiritPos;
+			float3 _FragmentPos;
+			float3 _CheckpointPos;
+
 			float _LightRadius;
 			float _SpiritLightRadius;
+			float _FragmentLightRadius;
+			float _CheckpointLightRadius;
+
 			float4 _MainTex_ST;
 			
 			v2f vert (appdata v)
@@ -75,6 +86,16 @@
 				if(_SpiritPos.z > -0.5)
 				{
 					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _SpiritPos, _SpiritLightRadius));
+				}
+
+				if(_FragmentPos.z > -0.5)
+				{
+					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _FragmentPos, _FragmentLightRadius));
+				}
+
+				if(_CheckpointPos.z > -0.5)
+				{
+					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _CheckpointPos, _CheckpointLightRadius));
 				}
 
 				return col;

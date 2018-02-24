@@ -28,6 +28,7 @@ public class Player : NetworkBehaviour
 
 	public float interpolateTime = 20;
 
+    public Material caveMaterial;
 
 	public float jumpHeight;
 	public float timeToJumpApex;
@@ -271,20 +272,14 @@ public class Player : NetworkBehaviour
             //Camera.main.transform.position = new Vector3 (Mathf.Clamp (Camera.main.transform.position.x, cameraMin.x, cameraMax.x), Mathf.Clamp (Camera.main.transform.position.y, cameraMin.y, cameraMax.y), Camera.main.transform.position.z);
         }
 
-        //if(inCave)
-        //{
-        //    //MoveVignette(transform.position, "Player Vignette");
-        //}
-
-        //interpolate move by frame rate, when position not equal, move
+       //interpolate move by frame rate, when position not equal, move
 		if (!spirit.transform.position.Equals (spiritTargetPos)) {
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
-
-            //if(inCave)
-            //{
-            //    //MoveVignette(spirit.transform.position, "Spirit Vignette");
-            //}
         }
+
+        caveMaterial.SetVector("_RUA", transform.position);
+
+
 
     }
 

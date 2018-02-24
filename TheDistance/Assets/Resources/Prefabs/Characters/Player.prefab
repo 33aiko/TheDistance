@@ -342,6 +342,7 @@ MonoBehaviour:
   spirit: {fileID: 1878287516793506, guid: 1bb0e7cec865944eb865db239881109c, type: 2}
   spiritTargetPos: {x: 0, y: 0, z: 0}
   interpolateTime: 10
+  caveMaterial: {fileID: 2100000, guid: c57676a0902d4594482ebaf621b9cbab, type: 2}
   jumpHeight: 120
   timeToJumpApex: 0.36
   curCheckPoint: {x: 0, y: 0, z: 0}

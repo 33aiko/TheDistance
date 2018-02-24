@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_RUA("RUA", Vector)=(0,0,0)
+		_LightRadius("Light Radius", float) = 300
 	}
 	SubShader
 	{
@@ -35,6 +36,7 @@
 
 			sampler2D _MainTex;
 			float3 _RUA;
+			float _LightRadius;
 			float4 _MainTex_ST;
 			
 			v2f vert (appdata v)
@@ -50,7 +52,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float f = 0;
-				float radius = 300;
+				float radius = _LightRadius;
 				float d = distance(i.rua, _RUA);
 				fixed4 col = tex2D(_MainTex, i.uv);
 				if(d < radius)

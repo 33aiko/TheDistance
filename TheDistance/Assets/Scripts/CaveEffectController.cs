@@ -7,10 +7,14 @@ public class CaveEffectController : MonoBehaviour {
     public Material caveMaterial;
     Renderer caveRender;
 
-	void Start () {
+    void Start() {
         caveRender = GetComponent<Renderer>();
         caveMaterial = caveRender.material;
-
         caveRender.sortingLayerName = "Foreground";
-	}
+    }
+
+    public void SetShaderPosition(string n, Vector3 pos)
+    {
+        caveMaterial.SetVector(n, pos);
+    }
 }

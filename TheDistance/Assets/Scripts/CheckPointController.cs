@@ -37,7 +37,7 @@ public class CheckPointController : MonoBehaviour {
 				transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
 				transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
 
-                caveMaterial.SetVector("_CheckpointPos", transform.position);
+                FindObjectOfType<CaveEffectController>().SetShaderPosition("_CheckpointPos", transform.position);
 
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("Checkpoint");
             }

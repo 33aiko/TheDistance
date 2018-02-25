@@ -289,36 +289,6 @@ public class Player : NetworkBehaviour
 
     }
 
-    void MoveVignette(Vector3 pos, string n)
-    {
-        Vector3 rua = Camera.main.WorldToViewportPoint(pos);
-        rua.x = Mathf.Clamp(rua.x, 0, 1);
-        rua.y = Mathf.Clamp(rua.y, 0, 1);
-        GameObject v = GameObject.Find(n);
-        if (v != null)
-        {
-            v.transform.position = new Vector3(rua.x * Screen.width, rua.y * Screen.height - 50, 0);
-        }
-        else
-        {
-            print("cannot find " + n);
-        }
-    }
-
-    public void EnterCave()
-    {
-        inCave = true;
-        GameObject g = transform.Find("Masked Background").gameObject;
-        g.SetActive(true);
-    }
-
-    public void LeaveCave()
-    {
-        inCave = false;
-        GameObject g = transform.Find("Masked Background").gameObject;
-        g.SetActive(false);
-    }
-
     public void TweenCameraZoomValue(float changeZValue)
     {
         cameraTween = DOTween.To(()=>cameraZoomValue, x => cameraZoomValue = x, changeZValue, 3);
@@ -552,16 +522,12 @@ public class Player : NetworkBehaviour
 				if (isLocalPlayer && !isServer) {
 					CmdWaitForShare (shareObject.name);
 				}
+
+                //start progress bar 
+                DOTween.Kill(shareBar);
+                DOTween.Kill(shareBarBg);
 				shareBarBg.DOFade (1, 0);
 				shareBar.DOFade (1, 0);
-				//start progress bar 
-//                if(shareObject.tag == "Box")
-//                    shareNotificationText.text = "Sharing the box";
-//                else if(shareObject.tag == "FloatingPlatform" ||
-//                    shareObject.tag == "MovingPlatformSharable")
-//                    shareNotificationText.text = "Sharing the platform";
-//                else if(shareObject.tag == "Rock")
-//                    shareNotificationText.text = "Sharing the rock";
 				shareNotificationText.text = "Sharing";
             }
 

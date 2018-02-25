@@ -12,7 +12,7 @@ public class CaveEntranceController : MonoBehaviour {
         {
             print("player enters!");
             Player p = coll.gameObject.GetComponent<Player>();
-            p.EnterCave();
+            //p.EnterCave();
         }
     }
 
@@ -25,13 +25,13 @@ public class CaveEntranceController : MonoBehaviour {
             print(transform.position.x);
             if(isRight)
             {
-                if (p.transform.position.x < transform.position.x)
-                    p.LeaveCave();
+                if (p.transform.position.x < transform.position.x) ;
+                    //p.LeaveCave();
             }
             else
             {
-                if (p.transform.position.x > transform.position.x)
-                    p.LeaveCave();
+                if (p.transform.position.x > transform.position.x);
+                    //p.LeaveCave();
             }
         }
     }

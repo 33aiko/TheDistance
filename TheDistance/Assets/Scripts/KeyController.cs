@@ -78,8 +78,7 @@ public class KeyController : MonoBehaviour {
 
         if (isInCave)
         {
-            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
-            caveMaterial.SetVector("_FragmentPos", transform.position);
+            FindObjectOfType<CaveEffectController>().SetShaderPosition("_FragmentPos", transform.position);
         }
     }
 

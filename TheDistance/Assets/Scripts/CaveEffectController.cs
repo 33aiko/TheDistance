@@ -25,7 +25,7 @@ public class CaveEffectController : MonoBehaviour {
         if(coll.name == "Spirit")
         {
             Transform pe = coll.transform.Find("spiritIdlePE");
-            spiritTween = pe.DOScale(88, 0.2f);
+            spiritTween = pe.DOScale(100, 1.0f);
             caveMaterial.SetFloat("_SpiritLightRadius", 300);
         }
     }
@@ -36,7 +36,7 @@ public class CaveEffectController : MonoBehaviour {
         {
             Transform pe = coll.transform.Find("spiritIdlePE");
             spiritTween.Kill();
-            spiritTween = pe.DOScale(30, 0.2f);
+            spiritTween = pe.DOScale(30, 1.0f);
             caveMaterial.SetFloat("_SpiritLightRadius", 200);
         }
     }

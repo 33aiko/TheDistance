@@ -789,6 +789,13 @@ public class Player : NetworkBehaviour
         }
     }
 
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+            if (isSharing) 
+                FinishSharing();
+    }
+
     /*
   _____                       _     _____                _            
  |_   _|                     | |   |  __ \              (_)           

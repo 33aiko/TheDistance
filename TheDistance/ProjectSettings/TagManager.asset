@@ -18,6 +18,7 @@ TagManager:
   - DiaryContent3
   - Rock
   - CannotShare
+  - Boat
   layers:
   - Default
   - TransparentFX

@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 187642605}
   m_Layer: 0
   m_Name: boat
-  m_TagString: Untagged
+  m_TagString: Boat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,6 +455,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceX: 3
   forceY: 2
+  oarEric: {fileID: 0}
+  oarNatalie: {fileID: 0}
+  originalRotationEric: {x: 0, y: 0, z: 0, w: 0}
+  newRotationEric: {x: 0, y: 0, z: 0, w: 0}
+  finalRotationEric: {x: 0, y: 0, z: 0, w: 0}
+  tempRotationEric: {x: 0, y: 0, z: 0, w: 0}
 --- !u!60 &187642605
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -762,13 +768,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 801632736}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9413452, w: -0.3374452}
-  m_LocalPosition: {x: 0.27, y: 0.13, z: -3.85}
+  m_LocalRotation: {x: 0, y: 0, z: 0.61868954, w: 0.7856356}
+  m_LocalPosition: {x: 0.2293285, y: 0.13730302, z: -3.8500001}
   m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 187642603}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -219.443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 76.441}
 --- !u!212 &801632738
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -876,7 +882,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 814230083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.1, y: 0, z: 0}
+  m_LocalPosition: {x: -38.06, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1.3250005, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1230,6 +1236,58 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b13af022eedc14d51a768acc33664731, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &949434152 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1895265345754026, guid: b13af022eedc14d51a768acc33664731,
+    type: 2}
+  m_PrefabInternal: {fileID: 949434151}
+--- !u!114 &949434153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949434152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a106e342380f125428f39804174f7afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &949434154
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949434152}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.33083427, y: 0.4217017}
+      - {x: 0, y: 0.5}
+      - {x: -0.19181615, y: 0.46384728}
+      - {x: -0.29661828, y: 0.38813853}
+      - {x: -0.4890112, y: 0.22394682}
+      - {x: -0.52124006, y: 0.02402879}
+      - {x: -0.46212953, y: -0.3141464}
+      - {x: -0.30427858, y: -0.4513174}
+      - {x: -0.0033556065, y: -0.512231}
+      - {x: 0.29513305, y: -0.45100754}
+      - {x: 0.4709381, y: -0.18336228}
+      - {x: 0.47552824, y: 0.15450856}
 --- !u!1 &981037195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,13 +2743,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840679425}
-  m_LocalRotation: {x: -0, y: -0, z: -0.8975092, w: 0.44099584}
-  m_LocalPosition: {x: -0.1, y: -0.06, z: -3.8500001}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5897672, w: -0.8075734}
+  m_LocalPosition: {x: -0.15187058, y: -0.07510809, z: -3.8500001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 187642603}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -127.66501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 287.719}
 --- !u!212 &1840679427
 SpriteRenderer:
   m_ObjectHideFlags: 0

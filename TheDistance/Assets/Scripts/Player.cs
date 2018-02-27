@@ -112,12 +112,16 @@ public class Player : NetworkBehaviour
 
     RowBoat boat;
 
+    float m_timer=0;
+    GameObject emoji;
+
     public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
 
 	void Start()
 	{
+        emoji = GameObject.Find("Emoji").gameObject;
         //sceneState = 1;!!!!
-		// boat = GameObject.Find("boat").GetComponent<RowBoat>();
+        // boat = GameObject.Find("boat").GetComponent<RowBoat>();
         if (SceneManager.GetActiveScene().name=="Boat")
         {
             boat = GameObject.Find("boat").GetComponent<RowBoat>();
@@ -248,6 +252,11 @@ public class Player : NetworkBehaviour
 
 	void Update()
 	{
+        m_timer += Time.time;
+        if (m_timer > 50)
+        {
+            emoji.GetComponent<Transform>().position = new Vector3(-9999f,-9999f,-9999f);
+        }
         if (!isLocalPlayer)
             return;
         if (SceneManager.GetActiveScene().name == "Boat")
@@ -458,6 +467,13 @@ public class Player : NetworkBehaviour
         }
 
         //else:
+
+        //press Y to send emoji
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            m_timer = 0;
+            sendEmoji();
+        }
 
 		// press Q to interact with the object
 		if (Input.GetButton("Push")) {
@@ -1554,6 +1570,46 @@ public class Player : NetworkBehaviour
 
 
 
+    /***********************************************************************
+     * Communication
+     ***********************************************************************/
+     public void sendEmoji()
+    {
+        if (isServer)
+        {
+            RpcComm();
+        }
+        else
+        {
+            CmdComm();
+        }
+    }
+     public void RpcComm()
+    {
+        if (isServer)
+        {
+            return;
+        }
+        Vector3 pPos= GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
+        pPos.x += 30;
+        pPos.y += 30;
+        pPos.z += 30;
+        
+        emoji.transform.position = pPos;
+
+    }
+
+    public void CmdComm()
+    {
+        Vector3 pPos = GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
+        pPos.x += 30;
+        pPos.y += 30;
+        pPos.z += 30;
+
+        emoji.transform.position = pPos;
+    }
+
+
 
     /***********************************************************************
      * Boat control
@@ -1562,12 +1618,14 @@ public class Player : NetworkBehaviour
     {
         if (isServer)
         {
+            boat.oarMove(1);
             boat.move(1);
             RpcBoat();
             RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
         else
         {
+            boat.oarMove(0);
             //boat.move(0);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);

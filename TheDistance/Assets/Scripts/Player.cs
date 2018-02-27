@@ -119,13 +119,14 @@ public class Player : NetworkBehaviour
 
 	void Start()
 	{
-        emoji = GameObject.Find("Emoji").gameObject;
-        //sceneState = 1;!!!!
+		//sceneState = 1;!!!!
         // boat = GameObject.Find("boat").GetComponent<RowBoat>();
-        if (SceneManager.GetActiveScene().name=="Boat")
-        {
-            boat = GameObject.Find("boat").GetComponent<RowBoat>();
-        }
+		if (SceneManager.GetActiveScene ().name == "Boat") {
+			boat = GameObject.Find ("boat").GetComponent<RowBoat> ();
+
+		} else {
+			emoji = GameObject.Find ("Emoji").gameObject;
+		}
 
         //Text load
         GameObject UIobject = GameObject.Find("UI");
@@ -252,29 +253,29 @@ public class Player : NetworkBehaviour
 
 	void Update()
 	{
-        m_timer += Time.time;
-        if (m_timer > 50)
-        {
-            emoji.GetComponent<Transform>().position = new Vector3(-9999f,-9999f,-9999f);
-        }
+        
         if (!isLocalPlayer)
             return;
-        if (SceneManager.GetActiveScene().name == "Boat")
-        {
-            if (isServer)
-            {
+		if (SceneManager.GetActiveScene ().name == "Boat") {
+			
+			if (isServer) {
 
-                RpcBoat();
-                RpcBoatMove(boat.GetComponent<Transform>().position,boat.GetComponent<Transform>().rotation);
-            }
-            else
-            {
+				RpcBoat ();
+				RpcBoatMove (boat.GetComponent<Transform> ().position, boat.GetComponent<Transform> ().rotation);
+			} else {
 
-                //CmdBoat();
-                //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
-            }
+				//CmdBoat();
+				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+			}
 
-        }
+
+		} else {
+			m_timer += Time.time;
+			if (m_timer > 50) {
+				emoji.GetComponent<Transform> ().position = new Vector3 (-9999f, -9999f, -9999f);
+			}
+		}
+
 
         //input controlling move
         KeyControlMove();

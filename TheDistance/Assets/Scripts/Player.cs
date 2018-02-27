@@ -992,7 +992,7 @@ public class Player : NetworkBehaviour
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowEricMemory();
-                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
                 Debug.Log("1show" + keyIdx);
                 if (showDiary != null)
                 {
@@ -1031,7 +1031,7 @@ public class Player : NetworkBehaviour
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
-                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryBtnList/Scroll View/Viewport/Content/" + keyIdx.ToString());
+				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Natalie::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
                     showDiary.SetActive(true);

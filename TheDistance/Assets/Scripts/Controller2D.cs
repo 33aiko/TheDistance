@@ -45,6 +45,24 @@ public class Controller2D : RaycastController
 
     }
 
+    public float GetBelowDistance(float len)
+    {
+        UpdateRaycastOrigins();
+        float rayLength = len;
+        float res = -1;
+        for(int i = 0; i < 2; i++)
+        {
+            Vector2 rayOrigin = (i == 0) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down , rayLength, collisionMask);
+            Debug.DrawRay(rayOrigin, Vector2.down * rayLength, Color.yellow);
+            if(hit)
+            {
+                res = Mathf.Max(res, hit.distance);
+            }
+        }
+        return res;
+    }
+
     void HorizontalCollisions(ref Vector3 velocity)
     {
         float directionX = Mathf.Sign(velocity.x);
@@ -57,7 +75,7 @@ public class Controller2D : RaycastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if (hit)
             {

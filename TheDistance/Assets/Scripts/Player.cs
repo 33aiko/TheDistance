@@ -107,7 +107,8 @@ public class Player : NetworkBehaviour
 
 	Color ericFilter, natalieFilter, currentFilter;
 
-    bool keyspaceDown;
+    bool key_jump_pressed;
+    bool jump_stored = false;
     Vector2 input;
 
     RowBoat boat;
@@ -403,17 +404,20 @@ public class Player : NetworkBehaviour
         }
 
         // jump
-        keyspaceDown = false;
-//        if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below && !controller.collisions.onLadder) && (!selectShareObject))
-		if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
+        key_jump_pressed = false;
+		//if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
+        if(Input.GetButton("Jump"))
         {
-            /*
-            audioManager.Play("PlayerJump");
-            velocity.y = jumpVelocity;
-            playerJumping = true;
-             */
+            key_jump_pressed = true;
+            if(!controller.collisions.below && (controller.GetBelowDistance(jumpHeight * 0.75f) > 0 && (playerJumping && velocity.y < 0)))
+            {
+                print("tring to jump in sky && can jump");
+                jump_stored = true;
+            }
+        }
+        if ((key_jump_pressed || jump_stored) && (controller.collisions.below && !controller.collisions.onLadder))
+        {
             PlayerJump();
-            keyspaceDown = true;
         }
 
         velocity.x = input.x * moveSpeed;
@@ -446,6 +450,7 @@ public class Player : NetworkBehaviour
                 velocity.y = jumpVelocity;
 
             playerJumping = true;
+            jump_stored = false;
             if (isSharing)
                 FinishSharing();
             if (isExternal)
@@ -899,8 +904,6 @@ public class Player : NetworkBehaviour
 
     private void updatePlayerAnimator()
     {
-        //if (key_Share_Pressed) velocity.x = 0;
-
         if (velocity.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -913,15 +916,15 @@ public class Player : NetworkBehaviour
         // set the animator statemachine
         playerUp = velocity.y > 0;
         bool playerStand =
-            (velocity.x == 0 && (!playerJumping && !keyspaceDown)
+            (velocity.x == 0 && (!playerJumping && !key_jump_pressed)
             && controller.collisions.below);
-        animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) || keyspaceDown);
+        animator.SetBool("playerJumping", (playerJumping && jumpTime > 0.1f) || key_jump_pressed);
         animator.SetBool("playerWalking", (velocity.x != 0));
         animator.SetBool("playerUp", playerUp);
         animator.SetBool("playerStand", playerStand);
         animator.SetBool("playerClimb", controller.collisions.onLadder);
         animator.SetBool("playerPushBox", controller.collisions.pushBox);
-        animator.SetBool("hasInput", keyspaceDown || input.x != 0 || shareCharging);
+        animator.SetBool("hasInput", key_jump_pressed || input.x != 0 || shareCharging);
 
         if (playerStand && !shareCharging)
         {

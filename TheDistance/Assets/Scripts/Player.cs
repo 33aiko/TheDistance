@@ -1003,7 +1003,7 @@ public class Player : NetworkBehaviour
                 Debug.Log("1show" + keyIdx);
                 if (showDiary != null)
                 {
-					Debug.Log ("LALALA");
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
             }
@@ -1039,10 +1039,12 @@ public class Player : NetworkBehaviour
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
+				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Nata::Fragment " + keyIdx.ToString (); 
+				Debug.Log (diaryName);
+				GameObject showDiary = GameObject.Find(diaryName);
                 if (showDiary != null)
                 {
-					Debug.Log ("WAWAWA");
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
                 Debug.Log("2show" + keyIdx);
@@ -1081,6 +1083,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
 
@@ -1123,6 +1126,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
                 Debug.Log("4show" + keyIdx);

@@ -184,12 +184,14 @@ public class Player : NetworkBehaviour
             transform.position = EricStartPoint.position;
             curCheckPoint = EricStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+            GloabalVar.EorN = 0;
         }
         if (isLocalPlayer && !isServer)
         {
             transform.position = NatalieStartPoint.position;
             curCheckPoint = NatalieStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+            GloabalVar.EorN = 1;
         }
 
         // initialize spirit

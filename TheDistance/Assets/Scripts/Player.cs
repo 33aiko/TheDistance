@@ -1016,7 +1016,10 @@ public class Player : NetworkBehaviour
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowEricMemory();
-                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
+				Debug.Log("both key");
+				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Eric::Fragment " + keyIdx.ToString ();
+				Debug.Log (diaryName);
+                GameObject showDiary = GameObject.Find(diaryName);
                 Debug.Log("1show" + keyIdx);
                 if (showDiary != null)
                 {

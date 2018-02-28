@@ -184,12 +184,14 @@ public class Player : NetworkBehaviour
             transform.position = EricStartPoint.position;
             curCheckPoint = EricStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+            GloabalVar.EorN = 0;
         }
         if (isLocalPlayer && !isServer)
         {
             transform.position = NatalieStartPoint.position;
             curCheckPoint = NatalieStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+            GloabalVar.EorN = 1;
         }
 
         // initialize spirit
@@ -292,10 +294,17 @@ public class Player : NetworkBehaviour
 			spirit.transform.Translate ((spiritTargetPos - spirit.transform.position) / interpolateTime);
         }
 
+        foreach (CaveEffectController cec in FindObjectsOfType<CaveEffectController>())
+        {
+            cec.SetShaderPosition("_PlayerPos", transform.position);
+            cec.SetShaderPosition("_SpiritPos", spirit.transform.position);
+        }
+        /*
         if(caveMaterial == null)
             caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
         caveMaterial.SetVector("_PlayerPos", transform.position);
         caveMaterial.SetVector("_SpiritPos", spirit.transform.position);
+         */
 
     }
 
@@ -671,6 +680,23 @@ public class Player : NetworkBehaviour
                 print("a platform here1");
                 sharedObject.tag = "FloatingPlatformShared";
             }
+            else if(sharedObject.tag == "UnstableSharable")
+            {
+                shareNotificationText.text = "A platform is shared!";
+                Debug.Log(sharedObject.name);
+                if (isServer && isLocalPlayer)
+                {
+                    RpcUnstable(sharedObject.name);
+                }
+                if (!isServer && isLocalPlayer)
+                {
+                    CmdUnstable(sharedObject.name);
+                }
+                Debug.Log("found");
+                audioManager.Play("ConfirmSharing");
+                print("a unstable here1");
+                sharedObject.tag = "CannotShare";
+            }
             else if (sharedObject.tag == "MovingPlatformSharable")
             {
                 shareNotificationText.text = "A platform is shared!";
@@ -992,11 +1018,14 @@ public class Player : NetworkBehaviour
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowEricMemory();
-                GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
+				Debug.Log("both key");
+				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Eric::Fragment " + keyIdx.ToString ();
+				Debug.Log (diaryName);
+                GameObject showDiary = GameObject.Find(diaryName);
                 Debug.Log("1show" + keyIdx);
                 if (showDiary != null)
                 {
-					Debug.Log ("LALALA");
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
             }
@@ -1032,10 +1061,12 @@ public class Player : NetworkBehaviour
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
-				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
+				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Nata::Fragment " + keyIdx.ToString (); 
+				Debug.Log (diaryName);
+				GameObject showDiary = GameObject.Find(diaryName);
                 if (showDiary != null)
                 {
-					Debug.Log ("WAWAWA");
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
                 Debug.Log("2show" + keyIdx);
@@ -1074,6 +1105,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
 
@@ -1116,6 +1148,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
                 }
                 Debug.Log("4show" + keyIdx);
@@ -1216,6 +1249,39 @@ public class Player : NetworkBehaviour
 
         // Debug.Log(newObj.name);
     }
+
+    /***********************************************************************************
+                                Unstable Platform after share
+     ***********************************************************************************/
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcUnstable(string sharedObject)
+    {
+        if (isServer) { return; }
+        ShareUnstable(sharedObject, true);
+    }
+
+    // sent by client, show box on server
+    [Command]
+    public void CmdUnstable(string sharedObject)
+    {
+        ShareUnstable(sharedObject, false);
+    }
+
+    void ShareUnstable(string sharedObject, bool isEricWorld)
+    {
+        StopShare();
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/UnstablePlatform") as GameObject);
+        newObj.tag = "CannotShare";
+        newObj.GetComponent<SpriteRenderer>().color = (Color)(isEricWorld ? new Color32(255, 219, 199, 255) : new Color32(244, 255, 255, 255));
+        newObj.transform.position = sObj.transform.position;
+    }
+
 
 
     //sent by server, show particle effects on clients

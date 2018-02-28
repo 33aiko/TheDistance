@@ -78,7 +78,10 @@ public class KeyController : MonoBehaviour {
 
         if (isInCave)
         {
-            FindObjectOfType<CaveEffectController>().SetShaderPosition("_FragmentPos", transform.position);
+            foreach(CaveEffectController cec in FindObjectsOfType<CaveEffectController>())
+            {
+                cec.AddFragmentLight(transform.position);
+            }
         }
     }
 

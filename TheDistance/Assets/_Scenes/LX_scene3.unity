@@ -2220,7 +2220,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262095700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2955, y: -48, z: 0}
+  m_LocalPosition: {x: 6302, y: -488, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -3299,17 +3299,17 @@ Prefab:
     - target: {fileID: 212421282756940202, guid: bfbc3f004f048ba438fcceb62db90e31,
         type: 2}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.95686275
       objectReference: {fileID: 0}
     - target: {fileID: 212421282756940202, guid: bfbc3f004f048ba438fcceb62db90e31,
         type: 2}
       propertyPath: m_Color.g
-      value: 0.85699785
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212421282756940202, guid: bfbc3f004f048ba438fcceb62db90e31,
         type: 2}
       propertyPath: m_Color.b
-      value: 0.7794118
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfbc3f004f048ba438fcceb62db90e31, type: 2}
@@ -9896,7 +9896,7 @@ GameObject:
   - component: {fileID: 1454072742}
   m_Layer: 9
   m_Name: GameObject (26)
-  m_TagString: FloatingPlatform
+  m_TagString: UnstableSharable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10238,7 +10238,7 @@ GameObject:
   - component: {fileID: 1481820173}
   m_Layer: 9
   m_Name: GameObject (30)
-  m_TagString: FloatingPlatform
+  m_TagString: UnstableSharable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10333,7 +10333,7 @@ GameObject:
   - component: {fileID: 1491777482}
   m_Layer: 9
   m_Name: GameObject (31)
-  m_TagString: FloatingPlatform
+  m_TagString: UnstableSharable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11259,7 +11259,7 @@ GameObject:
   - component: {fileID: 1673872193}
   m_Layer: 9
   m_Name: GameObject (27)
-  m_TagString: FloatingPlatform
+  m_TagString: UnstableSharable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11470,12 +11470,12 @@ Prefab:
     - target: {fileID: 212421282756940202, guid: bfbc3f004f048ba438fcceb62db90e31,
         type: 2}
       propertyPath: m_Color.g
-      value: 0.85699785
+      value: 0.85882354
       objectReference: {fileID: 0}
     - target: {fileID: 212421282756940202, guid: bfbc3f004f048ba438fcceb62db90e31,
         type: 2}
       propertyPath: m_Color.b
-      value: 0.7794118
+      value: 0.78039217
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfbc3f004f048ba438fcceb62db90e31, type: 2}
@@ -13134,7 +13134,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885479941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1017, y: 219, z: 0}
+  m_LocalPosition: {x: 6298, y: -527, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}

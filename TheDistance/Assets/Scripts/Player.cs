@@ -678,6 +678,23 @@ public class Player : NetworkBehaviour
                 print("a platform here1");
                 sharedObject.tag = "FloatingPlatformShared";
             }
+            else if(sharedObject.tag == "UnstableSharable")
+            {
+                shareNotificationText.text = "A platform is shared!";
+                Debug.Log(sharedObject.name);
+                if (isServer && isLocalPlayer)
+                {
+                    RpcUnstable(sharedObject.name);
+                }
+                if (!isServer && isLocalPlayer)
+                {
+                    CmdUnstable(sharedObject.name);
+                }
+                Debug.Log("found");
+                audioManager.Play("ConfirmSharing");
+                print("a unstable here1");
+                sharedObject.tag = "CannotShare";
+            }
             else if (sharedObject.tag == "MovingPlatformSharable")
             {
                 shareNotificationText.text = "A platform is shared!";
@@ -1223,6 +1240,38 @@ public class Player : NetworkBehaviour
 
         // Debug.Log(newObj.name);
     }
+
+    /***********************************************************************************
+                                Unstable Platform after share
+     ***********************************************************************************/
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcUnstable(string sharedObject)
+    {
+        if (isServer) { return; }
+        ShareUnstable(sharedObject, true);
+    }
+
+    // sent by client, show box on server
+    [Command]
+    public void CmdUnstable(string sharedObject)
+    {
+        ShareUnstable(sharedObject, false);
+    }
+
+    void ShareUnstable(string sharedObject, bool isEricWorld)
+    {
+        StopShare();
+        audioManager.Stop("SharingHold");
+        audioManager.Play("ConfirmSharing");
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
+        sObj.SetActive(true);
+        GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/UnstablePlatform") as GameObject);
+        newObj.tag = "CannotShare";
+        newObj.transform.position = sObj.transform.position;
+    }
+
 
 
     //sent by server, show particle effects on clients

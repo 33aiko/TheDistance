@@ -263,8 +263,9 @@ public class Player : NetworkBehaviour
 			
 			if (isServer) {
 
-				RpcBoat ();
-				RpcBoatMove (boat.GetComponent<Transform> ().position, boat.GetComponent<Transform> ().rotation);
+                //RpcBoat ();
+                //Quaternion ericQuaternion, natalieQuaternion;
+				RpcBoatMove (boat.GetComponent<Transform> ().position, boat.GetComponent<Transform> ().rotation, GameObject.Find("oar_Eric").gameObject.GetComponent<Transform>().rotation, GameObject.Find("oar_Natalie").gameObject.GetComponent<Transform>().rotation);
 			} else {
 
 				//CmdBoat();
@@ -1692,12 +1693,12 @@ public class Player : NetworkBehaviour
         {
             boat.oarMove(0);
             boat.move(1);
-            RpcBoat();
-            RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+            //RpcBoat();
+            //RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
         else
         {
-            boat.move(1);
+            //boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
@@ -1718,18 +1719,20 @@ public class Player : NetworkBehaviour
         //
         boat.move(0);
         boat.oarMove(1);
-        RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+        //RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
     }
 
     //sent by server, run on all clients
     [ClientRpc]
-    public void RpcBoatMove(Vector3 pos, Quaternion rot)
+    public void RpcBoatMove(Vector3 pos, Quaternion rot, Quaternion erJiang, Quaternion naJiang)
     {
         //print("Rpc Move");
         if (!isServer)
         {
             GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
             GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
+            GameObject.Find("oar_Eric").gameObject.GetComponent<Transform>().rotation = erJiang;
+            GameObject.Find("oar_Natalie").gameObject.GetComponent<Transform>().rotation = naJiang;
         }
     }
 

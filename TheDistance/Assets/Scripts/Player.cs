@@ -1269,6 +1269,7 @@ public class Player : NetworkBehaviour
         sObj.SetActive(true);
         GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/UnstablePlatform") as GameObject);
         newObj.tag = "CannotShare";
+        newObj.GetComponent<SpriteRenderer>().color = (Color)(isEricWorld ? new Color32(255, 219, 199, 255) : new Color32(244, 255, 255, 255));
         newObj.transform.position = sObj.transform.position;
     }
 

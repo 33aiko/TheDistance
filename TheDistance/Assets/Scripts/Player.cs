@@ -1624,15 +1624,14 @@ public class Player : NetworkBehaviour
     {
         if (isServer)
         {
-            boat.oarMove(1);
+            boat.oarMove(0);
             boat.move(1);
             RpcBoat();
             RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
         else
         {
-            boat.oarMove(0);
-            //boat.move(0);
+            boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
@@ -1652,6 +1651,7 @@ public class Player : NetworkBehaviour
     {
         //
         boat.move(0);
+        boat.oarMove(1);
         RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
     }
 

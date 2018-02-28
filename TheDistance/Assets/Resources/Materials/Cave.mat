@@ -65,7 +65,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightRadius: 200
+    - _LightRadius: 100
     - _Metallic: 0
     - _Mode: 3
     - _OcclusionStrength: 1
@@ -73,7 +73,7 @@ Material:
     - _RUA: 0.44806215
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpiritLightRadius: 300
+    - _SpiritLightRadius: 350
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 0

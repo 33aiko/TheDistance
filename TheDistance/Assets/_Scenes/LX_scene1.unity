@@ -17529,7 +17529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &539581521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42708,7 +42708,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -480, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1367596746
 MonoBehaviour:
@@ -69169,7 +69169,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000030517578, y: 103}
-  m_SizeDelta: {x: -480, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869687668
 MonoBehaviour:
@@ -75730,8 +75730,8 @@ GameObject:
   - component: {fileID: 2124521735}
   - component: {fileID: 2124521734}
   - component: {fileID: 2124521733}
-  - component: {fileID: 2124521732}
   - component: {fileID: 2124521731}
+  - component: {fileID: 2124521732}
   m_Layer: 5
   m_Name: StoryContentScrollView
   m_TagString: Untagged

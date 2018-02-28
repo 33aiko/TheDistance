@@ -9,8 +9,10 @@ public class RowBoat : MonoBehaviour {
     public GameObject oarNatalie;
     public Quaternion originalRotationEric;
     public Quaternion newRotationEric;
-    public Quaternion finalRotationEric;
     public Quaternion tempRotationEric;
+    public Quaternion originalRotationNatalie;
+    public Quaternion newRotationNatalie;
+    public Quaternion tempRotationNatalie;
     float height;
     Rigidbody2D r;
 	// Use this for initialization
@@ -19,15 +21,20 @@ public class RowBoat : MonoBehaviour {
         height = GetComponent<Renderer>().bounds.size.y;
         oarEric = transform.Find("oar_Eric").gameObject;
         oarNatalie = transform.Find("oar_Natalie").gameObject;
+
         originalRotationEric = oarEric.GetComponent<Transform>().localRotation;
-        newRotationEric = new Quaternion(0.0f,0.0f,0.9f,0.4f);
-        //newRotationEric.z = 0.4f;
-        //newRotationEric.w = originalRotationEric.w;
-        finalRotationEric = newRotationEric;
-        oarEric.GetComponent<Transform>().localRotation = finalRotationEric;
-        Debug.Log(originalRotationEric);
-        Debug.Log(newRotationEric.w);
-        Debug.Log(oarEric.GetComponent<Transform>().localRotation);
+        Vector3 eaEric;
+        eaEric=originalRotationEric.eulerAngles;
+        eaEric.z += 75;
+        newRotationEric = Quaternion.Euler(eaEric);
+        oarEric.GetComponent<Transform>().localRotation = newRotationEric;
+
+        originalRotationNatalie = oarNatalie.GetComponent<Transform>().localRotation;
+        Vector3 eaNatalie;
+        eaNatalie = originalRotationNatalie.eulerAngles;
+        eaNatalie.z -= 75;
+        newRotationNatalie = Quaternion.Euler(eaNatalie);
+        oarNatalie.GetComponent<Transform>().localRotation = newRotationNatalie;
         //newRotationEric = originalRotationEric;
     }
 	
@@ -36,19 +43,30 @@ public class RowBoat : MonoBehaviour {
         if (r != null)
         {
             tempRotationEric = oarEric.GetComponent<Transform>().localRotation;
+            tempRotationNatalie = oarNatalie.GetComponent<Transform>().localRotation;
+
             Vector3 bottom = (transform.position - transform.up * height / 2);
             Vector3 top = (transform.position + transform.up * height / 2);
-            if (oarEric.GetComponent<Transform>().localRotation != finalRotationEric)
+
+            if (oarEric.GetComponent<Transform>().localRotation != newRotationEric)
             {
-                tempRotationEric.z += 0.05f;
-                tempRotationEric.w -= (0.0001f);
+                Vector3 tempeaEric = tempRotationEric.eulerAngles;
+                tempeaEric.z += 2.5f;
+                tempRotationEric = Quaternion.Euler(tempeaEric);
                 oarEric.GetComponent<Transform>().localRotation = tempRotationEric;
             }
-      /*      if(oarEric.GetComponent<Transform>().rotation == finalRotationEric)
+            if (oarNatalie.GetComponent<Transform>().localRotation != newRotationNatalie)
             {
-                newRotationEric = originalRotationEric;
-                oarEric.GetComponent<Transform>().rotation = originalRotationEric;
-            }*/
+                Vector3 tempeaNatalie = tempRotationNatalie.eulerAngles;
+                tempeaNatalie.z -= 2.5f;
+                tempRotationNatalie = Quaternion.Euler(tempeaNatalie);
+                oarNatalie.GetComponent<Transform>().localRotation = tempRotationNatalie;
+            }
+            /*      if(oarEric.GetComponent<Transform>().rotation == finalRotationEric)
+                  {
+                      newRotationEric = originalRotationEric;
+                      oarEric.GetComponent<Transform>().rotation = originalRotationEric;
+                  }*/
             /*
             if (Input.GetKey(KeyCode.DownArrow))
             {
@@ -82,7 +100,16 @@ public class RowBoat : MonoBehaviour {
 
     public void oarMove(int player)
     {
-        oarEric.GetComponent<Transform>().localRotation = originalRotationEric;
+        if (player == 0)
+        {
+            oarEric.GetComponent<Transform>().localRotation = originalRotationEric;
+            Debug.Log(originalRotationEric);
+        }
+        else
+        {
+            oarNatalie.GetComponent<Transform>().localRotation = originalRotationNatalie;
+            Debug.Log(originalRotationNatalie);
+        }
         //newRotationEric = finalRotationEric;
     }
 }

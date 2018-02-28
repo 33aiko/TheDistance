@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 6
-  lifetime: 3
+  lifetime: 4
   fallDist: 30
 --- !u!122 &122196560074158390
 Halo:

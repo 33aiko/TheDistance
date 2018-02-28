@@ -6,6 +6,8 @@ using System;
 
 public class ScrollPage : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
+    public Color ericBGColor;
+    public Color natalieBGColor;
     ScrollRect rect;
     //页面：0，1，2，3  索引从0开始
     //每页占的比列：0/3=0  1/3=0.333  2/3=0.6666 3/3=1
@@ -49,6 +51,18 @@ public class ScrollPage : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             rect.horizontalNormalizedPosition = Mathf.Lerp(rect.horizontalNormalizedPosition, targethorizontal, Time.deltaTime * smooting);
             
+        }
+        //change background color according to server or client
+        //print("EorN:" + GloabalVar.EorN);
+        if (GloabalVar.EorN != -1) {
+            if (GloabalVar.EorN == 0)//eric
+            {
+                GetComponent<Image>().color = ericBGColor;
+            }
+            else if (GloabalVar.EorN == 1)//natalie
+            {
+                GetComponent<Image>().color = natalieBGColor;
+            }
         }
     }
 

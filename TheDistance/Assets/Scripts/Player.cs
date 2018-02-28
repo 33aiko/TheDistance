@@ -184,12 +184,14 @@ public class Player : NetworkBehaviour
             transform.position = EricStartPoint.position;
             curCheckPoint = EricStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+            GloabalVar.EorN = 0;
         }
         if (isLocalPlayer && !isServer)
         {
             transform.position = NatalieStartPoint.position;
             curCheckPoint = NatalieStartPoint.position;
 			Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+            GloabalVar.EorN = 1;
         }
 
         // initialize spirit
@@ -1691,15 +1693,14 @@ public class Player : NetworkBehaviour
     {
         if (isServer)
         {
-            boat.oarMove(1);
+            boat.oarMove(0);
             boat.move(1);
             RpcBoat();
             RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
         else
         {
-            boat.oarMove(0);
-            //boat.move(0);
+            boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
         }
@@ -1719,6 +1720,7 @@ public class Player : NetworkBehaviour
     {
         //
         boat.move(0);
+        boat.oarMove(1);
         RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
     }
 

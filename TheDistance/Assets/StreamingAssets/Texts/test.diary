@@ -1,25 +1,25 @@
-START::Eric::Fragment 1
+START::Eric::Fragment 0
 
 I don’t know much about being a real adult, but these past couples of weeks have made me feel like a real grown up. Natalie’s off jet setting in different countries. My novel is finally nearing completion. We’re even thinking about playing an online game together since her infamous rage quit a couple years back. Man, I miss her. 
+END::Fragment 0 
+
+START::Eric::Fragment 1
+Is it weird that Natalie didn’t read my novel? Is this her way of getting back at me for not going to her exhibit? If that’s it, then sure, I guess I understand. I mean I would have had to get on a plane and fly to her, and she only had to open an email, but okay, I understand. Jeepers… she’s been so flakey lately. Why did we wind up like this?
 END::Fragment 1 
 
 START::Eric::Fragment 2
-Is it weird that Natalie didn’t read my novel? Is this her way of getting back at me for not going to her exhibit? If that’s it, then sure, I guess I understand. I mean I would have had to get on a plane and fly to her, and she only had to open an email, but okay, I understand. Jeepers… she’s been so flakey lately. Why did we wind up like this?
-END::Fragment 2 
-
-START::Eric::Fragment 3
 I still don’t really understand this whole being an adult gig, but these past couple of years have really made me feel older-ish. Sure, the book didn’t sell all that great, and things with Natalie sort of flatlined, but that just means I have some free time on my hands and an expensive pile of paperweights at my disposal. I wonder if she ever got a copy of my novel. 
-END::Fragment 3
+END::Fragment 2
 
-START::Nata::Fragment 1 
+START::Nata::Fragment 0 
 
 It’s weird that the sun is out right now when all I want to do is sleep; the jet lag is too real. Maybe I’ll call Eric after a nap and listen to him try to convince me to play that new game with him again. It’s gonna be a long few months without him...but he’ll be sending me drafts of his book, and we’ll have skype dates every week! We’ll be ok.
+END::Fragment 0 
+
+START::Nata::Fragment 1 
+I know he loves me...but I still can’t help but feel like I don’t matter. This was my first big exhibit; he knew how important it was to me! But he didn’t come. I’m so angry at him. And I want to understand, but why should I bother trying to talk to him when he barely responds to me now anyway? Does he even want to be with me? I couldn’t even bring myself to read his book when he sent it to me. God, how did we wind up like this?
 END::Fragment 1 
 
-START::Nata::Fragment 2 
-I know he loves me...but I still can’t help but feel like I don’t matter. This was my first big exhibit; he knew how important it was to me! But he didn’t come. I’m so angry at him. And I want to understand, but why should I bother trying to talk to him when he barely responds to me now anyway? Does he even want to be with me? I couldn’t even bring myself to read his book when he sent it to me. God, how did we wind up like this?
-END::Fragment 2 
-
-START::Nata::Fragment 3
+START::Nata::Fragment 2
 People recognize me when I go to galleries now, whether my work is showing or not. I’ve finally gotten back into gaming and holy crap, it’s so much better than I remember! I’m living my wildest dreams, and honestly, it’s crazy to think that I’m here. It’s been a long road, and I’m proud to say that I wouldn’t change a thing. Well, maybe one thing...
-END::Fragment 3
+END::Fragment 2

@@ -75478,6 +75478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fab598f7b92ff44add64b20812ccf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ericBGColor: {r: 0.101960786, g: 0.45490196, b: 0.44313726, a: 1}
+  natalieBGColor: {r: 0.77254903, g: 0.30980393, b: 0.20392157, a: 1}
   pages: []
   currentPageIndex: -1
   smooting: 4

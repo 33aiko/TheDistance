@@ -5,8 +5,8 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_PlayerPos("Player Pos", Vector)=(0,0,0)
 		_SpiritPos("Spirit Pos", Vector)=(0,0,-1)
-		_FragmentPos("Fragment pos", Vector)=(0,0,-1)
-		_ChekpointPos("Checkpoint pos", Vector)=(0,0,-1)
+		//_FragmentPos("Fragment pos", Vector)=(0,0,-1)
+		//_ChekpointPos("Checkpoint pos", Vector)=(0,0,-1)
 		_FragmentLightRadius("Fragment Light Radius", float) = 500
 		_CheckpointLightRadius("Checkpoint Light Radius", float) = 500
 		_SpiritLightRadius("Spirit Light Radius", float) = 800
@@ -58,8 +58,8 @@
 
 			float3 _PlayerPos;
 			float3 _SpiritPos;
-			float3 _FragmentPos;
-			float3 _CheckpointPos;
+			float4 _FragmentPos[3];
+			float4 _CheckpointPos[3];
 
 			float _LightRadius;
 			float _SpiritLightRadius;
@@ -88,14 +88,19 @@
 					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _SpiritPos, _SpiritLightRadius));
 				}
 
-				if(_FragmentPos.z > -0.5)
+				for(int idx = 0; idx < 3; idx++)
 				{
-					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _FragmentPos, _FragmentLightRadius));
-				}
+					float4 cpPos = _CheckpointPos[idx];
+					if(cpPos.w > -0.5)
+					{
+						col.a = col.a * (1-alphaMaskHelper(i.worldPos, cpPos, _CheckpointLightRadius));
+					}
 
-				if(_CheckpointPos.z > -0.5)
-				{
-					col.a = col.a * (1-alphaMaskHelper(i.worldPos, _CheckpointPos, _CheckpointLightRadius));
+					float4 fgPos = _FragmentPos[idx];
+					if(fgPos.w > -0.5)
+					{
+						col.a = col.a * (1-alphaMaskHelper(i.worldPos, fgPos, _CheckpointLightRadius));
+					}
 				}
 
 				return col;

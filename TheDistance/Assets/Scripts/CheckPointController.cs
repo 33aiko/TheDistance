@@ -8,15 +8,10 @@ public class CheckPointController : MonoBehaviour {
     public bool isInCave = false;
 
     int cnt = 0;
-    bool isCollected = false;
-    Material caveMaterial;
+    public bool isCollected = false;
 
     void Start()
     {
-        if(isInCave)
-        {
-            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
-        }
     }
 
 
@@ -37,7 +32,11 @@ public class CheckPointController : MonoBehaviour {
 				transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
 				transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
 
-                FindObjectOfType<CaveEffectController>().SetShaderPosition("_CheckpointPos", transform.position);
+                //FindObjectOfType<CaveEffectController>().SetShaderPosition("_CheckpointPos", transform.position);
+                foreach (CaveEffectController cec in FindObjectsOfType<CaveEffectController>())
+                {
+                    cec.AddCheckpointLight(transform.position);
+                }
 
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("Checkpoint");
             }

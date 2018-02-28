@@ -19,6 +19,8 @@ TagManager:
   - Rock
   - CannotShare
   - Boat
+  - Mushroom
+  - UnstableSharable
   layers:
   - Default
   - TransparentFX

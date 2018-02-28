@@ -413,10 +413,13 @@ public class Player : NetworkBehaviour
 
         // jump
         key_jump_pressed = false;
-		//if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
-        if(Input.GetButton("Jump"))
+        //if (Input.GetButtonDown("Jump") && (controller.collisions.below && !controller.collisions.onLadder))
+        if (Input.GetButton("Jump"))
         {
             key_jump_pressed = true;
+        }
+        if(Input.GetButtonDown("Jump"))
+        { 
             if(!controller.collisions.below && (controller.GetBelowDistance(jumpHeight * 0.75f) > 0 && (playerJumping && velocity.y < 0)))
             {
                 print("tring to jump in sky && can jump");

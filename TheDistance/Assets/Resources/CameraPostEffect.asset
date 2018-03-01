@@ -296,7 +296,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0.09019608, g: 0.29803923, b: 0.44313726, a: 1}
+      color: {r: 0.39215684, g: 0.058823515, b: 0.32778892, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.3
       smoothness: 0.707

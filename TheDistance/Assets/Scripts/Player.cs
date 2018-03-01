@@ -690,11 +690,11 @@ public class Player : NetworkBehaviour
                 Debug.Log(sharedObject.name);
                 if (isServer && isLocalPlayer)
                 {
-                    RpcUnstable(sharedObject.name);
+                    RpcUnstable(sharedObject.transform.position);
                 }
                 if (!isServer && isLocalPlayer)
                 {
-                    CmdUnstable(sharedObject.name);
+                    CmdUnstable(sharedObject.transform.position);
                 }
                 Debug.Log("found");
                 audioManager.Play("ConfirmSharing");
@@ -1259,31 +1259,28 @@ public class Player : NetworkBehaviour
      ***********************************************************************************/
     //sent by server, show object on clients
     [ClientRpc]
-    public void RpcUnstable(string sharedObject)
+    public void RpcUnstable(Vector3 sharedPos)
     {
         if (isServer) { return; }
-        ShareUnstable(sharedObject, true);
+        ShareUnstable(sharedPos, true);
     }
 
     // sent by client, show box on server
     [Command]
-    public void CmdUnstable(string sharedObject)
+    public void CmdUnstable(Vector3 sharedPos)
     {
-        ShareUnstable(sharedObject, false);
+        ShareUnstable(sharedPos, false);
     }
 
-    void ShareUnstable(string sharedObject, bool isEricWorld)
+    void ShareUnstable(Vector3 sharedPos, bool isEricWorld)
     {
         StopShare();
         audioManager.Stop("SharingHold");
         audioManager.Play("ConfirmSharing");
-        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
-        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-        sObj.SetActive(true);
         GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/UnstablePlatform") as GameObject);
         newObj.tag = "CannotShare";
         newObj.GetComponent<SpriteRenderer>().color = (Color)(isEricWorld ? new Color32(255, 219, 199, 255) : new Color32(244, 255, 255, 255));
-        newObj.transform.position = sObj.transform.position;
+        newObj.transform.position = sharedPos;
     }
 
 

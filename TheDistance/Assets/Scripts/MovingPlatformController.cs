@@ -135,7 +135,7 @@ public class MovingPlatformController : RaycastController
                 Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.yellow);
                  */
 
-                if (hit)
+                if (hit && hit.transform.tag == "Player")
                 {
                     if (hit.transform.gameObject.GetComponent<Player>().playerUp)
                         continue;

@@ -631,11 +631,11 @@ public class Player : NetworkBehaviour
             animator.SetBool("sendPrepare", true);
             if (isLocalPlayer && isServer)
             {
-                RpcWaitForShare(shareObject.name);
+                RpcWaitForShare(shareObject.transform.position);
             }
             if (isLocalPlayer && !isServer)
             {
-                CmdWaitForShare(shareObject.name);
+                CmdWaitForShare(shareObject.transform.position);
             }
 
             //start progress bar 
@@ -667,6 +667,7 @@ public class Player : NetworkBehaviour
         {
             animator.SetBool("sendSucceed", true);
             animator.SetBool("sendPrepare", false);
+            audioManager.Play("ConfirmSharing");
             if (sharedObject.tag == "FloatingPlatform")
             {
                 shareNotificationText.text = "A platform is shared!";
@@ -680,7 +681,6 @@ public class Player : NetworkBehaviour
                     CmdShare(sharedObject.name);
                 }
                 Debug.Log("found");
-                audioManager.Play("ConfirmSharing");
                 print("a platform here1");
                 sharedObject.tag = "FloatingPlatformShared";
             }
@@ -697,7 +697,6 @@ public class Player : NetworkBehaviour
                     CmdUnstable(sharedObject.transform.position);
                 }
                 Debug.Log("found");
-                audioManager.Play("ConfirmSharing");
                 print("a unstable here1");
                 sharedObject.tag = "CannotShare";
             }
@@ -713,7 +712,6 @@ public class Player : NetworkBehaviour
                 {
                     CmdShareMv(sharedObject.name);
                 }
-                audioManager.Play("ConfirmSharing");
             }
             else if (sharedObject.tag == "Box")
             {
@@ -722,16 +720,17 @@ public class Player : NetworkBehaviour
                 string boxname = sharedObject.name;
                 if (isServer && isLocalPlayer)
                 {
-                    RpcBox(sharedObject.name);
-                    root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                    RpcBox(sharedObject.name, sharedObject.transform.position);
+                    sharedObject.GetComponent<SpriteRenderer>().DOFade(0, 1.0f).OnComplete(()=>
+                    root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false));
                 }
                 if (!isServer && isLocalPlayer)
                 {
-                    CmdBox(sharedObject.name);
-                    root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false);
+                    CmdBox(sharedObject.name, sharedObject.transform.position);
+                    sharedObject.GetComponent<SpriteRenderer>().DOFade(0, 1.0f).OnComplete(()=>
+                    root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false));
                 }
                 sharedObject.tag = "BoxCannotShare";
-                audioManager.Play("ConfirmSharing");
             }
             else if (sharedObject.tag == "Rock")
             {
@@ -750,11 +749,10 @@ public class Player : NetworkBehaviour
                 }
                 sharedObject.tag = "CannotShare";
 
-                audioManager.Play("ConfirmSharing");
             }
             else if (sharedObject.tag == "Mushroom")
             {
-                shareNotificationText.text = "A rock is shared";
+                shareNotificationText.text = "A mushroom is shared";
                 string thisname = sharedObject.name;
 
                 if (isServer && isLocalPlayer)
@@ -768,8 +766,6 @@ public class Player : NetworkBehaviour
                     root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(thisname).gameObject.SetActive(false);
                 }
                 sharedObject.tag = "CannotShare";
-
-                audioManager.Play("ConfirmSharing");
             }
         }
     }
@@ -1211,47 +1207,35 @@ public class Player : NetworkBehaviour
 
 
     /***********************************************************************
-     * Platform share
+    //floating platform share
      ***********************************************************************/
     //sent by server, show object on clients
     [ClientRpc]
     public void RpcShare(string sharedObject)
     {
         if (isServer) { return; }
-        Debug.Log(sharedObject + " read");
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject sObj = root.transform.Find("EricWorld/WorldA/" + sharedObject).gameObject;
-        sObj.SetActive(true);
-        GameObject newObj = Instantiate(sObj);
-        newObj.transform.position = sObj.transform.position;
-        newObj.tag = "FloatingPlatformShared";
-        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
+        SharePlatform(sharedObject, true);
     }
 
     //sent by client, show object on server
     [Command]
     public void CmdShare(string sharedObject)
     {
-        Debug.Log(sharedObject + " read");
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + sharedObject).gameObject;
+        SharePlatform(sharedObject, false);
+    }
+
+    void SharePlatform(string sharedObject, bool isEricWorld)
+    {
+        FinishShareEffect();
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
+        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
-        newObj.transform.position = sObj.transform.position;
         newObj.tag = "FloatingPlatformShared";
+        newObj.transform.position = sObj.transform.position;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
-
-        // Debug.Log(newObj.name);
+        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
     }
 
     /***********************************************************************************
@@ -1274,57 +1258,40 @@ public class Player : NetworkBehaviour
 
     void ShareUnstable(Vector3 sharedPos, bool isEricWorld)
     {
-        StopShare();
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
+        FinishShareEffect();
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
         GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/UnstablePlatform") as GameObject);
         newObj.tag = "CannotShare";
         newObj.GetComponent<SpriteRenderer>().color = (Color)(isEricWorld ? new Color32(255, 219, 199, 255) : new Color32(244, 255, 255, 255));
         newObj.transform.position = sharedPos;
+        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
     }
-
 
 
     //sent by server, show particle effects on clients
     [ClientRpc]
-    public void RpcWaitForShare(string shareObject)
+    public void RpcWaitForShare(Vector3 sharedPos)
     {
-        if (isServer)
-        {
-            return;
-        }
-
-        audioManager.Play("SharingHold");
-        GameObject sObj = root.transform.Find("EricWorld/WorldA/" + shareObject).gameObject;
-        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_Red") as GameObject);
-
-        appearParticle.transform.position = sObj.transform.position;
-        if (sObj.GetComponent<MovingPlatformController>() != null)
-        {
-            if (!sObj.GetComponent<MovingPlatformController>().isMoved)
-            {
-                appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-            }
-        }
-        appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
-
+        if (isServer) return;
+        WaitForShare(sharedPos, true);
     }
 
     //sent by client, show particle effects on server
     [Command]
-    public void CmdWaitForShare(string shareObject)
+    public void CmdWaitForShare(Vector3 sharedPos)
+    {
+        WaitForShare(sharedPos, false);
+    }
+
+    void WaitForShare(Vector3 sharedPos, bool fromEric)
     {
         audioManager.Play("SharingHold");
-        GameObject sObj = root.transform.Find("NatalieWorld/WorldB/" + shareObject).gameObject;
-        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_Blue") as GameObject);
-        appearParticle.transform.position = sObj.transform.position;
-        if (sObj.GetComponent<MovingPlatformController>() != null)
-        {
-            if (!sObj.GetComponent<MovingPlatformController>().isMoved)
-            {
-                appearParticle.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-            }
-        }
+        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_" + (fromEric ? "Red" : "Blue")) as GameObject);
+        appearParticle.transform.position = sharedPos;
         appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
     }
 
@@ -1334,24 +1301,33 @@ public class Player : NetworkBehaviour
     {
         if (isServer)
             return;
-        StopShare();
+        StopShareEffect();
     }
 
     //sent by client, show particle effects on server
     [Command]
     public void CmdStopShare()
     {
-        StopShare();
+        StopShareEffect();
     }
 
-    void StopShare()
+    void StopShareEffect()
     {
         audioManager.Stop("SharingHold");
-        print("stopping share!");
         if (appearParticle != null)
         {
             appearParticle.GetComponent<SharingEffectsController>().FadeOutEffect();
         }
+    }
+
+    void FinishShareEffect()
+    {
+        audioManager.Stop("SharingHold");
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
+        audioManager.Play("ConfirmSharing");
     }
 
 
@@ -1363,48 +1339,33 @@ public class Player : NetworkBehaviour
     public void RpcShareMv(string sharedObject)
     {
         if (isServer) { return; }
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
-        Debug.Log(sharedObject + " read");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
-        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-        sObj.SetActive(true);
-        //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
-        GameObject newObj = Instantiate(sObj);
-        newObj.transform.position = sObj.transform.position;
-        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
-        if (!sObj.GetComponent<MovingPlatformController>().isMoved)
-        {
-            newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
-        }
+        ShareMvPlatform(sharedObject, true);
     }
 
     //sent by client, show object on server
     [Command]
     public void CmdShareMv(string sharedObject)
     {
-        Debug.Log(sharedObject + " read");
-        audioManager.Stop("SharingHold");
+        ShareMvPlatform(sharedObject, false);
+    }
+
+    void ShareMvPlatform(string sharedObject, bool isEricWorld)
+    {
+        FinishShareEffect();
         audioManager.Play("ConfirmSharing");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
-        //sObj.transform.localPosition += sObj.GetComponent<MovingPlatformController> ().targetTranslate;
         GameObject newObj = Instantiate(sObj);
+        newObj.tag = "FloatingPlatformShared";
         newObj.transform.position = sObj.transform.position;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         if (!sObj.GetComponent<MovingPlatformController>().isMoved)
         {
             newObj.transform.localPosition += sObj.GetComponent<MovingPlatformController>().targetTranslate;
         }
+        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
     }
 
     /***********************************************************************
@@ -1412,47 +1373,31 @@ public class Player : NetworkBehaviour
      ***********************************************************************/
     //sent by server, show box on clients
     [ClientRpc]
-    public void RpcBox(string sharedObject)
+    public void RpcBox(string sharedObject, Vector3 sharedPos)
     {
         if (isServer) { return; }
-        Debug.Log(sharedObject + " read");
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject remoteWorld = root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject;
-        GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
-        sObj.SetActive(true);
-        GameObject newObj = Instantiate(sObj);
-        newObj.tag = "BoxCannotShare";
-        newObj.transform.position = sObj.transform.position;
-        newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
-        Debug.Log(sObj.name);
-
+        ShareBox(sharedObject, sharedPos, true);
     }
 
     //sent by client, show box on server
     [Command]
-    public void CmdBox(string sharedObject)
+    public void CmdBox(string sharedObject, Vector3 sharedPos)
     {
-        Debug.Log(sharedObject + " read");
-        audioManager.Stop("SharingHold");
-        audioManager.Play("ConfirmSharing");
-        if (appearParticle != null)
-        {
-            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
-        }
-        GameObject remoteWorld = root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject;
+        ShareBox(sharedObject, sharedPos, false);
+    }
+
+    void ShareBox(string sharedObject, Vector3 sharedPos, bool fromEric)
+    {
+        FinishShareEffect();
+       GameObject remoteWorld = root.transform.Find(fromEric ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(fromEric ? "WorldA" : "WorldB").gameObject;
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
         newObj.tag = "BoxCannotShare";
-        newObj.transform.position = sObj.transform.position;
+        newObj.transform.position = sharedPos;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
-        Debug.Log(sObj.name);
-
+        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
     }
 
     // sent by server, show rock on clients
@@ -1472,7 +1417,7 @@ public class Player : NetworkBehaviour
 
     void ShareRock(string sharedObject, bool isEricWorld)
     {
-        StopShare();
+        StopShareEffect();
         audioManager.Stop("SharingHold");
         audioManager.Play("ConfirmSharing");
         GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;
@@ -1501,7 +1446,7 @@ public class Player : NetworkBehaviour
 
     void ShareMushroom(string sharedObject, bool isEricWorld)
     {
-        StopShare();
+        StopShareEffect();
         audioManager.Stop("SharingHold");
         audioManager.Play("ConfirmSharing");
         GameObject remoteWorld = root.transform.Find(isEricWorld ? "EricWorld" : "NatalieWorld").gameObject.transform.Find(isEricWorld ? "WorldA" : "WorldB").gameObject;

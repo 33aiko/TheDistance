@@ -390,10 +390,10 @@ public class Player : NetworkBehaviour
 
         // move in y axis if on the ladder
 		if (controller.collisions.onLadder) {
-			print ("Can move down!");
+			print ("on ladder!");
 			velocity.y = input.y * moveSpeed;
 
-			if (input.y != 0) {
+			if (input.y != 0 || input.x != 0) {
 				audioManager.Play ("ClimbLadder");
 			} else {
 				audioManager.Stop ("ClimbLadder");
@@ -969,7 +969,7 @@ public class Player : NetworkBehaviour
 
         if (controller.collisions.onLadder)
         {
-            animator.speed = (velocity.y != 0) ? 1.0f : 0;
+            animator.speed = (velocity.y != 0 || velocity.x != 0) ? 1.0f : 0;
         }
         else
         {

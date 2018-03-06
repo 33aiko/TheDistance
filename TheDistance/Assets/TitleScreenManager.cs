@@ -27,7 +27,8 @@ public class TitleScreenManager : MonoBehaviour {
 	void Update () {
 		if (Scene1.GetComponent<Animator> ().GetCurrentAnimatorStateInfo (0).IsName ("done")) {
 			//Debug.Log ("animation done");
-			LobbyManager.SetActive (true);
+            if(LobbyManager)
+		    	LobbyManager.SetActive (true);
 		}
 	}
 

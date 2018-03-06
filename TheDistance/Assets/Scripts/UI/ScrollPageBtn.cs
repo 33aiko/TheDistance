@@ -21,6 +21,7 @@ public class ScrollPageBtn : MonoBehaviour {
         {
             scrollPage.currentPageIndex++;
             scrollPage.targethorizontal = scrollPage.pages[scrollPage.currentPageIndex];
+            scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
         }
     }
     public void LeftBtnClick()
@@ -29,6 +30,7 @@ public class ScrollPageBtn : MonoBehaviour {
         {
             scrollPage.currentPageIndex--;
             scrollPage.targethorizontal = scrollPage.pages[scrollPage.currentPageIndex];
+            scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
         }
     }
 }

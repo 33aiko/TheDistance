@@ -406,10 +406,9 @@ namespace Prototype.NetworkLobby
                 }
             }
 
-            Globe.nextSceneName = "LX_scene1";
+		
             ServerChangeScene(playScene);
         }
-
 
         // ----------------- Client callbacks ------------------
 

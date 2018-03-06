@@ -117,28 +117,17 @@ public class Player : NetworkBehaviour
     GameObject emoji;
 
     public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-    void Start()
+
+	void Start()
 	{
-        if (SceneManager.GetActiveScene().name == "loading_temp")
-        {
-            return;
-        }
-
-        //sceneState = 1;!!!!
+		//sceneState = 1;!!!!
         // boat = GameObject.Find("boat").GetComponent<RowBoat>();
-        if (SceneManager.GetActiveScene().name == "Boat")
-        {
-            boat = GameObject.Find("boat").GetComponent<RowBoat>();
+		if (SceneManager.GetActiveScene ().name == "Boat") {
+			boat = GameObject.Find ("boat").GetComponent<RowBoat> ();
 
-        }
-        else
-        {
-            emoji = GameObject.Find("Emoji").gameObject;
-        }
+		} else {
+			emoji = GameObject.Find ("Emoji").gameObject;
+		}
 
         //Text load
         GameObject UIobject = GameObject.Find("UI");
@@ -267,12 +256,7 @@ public class Player : NetworkBehaviour
 
 	void Update()
 	{
-
-        if (SceneManager.GetActiveScene().name == "loading_temp")
-        {
-            return;
-        }
-
+        
         if (!isLocalPlayer)
             return;
 		if (SceneManager.GetActiveScene ().name == "Boat") {

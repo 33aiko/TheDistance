@@ -7949,7 +7949,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: O / Enter to close
+  m_Text: Enter to close
 --- !u!222 &143442851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8572,7 +8572,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: O / Enter to close
+  m_Text: Enter to close
 --- !u!222 &157022141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9879,7 +9879,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262095700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121, y: -333, z: 0}
+  m_LocalPosition: {x: -2350, y: -286, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -26230,7 +26230,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1775351149259702, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114730617272916350, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
@@ -26264,7 +26264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_LocalScale.x
-      value: -24
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_LocalScale.y
@@ -26742,8 +26742,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'HOLD down L1 / T to enter sharing mode, platform pointed by a white arrow
-    will be shared once you RELEASE L1 / T. '
+  m_Text: HOLD down T to fill up the sharing bar and RELEASE to share.
 --- !u!222 &790890405
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27265,7 +27264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -35652,8 +35651,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'You can also send other objects to another world to help your partner.
-    Tree root can be helpful sometimes! '
+  m_Text: 'You can also share objects with your partner. Tree root can be helpful
+    sometimes! '
 --- !u!222 &1005087208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36355,7 +36354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: O / Enter to close
+  m_Text: Enter to close
 --- !u!222 &1092665915
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38596,7 +38595,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'Share platforms in your world with your partner to help each other progress.  '
+  m_Text: 'Those twinkling platforms are magical! Share them with your partner to
+    help each other progress.  '
 --- !u!222 &1297138913
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42247,7 +42247,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1339460119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2693, y: 0, z: 0}
+  m_LocalPosition: {x: -2573, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}
@@ -48105,6 +48105,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 95558409658286648, guid: 1bb0e7cec865944eb865db239881109c,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cf4e7abe7e37945b1a8490f3fc8b7810, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bb0e7cec865944eb865db239881109c, type: 2}
   m_IsPrefabParent: 0
@@ -59258,8 +59263,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'HOLD down L1 / T  to enter transforming mode, object pointed by a white
-    arrow will be transformed once you RELEASE L1 / T . '
+  m_Text: HOLD down T to fill up the sharing bar and RELEASE to share.
 --- !u!222 &1588479333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60386,7 +60390,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_LocalScale.x
-      value: -24
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_LocalScale.y
@@ -69369,7 +69373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0
@@ -69520,7 +69524,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885479941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 143, y: -321, z: 0}
+  m_LocalPosition: {x: -2328, y: -414, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1896040291}

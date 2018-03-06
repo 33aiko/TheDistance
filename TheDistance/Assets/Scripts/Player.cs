@@ -114,7 +114,7 @@ public class Player : NetworkBehaviour
     RowBoat boat;
 
     float m_timer=0;
-    GameObject emoji;
+//    GameObject emoji;
 
     public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
     void Awake()
@@ -137,7 +137,7 @@ public class Player : NetworkBehaviour
         }
         else
         {
-            emoji = GameObject.Find("Emoji").gameObject;
+//            emoji = GameObject.Find("Emoji").gameObject;
         }
 
         //Text load
@@ -292,7 +292,7 @@ public class Player : NetworkBehaviour
 		} else {
 			m_timer += Time.time;
 			if (m_timer > 50) {
-				emoji.GetComponent<Transform> ().position = new Vector3 (-9999f, -9999f, -9999f);
+//				emoji.GetComponent<Transform> ().position = new Vector3 (-9999f, -9999f, -9999f);
 			}
 		}
 
@@ -507,7 +507,7 @@ public class Player : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             m_timer = 0;
-            sendEmoji();
+//            sendEmoji();
         }
 
 		// press Q to interact with the object
@@ -1607,41 +1607,46 @@ public class Player : NetworkBehaviour
     /***********************************************************************
      * Communication
      ***********************************************************************/
-     public void sendEmoji()
-    {
-        if (isServer)
-        {
-            RpcComm();
-        }
-        else
-        {
-            CmdComm();
-        }
-    }
+//     public void sendEmoji()
+//    {
+//        if (isServer)
+//        {
+//            RpcComm();
+//        }
+//        else
+//        {
+//            CmdComm();
+//        }
+//    }
+	[ClientRpc]
      public void RpcComm()
     {
         if (isServer)
         {
             return;
         }
-        Vector3 pPos= GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
-        pPos.x += 30;
-        pPos.y += 30;
-        pPos.z += 30;
-        
-        emoji.transform.position = pPos;
-
+//        Vector3 pPos= GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
+//        pPos.x += 30;
+//        pPos.y += 30;
+//        pPos.z += 30;
+//        
+//        emoji.transform.position = pPos;
+		Debug.Log("OXOXOXOXOOX");
+		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
-
+	[Command]
     public void CmdComm()
     {
-        Vector3 pPos = GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
-        pPos.x += 30;
-        pPos.y += 30;
-        pPos.z += 30;
-
-        emoji.transform.position = pPos;
+//        Vector3 pPos = GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
+//        pPos.x += 30;
+//        pPos.y += 30;
+//        pPos.z += 30;
+//
+//        emoji.transform.position = pPos;
+		Debug.Log("ASASASASASASSA");
+		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
+
 
 
 

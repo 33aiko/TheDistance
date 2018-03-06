@@ -656,12 +656,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "I know he loves me...but I still can\u2019t help but feel like I don\u2019t
-    matter. This was my first big exhibit; he knew how important it was to me! But
-    he didn\u2019t come. I\u2019m so angry at him. And I want to understand, but why
-    should I bother trying to talk to him when he barely responds to me now anyway?
-    Does he even want to be with me? I couldn\u2019t even bring myself to read his
-    book when he sent it to me. God, how did we wind up like this?"
+  m_Text: "I want to remember everything about this moment, about being close to you.
+    I smile into your neck knowing you won\u2019t be gone forever."
 --- !u!222 &38127531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18890,11 +18886,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4341276905142376, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1586.4
+      value: 1782
       objectReference: {fileID: 0}
     - target: {fileID: 4341276905142376, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 78.9
+      value: 221
       objectReference: {fileID: 0}
     - target: {fileID: 4341276905142376, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -60293,11 +60289,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "It\u2019s weird that the sun is out right now when all I want to do is
-    sleep; the jet lag is too real. Maybe I\u2019ll call Eric after a nap and listen
-    to him try to convince me to play that new game with him again. It\u2019s gonna
-    be a long few months without him...but he\u2019ll be sending me drafts of his
-    book, and we\u2019ll have skype dates every week! We\u2019ll be ok."
+  m_Text: 'You open the letter and my first thought is of losing you. Your infectious
+    smile nearly makes me forget. '
 --- !u!222 &1674233637
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60743,11 +60736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "People recognize me when I go to galleries now, whether my work is showing
-    or not. I\u2019ve finally gotten back into gaming and holy crap, it\u2019s so
-    much better than I remember! I\u2019m living my wildest dreams, and honestly,
-    it\u2019s crazy to think that I\u2019m here. It\u2019s been a long road, and I\u2019m
-    proud to say that I wouldn\u2019t change a thing. Well, maybe one thing..."
+  m_Text: "\u201CI can\u2019t wait. I love you.\u201D"
 --- !u!222 &1696649086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -64625,11 +64614,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "Is it weird that Natalie didn\u2019t read my novel? Is this her way of
-    getting back at me for not going to her exhibit? If that\u2019s it, then sure,
-    I guess I understand. I mean I would have had to get on a plane and fly to her,
-    and she only had to open an email, but okay, I understand. Jeepers\u2026 she\u2019s
-    been so flakey lately. Why did we wind up like this?"
+  m_Text: "You hug me and reality sets in. I\u2019m leaving. The next few months will
+    be hard, but I believe in us. "
 --- !u!222 &1749325298
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -70647,11 +70633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "I still don\u2019t really understand this whole being an adult gig, but
-    these past couple of years have really made me feel older-ish. Sure, the book
-    didn\u2019t sell all that great, and things with Natalie sort of flatlined, but
-    that just means I have some free time on my hands and an expensive pile of paperweights
-    at my disposal. I wonder if she ever got a copy of my novel. "
+  m_Text: "\u201CI\u2019ll be home before you know it.\u201D"
 --- !u!222 &1947554007
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74917,11 +74899,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "I don\u2019t know much about being a real adult, but these past couples
-    of weeks have made me feel like a real grown up. Natalie\u2019s off jet setting
-    in different countries. My novel is finally nearing completion. We\u2019re even
-    thinking about playing an online game together since her infamous rage quit a
-    couple years back. Man, I miss her. \r"
+  m_Text: "I open the letter and the world stops. I feel like I\u2019m dreaming as
+    I hold my future in one hand and you in the other. "
 --- !u!222 &2099108420
 CanvasRenderer:
   m_ObjectHideFlags: 0

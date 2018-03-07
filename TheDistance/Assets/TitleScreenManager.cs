@@ -20,7 +20,7 @@ public class TitleScreenManager : MonoBehaviour {
 		foreach (Text t in instructions) {
 			t.DOFade (0, 0);
 		}
-		GetComponent<AudioSource> ().Play ();
+		//GetComponent<AudioSource> ().Play ();
 	}
 	
 

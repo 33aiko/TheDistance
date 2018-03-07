@@ -7700,6 +7700,274 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 621283403}
+--- !u!1 &642326185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 642326187}
+  - component: {fileID: 642326186}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &642326186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642326185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9c2315dd4359a4e8f98566d2c7080c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 243789902792828686, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
+  atmoMixerGroup: {fileID: 243493121255138504, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
+  envMixerGroup: {fileID: 0}
+  musicMixerGroup: {fileID: 243034195703369674, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
+    type: 2}
+  sounds:
+  - name: PlayerWalking
+    clip: {fileID: 8300000, guid: c1b3815010fd94f1ebe5a5d973d73027, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: e95ad8447ef595b4e91ac4e56b54513d, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: PlayerLand
+    clip: {fileID: 8300000, guid: 566c187c67faac14fba7e9e7ab395cef, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Waterfall
+    clip: {fileID: 8300000, guid: 8abaf092ddbec47cb87f9d9855f1a6d3, type: 3}
+    volume: 0.71
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Checkpoint
+    clip: {fileID: 8300000, guid: eaa3cc0166775433b9eaebe8bb74b360, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: MovingPlatform
+    clip: {fileID: 8300000, guid: fd62873efbef14d148f40a037a102b82, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: NPCcontent
+    clip: {fileID: 8300000, guid: 4b87c228ac44e4452a69deb3e75fc704, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: StartSharing
+    clip: {fileID: 8300000, guid: d44ae711c7bdc407b99f5369737b079c, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.8
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ConfirmSharing
+    clip: {fileID: 8300000, guid: 3cb28efea673147699c30ffb4cadf5e0, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FragmentOne
+    clip: {fileID: 8300000, guid: 83361efbb20764f7d8b2545ca90584e6, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FragmentTwo
+    clip: {fileID: 8300000, guid: afcd01a893f754d7b9c3052437d81a57, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: MemoryContent
+    clip: {fileID: 8300000, guid: eaa3cc0166775433b9eaebe8bb74b360, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 0.8
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: WalkWithBox
+    clip: {fileID: 8300000, guid: 857acf4f1036c44eab4806e21fe1bc2d, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SharingHold
+    clip: {fileID: 8300000, guid: dd4254ed39cb54a008c140e22443469a, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ClimbLadder
+    clip: {fileID: 8300000, guid: 5c6160a754cea4919b8c01613b2fe2fa, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SpiritMove
+    clip: {fileID: 8300000, guid: 4a35bdeb6796d4201b9513894d26c0eb, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 13f1ecaf8d5b04e108f6419e7f67a104, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Cave
+    clip: {fileID: 8300000, guid: 55c3421d481ed4da19a9b04b5b20358a, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  atmo:
+  - name: atmosphere01
+    clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  env:
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    objLoc: {fileID: 0}
+  music:
+  - name: musicTrack01
+    clip: {fileID: 8300000, guid: 8168e77b0f4ec43388383cfdad6adf97, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: musicTrack02
+    clip: {fileID: 8300000, guid: a73c8f13659c7451da20cafee9e98986, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: musicTrack03
+    clip: {fileID: 8300000, guid: 6f511c861fc9c438980328212b43678c, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: scartscreenBG
+    clip: {fileID: 8300000, guid: c55bba2599c2c40e188a251cfd677347, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+--- !u!4 &642326187
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642326185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4006.1553, y: -72.23486, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644455289
 GameObject:
   m_ObjectHideFlags: 0

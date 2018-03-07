@@ -1,4 +1,5 @@
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using System;
 using UnityEngine;
 
@@ -19,10 +20,15 @@ public class AudioManager : MonoBehaviour
 	public EnvSound[] env;
 	public Sound[] music;
 
+
+	bool musicScene1played = false; 
+
 	private void Start()
 	{
-		print ("playing atmo to start");
-		PlayAtmo ( "atmosphere01");
+		if (SceneManager.GetActiveScene ().name == "StartScreen") {
+			PlayMusicTrack ("startscreenBG");
+		}
+
 	}
 
 	//On game load
@@ -76,6 +82,11 @@ public class AudioManager : MonoBehaviour
 		//musicIndex = 0;
 	}
 
+	void Update(){
+		if (SceneManager.GetActiveScene ().name == "LX_scene1" && !musicScene1played) {
+			PlayAtmo ("atmosphere01");
+		}
+	}
 
 
 	//

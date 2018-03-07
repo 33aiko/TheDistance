@@ -18,7 +18,7 @@ namespace Prototype.NetworkLobby
         public static int nextSceneID = 0;
     }
 
-    public class loadingTemp : MonoBehaviour
+    public class LoadSceneController : MonoBehaviour
     {
 
         //public NetwrokManager lobbyManager;
@@ -101,7 +101,7 @@ namespace Prototype.NetworkLobby
 
             loadingSlider.value = 0.0f;
 
-            if (SceneManager.GetActiveScene().name == "loading_temp")
+            if (SceneManager.GetActiveScene().name == "Loading")
             {
                 //启动协程    
                 StartCoroutine(AsyncLoading());

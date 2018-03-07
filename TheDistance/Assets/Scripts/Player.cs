@@ -162,7 +162,7 @@ public class Player : NetworkBehaviour
 	{
 
 
-        if (SceneManager.GetActiveScene().name == "loading_temp")
+        if (SceneManager.GetActiveScene().name == "Loading")
         {
             return;
         }
@@ -311,8 +311,18 @@ public class Player : NetworkBehaviour
 	void Update()
 	{
 
-        if (SceneManager.GetActiveScene().name == "loading_temp")
+        if (SceneManager.GetActiveScene().name == "Loading")
         {
+            GameObject Loading_Natalie_GO = GameObject.Find("Loading_Natalie");
+            GameObject Loading_Eric_GO = GameObject.Find("Loading_Eric");
+            if (isServer && isLocalPlayer && Loading_Natalie_GO)
+            {
+                Loading_Natalie_GO.SetActive(false);
+            }
+            if (!isServer && isLocalPlayer && Loading_Eric_GO)
+            {
+                Loading_Eric_GO.SetActive(false);
+            }
             goingToNewScene = true;
             return;
         }

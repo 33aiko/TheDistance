@@ -74,6 +74,8 @@ public class Player : NetworkBehaviour
     int sceneState;
 
     // object sharing
+    [HideInInspector]
+    public InstructionAreaTrigger cur_instruction = null;
 	[HideInInspector]
 	public PlayerCircleCollider pCC;
     public float tNeededTime = 2.0f;
@@ -672,6 +674,11 @@ public class Player : NetworkBehaviour
             shareBarBg.DOFade(1, 0);
             shareBar.DOFade(1, 0);
             shareNotificationText.text = "Sharing";
+
+            if(cur_instruction != null)
+            {
+                cur_instruction.HideUI();
+            }
         }
 
         cameraTween.Kill();
@@ -693,6 +700,10 @@ public class Player : NetworkBehaviour
         }
         else
         {
+            if (cur_instruction != null)
+            {
+                cur_instruction.isUsed = true;
+            }
             animator.SetBool("sendSucceed", true);
             animator.SetBool("sendPrepare", false);
             audioManager.Play("ConfirmSharing");
@@ -827,6 +838,12 @@ public class Player : NetworkBehaviour
             }
             shareNotificationText.text = "";
             pCC.deletePrevArrow();
+            if(cur_instruction != null)
+            {
+                cur_instruction.ShowUI();
+
+            }
+
         }
         tPressedTime = 0;
         isSharing = false;

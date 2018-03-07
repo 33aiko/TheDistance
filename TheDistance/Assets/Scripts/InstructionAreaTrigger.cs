@@ -24,9 +24,15 @@ public class InstructionAreaTrigger : MonoBehaviour {
 
     bool uiActive = false;
 
+    float upY;
+    float downY;
+
     private void Start()
     {
         cnt = 0;
+
+        upY = ui_borderUp.transform.localPosition.y;
+        downY = ui_borderDown.transform.localPosition.y;
 
         ui_borderUp.transform.localPosition = Vector3.zero;
         ui_borderDown.transform.localPosition = Vector3.zero;
@@ -62,8 +68,8 @@ public class InstructionAreaTrigger : MonoBehaviour {
         uiActive = true;
         ui_borderUp.DOFade(1, fade_time);
         ui_borderDown.DOFade(1, fade_time);
-        ui_borderUp.transform.DOLocalMoveY(50, expand_time);
-        ui_borderDown.transform.DOLocalMoveY(-50, expand_time);
+        ui_borderUp.transform.DOLocalMoveY(upY, expand_time);
+        ui_borderDown.transform.DOLocalMoveY(downY, expand_time);
 
         ui_background.DOFade(1, fade_time);
         ui_background.transform.DOScaleY(1, fade_time);

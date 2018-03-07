@@ -20,7 +20,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public bool isUsed = false;
 
     public List<string> npcTalks = new List<string>();
-    int curIdx = 0;
+    public int curIdx = 0;
 
     bool uiActive = false;
 
@@ -83,8 +83,6 @@ public class InstructionAreaTrigger : MonoBehaviour {
         ui_borderDown.transform.DOLocalMoveY(0, expand_time);
         ui_borderUp.DOFade(0, fade_time);
         ui_borderDown.DOFade(0, fade_time);
-        curIdx = 0;
-        ui_text.text = npcTalks[curIdx];
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -97,6 +95,8 @@ public class InstructionAreaTrigger : MonoBehaviour {
                 Player p = collision.GetComponent<Player>();
                 p.cur_instruction = null;
                 HideUI();
+                curIdx = 0;
+                ui_text.text = npcTalks[curIdx];
             }
         }
     }
@@ -107,8 +107,6 @@ public class InstructionAreaTrigger : MonoBehaviour {
         if(curIdx >= npcTalks.Count)
         {
             HideUI();
-            if(!autoShow)
-                GetComponentInParent<NPCTrigger>().inputUI.gameObject.SetActive(true);
         }
         else
         {

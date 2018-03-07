@@ -11,7 +11,7 @@ public class NPCTrigger : MonoBehaviour {
 	public GameObject NPCcontent; 
     public string NPCtalk;
 
-	public Image inputUI;
+	Image inputUI;
     Text t;
     Text instruct;
 

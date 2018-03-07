@@ -317,11 +317,13 @@ public class Player : NetworkBehaviour
             GameObject Loading_Eric_GO = GameObject.Find("Loading_Eric");
             if (isServer && isLocalPlayer && Loading_Natalie_GO)
             {
-                Loading_Natalie_GO.SetActive(false);
+               // Loading_Natalie_GO.SetActive(false);
+				Loading_Eric_GO.SetActive(true);
             }
             if (!isServer && isLocalPlayer && Loading_Eric_GO)
             {
-                Loading_Eric_GO.SetActive(false);
+               // Loading_Eric_GO.SetActive(false);
+				Loading_Natalie_GO.SetActive(true);
             }
             goingToNewScene = true;
             return;

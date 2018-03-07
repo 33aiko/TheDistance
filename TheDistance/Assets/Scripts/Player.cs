@@ -507,6 +507,14 @@ public class Player : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             m_timer = 0;
+            if(isServer && isLocalPlayer)
+            {
+                RpcComm();
+            }
+            else
+            {
+                CmdComm();
+            }
 //            sendEmoji();
         }
 
@@ -1632,7 +1640,10 @@ public class Player : NetworkBehaviour
 //        
 //        emoji.transform.position = pPos;
 		Debug.Log("OXOXOXOXOOX");
-		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
+        print("spirit:"+spirit.name);
+        print("spirit:" + spirit.GetComponent<Animator>());
+        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
+        //spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
 	[Command]
     public void CmdComm()
@@ -1644,7 +1655,8 @@ public class Player : NetworkBehaviour
 //
 //        emoji.transform.position = pPos;
 		Debug.Log("ASASASASASASSA");
-		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
+        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
+		//spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
 
 

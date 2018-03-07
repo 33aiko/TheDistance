@@ -10428,132 +10428,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224476343113871520, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224476343113871520, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1029
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1029
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224581185779054646, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 40.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.32323915
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114557800854906054, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 114557800854906054, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_FontData.m_MaxSize
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.32323918
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.32323918
-      objectReference: {fileID: 0}
-    - target: {fileID: 114557800854906054, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_Text
-      value: Press <color=yellow>T</color> and <color=yellow>release</color> when
-        sharing bar is filled.
-      objectReference: {fileID: 0}
-    - target: {fileID: 224582432999082248, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224476343113871520, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 224277844097392706, guid: f9242eda4b97481479d8488d5259836a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -40.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9242eda4b97481479d8488d5259836a, type: 2}
   m_IsPrefabParent: 0
@@ -27632,7 +27506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &867179971
 Transform:
   m_ObjectHideFlags: 0
@@ -62917,7 +62791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1877752301
 Transform:
   m_ObjectHideFlags: 0

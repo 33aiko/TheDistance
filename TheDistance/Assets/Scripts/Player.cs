@@ -68,9 +68,14 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
+    //scroll page
+    public ScrollPage scrollPage;
+
     int sceneState;
 
     // object sharing
+    [HideInInspector]
+    public InstructionAreaTrigger cur_instruction = null;
 	[HideInInspector]
 	public PlayerCircleCollider pCC;
     public float tNeededTime = 2.0f;
@@ -192,11 +197,13 @@ public class Player : NetworkBehaviour
         // init public variables:
         root = GameObject.Find("Root");
 
+
         // get components
         if (!(audioManager && transitionMask && animator && controller && pCC))
         {
             GetAllComponents();
         }
+
 
         // movement offset
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
@@ -548,6 +555,14 @@ public class Player : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             m_timer = 0;
+            if(isServer && isLocalPlayer)
+            {
+                RpcComm();
+            }
+            else
+            {
+                CmdComm();
+            }
 //            sendEmoji();
         }
 
@@ -701,6 +716,11 @@ public class Player : NetworkBehaviour
             shareBarBg.DOFade(1, 0);
             shareBar.DOFade(1, 0);
             shareNotificationText.text = "Sharing";
+
+            if(cur_instruction != null)
+            {
+                cur_instruction.HideUI();
+            }
         }
 
         cameraTween.Kill();
@@ -722,6 +742,10 @@ public class Player : NetworkBehaviour
         }
         else
         {
+            if (cur_instruction != null)
+            {
+                cur_instruction.isUsed = true;
+            }
             animator.SetBool("sendSucceed", true);
             animator.SetBool("sendPrepare", false);
             audioManager.Play("ConfirmSharing");
@@ -856,6 +880,12 @@ public class Player : NetworkBehaviour
             }
             shareNotificationText.text = "";
             pCC.deletePrevArrow();
+            if(cur_instruction != null)
+            {
+                cur_instruction.ShowUI();
+
+            }
+
         }
         tPressedTime = 0;
         isSharing = false;
@@ -1084,6 +1114,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
             }
 
@@ -1125,6 +1159,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
                 Debug.Log("2show" + keyIdx);
             }
@@ -1164,6 +1202,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
 
             }
@@ -1207,6 +1249,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
                 Debug.Log("4show" + keyIdx);
 
@@ -1681,7 +1727,10 @@ public class Player : NetworkBehaviour
 //        
 //        emoji.transform.position = pPos;
 		Debug.Log("OXOXOXOXOOX");
-		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
+        print("spirit:"+spirit.name);
+        print("spirit:" + spirit.GetComponent<Animator>());
+        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
+        //spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
 	[Command]
     public void CmdComm()
@@ -1693,7 +1742,8 @@ public class Player : NetworkBehaviour
 //
 //        emoji.transform.position = pPos;
 		Debug.Log("ASASASASASASSA");
-		spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
+        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
+		//spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
 
 

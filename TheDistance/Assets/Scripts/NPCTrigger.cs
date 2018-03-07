@@ -11,7 +11,7 @@ public class NPCTrigger : MonoBehaviour {
 	public GameObject NPCcontent; 
     public string NPCtalk;
 
-	Image inputUI;
+	public Image inputUI;
     Text t;
     Text instruct;
 
@@ -23,6 +23,8 @@ public class NPCTrigger : MonoBehaviour {
 
     bool currentIsKeyboard = true;
 
+    InstructionAreaTrigger instruction;
+
     private void Start()
     {
 		inputUI = GetComponentInChildren<Image> ();
@@ -30,6 +32,7 @@ public class NPCTrigger : MonoBehaviour {
         loadSprite(UIPath, keyboardUIName);
 		inputUI.gameObject.SetActive (false);
         t = GetComponentInChildren<Text>();
+        instruction = GetComponentInChildren<InstructionAreaTrigger>();
         t.text = "";
     }
 
@@ -82,9 +85,11 @@ public class NPCTrigger : MonoBehaviour {
                // t.text = "";
 				inputUI.gameObject.SetActive(false);
                 instruct.text = "";
+                /*
                 //print("Player leaving NPC");
                 blackmask.DOFade(0, 0);
                 NPCcontent.SetActive(false);
+                 */ 
             }
         }
     }
@@ -92,19 +97,18 @@ public class NPCTrigger : MonoBehaviour {
 
     public void showTalkText()
     {
+        /*
 		blackmask.DOFade (0.8f, 0);
 		NPCcontent.SetActive (true);
-//        if(t == null)
-//        {
-//            print("nothing found");
-//            return;
-//        }
-       // t.text = "";
+         */
+        if (instruction)
+            instruction.ShowUI();
 		inputUI.gameObject.SetActive(false);
     }
 
 	public void hideTalkText()
 	{
+        return;
 		//t.text = "press E to view";
 		inputUI.gameObject.SetActive(true);
 		blackmask.DOFade (0, 0);

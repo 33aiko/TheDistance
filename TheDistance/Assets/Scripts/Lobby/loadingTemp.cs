@@ -7,9 +7,15 @@ using UnityEngine.Networking;
 
 namespace Prototype.NetworkLobby
 {
-    public class Globe
+    public class SceneManagerTheDistance
     {
         public static string nextSceneName;
+        public static string[] sceneList =
+        {
+            "LX_scene1",
+            "LX_scene2",
+        };
+        public static int nextSceneID = 0;
     }
 
     public class loadingTemp : MonoBehaviour
@@ -91,6 +97,8 @@ namespace Prototype.NetworkLobby
 
         void Start()
         {
+            SceneManagerTheDistance.nextSceneID++;
+
             loadingSlider.value = 0.0f;
 
             if (SceneManager.GetActiveScene().name == "loading_temp")
@@ -100,9 +108,13 @@ namespace Prototype.NetworkLobby
             }
         }
 
+
+
         IEnumerator AsyncLoading()
         {
-            operation = SceneManager.LoadSceneAsync("LX_scene1");
+            operation = SceneManager.LoadSceneAsync(SceneManagerTheDistance.sceneList[SceneManagerTheDistance.nextSceneID-1]);
+            
+
             //阻止当加载完成自动切换    
             operation.allowSceneActivation = false;
 
@@ -135,6 +147,7 @@ namespace Prototype.NetworkLobby
 
             if ((int)(loadingSlider.value * 100) == 100)
             {
+
                 //允许异步加载完毕后自动切换场景  
                 operation.allowSceneActivation = true;
             }

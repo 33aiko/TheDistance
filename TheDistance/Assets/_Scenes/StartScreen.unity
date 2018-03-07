@@ -2793,7 +2793,7 @@ MonoBehaviour:
   m_LobbyScene: StartScreen
   m_PlayScene: loading_temp
   lobbySlots: []
-  prematchCountdown: 3
+  prematchCountdown: 0
   topPanel: {fileID: 713076179}
   mainMenuPanel: {fileID: 557870539}
   lobbyPanel: {fileID: 1418358523}
@@ -19664,7 +19664,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060352972}
   m_HandleRect: {fileID: 293548600}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

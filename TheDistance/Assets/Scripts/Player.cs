@@ -122,12 +122,42 @@ public class Player : NetworkBehaviour
 //    GameObject emoji;
 
     public InputDeviceType currentInputDevice = InputDeviceType.KEYBOARD;
+
+    private void OnEnable()
+    {
+        // get components
+        GetAllComponents();
+    }
+
+ 
+    void GetAllComponents()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        transitionMask = GameObject.Find("TransitionMask");
+        animator = GetComponent<Animator>();
+        controller = GetComponent<Controller2D>();
+        pCC = GetComponent<PlayerCircleCollider>();
+
+        
+    }
+
     void Awake()
     {
+        GetAllComponents();
         DontDestroyOnLoad(this);
     }
-    void Start()
+
+    private void Start()
+    {
+        StartInits();
+    }
+
+
+
+    void StartInits()
 	{
+
+
         if (SceneManager.GetActiveScene().name == "loading_temp")
         {
             return;
@@ -167,13 +197,13 @@ public class Player : NetworkBehaviour
         // init public variables:
         root = GameObject.Find("Root");
 
-		// get components
-		audioManager = FindObjectOfType<AudioManager>();
-		transitionMask = GameObject.Find ("TransitionMask");
-        animator = GetComponent<Animator>();
-		controller = GetComponent<Controller2D>();
-		pCC = GetComponent<PlayerCircleCollider>();
-        scrollPage = GameObject.Find("UI").transform.Find("Canvas/Diary/StoryContentScrollView").GetComponent<ScrollPage>();
+
+        // get components
+        if (!(audioManager && transitionMask && animator && controller && pCC))
+        {
+            GetAllComponents();
+        }
+
 
         // movement offset
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
@@ -213,12 +243,13 @@ public class Player : NetworkBehaviour
 
         // initialize spirit
         spirit = root.transform.Find("Spirit").gameObject;
-        //if (spirit.GetComponent<Animator>() == null)
+        if (spirit.GetComponent<Animator>() == null)
         {
             spirit.AddComponent<Animator>();
-            spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
-            spiritTargetPos = spirit.transform.position;
+            
         }
+        spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
+        spiritTargetPos = spirit.transform.position;
         spirit.SetActive(true);
 
         /* initial the cave effect material */
@@ -278,6 +309,17 @@ public class Player : NetworkBehaviour
         {
             return;
         }
+        else
+        {
+            StartInits();
+        }
+
+
+        if (!(audioManager && transitionMask && animator && controller && pCC))
+        {
+            GetAllComponents();
+        }
+
 
         if (!isLocalPlayer)
             return;
@@ -1528,7 +1570,8 @@ public class Player : NetworkBehaviour
         //print("Rpc Move");
         if (!isServer)
         {
-            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+            if(GameObject.Find("Player"))
+                GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
         }
     }
 
@@ -1537,7 +1580,8 @@ public class Player : NetworkBehaviour
     public void CmdMove(Vector3 pos)
     {
         //print("Cmd Move");
-        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
+        if (GameObject.Find("Player"))
+            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = pos;
     }
 
     /***********************************************************************
@@ -1548,8 +1592,11 @@ public class Player : NetworkBehaviour
         //print("CmdIniatiateServer");
         spirit.transform.position = spirit_pos;
         spirit.SetActive(true);
-        GameObject.Find("Player").transform.position = player_pos;
-        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+        if (GameObject.Find("Player"))
+        {
+            GameObject.Find("Player").transform.position = player_pos;
+            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+        }
     }
     [ClientRpc]
     public void RpcInitializeClient(Vector3 spirit_pos, Vector3 player_pos)
@@ -1557,8 +1604,11 @@ public class Player : NetworkBehaviour
         //print("IniatiateClient");
         spirit.transform.position = spirit_pos;
         spirit.SetActive(true);
-        GameObject.Find("Player").transform.position = player_pos;
-        GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+        if (GameObject.Find("Player"))
+        {
+            GameObject.Find("Player").transform.position = player_pos;
+            GameObject.Find("Player").GetComponent<Player>().spiritTargetPos = spirit_pos;
+        }
     }
 
     /***********************************************************************

@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace Prototype.NetworkLobby
 {
@@ -49,7 +50,14 @@ namespace Prototype.NetworkLobby
         {
             if (readyToBegin)
                 return;
-			if (Input.GetButtonDown("Submit"))
+
+            if (SceneManager.GetActiveScene().name != "loading_temp" && SceneManager.GetActiveScene().name != "StartScreen")
+            {
+                SendReadyToBeginMessage();
+            }
+
+
+            if (Input.GetButtonDown("Submit"))
             {
                 SendReadyToBeginMessage();
             }
@@ -75,6 +83,8 @@ namespace Prototype.NetworkLobby
                 }
 					
             }
+
+            
 
 
         }

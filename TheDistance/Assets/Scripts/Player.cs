@@ -315,15 +315,13 @@ public class Player : NetworkBehaviour
         {
             GameObject Loading_Natalie_GO = GameObject.Find("Loading_Natalie");
             GameObject Loading_Eric_GO = GameObject.Find("Loading_Eric");
-            if (isServer && isLocalPlayer && Loading_Natalie_GO)
+			if (isServer && isLocalPlayer && Loading_Eric_GO)
             {
-               // Loading_Natalie_GO.SetActive(false);
-				Loading_Eric_GO.SetActive(true);
+				Loading_Eric_GO.GetComponent<Image> ().DOFade (1, 0.5f);
             }
-            if (!isServer && isLocalPlayer && Loading_Eric_GO)
+            if (!isServer && isLocalPlayer && Loading_Natalie_GO)
             {
-               // Loading_Eric_GO.SetActive(false);
-				Loading_Natalie_GO.SetActive(true);
+				Loading_Natalie_GO.GetComponent<Image> ().DOFade (1, 0.5f);
             }
             goingToNewScene = true;
             return;

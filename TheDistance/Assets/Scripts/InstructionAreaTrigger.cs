@@ -16,9 +16,13 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public float expand_time = 0.5f;
     public float fade_time = 0.5f;
 
+    public bool autoShow = true;
     public bool isUsed = false;
 
-    Sequence seq;
+    public List<string> npcTalks = new List<string>();
+    public int curIdx = 0;
+
+    bool uiActive = false;
 
     private void Start()
     {
@@ -31,13 +35,15 @@ public class InstructionAreaTrigger : MonoBehaviour {
         ui_background.DOFade(0, 0);
         ui_background.transform.DOScaleY(0.1f, 0);
         ui_text.canvasRenderer.SetAlpha(0);
-
-        seq = DOTween.Sequence();
+        if (npcTalks.Count == 0)
+            npcTalks.Add(ui_text.text);
+        ui_text.text = npcTalks[0];
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!autoShow) return;
         if(collision.gameObject.tag == "Player")
         {
             cnt++;
@@ -52,7 +58,8 @@ public class InstructionAreaTrigger : MonoBehaviour {
 
     public void ShowUI()
     {
-        if (isUsed) return;
+        if (isUsed || uiActive) return;
+        uiActive = true;
         ui_borderUp.DOFade(1, fade_time);
         ui_borderDown.DOFade(1, fade_time);
         ui_borderUp.transform.DOLocalMoveY(50, expand_time);
@@ -67,6 +74,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public void HideUI()
     {
         if (isUsed) return;
+        uiActive = false;
         ui_background.DOFade(0, fade_time);
         ui_background.transform.DOScaleY(0.1f, fade_time);
         float vic = 0;
@@ -87,7 +95,30 @@ public class InstructionAreaTrigger : MonoBehaviour {
                 Player p = collision.GetComponent<Player>();
                 p.cur_instruction = null;
                 HideUI();
+                curIdx = 0;
+                ui_text.text = npcTalks[curIdx];
             }
+        }
+    }
+
+    private void ShowNextText()
+    {
+        curIdx++;
+        if(curIdx >= npcTalks.Count)
+        {
+            HideUI();
+        }
+        else
+        {
+            ui_text.text = npcTalks[curIdx];
+        }
+    }
+
+    private void Update()
+    {
+        if(uiActive && Input.GetKeyDown(KeyCode.Return))
+        {
+            ShowNextText();
         }
     }
 

@@ -407,7 +407,13 @@ namespace Prototype.NetworkLobby
             }
 
             Globe.nextSceneName = "LX_scene1";
+
+            Debug.Log("#####lobby manager changing Globe.nextSceneName  to: " + Globe.nextSceneName);
+
+            Debug.Log("#####lobby manager playScene now is: " + playScene);
+
             ServerChangeScene(playScene);
+            
         }
 
 

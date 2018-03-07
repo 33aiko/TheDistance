@@ -195,7 +195,7 @@ public class PlayerSimple : MonoBehaviour{
             return;
 
 
-        print("input at other is: " + x);
+        //print("input at other is: " + x);
 
         bool playerUp = isJumping && targetPos.y > transform.position.y;
         bool playerStand = (!isJumping && x == 0);

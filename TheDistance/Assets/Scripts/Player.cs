@@ -142,8 +142,14 @@ public class Player : NetworkBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        StartInits();
+    }
 
-    void Start()
+
+
+    void StartInits()
 	{
 
 
@@ -230,12 +236,13 @@ public class Player : NetworkBehaviour
 
         // initialize spirit
         spirit = root.transform.Find("Spirit").gameObject;
-        //if (spirit.GetComponent<Animator>() == null)
+        if (spirit.GetComponent<Animator>() == null)
         {
             spirit.AddComponent<Animator>();
-            spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
-            spiritTargetPos = spirit.transform.position;
+            
         }
+        spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
+        spiritTargetPos = spirit.transform.position;
         spirit.SetActive(true);
 
         /* initial the cave effect material */
@@ -294,6 +301,10 @@ public class Player : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "loading_temp")
         {
             return;
+        }
+        else
+        {
+            StartInits();
         }
 
 

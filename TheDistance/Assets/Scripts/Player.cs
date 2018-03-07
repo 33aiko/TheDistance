@@ -147,8 +147,12 @@ public class Player : NetworkBehaviour
         DontDestroyOnLoad(this);
     }
 
+
+    private bool goingToNewScene;
+
     private void Start()
     {
+        goingToNewScene = false;
         StartInits();
     }
 
@@ -302,16 +306,24 @@ public class Player : NetworkBehaviour
 
     }
 
+
+
 	void Update()
 	{
 
         if (SceneManager.GetActiveScene().name == "loading_temp")
         {
+            goingToNewScene = true;
             return;
         }
         else
         {
-            StartInits();
+            if(goingToNewScene)
+            {
+                StartInits();
+                goingToNewScene = false;
+            }
+           
         }
 
 

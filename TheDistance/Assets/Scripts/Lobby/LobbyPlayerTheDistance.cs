@@ -51,10 +51,10 @@ namespace Prototype.NetworkLobby
             if (readyToBegin)
                 return;
 
-            if (SceneManager.GetActiveScene().name != "loading_temp" && SceneManager.GetActiveScene().name != "StartScreen")
-            {
-                SendReadyToBeginMessage();
-            }
+            //if (SceneManager.GetActiveScene().name != "loading_temp" && SceneManager.GetActiveScene().name != "StartScreen")
+            //{
+            //    SendReadyToBeginMessage();
+            //}
 
 
             if (Input.GetButtonDown("Submit"))

@@ -68,6 +68,9 @@ public class Player : NetworkBehaviour
     public bool playerUp = false;
     float jumpTime = 0;
 
+    //scroll page
+    public ScrollPage scrollPage;
+
     int sceneState;
 
     // object sharing
@@ -168,9 +171,10 @@ public class Player : NetworkBehaviour
         animator = GetComponent<Animator>();
 		controller = GetComponent<Controller2D>();
 		pCC = GetComponent<PlayerCircleCollider>();
+        scrollPage = GameObject.Find("UI").transform.Find("Canvas/Diary/StoryContentScrollView").GetComponent<ScrollPage>();
 
-		// movement offset
-		gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
+        // movement offset
+        gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
 		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
 		//have key
@@ -1051,6 +1055,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
             }
 
@@ -1092,6 +1100,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
                 Debug.Log("2show" + keyIdx);
             }
@@ -1131,6 +1143,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
 
             }
@@ -1174,6 +1190,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
+                    if (scrollPage.enabled == true)
+                    {
+                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+                    }
                 }
                 Debug.Log("4show" + keyIdx);
 

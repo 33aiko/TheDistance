@@ -12,6 +12,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public Image ui_borderDown;
     public Image ui_background;
     public Text ui_text;
+    public Text enter_text;
 
     public float expand_time = 0.5f;
     public float fade_time = 0.5f;
@@ -65,6 +66,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public void ShowUI()
     {
         if (isUsed || uiActive) return;
+        ui_text.text = npcTalks[curIdx];
         uiActive = true;
         ui_borderUp.DOFade(1, fade_time);
         ui_borderDown.DOFade(1, fade_time);
@@ -73,8 +75,13 @@ public class InstructionAreaTrigger : MonoBehaviour {
 
         ui_background.DOFade(1, fade_time);
         ui_background.transform.DOScaleY(1, fade_time);
-        float vic = 0;
+        float vic = ui_text.canvasRenderer.GetAlpha();
         DOTween.To(() => vic, x => { ui_text.canvasRenderer.SetAlpha(vic); vic = x; }, 1, fade_time);
+        if(enter_text != null)
+        {
+            vic = enter_text.canvasRenderer.GetAlpha(); ;
+            DOTween.To(() => vic, x => { enter_text.canvasRenderer.SetAlpha(vic); vic = x; }, 1, fade_time);
+        }
     }
 
     public void HideUI()
@@ -83,8 +90,13 @@ public class InstructionAreaTrigger : MonoBehaviour {
         uiActive = false;
         ui_background.DOFade(0, fade_time);
         ui_background.transform.DOScaleY(0.1f, fade_time);
-        float vic = 0;
+        float vic = ui_text.canvasRenderer.GetAlpha();
         DOTween.To(() => vic, x => { ui_text.canvasRenderer.SetAlpha(vic); vic = x; }, 0, fade_time);
+        if(enter_text != null)
+        {
+            vic = enter_text.canvasRenderer.GetAlpha(); ;
+            DOTween.To(() => vic, x => { enter_text.canvasRenderer.SetAlpha(vic); vic = x; }, 0, fade_time);
+        }
         ui_borderUp.transform.DOLocalMoveY(0, expand_time);
         ui_borderDown.transform.DOLocalMoveY(0, expand_time);
         ui_borderUp.DOFade(0, fade_time);

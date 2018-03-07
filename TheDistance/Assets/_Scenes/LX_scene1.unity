@@ -9055,12 +9055,12 @@ Prefab:
     - target: {fileID: 224439510247094680, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224414226409904922, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4422533008647804, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_RootOrder
@@ -10498,7 +10498,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left joystick to move, X to jump
+  m_Text: WASD/Arrow keys to move, Space to jump
 --- !u!222 &296627865
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26383,7 +26383,7 @@ Prefab:
     - target: {fileID: 224439510247094680, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 223808377689709770, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
@@ -26397,7 +26397,7 @@ Prefab:
     - target: {fileID: 224414226409904922, guid: ccde170a7c925084fba78d5138c0237e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4778354536269468, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_RootOrder
@@ -39243,7 +39243,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4990302863780384, guid: 63c689ed128085f448fb20aab2343ced, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4976
+      value: 5011
       objectReference: {fileID: 0}
     - target: {fileID: 4990302863780384, guid: 63c689ed128085f448fb20aab2343ced, type: 2}
       propertyPath: m_LocalPosition.y
@@ -58412,7 +58412,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1783428065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4928, y: 146, z: 0}
+  m_LocalPosition: {x: 4758, y: 146, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 2.017299}
   m_Children: []
   m_Father: {fileID: 1896040291}

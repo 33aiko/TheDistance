@@ -1742,14 +1742,14 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-		audioManager.Play ("SpiritSignal");
+		audioManager.StopAndPlay ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
     }
 	[Command]
     public void CmdComm()
     {
 
-		audioManager.Play ("SpiritSignal");
+		audioManager.StopAndPlay ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
 
     }

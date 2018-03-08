@@ -118,7 +118,7 @@ public class AudioManager : MonoBehaviour
 		}
 		EnvSound e = Array.Find(env, item => item.name == sound);
 		if (e == null){
-			Debug.LogWarning("Sound: " + name + " not found in ENV (bad warning)!");
+			Debug.LogWarning("Sound: " + sound + " not found in ENV (bad warning)!");
 		}
 		else if (!s.source.isPlaying) {
 			e.source.Play ();
@@ -149,7 +149,7 @@ public class AudioManager : MonoBehaviour
 
 		EnvSound e = Array.Find(env, item => item.name == sound);
 		if (e == null) {
-			Debug.LogWarning ("Sound: " + name + " not found in ENV (bad warning)!");
+			Debug.LogWarning ("Sound: " + sound + " not found in ENV (bad warning)!");
 		} else {
 			e.source.Play ();
 		}
@@ -211,7 +211,7 @@ public class AudioManager : MonoBehaviour
 		Sound m = Array.Find(music, item => item.name == trackName);
 		if (m == null)
 		{
-			Debug.LogWarning("Sound: " + name + " not found!");
+			Debug.LogWarning("Sound: " + trackName + " not found!");
 			return;
 		}
 		if (!m.source.isPlaying) {
@@ -232,7 +232,7 @@ public class AudioManager : MonoBehaviour
 		Sound m = Array.Find(music, item => item.name == trackName);
 		if (m == null)
 		{
-			Debug.LogWarning("Sound: " + name + " not found!");
+			Debug.LogWarning("Sound: " + trackName+ " not found!");
 			return;
 		}
 		m.source.Stop ();

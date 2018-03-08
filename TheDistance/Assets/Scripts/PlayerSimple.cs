@@ -44,7 +44,7 @@ public class PlayerSimple : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
-        //audioManager = FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         m_rb = GetComponent<Rigidbody2D>();
@@ -97,8 +97,17 @@ public class PlayerSimple : MonoBehaviour{
 
         if (controller.collisions.above || controller.collisions.below)
         {
-            playerJumping = false;
-            velocity.y = 0;
+			if (playerJumping)
+			{
+				if (jumpTime > 0.1f)
+				if(controller.collisions.below)
+					audioManager.Play("PlayerLand");
+			}
+			if(controller.collisions.below)
+			{
+				playerJumping = false;
+				jumpTime = 0;
+			}
         }
 
         keyspaceDown = false;
@@ -109,7 +118,7 @@ public class PlayerSimple : MonoBehaviour{
             ) &&
             controller.collisions.below && !controller.collisions.onLadder) 
         {
-            //audioManager.Play("PlayerJump");
+            audioManager.Play("PlayerJump");
             velocity.y = jumpVelocity;
             playerJumping = true;
             keyspaceDown = true;
@@ -120,13 +129,13 @@ public class PlayerSimple : MonoBehaviour{
         {
             if (!playingWalkingMusic)
             {
-                //audioManager.Play("PlayerWalking");
+                audioManager.Play("PlayerWalking");
                 playingWalkingMusic = true;
             }
         }
         else
         {
-            //audioManager.Stop("PlayerWalking");
+            audioManager.Stop("PlayerWalking");
             playingWalkingMusic = false;
         }
 

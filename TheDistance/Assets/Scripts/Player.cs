@@ -1136,10 +1136,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
-                    if (scrollPage.enabled == true)
-                    {
-                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
-                    }
+//                    if (scrollPage.enabled == true)
+//                    {
+//                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+//                    }
                 }
             }
 
@@ -1181,10 +1181,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
-                    if (scrollPage.enabled == true)
-                    {
-                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
-                    }
+//                    if (scrollPage.enabled == true)
+//                    {
+//                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+//                    }
                 }
                 Debug.Log("2show" + keyIdx);
             }
@@ -1224,10 +1224,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
-                    if (scrollPage.enabled == true)
-                    {
-                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
-                    }
+//                    if (scrollPage.enabled == true)
+//                    {
+//                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+//                    }
                 }
 
             }
@@ -1271,10 +1271,10 @@ public class Player : NetworkBehaviour
                 {
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
-                    if (scrollPage.enabled == true)
-                    {
-                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
-                    }
+//                    if (scrollPage.enabled == true)
+//                    {
+//                        scrollPage.OnPageChanged(scrollPage.pages.Count, scrollPage.currentPageIndex);
+//                    }
                 }
                 Debug.Log("4show" + keyIdx);
 
@@ -1742,14 +1742,14 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-		audioManager.StopAndPlay ("SpiritSignal");
+		audioManager.Play ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
     }
 	[Command]
     public void CmdComm()
     {
 
-		audioManager.StopAndPlay ("SpiritSignal");
+		audioManager.Play ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
 
     }

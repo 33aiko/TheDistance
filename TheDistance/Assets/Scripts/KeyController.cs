@@ -196,6 +196,7 @@ public class KeyController : MonoBehaviour {
     
 	public void setBoth()
     {
+		Debug.Log (both [0] + both [1]);
         this.GetComponent<SpriteRenderer>().sprite = fragSprite[both[0] + both[1]];
     }
 

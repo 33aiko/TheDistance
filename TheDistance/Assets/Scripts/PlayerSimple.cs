@@ -97,17 +97,26 @@ public class PlayerSimple : MonoBehaviour{
 
         if (controller.collisions.above || controller.collisions.below)
         {
-			if (playerJumping)
-			{
-				if (jumpTime > 0.1f)
-				if(controller.collisions.below)
-					audioManager.Play("PlayerLand");
-			}
-			if(controller.collisions.below)
-			{
-				playerJumping = false;
-				jumpTime = 0;
-			}
+            if (playerJumping)
+            {
+                if (jumpTime > 0.1f)
+                {
+                    if (controller.collisions.below)
+                    {
+                        print("player lands!");
+                        audioManager.Play("PlayerLand");
+                    }
+                }
+            }
+            if (controller.collisions.below)
+            {
+                playerJumping = false;
+                jumpTime = 0;
+            }
+        }
+        else
+        {
+            jumpTime += Time.deltaTime;
         }
 
         keyspaceDown = false;

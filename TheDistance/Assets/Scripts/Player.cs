@@ -573,8 +573,8 @@ public class Player : NetworkBehaviour
 
         //else:
 
-        //press Y to send emoji
-        if (Input.GetKeyDown(KeyCode.Y))
+        //press R to send emoji
+		if (Input.GetKeyDown(KeyCode.R))
         {
             m_timer = 0;
             if(isServer && isLocalPlayer)
@@ -1742,30 +1742,16 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-//        Vector3 pPos= GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
-//        pPos.x += 30;
-//        pPos.y += 30;
-//        pPos.z += 30;
-//        
-//        emoji.transform.position = pPos;
-		Debug.Log("OXOXOXOXOOX");
-        print("spirit:"+spirit.name);
-        print("spirit:" + spirit.GetComponent<Animator>());
+		audioManager.Play ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
-        //spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
     }
 	[Command]
     public void CmdComm()
     {
-//        Vector3 pPos = GameObject.Find("Player").GetComponent<Player>().GetComponent<Transform>().position;
-//        pPos.x += 30;
-//        pPos.y += 30;
-//        pPos.z += 30;
-//
-//        emoji.transform.position = pPos;
-		Debug.Log("ASASASASASASSA");
+
+		audioManager.Play ("SpiritSignal");
         GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
-		//spirit.GetComponent<Animator> ().SetTrigger ("spirit_signal");
+
     }
 
 

@@ -97,7 +97,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Checkpoint
     clip: {fileID: 8300000, guid: eaa3cc0166775433b9eaebe8bb74b360, type: 3}
-    volume: 0.6
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

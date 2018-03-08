@@ -315,13 +315,18 @@ public class Player : NetworkBehaviour
         {
             GameObject Loading_Natalie_GO = GameObject.Find("Loading_Natalie");
             GameObject Loading_Eric_GO = GameObject.Find("Loading_Eric");
+			GameObject SlideHandle = GameObject.Find ("Handle");
+			Sprite[] handleSprites = Resources.LoadAll<Sprite> ("Sprites/UI/loading_bar"); 
+
 			if (isServer && isLocalPlayer && Loading_Eric_GO)
             {
 				Loading_Eric_GO.GetComponent<Image> ().DOFade (1, 0.5f);
+				SlideHandle.GetComponent<Image> ().sprite = handleSprites [3];
             }
             if (!isServer && isLocalPlayer && Loading_Natalie_GO)
             {
 				Loading_Natalie_GO.GetComponent<Image> ().DOFade (1, 0.5f);
+				SlideHandle.GetComponent<Image> ().sprite = handleSprites [2];
             }
             goingToNewScene = true;
             return;

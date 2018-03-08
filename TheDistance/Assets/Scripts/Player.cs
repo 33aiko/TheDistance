@@ -23,6 +23,7 @@ public class Player : NetworkBehaviour
 	public string NatalieSpiritAnimator = "Animations/Spirit_2";
 
 	public GameObject spirit;
+    public GameObject spiritSignalPrefab;
 	public Vector3 spiritTargetPos;
     bool inCave = true;
 
@@ -255,6 +256,11 @@ public class Player : NetworkBehaviour
         spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
         spiritTargetPos = spirit.transform.position;
         spirit.SetActive(true);
+        if(spiritSignalPrefab == null)
+        {
+            Debug.LogError("spirit signal prefab not found!");
+        }
+
 
         /* initial the cave effect material */
         if (caveMaterial == null)
@@ -1006,6 +1012,7 @@ public class Player : NetworkBehaviour
             }
         }
         return InputDeviceType.KEYBOARD;
+        spiritSignalPrefab = Resources.Load("Prefabs/Items/spirit_signal", typeof(GameObject)) as GameObject;
 
         // TODO: distinguish the controller when both XBOX and PS4 controller is inserted
         // CURRENT: use joystick[0] 
@@ -1747,16 +1754,28 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-		audioManager.Play ("SpiritSignal");
-        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
+        Comm();
+
+		//audioManager.Play ("SpiritSignal");
+  //      GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
     }
 	[Command]
     public void CmdComm()
     {
+        Comm();
+		//audioManager.Play ("SpiritSignal");
 
+    }
+
+    void Comm()
+    {
 		audioManager.Play ("SpiritSignal");
-        GameObject.Find("Spirit").GetComponent<Animator>().SetTrigger("spirit_signal");
-
+        GameObject spi = GameObject.Find("Spirit");
+#if false
+        spi.GetComponent<Animator>().SetTrigger("spirit_signal");
+#else
+        Destroy(Instantiate(spiritSignalPrefab, spi.transform), 3.0f);
+#endif
     }
 
 

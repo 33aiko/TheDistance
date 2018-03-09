@@ -1678,6 +1678,10 @@ public class Player : NetworkBehaviour
         if (isServer) { return; }
         Debug.Log("client RPCdie");
         spirit.GetComponent<Animator>().SetBool("SpiritDie", true);
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        if (p.isSharing)
+            p.FinishSharing();
+
         StartCoroutine(WaitToDie());
     }
 
@@ -1686,6 +1690,9 @@ public class Player : NetworkBehaviour
     public void CmdDie()
     {
         Debug.Log("server CMDdie");
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        if (p.isSharing)
+            p.FinishSharing();
         spirit.GetComponent<Animator>().SetBool("SpiritDie", true);
         StartCoroutine(WaitToDie());
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelFinishController : MonoBehaviour {
 
@@ -66,6 +67,7 @@ public class LevelFinishController : MonoBehaviour {
 //                bu.GetComponentInChildren<Text>().text = "Try again!";
 				instruct.text = "Level completed!" ;
                 print("Finished this level!");
+                SceneManager.LoadScene("Loading");
                 // level finished
             }
             else

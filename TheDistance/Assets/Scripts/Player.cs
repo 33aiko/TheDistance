@@ -181,21 +181,19 @@ public class Player : NetworkBehaviour
         }
 
         //Text load
-        GameObject UIobject = GameObject.Find("UI");
-        TextSystem textSystem = UIobject.GetComponent<TextSystem>();
-        if (isServer && isLocalPlayer)
-        {
-            textSystem.HandAwake(1);
-            textSystem.already = 1;
-            textSystem.HandStart();
-        }
-        else if(!isServer && isLocalPlayer)
-        {
-            textSystem.HandAwake(2);
-            textSystem.already = 1;
-            textSystem.HandStart();
-        }
-        
+		if (SceneManager.GetActiveScene ().name == "LX_Scene1") {
+			GameObject UIobject = GameObject.Find ("UI");
+			TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
+			if (isServer && isLocalPlayer) {
+				textSystem.HandAwake (1);
+				textSystem.already = 1;
+				textSystem.HandStart ();
+			} else if (!isServer && isLocalPlayer) {
+				textSystem.HandAwake (2);
+				textSystem.already = 1;
+				textSystem.HandStart ();
+			}
+		}
 
         finishCheck = new int[3];
   

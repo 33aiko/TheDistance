@@ -5,7 +5,9 @@ using DG.Tweening;
 
 public class CheckPointController : MonoBehaviour {
 
+	public GameObject checkpointItem; 
     public bool isInCave = false;
+
 
     int cnt = 0;
     public bool isCollected = false;
@@ -28,6 +30,9 @@ public class CheckPointController : MonoBehaviour {
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");
                 //gameObject.SetActive(false);
+				if (checkpointItem != null) {
+					checkpointItem.GetComponent<Animator> ().SetTrigger ("isActivated");
+				}
 				GetComponent<SpriteRenderer>().DOFade(1,0.5f);
 				transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
 				transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);

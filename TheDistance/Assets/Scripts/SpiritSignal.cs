@@ -21,21 +21,21 @@ public class SpiritSignal : MonoBehaviour {
 
         {
             Sequence s = DOTween.Sequence();
-            checkpoint.transform.DOScale(Vector3.one * 100, 1.0f);
+            checkpoint.transform.DOScale(Vector3.one * 150, 1.2f);
             s.PrependInterval(0.5f);
             s.Append(checkpoint.DOFade(0, 1.0f).SetEase(Ease.OutCubic));
         }
 
         {
             Sequence s = DOTween.Sequence();
-            glowcircle_1.transform.DOScale(Vector3.one * 80, 1.0f);
+            glowcircle_1.transform.DOScale(Vector3.one * 120, 1.2f);
             glowcircle_1.DOFade(0, 0.8f).SetEase(Ease.InCubic);
         }
 
         {
             Sequence s = DOTween.Sequence();
             s.PrependInterval(0.5f);
-            s.Append(glowcircle_2.transform.DOScale(Vector3.one * 60, 1.0f));
+            s.Append(glowcircle_2.transform.DOScale(Vector3.one * 80, 1.2f));
             glowcircle_2.DOFade(0, 1.8f).SetEase(Ease.InCubic);
         }
 

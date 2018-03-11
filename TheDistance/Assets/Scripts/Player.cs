@@ -730,15 +730,18 @@ public class Player : NetworkBehaviour
 
         if (shareObject != null)
         {
+            Vector3 size = shareObject.GetComponent<BoxCollider2D>().size;
+            print("sharing size is : " + Vector3.Scale(size , shareObject.transform.localScale));
+            size = Vector3.Scale(size, shareObject.transform.localScale);
             shareCharging = true;
             animator.SetBool("sendPrepare", true);
             if (isLocalPlayer && isServer)
             {
-                RpcWaitForShare(shareObject.transform.position);
+                RpcWaitForShare(shareObject.transform.position, size);
             }
             if (isLocalPlayer && !isServer)
             {
-                CmdWaitForShare(shareObject.transform.position);
+                CmdWaitForShare(shareObject.transform.position, size);
             }
 
             //start progress bar 
@@ -1409,25 +1412,28 @@ public class Player : NetworkBehaviour
 
     //sent by server, show particle effects on clients
     [ClientRpc]
-    public void RpcWaitForShare(Vector3 sharedPos)
+    public void RpcWaitForShare(Vector3 sharedPos, Vector2 size)
     {
         if (isServer) return;
-        WaitForShare(sharedPos, true);
+        WaitForShare(sharedPos, size, true);
     }
 
     //sent by client, show particle effects on server
     [Command]
-    public void CmdWaitForShare(Vector3 sharedPos)
+    public void CmdWaitForShare(Vector3 sharedPos, Vector2 size)
     {
-        WaitForShare(sharedPos, false);
+        WaitForShare(sharedPos, size, false);
     }
 
-    void WaitForShare(Vector3 sharedPos, bool fromEric)
+    void WaitForShare(Vector3 sharedPos, Vector2 size, bool fromEric)
     {
         audioManager.Play("SharingHold");
+        if (appearParticle != null)
+            Destroy(appearParticle);
         appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_" + (fromEric ? "Red" : "Blue")) as GameObject);
         appearParticle.transform.position = sharedPos;
         appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
+        appearParticle.GetComponent<SharingEffectsController>().UpdateParticleSize(size);
     }
 
     //sent by server, show particle effects on clients

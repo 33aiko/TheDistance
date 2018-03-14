@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Flower : MonoBehaviour {
     Camera mainCamera;
     int cnt = 0;
     int zoomFlag = 0;
     FlowerBox fb;
-
+    Text txt;
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         fb = GameObject.Find("FlowerBox").GetComponent<FlowerBox>();
-        Debug.Log(mainCamera.fieldOfView);
+        txt = GameObject.Find("FlowerBox/Canvas/Text").GetComponent<Text>();
     }
 	
 	// Update is called once per frame
@@ -21,6 +22,12 @@ public class Flower : MonoBehaviour {
         {
             Debug.Log("?!?0");
             mainCamera.orthographicSize -= 0.01f;
+            if (txt.color.a < 255)
+            {
+                Color newColor = txt.color;
+                newColor.a = newColor.a + 0.01f;
+                txt.color = newColor;
+            }
         }
         if (mainCamera.orthographicSize < 4.5f)
         {

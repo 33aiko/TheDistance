@@ -833,15 +833,30 @@ public class Player : NetworkBehaviour
                 shareNotificationText.text = "An object is shared!";
                 Debug.Log("box found");
                 string boxname = sharedObject.name;
+                bool shareToFloatingBox = sharedObject.GetComponent<BoxController>().shareToFloatingBox;
                 if (isServer && isLocalPlayer)
                 {
-                    RpcBox(sharedObject.name, sharedObject.transform.position);
+                    if(shareToFloatingBox)
+                    {
+                        RpcFloatingBox(sharedObject.transform.position);
+                    }
+                    else
+                    {
+                        RpcBox(sharedObject.name, sharedObject.transform.position);
+                    }
                     sharedObject.GetComponent<SpriteRenderer>().DOFade(0, 1.0f).OnComplete(()=>
                     root.transform.Find("EricWorld").gameObject.transform.Find("WorldA").gameObject.transform.Find(boxname).gameObject.SetActive(false));
                 }
                 if (!isServer && isLocalPlayer)
                 {
-                    CmdBox(sharedObject.name, sharedObject.transform.position);
+                    if (shareToFloatingBox)
+                    {
+                        CmdFloatingBox(sharedObject.transform.position);
+                    }
+                    else
+                    {
+                        CmdBox(sharedObject.name, sharedObject.transform.position);
+                    }
                     sharedObject.GetComponent<SpriteRenderer>().DOFade(0, 1.0f).OnComplete(()=>
                     root.transform.Find("NatalieWorld").gameObject.transform.Find("WorldB").gameObject.transform.Find(boxname).gameObject.SetActive(false));
                 }
@@ -1541,6 +1556,44 @@ public class Player : NetworkBehaviour
         newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
     }
 
+    /*************************************************
+
+        Floating Box
+        
+    ***********************************/
+    //sent by server, show object on clients
+    [ClientRpc]
+    public void RpcFloatingBox(Vector3 sharedPos)
+    {
+        if (isServer) { return; }
+        ShareFloatingBox(sharedPos, true);
+    }
+
+    // sent by client, show box on server
+    [Command]
+    public void CmdFloatingBox(Vector3 sharedPos)
+    {
+       ShareFloatingBox(sharedPos, false);
+    }
+
+    void ShareFloatingBox(Vector3 sharedPos, bool isEricWorld)
+    {
+        FinishShareEffect();
+        if (appearParticle != null)
+        {
+            appearParticle.GetComponent<SharingEffectsController>().StopSelectedEffect();
+        }
+        GameObject newObj = Instantiate(Resources.Load("Prefabs/Items/FloatingBox") as GameObject);
+        newObj.tag = "BoxCannotShare";
+        newObj.transform.position = sharedPos;
+        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
+    }
+
+
+    /***********************************************************************
+     * Rock share
+     ***********************************************************************/
     // sent by server, show rock on clients
     [ClientRpc]
     public void RpcRock(string sharedObject)

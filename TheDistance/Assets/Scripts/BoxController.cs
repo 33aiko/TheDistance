@@ -7,8 +7,9 @@ using UnityEngine.UI;
 [RequireComponent (typeof(Controller2D))]
 public class BoxController : MonoBehaviour {
 
-    float gravity;
+    public bool shareToFloatingBox = false;
     public bool haveGravity = true;
+    float gravity;
     Vector3 velocity;
 
 
@@ -48,7 +49,6 @@ public class BoxController : MonoBehaviour {
             bool isKeyboard = (p.currentInputDevice == Player.InputDeviceType.KEYBOARD);
             if (isKeyboard != currentIsKeyboard)
             {
-                print("rua!");
                 if (isKeyboard)
                 {
                     if (inputUI != null)

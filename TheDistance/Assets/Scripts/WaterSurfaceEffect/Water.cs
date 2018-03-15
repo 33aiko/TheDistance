@@ -45,6 +45,11 @@ public class Water : MonoBehaviour
         rightButtom = transform.position + new Vector3(sx, -sy) / 2.0f;
         leftUp = transform.position + new Vector3(-sx, sy) / 2.0f;
         rightUp = transform.position + new Vector3(sx, sy) / 2.0f;
+
+        Debug.DrawLine(leftUp, leftUp + Vector3.up * 100, Color.red);
+        Debug.DrawLine(rightUp, rightUp + Vector3.up * 100, Color.red);
+        Debug.DrawLine(leftButtom, leftButtom + Vector3.down * 100, Color.red);
+        Debug.DrawLine(rightButtom, rightButtom + Vector3.down * 100, Color.red);
    }
 
     private void Start()
@@ -73,7 +78,7 @@ public class Water : MonoBehaviour
 
         int leftIdx = GetIndex(box.leftButtom.x);
         int rightIdx = GetIndex(box.rightButtom.x);
-        float delta = (leftButtom.x - rightButtom.x) / springs.Count;
+        float delta = (rightButtom.x - leftButtom.x) / springs.Count;
 
         float percent = 0.0f;
         if (box.leftUp.y < leftUp.y)
@@ -87,9 +92,12 @@ public class Water : MonoBehaviour
             {
                 percent += (leftUp.y + springs[i].height - box.leftButtom.y) * delta;
             }
-            percent /= ((box.leftUp.y - box.leftButtom.y) * (box.leftUp.x - box.rightUp.x));
+            percent /= ((box.leftUp.y - box.leftButtom.y) * (box.rightUp.x - box.leftUp.x));
 #endif
         }
+
+        print("left: " + leftIdx);
+        print("right: " + rightIdx);
 
         for (int i = leftIdx; i <= rightIdx; i++)
         {
@@ -105,7 +113,7 @@ public class Water : MonoBehaviour
         UpdateBound();
         float dist = x - leftUp.x;
         float tmp = dist / (rightUp.x - leftUp.x) * springs.Count;
-        return Mathf.RoundToInt(tmp);
+        return (Mathf.RoundToInt(tmp));
     }
 
     /*
@@ -126,22 +134,33 @@ public class Water : MonoBehaviour
             pos.z = -200;
             int idx = GetIndex(Camera.main.ScreenToWorldPoint(pos).x);
             print("water surface index is : " + idx);
-            AddSplash(127);
         }
     }
 
-    public void AddSplash(int idx)
+    void AddSplash(int idx)
     {
-        for (int i = idx - 10; i < idx + 11; i++)
+        for(int i = idx - 10; i <= idx + 10; i++)
         {
             springs[i].velocity += (10 - Mathf.Abs(i - idx)) / 30.0f;
         }
     }
 
-    public void AddSplash(float pos)
+    public void AddSplash(float left, float right)
     {
-        int idx = GetIndex(pos);
-        AddSplash(idx);
+        int idx_l = GetIndex(left);
+        int idx_r = GetIndex(right);
+        print("left: " + idx_l);
+        print("right : " + idx_r);
+        AddSplash(idx_l);
+        AddSplash(idx_r);
+        int mid = (idx_r + idx_l) / 2;
+        int m = mid - idx_l;
+        /*
+        for(int idx = idx_l; idx <= idx_r; idx++)
+        {
+            springs[idx].velocity += (m - Mathf.Abs(mid - idx)) / 30.0f;
+        }
+         */ 
     }
 
     int ITERATION = 10;
@@ -152,10 +171,7 @@ public class Water : MonoBehaviour
         //HandleInput();
 
         UpdateBound();
-        Debug.DrawLine(leftUp, leftUp + Vector3.up * 100, Color.red);
-        Debug.DrawLine(rightUp, rightUp + Vector3.up * 100, Color.red);
-        Debug.DrawLine(leftButtom, leftButtom + Vector3.down * 100, Color.red);
-        Debug.DrawLine(rightButtom, rightButtom + Vector3.down * 100, Color.red);
+  
 
         for (int j = 0; j < ITERATION; j++)
         {

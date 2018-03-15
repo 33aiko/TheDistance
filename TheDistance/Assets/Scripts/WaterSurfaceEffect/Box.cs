@@ -24,27 +24,25 @@ public class Box : MonoBehaviour {
 
     void UpdateBound()
     {
-        SpriteRenderer bc = GetComponent<SpriteRenderer>();
-        float sx = bc.size.x;
-        float sy = bc.size.y;
+        BoxCollider2D bc = GetComponent<BoxCollider2D>();
+        float sx = bc.size.x * transform.localScale.x;
+        float sy = bc.size.y * transform.localScale.y;
         leftButtom = transform.position + new Vector3(-sx, -sy) / 2.0f;
         rightButtom = transform.position + new Vector3(sx, -sy) / 2.0f;
         leftUp = transform.position + new Vector3(-sx, +sy) / 2.0f;
         rightUp = transform.position+ new Vector3(sx, +sy) / 2.0f;
+
+        Debug.DrawRay(leftUp, Vector3.up * 100, Color.red);
+        Debug.DrawRay(rightUp, Vector3.up * 100, Color.red);
+        Debug.DrawRay(leftButtom, Vector3.down * 100, Color.red);
+        Debug.DrawRay(rightButtom, Vector3.down * 100, Color.red);
+
     }
 
     void Update () {
         UpdateBound();
-        /*
-        Debug.DrawRay(leftUp, Vector3.up, Color.red);
-        Debug.DrawRay(rightUp, Vector3.up, Color.red);
-        Debug.DrawRay(leftButtom, Vector3.down, Color.red);
-        Debug.DrawRay(rightButtom, Vector3.down, Color.red);
-         */
-
-
         float Fp = 0;
-        if(playerOnTop && p.velocity.y < -200.0f)
+        if (playerOnTop && p.velocity.y < -200.0f)
         {
             print("adding splash");
             AddSplash();
@@ -52,7 +50,7 @@ public class Box : MonoBehaviour {
         }
         if(playerOnTop)
         {
-            Fp = -g * mass * 1.8f;
+            Fp = -g * mass * 1.5f;
         }
 
         float percent = water.Intersect(this);
@@ -61,7 +59,7 @@ public class Box : MonoBehaviour {
         vy += (Fb + Fg + Fp) * Time.deltaTime;
 
         if (percent > 0)
-            vy *= 0.98f;
+            vy *= 0.985f;
         if (playerOnTop)
         {
             movePlayer();
@@ -79,6 +77,6 @@ public class Box : MonoBehaviour {
 
     public void AddSplash()
     {
-        water.AddSplash((leftButtom.x + rightButtom.x) / 2.0f);
+        water.AddSplash(leftButtom.x, rightButtom.x);
     }
 }

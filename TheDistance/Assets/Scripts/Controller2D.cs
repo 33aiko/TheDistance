@@ -192,14 +192,14 @@ public class Controller2D : RaycastController
                 }
 
 				if( (hit.transform.gameObject.tag == "Box" || hit.transform.gameObject.tag == "BoxCannotShare") && 
-                    hit.transform.gameObject.GetComponent<FloatInWater>().isInWater)
+                    hit.transform.gameObject.GetComponent<Box>())
                 {
                     // player stands on a floating box
-                    print("On the floating platform");
-                    FloatInWater pFW = hit.transform.gameObject.GetComponent<FloatInWater>();
-                    if(pFW.p == null)
-                        pFW.p = GetComponent<Player>();
-                    pFW.playerOnTop = true;
+                    //print("On the floating platform");
+                    Box pB = hit.transform.gameObject.GetComponent<Box>();
+                    if(pB.p == null)
+                        pB.p = GetComponent<Player>();
+                    pB.playerOnTop = true;
                     //pFW.movePlayer();
                     //velocity.y = hit.transform.gameObject.GetComponent<FloatInWater>().move.y;
 

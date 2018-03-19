@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a520455a6075f244a4d5f75ad3281b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g: 200
+  g: 400
   vy: 0
   move: {x: 0, y: 0, z: 0}
   playerOnTop: 0

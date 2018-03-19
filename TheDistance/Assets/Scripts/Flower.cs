@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Flower : MonoBehaviour {
     Camera mainCamera;
     int cnt = 0;
     int zoomFlag = 0;
-    FlowerBox fb;
+    public FlowerBox fb;
     Text txt;
+
+
+
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        fb = GameObject.Find("FlowerBox").GetComponent<FlowerBox>();
         txt = GameObject.Find("FlowerBox/Canvas/Text").GetComponent<Text>();
+		txt.DOFade (0, 0);
     }
 	
 	// Update is called once per frame
@@ -22,12 +26,7 @@ public class Flower : MonoBehaviour {
         {
             Debug.Log("?!?0");
             mainCamera.orthographicSize -= 0.01f;
-            if (txt.color.a < 255)
-            {
-                Color newColor = txt.color;
-                newColor.a = newColor.a + 0.01f;
-                txt.color = newColor;
-            }
+			txt.DOFade (1, 1);
         }
         if (mainCamera.orthographicSize < 5f)
         {
@@ -49,6 +48,9 @@ public class Flower : MonoBehaviour {
                 zoomFlag = 1;
                 fb.flowerFlag = 1;
             }
+
+			mainCamera.GetComponent<CamFollow> ().target = this.gameObject;
+
         }
     }
 
@@ -62,6 +64,9 @@ public class Flower : MonoBehaviour {
                 RowBoat boat = collision.GetComponent<RowBoat>();
                 Debug.Log("out flower");
             }
+
+
+			
         }
     }
 }

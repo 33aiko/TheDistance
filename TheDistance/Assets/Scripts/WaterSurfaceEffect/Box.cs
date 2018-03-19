@@ -58,8 +58,8 @@ public class Box : MonoBehaviour {
         float Fg = -g * mass;
         float Fb = 3 * percent * mass * g;
         vy += (Fb + Fg + Fp) * Time.fixedDeltaTime;
+        vy *= 0.99f;
 
-        print(percent);
         if (percent > 0.6f )
         {
             vy *= 0.95f;

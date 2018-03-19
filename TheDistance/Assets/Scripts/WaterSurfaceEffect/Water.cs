@@ -27,8 +27,6 @@ public class Water : MonoBehaviour
     public List<Spring> springs = new List<Spring>();
 
     float[] height = new float[256];
-    float[] leftDeltas = new float[256];
-    float[] rightDeltas = new float[256];
     int l = 256;
 
     MeshFilter mr;
@@ -96,12 +94,9 @@ public class Water : MonoBehaviour
 #endif
         }
 
-        print("left: " + leftIdx);
-        print("right: " + rightIdx);
-
         for (int i = leftIdx; i <= rightIdx; i++)
         {
-            springs[i].velocity = -box.move.y * percent / 5.0f;
+            springs[i].velocity = -box.move.y * percent / 1.5f;
             //springs[i].height = -leftUp.y + box.leftButtom.y;
         }
 
@@ -121,9 +116,6 @@ public class Water : MonoBehaviour
     float DAMP_FACTOR = 0.9985f;
     float BASE_FACTOR = 0.2f;
      */ 
-    float FACTOR = 4.0f;
-    float DAMP_FACTOR = 0.9985f;
-    float BASE_FACTOR = 0.2f;
 
     private void HandleInput()
     {
@@ -163,45 +155,44 @@ public class Water : MonoBehaviour
          */ 
     }
 
+    float FACTOR = 500.0f;
+    float DAMP_FACTOR = 0.997f;
+    float BASE_FACTOR = 10.0f;
     int ITERATION = 10;
 
-    private void Update()
+    private void FixedUpdate()
     {
-
-        //HandleInput();
-
         UpdateBound();
-  
 
+        float deltaTime = Time.fixedDeltaTime / (float) ITERATION;
         for (int j = 0; j < ITERATION; j++)
         {
-
             for (int i = 0; i < springs.Count; i++)
             {
                 float fromLeft = 0, fromRight = 0, fromBase = 0;
                 if (i > 0)
                 {
-                    leftDeltas[i] = -springs[i].height + springs[i - 1].height;
-                    fromLeft = leftDeltas[i] * FACTOR;
+                    float leftDeltas = -springs[i].height + springs[i - 1].height;
+                    fromLeft = leftDeltas * FACTOR;
                 }
                 if (i < springs.Count - 1)
                 {
-                    rightDeltas[i] = -springs[i].height + springs[i + 1].height;
-                    fromRight = rightDeltas[i] * FACTOR;
+                    float rightDeltas = -springs[i].height + springs[i + 1].height;
+                    fromRight = rightDeltas * FACTOR;
                 }
 
-                float dy = 0 - springs[i].height;
+                float dy = - springs[i].height;
                 fromBase = dy * BASE_FACTOR;
 
                 float force = 0;
                 force += fromLeft;
                 force += fromRight;
-                force += fromBase;
+                force += fromBase * DAMP_FACTOR;
+                force = Mathf.Clamp(force, -100, 100);
 
-                float a = force * Time.deltaTime;
+                springs[i].velocity += force * deltaTime;
                 springs[i].velocity *= DAMP_FACTOR;
-                springs[i].velocity += a;
-                springs[i].height += springs[i].velocity * Time.deltaTime;
+                springs[i].height += springs[i].velocity * deltaTime;
             }
         }
 

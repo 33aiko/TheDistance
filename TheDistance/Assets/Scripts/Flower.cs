@@ -29,7 +29,7 @@ public class Flower : MonoBehaviour {
                 txt.color = newColor;
             }
         }
-        if (mainCamera.orthographicSize < 4.5f)
+        if (mainCamera.orthographicSize < 5f)
         {
             zoomFlag = 0;
             this.gameObject.SetActive(false);

@@ -59,8 +59,11 @@ public class Box : MonoBehaviour {
         float Fb = 3 * percent * mass * g;
         vy += (Fb + Fg + Fp) * Time.fixedDeltaTime;
 
-        if (percent > 0.5f)
-            vy *= 0.98f;
+        print(percent);
+        if (percent > 0.6f )
+        {
+            vy *= 0.95f;
+        }
 
         move = Vector3.up * vy * Time.fixedDeltaTime;
         if (playerOnTop)

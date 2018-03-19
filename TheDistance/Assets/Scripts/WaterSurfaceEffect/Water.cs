@@ -162,8 +162,6 @@ public class Water : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateBound();
-
         float deltaTime = Time.fixedDeltaTime / (float) ITERATION;
         for (int j = 0; j < ITERATION; j++)
         {

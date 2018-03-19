@@ -101,7 +101,7 @@ public class Water : MonoBehaviour
 
         for (int i = leftIdx; i <= rightIdx; i++)
         {
-            springs[i].velocity = -box.vy * percent / 5.0f;
+            springs[i].velocity = -box.move.y * percent / 5.0f;
             //springs[i].height = -leftUp.y + box.leftButtom.y;
         }
 

@@ -8,6 +8,7 @@ public class Box : MonoBehaviour {
     float mass = 1.0f;
     float buoyancy = 0;
     public float vy = 0;
+    public Vector3 move;
 
     Water water;
 
@@ -39,7 +40,7 @@ public class Box : MonoBehaviour {
 
     }
 
-    void Update () {
+    void FixedUpdate () {
         UpdateBound();
         float Fp = 0;
         if (playerOnTop && p.velocity.y < -200.0f)
@@ -56,22 +57,27 @@ public class Box : MonoBehaviour {
         float percent = water.Intersect(this);
         float Fg = -g * mass;
         float Fb = 3 * percent * mass * g;
-        vy += (Fb + Fg + Fp) * Time.deltaTime;
+        vy += (Fb + Fg + Fp) * Time.fixedDeltaTime;
 
-        if (percent > 0)
-            vy *= 0.985f;
+        print(percent);
+        if (percent > 0.6f )
+        {
+            vy *= 0.95f;
+        }
+
+        move = Vector3.up * vy * Time.fixedDeltaTime;
         if (playerOnTop)
         {
             movePlayer();
             playerOnTop = false;
         }
 
-        transform.Translate(Vector3.up * vy);
+        transform.Translate(move);
 	}
 
     void movePlayer()
     {
-        p.controller.Move(new Vector3(0, vy));
+        p.controller.Move(move);
         p.controller.collisions.below = true;
     }
 

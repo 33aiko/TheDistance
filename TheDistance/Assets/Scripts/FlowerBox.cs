@@ -8,6 +8,8 @@ public class FlowerBox : MonoBehaviour {
     int cnt = 0;
     int zoomFlag = 0;
     Text txt;
+
+	GameObject focusTarget; 
     
 
     public int flowerFlag = 0;
@@ -15,6 +17,7 @@ public class FlowerBox : MonoBehaviour {
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         txt = GameObject.Find("FlowerBox/Canvas/Text").GetComponent<Text>();
+		focusTarget = mainCamera.GetComponent<CamFollow> ().target; 
     }
 	
 	// Update is called once per frame
@@ -28,12 +31,16 @@ public class FlowerBox : MonoBehaviour {
                 newColor.a = newColor.a - 0.01f;
                 txt.color = newColor;
             }
+			mainCamera.GetComponent<CamFollow> ().target = this.gameObject;
         }
         if (mainCamera.orthographicSize > 7.0f)
         {
             zoomFlag = 0;
             this.gameObject.SetActive(false);
         }
+		if (zoomFlag == 0) {
+			mainCamera.GetComponent<CamFollow> ().target = focusTarget;
+		}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

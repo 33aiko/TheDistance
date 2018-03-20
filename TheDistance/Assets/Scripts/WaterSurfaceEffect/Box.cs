@@ -73,6 +73,7 @@ public class Box : MonoBehaviour {
         }
 
         transform.Translate(move);
+
 	}
 
     void movePlayer()

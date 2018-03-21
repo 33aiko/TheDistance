@@ -11,7 +11,7 @@ public class Flower : MonoBehaviour {
     public FlowerBox fb;
     Text txt;
 
-
+    public int Idx;
 
     // Use this for initialization
     void Start () {
@@ -31,7 +31,8 @@ public class Flower : MonoBehaviour {
         if (mainCamera.orthographicSize < 5f)
         {
             zoomFlag = 0;
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            GameObject.Find("Flower" + Idx.ToString()).SetActive(false);
         }
 	}
 

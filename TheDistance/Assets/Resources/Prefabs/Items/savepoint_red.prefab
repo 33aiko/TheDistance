@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4675747348688916}
   - component: {fileID: 212029658546890360}
   - component: {fileID: 95507987468158474}
+  - component: {fileID: 114966464451776308}
+  - component: {fileID: 58545284016188990}
   m_Layer: 0
   m_Name: savepoint_red
   m_TagString: Untagged
@@ -41,6 +43,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58545284016188990
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976701511360022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.74}
+  serializedVersion: 2
+  m_Radius: 4.5
 --- !u!95 &95507987468158474
 Animator:
   serializedVersion: 3
@@ -58,6 +75,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114966464451776308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976701511360022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4fc1f46645db848a6634835b5c8e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointItem: {fileID: 0}
+  isInCave: 0
+  isCollected: 0
 --- !u!212 &212029658546890360
 SpriteRenderer:
   m_ObjectHideFlags: 1

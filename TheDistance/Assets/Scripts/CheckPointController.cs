@@ -8,12 +8,14 @@ public class CheckPointController : MonoBehaviour {
 	public GameObject checkpointItem; 
     public bool isInCave = false;
 
+	Animator checkpointAnim; 
 
     int cnt = 0;
     public bool isCollected = false;
 
     void Start()
     {
+		checkpointAnim = this.GetComponent<Animator> ();
     }
 
 
@@ -30,12 +32,13 @@ public class CheckPointController : MonoBehaviour {
                 p.curCheckPoint = transform.position;
                 print("Arrived first check point");
                 //gameObject.SetActive(false);
-				if (checkpointItem != null) {
-					checkpointItem.GetComponent<Animator> ().SetTrigger ("isActivated");
+				if (checkpointAnim!=null) {
+					checkpointAnim.SetTrigger ("isActivated");
+				} else {
+					GetComponent<SpriteRenderer> ().DOFade (1, 0.5f);
+					transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
+					transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
 				}
-				GetComponent<SpriteRenderer>().DOFade(1,0.5f);
-				transform.DOScale (new Vector3 (12, 12, 12), 0.5f);
-				transform.DOScale (new Vector3 (11, 11, 11), 0.5f).SetDelay (0.5f);
 
                 //FindObjectOfType<CaveEffectController>().SetShaderPosition("_CheckpointPos", transform.position);
                 foreach (CaveEffectController cec in FindObjectsOfType<CaveEffectController>())

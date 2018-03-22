@@ -9,7 +9,7 @@ public class FlowerBox : MonoBehaviour {
     int cnt = 0;
     int zoomFlag = 0;
     Text txt;
-
+	public int Idx;
 	GameObject boat ; 
     
 
@@ -17,7 +17,7 @@ public class FlowerBox : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		txt = GameObject.Find ("FlowerBox/Canvas/Text").GetComponent<Text> ();
+		txt = GameObject.Find ("FlowerBox"+Idx.ToString()+"/Canvas/Text").GetComponent<Text> ();
 		boat = GameObject.Find ("boat");
     }
 	
@@ -31,8 +31,9 @@ public class FlowerBox : MonoBehaviour {
         }
         if (mainCamera.orthographicSize > 7.0f)
         {
-            zoomFlag = 0;
-            this.gameObject.SetActive(false);
+			if (zoomFlag == 1) {
+				this.gameObject.SetActive (false);
+			}
         }
 	
     }
@@ -52,8 +53,9 @@ public class FlowerBox : MonoBehaviour {
             if (flowerFlag == 1)
             {
                 zoomFlag = 1;
-				mainCamera.GetComponent<CamFollow> ().target = boat;
+
             }
+			mainCamera.GetComponent<CamFollow> ().target = boat;
 
         }
     }

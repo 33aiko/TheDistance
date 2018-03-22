@@ -16,7 +16,7 @@ public class Flower : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        txt = GameObject.Find("FlowerBox/Canvas/Text").GetComponent<Text>();
+		txt = GameObject.Find("FlowerBox"+Idx.ToString()+"/Canvas/Text").GetComponent<Text>();
 		txt.DOFade (0, 0);
     }
 	
@@ -24,16 +24,19 @@ public class Flower : MonoBehaviour {
 	void Update () {
         if (zoomFlag == 1)
         {
-            Debug.Log("?!?0");
+            //Debug.Log("?!?0");
             mainCamera.orthographicSize -= 0.01f;
 			txt.DOFade (1, 1);
         }
         if (mainCamera.orthographicSize < 5f)
         {
-            zoomFlag = 0;
+            //zoomFlag = 0;
             //this.gameObject.SetActive(false);
-            GameObject.Find("Flower" + Idx.ToString()).SetActive(false);
-        }
+			Debug.Log(Idx);
+			if (zoomFlag == 1) {
+				GameObject.Find ("Flower" + Idx.ToString ()).SetActive (false);
+			}
+		}
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

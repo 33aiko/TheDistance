@@ -9,7 +9,7 @@ Material:
   m_Name: WaterDistortion
   m_Shader: {fileID: 4800000, guid: 638e4ca876d8c61479d8c7bc0ddb43de, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1

@@ -1,5 +1,4 @@
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using System;
 using UnityEngine;
 
@@ -8,28 +7,10 @@ public class AudioManager : MonoBehaviour
 
 	public static AudioManager instance;
 
-	//I think these can go.
-	public AudioMixerGroup mixerGroup;
-	public AudioMixerGroup atmoMixerGroup;
-	public AudioMixerGroup envMixerGroup;
-	public AudioMixerGroup musicMixerGroup;
-	//END
-
 	public Sound[] sounds;
 	public Sound[] atmo;
 	public EnvSound[] env;
 	public Sound[] music;
-
-
-	bool musicScene1played = false; 
-
-	private void Start()
-	{
-		if (SceneManager.GetActiveScene ().name == "StartScreen") {
-			PlayMusicTrack ("startscreenBG");
-		}
-
-	}
 
 	//On game load
 	void Awake()
@@ -51,7 +32,7 @@ public class AudioManager : MonoBehaviour
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
 
-			s.source.outputAudioMixerGroup = mixerGroup;
+			//s.source.outputAudioMixerGroup = mixerGroup;
 		}
 
 		foreach (Sound a in atmo) {
@@ -59,7 +40,7 @@ public class AudioManager : MonoBehaviour
 			a.source.clip = a.clip;
 			a.source.loop = a.loop;
 
-			a.source.outputAudioMixerGroup = atmoMixerGroup;
+			//a.source.outputAudioMixerGroup = atmoMixerGroup;
 		}
 
 		foreach (EnvSound e in env) {
@@ -67,7 +48,13 @@ public class AudioManager : MonoBehaviour
 			e.source.clip = e.clip;
 			e.source.loop = e.loop;
 
-			e.source.outputAudioMixerGroup = envMixerGroup;
+			//Note: Right now, we're just calling play()
+			//immediately on load. This way, each sound
+			//individually changes volume based on its
+			//Update() method call.
+			e.source.Play();
+
+			//e.source.outputAudioMixerGroup = envMixerGroup;
 		}
 
 		foreach (Sound m in music) {
@@ -75,17 +62,21 @@ public class AudioManager : MonoBehaviour
 			m.source.clip = m.clip;
 			m.source.loop = m.loop;
 
-			m.source.outputAudioMixerGroup = musicMixerGroup;
+			//m.source.outputAudioMixerGroup = musicMixerGroup;
 
 		}
-
-		//musicIndex = 0;
 	}
 
-	void Update(){
-		if (SceneManager.GetActiveScene ().name == "LX_scene1" && !musicScene1played) {
-			PlayAtmo ("atmosphere01");
-		}
+	bool musicScene1played = false; 
+
+	private void Start()
+	{
+//		if (SceneManager.GetActiveScene ().name == "StartScreen") {
+//			PlayMusicTrack ("startscreenBG");
+//		}
+
+
+		PlayAtmo ("atmosphere01");
 	}
 
 
@@ -107,34 +98,13 @@ public class AudioManager : MonoBehaviour
 		{
 			Debug.LogWarning("Sound: " + name + " not found in Sound (bad warning)!");
 		}
-		else if (!s.source.isPlaying) {
+		if (!s.source.isPlaying) {
 			s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
 			s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
-			//s.source.volume = 1f;
-			//s.source.pitch = 1f;
-
 			s.source.Play ();
 		}
-		EnvSound e = Array.Find(env, item => item.name == sound);
-		if (e == null){
-			Debug.LogWarning("Sound: " + sound + " not found in ENV (bad warning)!");
-		}
-		else if (!s.source.isPlaying) {
-			e.source.Play ();
-		}
 
-	}
-
-	public void StopAndPlay(string sound){
-		Sound s = Array.Find(sounds, item => item.name == sound);
-		if (s == null) {
-			Debug.LogWarning ("Sound: " + name + " not found in Sound (bad warning)!");
-		} else {
-			if (s.source.isPlaying)
-				s.source.Stop ();
-			s.source.Play ();
-		}
 	}
 
 	//Stop sound.
@@ -143,16 +113,11 @@ public class AudioManager : MonoBehaviour
 		Sound s = Array.Find (sounds, item => item.name == sound);
 		if (s == null) {
 			Debug.LogWarning ("Sound: " + name + " not found!");
-		} else {
-			s.source.Stop ();
+			return;
 		}
 
-		EnvSound e = Array.Find(env, item => item.name == sound);
-		if (e == null) {
-			Debug.LogWarning ("Sound: " + sound + " not found in ENV (bad warning)!");
-		} else {
-			e.source.Play ();
-		}
+		s.source.Stop();
+
 	}
 
 
@@ -185,23 +150,6 @@ public class AudioManager : MonoBehaviour
 		a.source.Stop ();
 	}
 
-// 	//Using for Env Sounds
-// 	public void Update(){
-// 		foreach(EnvSound e in env){
-// 			e.source.volume = ( 1 / ( (e.dto * e.dto) + 1));
-// 		}
-//
-// //		Sound e = Array.Find (env, item => item.name == env);
-// //		if (e != null)
-// //		{
-// //			e.source.volume = ( 1 / ( (distanceToObject * distanceToObject) + 1));
-// //		}
-// //		else
-// //		{
-// //
-// //		}
-// 	}
-
 	//Music
 
 	//music
@@ -211,7 +159,7 @@ public class AudioManager : MonoBehaviour
 		Sound m = Array.Find(music, item => item.name == trackName);
 		if (m == null)
 		{
-			Debug.LogWarning("Sound: " + trackName + " not found!");
+			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
 		if (!m.source.isPlaying) {
@@ -232,7 +180,7 @@ public class AudioManager : MonoBehaviour
 		Sound m = Array.Find(music, item => item.name == trackName);
 		if (m == null)
 		{
-			Debug.LogWarning("Sound: " + trackName+ " not found!");
+			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
 		m.source.Stop ();
@@ -240,5 +188,3 @@ public class AudioManager : MonoBehaviour
 
 
 }
-
-

@@ -9,12 +9,14 @@ public class EnvSound : Sound{
 
 	public void Update(){
 		dto = Vector3.Distance(objLoc.transform.position, GameObject.Find("Player").transform.position);
-		//source.volume = ( 1 / ( (dto * dto) + 1));
-
-		if (dto < 1000) {
+		//this algorithm probably needs to be adjusted
+		//LogWarning(dto);
+		Debug.Log(source.name + ": dto is " + dto);
+		if (dto < 10) {
 			source.volume = 1;
+			Debug.Log ("object within range, at full volume");
 		} else {
-			source.volume = ( 1000 / ( (dto * dto) + 1000));
+			source.volume = ( 10 / ( (dto * dto) + 10));
 		}
 	}
 

@@ -51,13 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9c2315dd4359a4e8f98566d2c7080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 243789902792828686, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
-    type: 2}
-  atmoMixerGroup: {fileID: 243493121255138504, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
-    type: 2}
-  envMixerGroup: {fileID: 0}
-  musicMixerGroup: {fileID: 243034195703369674, guid: 70db8d9e6ebbb46a28cd3454ee876f27,
-    type: 2}
   sounds:
   - name: PlayerWalking
     clip: {fileID: 8300000, guid: c1b3815010fd94f1ebe5a5d973d73027, type: 3}
@@ -241,11 +234,21 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   env:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: cave
+    clip: {fileID: 8300000, guid: 55c3421d481ed4da19a9b04b5b20358a, type: 3}
+    volume: 1
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    objLoc: {fileID: 0}
+  - name: Waterfall
+    clip: {fileID: 8300000, guid: 8abaf092ddbec47cb87f9d9855f1a6d3, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}

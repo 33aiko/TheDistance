@@ -261,9 +261,9 @@ public class Player : NetworkBehaviour
 
 
         /* initial the cave effect material */
-        if (caveMaterial == null)
-            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
-        caveMaterial.SetVector("_SpiritPos", new Vector3(0, 0, -1));
+    
+        caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
+		if(caveMaterial != null) caveMaterial.SetVector("_SpiritPos", new Vector3(0, 0, -1));
 
 
         // init camera pos

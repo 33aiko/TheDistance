@@ -1389,6 +1389,22 @@ public class Player : NetworkBehaviour
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
         newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
+        Material m = newObj.GetComponent<SpriteRenderer>().material;
+        if(m.shader.name == "Shader Forge/FadeInOut")
+        {
+            m.SetFloat("_DissolveAmount", 1.0f);
+            float vic = 1;
+            DOTween.To(() => vic, x => 
+            {
+                vic = x;
+                m.SetFloat("_DissolveAmount", vic);
+
+            }, 0.0f,  1.0f);
+        }
+        else
+        {
+            print(m.shader.name);
+        }
     }
 
     /***********************************************************************************

@@ -33,7 +33,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _Cutoff: 0.5
-    - _DissolveAmount: 0
+    - _DissolveAmount: 0.06
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -41,8 +41,10 @@ Material:
     - _StencilOpZFail: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _node_5291: 1
     - _node_8059: 1
     - _node_8302: 0.4688752
     - _node_89: 0
+    - _node_9614: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

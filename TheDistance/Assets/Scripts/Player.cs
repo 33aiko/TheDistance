@@ -1388,7 +1388,7 @@ public class Player : NetworkBehaviour
         newObj.transform.position = sObj.transform.position;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
         newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
-        newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
+        //newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
         Material m = newObj.GetComponent<SpriteRenderer>().material;
         if(m.shader.name == "Shader Forge/FadeInOut")
         {
@@ -1399,7 +1399,7 @@ public class Player : NetworkBehaviour
                 vic = x;
                 m.SetFloat("_DissolveAmount", vic);
 
-            }, 0.0f,  1.0f);
+            }, 0.0f,  0.5f);
         }
         else
         {

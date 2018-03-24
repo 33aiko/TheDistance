@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: 852f530b1e4ca483f8b5f2a44dc28402
+timeCreated: 1521848900
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Silhouettes_0
+    21300002: Silhouettes_1
+    21300004: Silhouettes_2
+    21300006: Silhouettes_3
+    21300008: Silhouettes_4
+    21300010: Silhouettes_5
+    21300012: Silhouettes_6
+    21300014: Silhouettes_7
+    21300016: Silhouettes_8
+    21300018: Silhouettes_9
+    21300020: Silhouettes_10
+    21300022: Silhouettes_11
+    21300024: Silhouettes_12
+    21300026: Silhouettes_13
+    21300028: Silhouettes_14
+    21300030: Silhouettes_15
+    21300032: Silhouettes_16
+    21300034: Silhouettes_17
+    21300036: Silhouettes_18
+    21300038: Silhouettes_19
+    21300040: Silhouettes_20
+    21300042: Silhouettes_21
+    21300044: Silhouettes_22
+    21300046: Silhouettes_23
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Silhouettes_0
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 2268
+        width: 414
+        height: 1828
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_1
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 2480
+        width: 452
+        height: 1558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_2
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 2330
+        width: 509
+        height: 1712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_3
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 3312
+        width: 50
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_4
+      rect:
+        serializedVersion: 2
+        x: 1646
+        y: 2172
+        width: 816
+        height: 1924
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_5
+      rect:
+        serializedVersion: 2
+        x: 2456
+        y: 2186
+        width: 1022
+        height: 1910
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_6
+      rect:
+        serializedVersion: 2
+        x: 3534
+        y: 2130
+        width: 476
+        height: 1910
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1252
+        width: 410
+        height: 822
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_8
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1252
+        width: 442
+        height: 734
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_9
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1848
+        width: 480
+        height: 438
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_10
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 842
+        width: 272
+        height: 1272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_11
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 526
+        width: 1902
+        height: 1546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_12
+      rect:
+        serializedVersion: 2
+        x: 3770
+        y: 1764
+        width: 238
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_13
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1172
+        width: 412
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_14
+      rect:
+        serializedVersion: 2
+        x: 3772
+        y: 1466
+        width: 256
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 676
+        width: 1350
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_16
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 366
+        width: 496
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_17
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 88
+        width: 654
+        height: 816
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_18
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 448
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_19
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 282
+        width: 264
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_20
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 248
+        width: 182
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_21
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 278
+        width: 302
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_22
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 54
+        width: 1378
+        height: 444
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Silhouettes_23
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 158
+        width: 108
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

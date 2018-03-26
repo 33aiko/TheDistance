@@ -225,8 +225,15 @@ public class Player : NetworkBehaviour
         Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
         Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
 
-		ericFilter = new Color32 (23, 76, 113, 255); 
-		natalieFilter = new Color32 (50, 15, 100, 255);
+
+		//initialize camera filter color
+		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+			ericFilter = new Color32 (23, 76, 113, 255); 
+			natalieFilter = new Color32 (50, 15, 100, 255);
+		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
+			ericFilter = new Color32 (23, 76, 113, 255); 
+			natalieFilter = new Color32 (80, 30, 65, 255);
+		}
 
         // initialize local player position and camera filter
         if (isLocalPlayer && isServer)

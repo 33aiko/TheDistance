@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollowBox : MonoBehaviour {
 
-    [HideInInspector]
     public FocusArea focusArea;
     public Vector2 focusAreaSize;
     public float yOffset;
@@ -26,11 +25,13 @@ public class CameraFollowBox : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        //Gizmos.color = new Color(1, 0, 0, .5f);
-        //Gizmos.DrawCube(focusArea.center, focusAreaSize);
+        if (GetComponent<Player>()) return;
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(focusArea.center, focusAreaSize);
     }
 
-    public struct FocusArea
+    [System.Serializable]
+    public class FocusArea
     {
         public Vector3 center;
         float left, right;

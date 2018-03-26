@@ -13,6 +13,7 @@ public class RowBoat : MonoBehaviour {
     public Quaternion originalRotationNatalie;
     public Quaternion newRotationNatalie;
     public Quaternion tempRotationNatalie;
+    float interpolateTime = 10;
     float height;
     Rigidbody2D r;
 	// Use this for initialization
@@ -78,9 +79,25 @@ public class RowBoat : MonoBehaviour {
                 r.AddForceAtPosition(transform.up * forceY + transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
             }*/
 
+            UpdateCameraPosition();
+
         }
         
 	}
+
+    void UpdateCameraPosition()
+    {
+        CameraFollowBox pCFB = GetComponent<CameraFollowBox>();
+        Vector3 ttmp = pCFB.focusArea.center - Camera.main.transform.position;
+        ttmp += new Vector3(0, pCFB.yOffset);
+        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0) / interpolateTime;
+        GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
+        Camera.main.transform.position =
+            new Vector3(Camera.main.transform.position.x,
+                Camera.main.transform.position.y
+            , transform.position.z - 25.0f);
+    }
+
 
     public void move(int direction)
     {

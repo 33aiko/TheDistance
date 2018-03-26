@@ -1461,7 +1461,7 @@ public class Player : NetworkBehaviour
         audioManager.Play("SharingHold");
         if (appearParticle != null)
             Destroy(appearParticle);
-        appearParticle = Instantiate(Resources.Load("Prefabs/Levels/Appeareffect_" + (fromEric ? "Red" : "Blue")) as GameObject);
+        appearParticle = Instantiate(Resources.Load("Prefabs/Particles/Appeareffect_" + (fromEric ? "Red" : "Blue")) as GameObject);
         appearParticle.transform.position = sharedPos;
         appearParticle.GetComponent<SharingEffectsController>().PlaySelectedEffect();
         appearParticle.GetComponent<SharingEffectsController>().UpdateParticleSize(size);

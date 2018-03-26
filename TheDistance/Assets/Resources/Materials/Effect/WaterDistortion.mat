@@ -37,8 +37,8 @@ Material:
     - _StencilOpZFail: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _WaveSpeed: 1.72
-    - _X_Offset: 0.6
+    - _WaveSpeed: 0.23
+    - _X_Offset: -3
     - _Y_Offset: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

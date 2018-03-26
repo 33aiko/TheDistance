@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
     float xRaySpacing;
     float yRaySpacing;
 
-    Vector2 curSize;
+    public Vector2 curSize = new Vector2(200, 200);
 
     Vector3 bottomLeft;
     Vector3 bottomRight;
@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour {
 	}
 	
 	void UpdateCollisionBox() {
-        curSize = new Vector2(200, 200);
         //Vector2 curSize = new Vector2(cam.pixelWidth, cam.pixelHeight);
         xRaySpacing = curSize.x / (rayCount - 1);
         yRaySpacing = curSize.y / (rayCount - 1);

@@ -79,18 +79,23 @@ public class RowBoat : MonoBehaviour {
                 r.AddForceAtPosition(transform.up * forceY + transform.right * forceX, new Vector3(bottom.x, bottom.y, transform.position.z));
             }*/
 
-            UpdateCameraPosition();
+            //UpdateCameraPosition();
 
         }
         
 	}
 
+
+    public Vector3 FollowBoxCenter()
+    {
+        CameraFollowBox pCFB = GetComponent<CameraFollowBox>();
+        return pCFB.focusArea.center;
+    }
     void UpdateCameraPosition()
     {
         CameraFollowBox pCFB = GetComponent<CameraFollowBox>();
         Vector3 ttmp = pCFB.focusArea.center - Camera.main.transform.position;
-        ttmp += new Vector3(0, pCFB.yOffset);
-        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0) / interpolateTime;
+        Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0);
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);
         Camera.main.transform.position =
             new Vector3(Camera.main.transform.position.x,

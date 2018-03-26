@@ -10,8 +10,9 @@ public class FlowerBox : MonoBehaviour {
     int zoomFlag = 0;
     Text txt;
 	public int Idx;
-	GameObject boat ; 
-    
+	GameObject boat ;
+
+    bool hasTriggered = false;
 
     public int flowerFlag = 0;
     // Use this for initialization
@@ -21,6 +22,7 @@ public class FlowerBox : MonoBehaviour {
 		boat = GameObject.Find ("boat");
     }
 	
+    /*
 	// Update is called once per frame
 	void Update () {
         if (zoomFlag == 1)
@@ -37,6 +39,7 @@ public class FlowerBox : MonoBehaviour {
         }
 	
     }
+     */ 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,15 +51,12 @@ public class FlowerBox : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (hasTriggered) return;
         if (collision.gameObject.tag == "Boat")
         {
-            if (flowerFlag == 1)
-            {
-                zoomFlag = 1;
-
-            }
-			mainCamera.GetComponent<CamFollow> ().target = boat;
-
+            mainCamera.GetComponent<CamFollow>().FocusObject(collision.gameObject);
+            txt.DOFade(0, 1).SetDelay(2.0f);
+            hasTriggered = true;
         }
     }
 }

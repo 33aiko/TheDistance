@@ -6,10 +6,11 @@ using DG.Tweening;
 
 public class Flower : MonoBehaviour {
     Camera mainCamera;
-    int cnt = 0;
-    int zoomFlag = 0;
+    //int cnt = 0;
+    //int zoomFlag = 0;
     public FlowerBox fb;
     Text txt;
+    bool hasTriggered = false;
 
     public int Idx;
 
@@ -21,6 +22,7 @@ public class Flower : MonoBehaviour {
     }
 	
 	// Update is called once per frame
+    /*
 	void Update () {
         if (zoomFlag == 1)
         {
@@ -38,23 +40,16 @@ public class Flower : MonoBehaviour {
 			}
 		}
 	}
+     */ 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasTriggered) return;
         if (collision.gameObject.tag == "Boat")
         {
-            cnt++;
-            if (cnt == 1)
-            {
-                RowBoat boat = collision.GetComponent<RowBoat>();
-                Debug.Log("eat flower flower");
-                //this.gameObject.SetActive(false);
-                zoomFlag = 1;
-                fb.flowerFlag = 1;
-            }
-
-			mainCamera.GetComponent<CamFollow> ().target = this.gameObject;
-
+            mainCamera.GetComponent<CamFollow>().FocusObject(fb.gameObject);
+            txt.DOFade(1, 1);
+            hasTriggered = true;
         }
     }
 
@@ -62,15 +57,8 @@ public class Flower : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Boat")
         {
-            cnt--;
-            if (cnt != 1)
-            {
-                RowBoat boat = collision.GetComponent<RowBoat>();
-                Debug.Log("out flower");
-            }
-
-
-			
+            RowBoat boat = collision.GetComponent<RowBoat>();
+            Debug.Log("out flower");
         }
     }
 }

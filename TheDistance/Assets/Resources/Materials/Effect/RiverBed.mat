@@ -29,7 +29,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _Cutoff: 0.5
-    - _DistortionPercent: 0.0197
+    - _DistortionPercent: 0.0345
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -37,8 +37,8 @@ Material:
     - _StencilOpZFail: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _WaveSpeed: 0.21
-    - _X_Offset: -0.3
+    - _WaveSpeed: 0.37
+    - _X_Offset: 2.4
     - _Y_Offset: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

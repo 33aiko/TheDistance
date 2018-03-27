@@ -1879,12 +1879,14 @@ public class Player : NetworkBehaviour
             boat.move(1);
             //RpcBoat();
             //RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+			boat.GetComponents<AudioSource>()[0].Play();
         }
         else
         {
             //boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+			boat.GetComponents<AudioSource>()[1].Play();
         }
     }
     [ClientRpc]

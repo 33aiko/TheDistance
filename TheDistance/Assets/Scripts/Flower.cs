@@ -14,11 +14,13 @@ public class Flower : MonoBehaviour {
 
     public int Idx;
 
+
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		txt = GameObject.Find("FlowerBox"+Idx.ToString()+"/Canvas/Text").GetComponent<Text>();
 		txt.DOFade (0, 0);
+
     }
 	
 	// Update is called once per frame
@@ -51,6 +53,8 @@ public class Flower : MonoBehaviour {
             txt.DOFade(1, 1);
             hasTriggered = true;
         }
+		GetComponent<AudioSource> ().Play ();
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

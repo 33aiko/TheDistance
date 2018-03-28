@@ -80,32 +80,35 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     private void StartAllParticle()
     {
+        print("start particle");
         StartParticle(PS_dots);
         StartParticle(PS_pattern);
         StartParticle(PS_small);
         StartParticle(PS_trail);
-        triggerlight.transform.DOScaleX(1, 1);
+        triggerlight.transform.DOScaleY(1, 1);
     }
 
     private void StopAllParticle()
     {
+        print("stop particle");
         StopParticle(PS_dots);
-        StopParticle(PS_pattern);
+        StopParticle(PS_pattern, true);
         StopParticle(PS_small);
         StopParticle(PS_trail);
-        triggerlight.transform.DOScaleX(0, 1);
+        triggerlight.transform.DOScaleY(0, 1);
     }
 
 
     private void StartParticle(ParticleSystem ps)
     {
-        if (!ps.isPlaying)
-            ps.Play();
+        ps.Play();
     }
 
-    private void StopParticle(ParticleSystem ps)
+    private void StopParticle(ParticleSystem ps, bool clear = false)
     {
-        if (ps.isPlaying)
+        if (clear)
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        else
             ps.Stop();
     }
 

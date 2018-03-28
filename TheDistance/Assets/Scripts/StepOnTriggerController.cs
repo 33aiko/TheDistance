@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using DG.Tweening;
 
 public class StepOnTriggerController : NetworkBehaviour{
 
@@ -16,6 +17,22 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     MovingPlatformController mPC;
 
+    //particle effect
+    public bool hasParticle = false;
+    [SerializeField]
+    ParticleSystem PS_small;
+    [SerializeField]
+    ParticleSystem PS_dots;
+    [SerializeField]
+    ParticleSystem PS_pattern;
+    [SerializeField]
+    ParticleSystem PS_trail;
+    [SerializeField]
+    GameObject pattern;
+    [SerializeField]
+    SpriteRenderer triggerlight;
+
+
 	void Start () {
         try
         {
@@ -25,7 +42,8 @@ public class StepOnTriggerController : NetworkBehaviour{
         {
             Debug.LogWarning("Cannot find moving platform");
         }
-
+        if (hasParticle)
+            StopAllParticle();
     }
 
     void SetCanMove (bool _canMove)
@@ -50,6 +68,45 @@ public class StepOnTriggerController : NetworkBehaviour{
         {
             mPC.canMove = _canMove;
         }
+        if(_canMove)
+        {
+            StartAllParticle();
+        }
+        else
+        {
+            StopAllParticle();
+        }
+    }
+
+    private void StartAllParticle()
+    {
+        StartParticle(PS_dots);
+        StartParticle(PS_pattern);
+        StartParticle(PS_small);
+        StartParticle(PS_trail);
+        triggerlight.transform.DOScaleX(1, 1);
+    }
+
+    private void StopAllParticle()
+    {
+        StopParticle(PS_dots);
+        StopParticle(PS_pattern);
+        StopParticle(PS_small);
+        StopParticle(PS_trail);
+        triggerlight.transform.DOScaleX(0, 1);
+    }
+
+
+    private void StartParticle(ParticleSystem ps)
+    {
+        if (!ps.isPlaying)
+            ps.Play();
+    }
+
+    private void StopParticle(ParticleSystem ps)
+    {
+        if (ps.isPlaying)
+            ps.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

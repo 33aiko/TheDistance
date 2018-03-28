@@ -84,7 +84,7 @@ public class StepOnTriggerController : NetworkBehaviour{
         StartParticle(PS_pattern);
         StartParticle(PS_small);
         StartParticle(PS_trail);
-        triggerlight.transform.DOScaleX(1, 1);
+        triggerlight.transform.DOScaleY(1, 1);
     }
 
     private void StopAllParticle()
@@ -93,7 +93,7 @@ public class StepOnTriggerController : NetworkBehaviour{
         StopParticle(PS_pattern);
         StopParticle(PS_small);
         StopParticle(PS_trail);
-        triggerlight.transform.DOScaleX(0, 1);
+        triggerlight.transform.DOScaleY(0, 1);
     }
 
 

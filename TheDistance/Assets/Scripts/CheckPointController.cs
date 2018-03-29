@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CheckPointController : MonoBehaviour {
 
-	public GameObject checkpointItem; 
+
     public bool isInCave = false;
 
 	Animator checkpointAnim; 

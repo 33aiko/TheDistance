@@ -32,6 +32,9 @@ public class StepOnTriggerController : NetworkBehaviour{
     [SerializeField]
     SpriteRenderer triggerlight;
 
+    Tween rotatePattern;
+
+    Transform curCollider;
 
 	void Start () {
         try
@@ -43,7 +46,10 @@ public class StepOnTriggerController : NetworkBehaviour{
             Debug.LogWarning("Cannot find moving platform");
         }
         if (hasParticle)
+        {
+            rotatePattern = pattern.transform.DORotate(Vector3.up * 360, 5.0f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
             StopAllParticle();
+        }
     }
 
     void SetCanMove (bool _canMove)
@@ -82,20 +88,28 @@ public class StepOnTriggerController : NetworkBehaviour{
     {
         print("start particle");
         StartParticle(PS_dots);
-        //StartParticle(PS_pattern);
+        //StopParticle(PS_pattern, true);
         StartParticle(PS_small);
         StartParticle(PS_trail);
         triggerlight.transform.DOScaleY(1, 1);
+
+        rotatePattern.Pause();
+        pattern.transform.DOMove(transform.position + Vector3.up * 100, 1.0f);
+        pattern.transform.DOScale(0.5f, 1.0f);
+        pattern.transform.DORotate(Vector3.zero, 1.0f);
     }
 
     private void StopAllParticle()
     {
         print("stop particle");
         StopParticle(PS_dots);
-        //StopParticle(PS_pattern, true);
+        //StartParticle(PS_pattern);
         StopParticle(PS_small);
         StopParticle(PS_trail);
         triggerlight.transform.DOScaleY(0, 1);
+        rotatePattern.Play();
+        pattern.transform.DOLocalMove(Vector3.up, 1.0f);
+        pattern.transform.DOScale(1.0f, 1.0f);
     }
 
 
@@ -118,10 +132,12 @@ public class StepOnTriggerController : NetworkBehaviour{
         if ((collision.gameObject.tag == "Player" && cnt == 2))
         {
             haveUser = true;
+            curCollider = collision.transform;
         }
 		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = true;
+            curCollider = collision.transform;
         }
         SetCanMove(haveBox || haveUser);
     }
@@ -133,10 +149,12 @@ public class StepOnTriggerController : NetworkBehaviour{
         if (collision.gameObject.tag == "Player")
         {
             haveUser = false;
+            curCollider = null;
         }
 		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = false;
+            curCollider = null;
         }
         SetCanMove(haveBox || haveUser);
     }

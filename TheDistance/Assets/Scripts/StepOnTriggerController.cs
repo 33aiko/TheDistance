@@ -15,6 +15,8 @@ public class StepOnTriggerController : NetworkBehaviour{
     bool haveBox = false;
     bool haveUser = false;
 
+	AudioManager audio;  
+
     MovingPlatformController mPC;
 
     //particle effect
@@ -23,8 +25,6 @@ public class StepOnTriggerController : NetworkBehaviour{
     ParticleSystem PS_small;
     [SerializeField]
     ParticleSystem PS_dots;
-    [SerializeField]
-    ParticleSystem PS_pattern;
     [SerializeField]
     ParticleSystem PS_trail;
     [SerializeField]
@@ -50,6 +50,7 @@ public class StepOnTriggerController : NetworkBehaviour{
             rotatePattern = pattern.transform.DORotate(Vector3.up * 360, 5.0f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
             StopAllParticle();
         }
+		audio = GameObject.Find ("AudioManager").GetComponent<AudioManager> ();
     }
 
     void SetCanMove (bool _canMove)
@@ -140,6 +141,9 @@ public class StepOnTriggerController : NetworkBehaviour{
             curCollider = collision.transform;
         }
         SetCanMove(haveBox || haveUser);
+		if (audio != null) {
+			audio.Play ("TriggerActivate");
+		}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -157,6 +161,9 @@ public class StepOnTriggerController : NetworkBehaviour{
             curCollider = null;
         }
         SetCanMove(haveBox || haveUser);
+		if (audio != null) {
+			audio.Stop ("TriggerActivate");
+		}
     }
 
 }

@@ -8,6 +8,7 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     public string mpName;
     public bool oneTimeTrigger;
+    bool hasMoved = false; 
     public bool moveOnOtherWorld = false;
 
     int cnt = 0;
@@ -100,7 +101,7 @@ public class StepOnTriggerController : NetworkBehaviour{
         pattern.transform.DORotate(Vector3.zero, 1.0f);
     }
 
-    private void StopAllParticle()
+    private void StopAllParticle(bool isOnetime = false)
     {
         print("stop particle");
         StopParticle(PS_dots);
@@ -108,9 +109,16 @@ public class StepOnTriggerController : NetworkBehaviour{
         StopParticle(PS_small);
         StopParticle(PS_trail);
         triggerlight.transform.DOScaleY(0, 1);
-        rotatePattern.Play();
-        pattern.transform.DOLocalMove(Vector3.up, 1.0f);
-        pattern.transform.DOScale(1.0f, 1.0f);
+        if(!isOnetime)
+        {
+            rotatePattern.Play();
+            pattern.transform.DOLocalMove(Vector3.up, 1.0f);
+            pattern.transform.DOScale(1.0f, 1.0f);
+        }
+        else
+        {
+            pattern.GetComponent<SpriteRenderer>().DOFade(0, 1.0f);
+        }
     }
 
 
@@ -129,13 +137,16 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasMoved) return;
         if (collision.gameObject.tag == "Player") cnt++;
         if ((collision.gameObject.tag == "Player" && cnt == 2))
         {
             haveUser = true;
             curCollider = collision.transform;
+            if(oneTimeTrigger)
+                hasMoved = true;
         }
-		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
+        if (collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = true;
             curCollider = collision.transform;
@@ -149,11 +160,15 @@ public class StepOnTriggerController : NetworkBehaviour{
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") cnt--;
-        if (oneTimeTrigger) return; // then it's a one time trigger, there's no stopping
+        //if (oneTimeTrigger) return; // then it's a one time trigger, there's no stopping
         if (collision.gameObject.tag == "Player")
         {
             haveUser = false;
             curCollider = null;
+            if (hasMoved)
+            {
+                StopAllParticle(true);
+            }
         }
 		if(collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {

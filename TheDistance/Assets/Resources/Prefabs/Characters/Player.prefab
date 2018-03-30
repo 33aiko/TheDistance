@@ -344,14 +344,12 @@ MonoBehaviour:
   spiritSignalPrefab: {fileID: 1631182194005340, guid: 8857c0b6a0a920e4e8daed8e4873c9c4,
     type: 2}
   spiritTargetPos: {x: 0, y: 0, z: 0}
-  interpolateTime: 10
+  interpolateTime: 20
   jumpHeight: 120
   timeToJumpApex: 0.36
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 150
   velocity: {x: 0, y: 0, z: 0}
-  cameraMin: {x: -262, y: -60}
-  cameraMax: {x: 6539, y: 1000}
   cameraOffset: 110
   cameraZoomValue: 0
   areaCameraZoomValue: 0
@@ -493,8 +491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a972ddebe5fb0b845831c2d2456a7c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focusArea:
+    center: {x: 0, y: 0, z: 0}
   focusAreaSize: {x: 150, y: 200}
-  yOffset: -10
+  yOffset: -100
 --- !u!114 &114716481496747850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -580,6 +580,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -595,6 +596,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -622,6 +624,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -637,6 +640,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -664,6 +668,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -679,6 +684,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -819,6 +825,7 @@ SpriteMask:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -834,6 +841,7 @@ SpriteMask:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

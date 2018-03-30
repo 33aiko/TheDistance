@@ -1800,8 +1800,9 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcSetPlatformMoveable(bool _canMove, string mpName)
     {
-        if (!isServer)
-            SetPlatformMovealbe(_canMove, mpName);
+        if (isServer) return;
+        print("got moving platform from server!");
+        SetPlatformMovealbe(_canMove, mpName);
     }
 
     // sent by client, run on server

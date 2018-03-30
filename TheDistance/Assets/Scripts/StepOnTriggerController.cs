@@ -62,7 +62,7 @@ public class StepOnTriggerController : NetworkBehaviour{
             // don't know why
             // just bug fixed
             Player pP = GameObject.Find("Player").GetComponent<Player>();
-            if (isServer)
+            if (pP.isServer)
             {
                 pP.RpcSetPlatformMoveable(_canMove, mpName);
             }
@@ -88,7 +88,6 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     private void StartAllParticle()
     {
-        print("start particle");
         StartParticle(PS_dots);
         //StopParticle(PS_pattern, true);
         StartParticle(PS_small);
@@ -103,7 +102,6 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     private void StopAllParticle(bool isOnetime = false)
     {
-        print("stop particle");
         StopParticle(PS_dots);
         //StartParticle(PS_pattern);
         StopParticle(PS_small);

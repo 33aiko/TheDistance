@@ -232,7 +232,7 @@ public class Player : NetworkBehaviour
 			natalieFilter = new Color32 (50, 15, 100, 255);
 		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
 			ericFilter = new Color32 (23, 76, 113, 255); 
-			natalieFilter = new Color32 (145, 55, 30, 255);
+			natalieFilter = new Color32 (56, 34, 22, 255);
 		}
 
         // initialize local player position and camera filter

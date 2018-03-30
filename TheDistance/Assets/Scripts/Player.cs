@@ -38,7 +38,7 @@ public class Player : NetworkBehaviour
 	public Vector3 velocity;
 
     // camera parameter
-	public Vector2 cameraMin, cameraMax;
+	//public Vector2 cameraMin, cameraMax;
 	public float cameraOffset;
 	float currentCameraOffset = 0; 
 	private Vector3 offset;
@@ -427,7 +427,7 @@ public class Player : NetworkBehaviour
         //Vector3 targetCamereaPos = pCFB.focusArea.center - Vector3.up * pCFB.yOffset;
 
         Vector3 ttmp = pCFB.focusArea.center - Camera.main.transform.position;
-        ttmp += new Vector3(0, pCFB.yOffset);
+        ttmp += new Vector3(0, pCFB.yOffset + cameraOffset);
         //Vector3 ttmp = transform.position - Camera.main.transform.position;
         Vector3 moveDistance = new Vector3(ttmp.x, ttmp.y, 0) / interpolateTime;
         GameObject.Find("Main Camera").GetComponent<CameraController>().Move(moveDistance);

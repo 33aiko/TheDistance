@@ -115,10 +115,14 @@ public class SharingEffectsController : MonoBehaviour {
 
     public void UpdateParticleSize(Vector2 size)
     {
+        print("sharing size is : " + size);
         Vector3 n = Vector3.one;
         n.x = size.x / 200;
+        n.x = Mathf.Clamp(n.x, 1.0f, 2.0f);
         if (size.y > 50)
             n.y = 1.5f;
+        else if (size.y > 100)
+            n.y = 5.0f;
         foreach(ParticleSystem p in selectedEffect)
         {
             p.transform.localScale = n;

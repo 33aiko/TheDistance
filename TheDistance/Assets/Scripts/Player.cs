@@ -737,9 +737,10 @@ public class Player : NetworkBehaviour
 
         if (shareObject != null)
         {
-            Vector3 size = shareObject.GetComponent<BoxCollider2D>().size;
+            Vector3 size = shareObject.GetComponent<Collider2D>().bounds.size;
+            //Vector3 size = shareObject.GetComponent<BoxCollider2D>().size;
             print("sharing size is : " + Vector3.Scale(size , shareObject.transform.localScale));
-            size = Vector3.Scale(size, shareObject.transform.localScale);
+            //size = Vector3.Scale(size, shareObject.transform.localScale);
             shareCharging = true;
             animator.SetBool("sendPrepare", true);
             if (isLocalPlayer && isServer)
@@ -1394,11 +1395,10 @@ public class Player : NetworkBehaviour
         newObj.tag = "FloatingPlatformShared";
         newObj.transform.position = sObj.transform.position;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
-        newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
-        //newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
         Material m = newObj.GetComponent<SpriteRenderer>().material;
         if(m.shader.name == "Shader Forge/FadeInOut")
         {
+            print("we are here!");
             m.SetFloat("_DissolveAmount", 1.0f);
             float vic = 1;
             DOTween.To(() => vic, x => 
@@ -1410,6 +1410,8 @@ public class Player : NetworkBehaviour
         }
         else
         {
+            newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
+            newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
             print(m.shader.name);
         }
     }

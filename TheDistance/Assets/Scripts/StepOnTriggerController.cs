@@ -143,16 +143,20 @@ public class StepOnTriggerController : NetworkBehaviour{
             curCollider = collision.transform;
             if(oneTimeTrigger)
                 hasMoved = true;
+			if (audio != null) {
+				audio.Play ("TriggerActivate");
+			}
         }
         if (collision.gameObject.tag == "Box" || collision.gameObject.tag == "BoxCannotShare")
         {
             haveBox = true;
             curCollider = collision.transform;
+			if (audio != null) {
+				audio.Play ("TriggerActivate");
+			}
         }
         SetCanMove(haveBox || haveUser);
-		if (audio != null) {
-			audio.Play ("TriggerActivate");
-		}
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

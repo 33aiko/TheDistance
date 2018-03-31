@@ -1392,6 +1392,10 @@ public class Player : NetworkBehaviour
         GameObject sObj = remoteWorld.transform.Find(sharedObject).gameObject;
         sObj.SetActive(true);
         GameObject newObj = Instantiate(sObj);
+        Color c = newObj.GetComponent<SpriteRenderer>().color;
+        c.a = 0.0f;
+        newObj.GetComponent<SpriteRenderer>().color = c;
+        newObj.GetComponent<SpriteRenderer>().DOFade(1.0f, 1.0f);
         newObj.tag = "FloatingPlatformShared";
         newObj.transform.position = sObj.transform.position;
         newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
@@ -1410,8 +1414,6 @@ public class Player : NetworkBehaviour
         }
         else
         {
-            newObj.GetComponent<SpriteRenderer>().DOFade(0, 0);
-            newObj.GetComponent<SpriteRenderer>().DOFade(1, 1);
             print(m.shader.name);
         }
     }

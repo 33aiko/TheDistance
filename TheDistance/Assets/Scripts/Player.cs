@@ -767,7 +767,7 @@ public class Player : NetworkBehaviour
 
         cameraTween.Kill();
         cameraZoomValue = 40;
-        GetComponent<CameraFollowBox>().moveToCenter();
+       // GetComponent<CameraFollowBox>().moveToCenter();
 
         DOTween.To(() => Camera.main.GetComponent<VignetteModify>().intensity, (x) => Camera.main.GetComponent<VignetteModify>().intensity = x, 0.5f, 0.5f);
         currentFilter = Camera.main.GetComponent<VignetteModify>().color;

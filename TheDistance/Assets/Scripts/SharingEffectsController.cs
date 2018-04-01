@@ -26,7 +26,7 @@ public class SharingEffectsController : MonoBehaviour {
 	{
 		if (ps != null)
 			foreach (var p in ps)
-				if (!p.isPlaying)
+				//if (!p.isPlaying)
 					p.Play ();
 	}
 
@@ -54,14 +54,21 @@ public class SharingEffectsController : MonoBehaviour {
 		
 		state = State.Default;
         otherPressedTime = 0.0f;
-	}
+        if (transform.parent.CompareTag("FloatingPlatform") || transform.parent.CompareTag("Box") || transform.parent.CompareTag("MovingPlatformSharable"))
+        {
+            PlayParticles(defaultEffect);
+        }
+    }
 
-	void Update(){
+    void Update()
+    {
+        /*
 		if (state == State.Default) {
 			if (transform.parent.CompareTag ("FloatingPlatform") || transform.parent.CompareTag ("Box")|| transform.parent.CompareTag("MovingPlatformSharable")) {
 				PlayParticles( defaultEffect);
 			}
 		}
+         */
         if (state == State.Selected)
         {
             otherPressedTime += Time.deltaTime;
@@ -71,47 +78,57 @@ public class SharingEffectsController : MonoBehaviour {
         {
             otherPressedTime = 0;
         }
-	}
-		
-	public void StopAll(){
-		Debug.Log ("Stop All " + name);
-		StopParticles (defaultEffect);
-		StopParticles (selectedEffect);
-		StopParticles (sharedEffect);
-		state = State.Stop;
-	}
+    }
 
-	public void PlaySelectedEffect(){
+    public void StopAll()
+    {
+        Debug.Log("Stop All " + name);
+        StopParticles(defaultEffect);
+        StopParticles(selectedEffect);
+        StopParticles(sharedEffect);
+        state = State.Stop;
+    }
 
-		Debug.Log ("Play Selected " + name);
-		StopParticles (defaultEffect);
-		PlayParticles (selectedEffect);
+    public void PlayDefaultEffect()
+    {
+        PlayParticles(defaultEffect);
+    }
 
-		if ( wind != null )
-			wind.windMain = windIntensity;
-		state = State.Selected;
-	}
+    public void PlaySelectedEffect()
+    {
 
-	public void FadeOutEffect(){
-		StopParticles (defaultEffect);
-		StopParticles (selectedEffect);
-		if (wind != null) {
-			wind.windMain = 0; 
-		}
-	}
+        Debug.Log("Play Selected " + name);
+        StopParticles(defaultEffect);
+        PlayParticles(selectedEffect);
 
-	public void StopSelectedEffect(){
-		Debug.Log ("Stop Selected " + name);
+        if (wind != null)
+            wind.windMain = windIntensity;
+        state = State.Selected;
+    }
 
-		StopParticles (defaultEffect);
-		StopParticles (selectedEffect);
-		PlayParticles (sharedEffect);
+    public void FadeOutEffect()
+    {
+        StopParticles(defaultEffect);
+        StopParticles(selectedEffect);
+        if (wind != null)
+        {
+            wind.windMain = 0;
+        }
+    }
 
-		wind.windMain = - windIntensity;
-		DOTween.To (() => wind.windMain, (x) => wind.windMain = x, 0, 1f).SetDelay (1f);
-		state = State.Shared;
+    public void StopSelectedEffect()
+    {
+        Debug.Log("Stop Selected " + name);
 
-	}
+        StopParticles(defaultEffect);
+        StopParticles(selectedEffect);
+        PlayParticles(sharedEffect);
+
+        wind.windMain = -windIntensity;
+        DOTween.To(() => wind.windMain, (x) => wind.windMain = x, 0, 1f).SetDelay(1f);
+        state = State.Shared;
+
+    }
 
     public void UpdateParticleSize(Vector2 size)
     {
@@ -123,7 +140,7 @@ public class SharingEffectsController : MonoBehaviour {
             n.y = 1.5f;
         else if (size.y > 100)
             n.y = 5.0f;
-        foreach(ParticleSystem p in selectedEffect)
+        foreach (ParticleSystem p in selectedEffect)
         {
             p.transform.localScale = n;
         }

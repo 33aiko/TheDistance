@@ -174,7 +174,11 @@ public class PlayerCircleCollider : MonoBehaviour {
     public void StopSharingEffect()
     {
 		if(shareObject != null && shareObject.GetComponentInChildren<SharingEffectsController> () != null)
+        {
+
 			shareObject.GetComponentInChildren<SharingEffectsController>().FadeOutEffect();
+            shareObject.GetComponentInChildren<SharingEffectsController>().PlayDefaultEffect();
+        }
     }
 
     void createArrow()

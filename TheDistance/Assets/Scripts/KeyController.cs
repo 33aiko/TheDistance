@@ -22,6 +22,10 @@ public class KeyController : MonoBehaviour {
 	public Image[] divideLine; 
 	public Image diaryBG;
 
+
+    public GameObject collectEffect;
+    public RectTransform diaryUIRect;
+
     public bool isInCave = false;
     Material caveMaterial;
 
@@ -100,7 +104,9 @@ public class KeyController : MonoBehaviour {
 			}
 		}
         updateText();
-	}
+        //if(collectEffect)
+            //print(effectScreenPosition());
+    }
 
     private void loadSprite(string path, string UIname)
     {
@@ -271,4 +277,35 @@ public class KeyController : MonoBehaviour {
 		triggerEffect.transform.DOScale (new Vector3 (0.5f, 1.5f, 1), 0.5f);
 		triggerEffect.transform.DOScale (new Vector3 (0.4f, 1.4f, 1), 0.5f).SetDelay(0.5f);
 	}
+
+    public void CollectEffect()
+    {
+        if (!diaryUIRect) return;
+        Rect r = RectTransformToScreenSpace(diaryUIRect);
+        Vector3 end_screen = new Vector3(r.x + r.width / 2, Screen.height - r.y - r.height / 2, 200);
+        Vector3 start = collectEffect.transform.position;
+        Vector3 start_screen = Camera.main.WorldToScreenPoint(start);
+        DOTween.To(() => start_screen, x =>
+          {
+              start_screen = x;
+              collectEffect.transform.position = Camera.main.ScreenToWorldPoint(x);
+
+          }, end_screen, 2.0f);
+        diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo);
+        print(r);
+    }
+
+    public Vector3 effectScreenPosition()
+    {
+        return Camera.main.WorldToScreenPoint(collectEffect.transform.position);
+    }
+
+    public static Rect RectTransformToScreenSpace(RectTransform transform)
+    {
+        Vector2 size = Vector2.Scale(transform.rect.size, transform.lossyScale);
+        Rect rect = new Rect(transform.position.x, Screen.height - transform.position.y, size.x, size.y);
+        rect.x -= (transform.pivot.x * size.x);
+        rect.y -= ((1.0f - transform.pivot.y) * size.y);
+        return rect;
+    }
 }

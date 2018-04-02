@@ -1650,6 +1650,15 @@ public class Player : NetworkBehaviour
         GameObject newObj = Instantiate(sObj);
         newObj.tag = "CannotShare";
         newObj.transform.position = sObj.transform.position;
+        if(newObj.GetComponentInChildren<SharingEffectsController>())
+        {
+            print("tring to stop particle");
+            newObj.GetComponentInChildren<SharingEffectsController>().StopAll();
+        }
+        else
+        {
+            print("rua");
+        }
     }
 
     // sent by server, show rock on clients

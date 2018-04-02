@@ -14,12 +14,14 @@ public class Flower : MonoBehaviour {
 
     public int Idx;
 
+	Animator flowerAnim; 
 
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		txt = GameObject.Find("FlowerBox"+Idx.ToString()+"/Canvas/Text").GetComponent<Text>();
 		txt.DOFade (0, 0);
+		flowerAnim = GetComponentInChildren<Animator> ();
 
     }
 	
@@ -50,6 +52,10 @@ public class Flower : MonoBehaviour {
         if (collision.gameObject.tag == "Boat")
         {
             mainCamera.GetComponent<CamFollow>().FocusObject(fb.gameObject);
+
+			if (flowerAnim != null) {
+				flowerAnim.SetTrigger ("getFlower");
+			}
             txt.DOFade(1, 1);
             hasTriggered = true;
         }

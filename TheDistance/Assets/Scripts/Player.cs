@@ -1167,7 +1167,7 @@ public class Player : NetworkBehaviour
             {
                 Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
                 diaryImg.enabled = true;
-                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
+				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1217,7 +1217,7 @@ public class Player : NetworkBehaviour
             {
                 Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
                 diaryImg.enabled = true;
-                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon"+sceneIdx.ToString()+"_" + keyIdx.ToString());
+				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon"+sceneIdx.ToString()+"_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1265,7 +1265,7 @@ public class Player : NetworkBehaviour
             {
                 Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
                 diaryImg.enabled = true;
-                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
+				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1314,7 +1314,7 @@ public class Player : NetworkBehaviour
             {
                 Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
                 diaryImg.enabled = true;
-                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
+				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");

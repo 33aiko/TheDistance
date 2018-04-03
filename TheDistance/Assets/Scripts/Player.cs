@@ -68,7 +68,7 @@ public class Player : NetworkBehaviour
 	public bool playerJumping = false;
     public bool playerUp = false;
     float jumpTime = 0;
-
+    int sceneIdx;
     //scroll page
     public ScrollPage scrollPage;
 
@@ -153,6 +153,8 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
+        sceneIdx = 1;
+        //more scene Idx
         goingToNewScene = false;
         StartInits();
     }
@@ -1161,6 +1163,9 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
+                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                diaryImg.enabled = true;
+                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1208,6 +1213,9 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
+                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                diaryImg.enabled = true;
+                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon"+sceneIdx.ToString()+"_" + keyIdx.ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1253,6 +1261,9 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
+                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                diaryImg.enabled = true;
+                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
@@ -1299,6 +1310,9 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
+                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                diaryImg.enabled = true;
+                diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + keyIdx.ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");

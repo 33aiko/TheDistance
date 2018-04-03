@@ -105,7 +105,11 @@ public class KeyController : MonoBehaviour {
 		}
         updateText();
         //if(collectEffect)
-            //print(effectScreenPosition());
+        //print(effectScreenPosition());
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            CollectEffect();
+        }
     }
 
     private void loadSprite(string path, string UIname)
@@ -281,6 +285,7 @@ public class KeyController : MonoBehaviour {
     public void CollectEffect()
     {
         if (!diaryUIRect) return;
+        print("moving this!");
         Rect r = RectTransformToScreenSpace(diaryUIRect);
         Vector3 end_screen = new Vector3(r.x + r.width / 2, Screen.height - r.y - r.height / 2, 200);
         Vector3 start = collectEffect.transform.position;
@@ -291,7 +296,7 @@ public class KeyController : MonoBehaviour {
               collectEffect.transform.position = Camera.main.ScreenToWorldPoint(x);
 
           }, end_screen, 2.0f);
-        diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo);
+        diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo).SetDelay(2.0f);
         print(r);
     }
 

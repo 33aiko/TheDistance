@@ -183,7 +183,9 @@ public class Player : NetworkBehaviour
         }
 
         //Text load
-		if (SceneManager.GetActiveScene ().name == "LX_Scene1") {
+		Debug.Log (SceneManager.GetActiveScene().name);
+		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+			Debug.Log ("load text");
 			GameObject UIobject = GameObject.Find ("UI");
 			TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
 			if (isServer && isLocalPlayer) {

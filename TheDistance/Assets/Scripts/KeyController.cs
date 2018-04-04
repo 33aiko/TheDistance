@@ -31,7 +31,7 @@ public class KeyController : MonoBehaviour {
 
 	Image memoryBackground; 
 	Text memoryTitle; 
-	Text memoryHint; 
+	public Text memoryHint; 
 
 	bool memoryShowed = false;
 
@@ -94,7 +94,7 @@ public class KeyController : MonoBehaviour {
 
     private void Update(){
 		if(Input.GetButtonDown("Submit")){
-			if (memoryShowed) {
+			if (memoryShowed && fadeFinished) {
 				Camera.main.GetComponent<DOVModify> ().SetActive (false);
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);
@@ -180,18 +180,14 @@ public class KeyController : MonoBehaviour {
 		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
 		{
 			cnt++;
-            print(name + " with cnt " + cnt);
-            if (collision is BoxCollider2D)
-                print("box!");
-            else if (collision is CircleCollider2D)
-                print("circle!");
+            //print(name + " with cnt " + cnt);
 			if (cnt == 2)
 			{
-                print("player enter fragment area! " + transform.parent.name);
+                //print("player enter fragment area! " + transform.parent.name);
 				Player p = collision.GetComponent<Player>();
                 playerNearby = true;
                 p.curFragment = this;
-                print("player's fragment: " + p.curFragment);
+                //print("player's fragment: " + p.curFragment);
                 inputUI.gameObject.SetActive(true);
                 updateText();
             }
@@ -205,7 +201,7 @@ public class KeyController : MonoBehaviour {
 			cnt--;
             if(cnt != 2)
             {
-                print("player leaves fragment area!");
+                //print("player leaves fragment area!");
 				Player p = collision.GetComponent<Player>();
                 playerNearby = false;
                 t.text = "";
@@ -253,8 +249,10 @@ public class KeyController : MonoBehaviour {
     }
 
     public float fadeCharTime = 0.1f;
+    bool fadeFinished = false;
     void FadeCharByChar(Text orig)
     {
+        fadeFinished = false;
         string orig_str = orig.text;
         orig.text = "";
         int l = orig_str.Length;
@@ -277,6 +275,11 @@ public class KeyController : MonoBehaviour {
                 }).SetEase(Ease.Linear)
             );
         }
+        seq.OnComplete(() =>
+        {
+            print("diary fade in char by char finished");
+            memoryHint.DOFade(1, 0.5f).OnComplete(() => { fadeFinished = true; });
+        });
     }
 
 
@@ -303,16 +306,16 @@ public class KeyController : MonoBehaviour {
         }
         Camera.main.GetComponent<DOVModify>().SetActive(true);
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
+        memoryHint.DOFade(0, 0);
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
         memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
-        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f);
         if (divideLine.Length == 2)
         {
             divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
             divideLine[1].DOFade(1, 0.5f).SetDelay(0.5f);
         }
-        memoryHint.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
+        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
         {
             memoryContent[0].SetActive(true);
             if(isWordByWord)
@@ -347,16 +350,16 @@ public class KeyController : MonoBehaviour {
 
         Camera.main.GetComponent<DOVModify>().SetActive(true);
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
+        memoryHint.DOFade(0, 0);
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
         memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
-        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f);
         if (divideLine.Length == 2)
         {
             divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
             divideLine[1].DOFade(1, 0.5f).SetDelay(0.5f);
         }
-        memoryHint.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
+        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f).SetDelay(0.5f).OnComplete(() =>
         {
             memoryContent[1].SetActive(true);
             if(isWordByWord)

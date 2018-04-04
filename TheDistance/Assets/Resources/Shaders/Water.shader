@@ -65,8 +65,9 @@ Shader "BCW/Water"
 			{
 				vertexOutput o;
 				float4 offset;
-				offset.xyw = float3(0.0, 0.0, 0.0);
+				offset.xyzw = float4(0.0, 0.0, 0.0, 0.0);
 				offset.z = getHeight(1 - v.texcoord[0]);
+				offset.z = offset.z + sin(_Time.w * 2 + 50 * v.texcoord[0]) * 0.02;
 				if(v.texcoord[1] < 0.2) 
 				{
 					offset.z = 0.0;

@@ -8298,48 +8298,6 @@ MonoBehaviour:
   PS_trail: {fileID: 0}
   pattern: {fileID: 0}
   triggerlight: {fileID: 0}
---- !u!1001 &412095195
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 556
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -474
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937461508112072, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0d8f506a90cea48a0a067b8ddd139b94, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &415569120
 GameObject:
   m_ObjectHideFlags: 0

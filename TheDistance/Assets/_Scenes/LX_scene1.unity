@@ -8496,7 +8496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -23.399933, y: 0}
+  m_AnchoredPosition: {x: -23.399902, y: 0}
   m_SizeDelta: {x: 57, y: 37}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &429075231
@@ -26964,6 +26964,9 @@ MonoBehaviour:
   collectEffect: {fileID: 0}
   diaryUIRect: {fileID: 0}
   isInCave: 0
+  isWordByWord: 0
+  fadeTime: 0.3
+  fadeCharTime: 0.3
 --- !u!61 &1448595434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46624,6 +46627,11 @@ Prefab:
     - target: {fileID: 1557145102501788, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: fadeCharTime
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}

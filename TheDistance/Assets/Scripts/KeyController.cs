@@ -222,6 +222,8 @@ public class KeyController : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().sprite = fragSprite[both[0] + both[1]];
     }
 
+    public bool isWordByWord = false;
+
     public float fadeTime = 0.3f;
     void FadeWordByWord(Text orig)
     {
@@ -249,6 +251,34 @@ public class KeyController : MonoBehaviour {
             );
         }
     }
+
+    public float fadeCharTime = 0.1f;
+    void FadeCharByChar(Text orig)
+    {
+        string orig_str = orig.text;
+        orig.text = "";
+        int l = orig_str.Length;
+        string shown = "";
+
+        Sequence seq = DOTween.Sequence();
+        for (int i = 0; i < l; i++)
+        {
+            int vic = 30;
+            char tmp = orig_str[i];
+            seq.Append(
+                DOTween.To(() => vic, x =>
+                {
+                    vic = x;
+                    orig.text = shown + "<color=#ffffff" + vic.ToString("X2") + ">" + tmp + "</color>";
+                }, 255, fadeCharTime).
+                OnComplete(() =>
+                {
+                    shown += (tmp);
+                }).SetEase(Ease.Linear)
+            );
+        }
+    }
+
 
     public void ShowEricMemory()
     {
@@ -285,7 +315,10 @@ public class KeyController : MonoBehaviour {
         memoryHint.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
         {
             memoryContent[0].SetActive(true);
-            FadeWordByWord(memoryContent[0].GetComponentInChildren<Text>());
+            if(isWordByWord)
+                FadeWordByWord(memoryContent[0].GetComponentInChildren<Text>());
+            else
+                FadeCharByChar(memoryContent[0].GetComponentInChildren<Text>());
         });
         memoryShowed = true;
     }
@@ -326,7 +359,10 @@ public class KeyController : MonoBehaviour {
         memoryHint.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
         {
             memoryContent[1].SetActive(true);
-            FadeWordByWord(memoryContent[1].GetComponentInChildren<Text>());
+            if(isWordByWord)
+                FadeWordByWord(memoryContent[1].GetComponentInChildren<Text>());
+            else
+                FadeCharByChar(memoryContent[1].GetComponentInChildren<Text>());
         });
         memoryShowed = true;
     }

@@ -105,6 +105,8 @@ public class KeyController : MonoBehaviour {
 				divideLine [0].DOFade (0, 1);
 				divideLine [1].DOFade (0, 1);
                 CollectEffect();
+                diaryUIRect.gameObject.SetActive(true);
+                memoryShowed = false;
 			}
 		}
         updateText();
@@ -310,6 +312,7 @@ public class KeyController : MonoBehaviour {
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
         memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
+        diaryUIRect.gameObject.SetActive(false);
         if (divideLine.Length == 2)
         {
             divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
@@ -354,6 +357,7 @@ public class KeyController : MonoBehaviour {
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
         memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
+        diaryUIRect.gameObject.SetActive(false);
         if (divideLine.Length == 2)
         {
             divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
@@ -395,8 +399,8 @@ public class KeyController : MonoBehaviour {
               start_screen = x;
               collectEffect.transform.position = Camera.main.ScreenToWorldPoint(x);
 
-          }, end_screen, 2.0f);
-        diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo).SetDelay(2.0f);
+          }, end_screen, 1.0f);
+        diaryUIRect.DOScale(0.3f, 0.3f).SetLoops(2, LoopType.Yoyo).SetDelay(1.0f);
     }
 
     public Vector3 effectScreenPosition()

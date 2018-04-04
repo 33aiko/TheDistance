@@ -53,6 +53,15 @@ public class Diary : MonoBehaviour {
             }
     }
 
+    private void Update()
+    {
+        if(Input.GetButtonDown("Submit"))
+        {
+            print("tryign to close diary");
+            gameObject.SetActive(false);
+        }
+    }
+
     public void OnClick(GameObject contentObj)
     {
         foreach (Transform child in storyContent.transform)

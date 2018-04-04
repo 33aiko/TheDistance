@@ -52,6 +52,7 @@ public class KeyController : MonoBehaviour {
 	{
         loadSprite(UIPath, keyboardUIName);
         inputUI.gameObject.SetActive(false);
+        cnt = 0;
 
         t = GetComponentInChildren<Text>();
         t.text = "";
@@ -87,9 +88,11 @@ public class KeyController : MonoBehaviour {
                 cec.AddFragmentLight(transform.position);
             }
         }
+        if(collectEffect.gameObject)
+            collectEffect.gameObject.SetActive(false);
     }
 
-	private void Update(){
+    private void Update(){
 		if(Input.GetButtonDown("Submit")){
 			if (memoryShowed) {
 				Camera.main.GetComponent<DOVModify> ().SetActive (false);
@@ -101,6 +104,7 @@ public class KeyController : MonoBehaviour {
 				diaryBG.DOFade (0, 1);
 				divideLine [0].DOFade (0, 1);
 				divideLine [1].DOFade (0, 1);
+                CollectEffect();
 			}
 		}
         updateText();
@@ -173,14 +177,21 @@ public class KeyController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
 		{
 			cnt++;
+            print(name + " with cnt " + cnt);
+            if (collision is BoxCollider2D)
+                print("box!");
+            else if (collision is CircleCollider2D)
+                print("circle!");
 			if (cnt == 2)
 			{
+                print("player enter fragment area! " + transform.parent.name);
 				Player p = collision.GetComponent<Player>();
                 playerNearby = true;
                 p.curFragment = this;
+                print("player's fragment: " + p.curFragment);
                 inputUI.gameObject.SetActive(true);
                 updateText();
             }
@@ -189,11 +200,12 @@ public class KeyController : MonoBehaviour {
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
 		{
 			cnt--;
             if(cnt != 2)
             {
+                print("player leaves fragment area!");
 				Player p = collision.GetComponent<Player>();
                 playerNearby = false;
                 t.text = "";
@@ -285,7 +297,7 @@ public class KeyController : MonoBehaviour {
     public void CollectEffect()
     {
         if (!diaryUIRect) return;
-        print("moving this!");
+        collectEffect.gameObject.SetActive(true);
         Rect r = RectTransformToScreenSpace(diaryUIRect);
         Vector3 end_screen = new Vector3(r.x + r.width / 2, Screen.height - r.y - r.height / 2, 200);
         Vector3 start = collectEffect.transform.position;
@@ -297,7 +309,6 @@ public class KeyController : MonoBehaviour {
 
           }, end_screen, 2.0f);
         diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo).SetDelay(2.0f);
-        print(r);
     }
 
     public Vector3 effectScreenPosition()

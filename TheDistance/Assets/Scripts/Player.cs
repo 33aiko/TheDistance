@@ -1171,7 +1171,7 @@ public class Player : NetworkBehaviour
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
                 ima.enabled = true;
                 ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
-                go.GetComponent<KeyController>().CollectEffect();
+                //go.GetComponent<KeyController>().CollectEffect();
                 go.GetComponent<KeyController>().ShowEricMemory();
 				Debug.Log("both key");
 				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Eric::Fragment " + keyIdx.ToString ();

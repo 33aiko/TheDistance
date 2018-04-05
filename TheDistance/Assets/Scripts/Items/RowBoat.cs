@@ -16,6 +16,8 @@ public class RowBoat : MonoBehaviour {
     float interpolateTime = 10;
     float height;
     Rigidbody2D r;
+
+    Vector2 velocity;
 	// Use this for initialization
 	void Start () {
         r = GetComponent<Rigidbody2D>();
@@ -81,6 +83,10 @@ public class RowBoat : MonoBehaviour {
 
             //UpdateCameraPosition();
 
+            if(this.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+            {
+                velocity = this.GetComponent<Rigidbody2D>().velocity;
+            }
         }
         
 	}
@@ -133,5 +139,25 @@ public class RowBoat : MonoBehaviour {
             Debug.Log(originalRotationNatalie);
         }
         //newRotationEric = finalRotationEric;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("collide with:" + collision);
+        string collisionObjNamePrefix = collision.gameObject.name.Substring(0, 8);
+
+        Debug.Log("collide with:" + collisionObjNamePrefix);
+        Debug.Log(transform.right);
+        Debug.Log("velocity: " + velocity);
+        if (collisionObjNamePrefix == "BG_stone")
+        {
+            // todo: camera move
+            
+            GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+
+            Vector3 back = new Vector3(velocity.x, velocity.y, 0);
+
+            transform.position -= back*4;
+        }
     }
 }

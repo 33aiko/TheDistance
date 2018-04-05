@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Networking;
 
-public class BoatDurability : MonoBehaviour {
+public class BoatDurability : NetworkBehaviour {
+
+    
+  
+
 
 
     public float maxLifeNum = 4;
     //public float speed = 0.05f;
     public Image hp;
 
-    private float targetLifeNum;
+    [SyncVar(hook = "On_target_life_num")]
+    public float targetLifeNum;
+
+
+
     private float curLifeNum;
     private float curLife;
 
@@ -32,7 +41,7 @@ public class BoatDurability : MonoBehaviour {
         curLife = 1;
         hp = this.transform.Find("circle").GetComponent<Image>();
         hp.fillAmount = 1;
-        isAnimating = false;
+      
         this.transform.Find("circle").GetComponent<Image>().color = Color.white;
         
     }
@@ -81,5 +90,12 @@ public class BoatDurability : MonoBehaviour {
         
     }
 
+    void On_target_life_num(float newValue)
+    {
+        Debug.Log("On_target_life_num");
+        t = 0.0f;
+        transform.DOScale(new Vector3(2, 2, 2), 0.5f);
+        //变量被访问之后会执行此方法，newValue为变量被赋的值，类型要与SyncVar的变量类型一致。
+    }
 
 }

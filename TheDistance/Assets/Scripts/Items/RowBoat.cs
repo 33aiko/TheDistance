@@ -4,7 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+
 public class RowBoat : MonoBehaviour {
+
     public float forceX = 2;
     public float forceY = 2;
     public GameObject oarEric;
@@ -194,8 +196,6 @@ public class RowBoat : MonoBehaviour {
 
         // reinit durability
         GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().Initializations();
-
-       
 
     }
 

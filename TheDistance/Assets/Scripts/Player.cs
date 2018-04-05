@@ -1174,9 +1174,9 @@ public class Player : NetworkBehaviour
                 Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
-                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-                ima.enabled = true;
-                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                //ima.enabled = true;
+                //ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
                 //go.GetComponent<KeyController>().CollectEffect();
                 go.GetComponent<KeyController>().ShowEricMemory();
 				Debug.Log("both key");
@@ -1224,9 +1224,14 @@ public class Player : NetworkBehaviour
                 Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon"+sceneIdx.ToString()+"_" + (keyIdx+1).ToString());
+                /*
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-                ima.enabled = true;
-                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                if(ima)
+                {
+                    ima.enabled = true;
+                    ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                }
+                 */ 
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
 				string diaryName = "UI/Canvas/Diary/StoryContentScrollView/StoryContent/" + "Nata::Fragment " + keyIdx.ToString (); 
@@ -1272,9 +1277,14 @@ public class Player : NetworkBehaviour
                 Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
+                /*
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-                ima.enabled = true;
-                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                if(ima)
+                {
+                    ima.enabled = true;
+                    ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                }
+                 */ 
                 go.GetComponent<KeyController>().ShowNatalieMemory();
                 Debug.Log("both key");
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
@@ -1321,9 +1331,12 @@ public class Player : NetworkBehaviour
                 Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
-                Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-                ima.enabled = true;
-                ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+                //if(ima)
+                //{
+                //    ima.enabled = true;
+                //    ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_collected");
+                //}
                 go.GetComponent<KeyController>().ShowEricMemory();
                 //gameObject.SetActive(false);
                 Debug.Log("both key");

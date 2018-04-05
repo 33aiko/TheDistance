@@ -1165,7 +1165,7 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
-                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
@@ -1215,7 +1215,7 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
-                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon"+sceneIdx.ToString()+"_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
@@ -1263,7 +1263,7 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
-                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
@@ -1312,7 +1312,7 @@ public class Player : NetworkBehaviour
 
             if (go.GetComponent<KeyController>().both[0] == 1 && go.GetComponent<KeyController>().both[1] == 1)
             {
-                Image diaryImg = GameObject.Find("UI/Canvas/Diary").GetComponent<Image>();
+                Image diaryImg = GameObject.Find("UI/Canvas/DiaryBtn").GetComponent<Image>();
                 diaryImg.enabled = true;
 				diaryImg.sprite = Resources.Load<Sprite>("Sprites/UI/DiaryIcon" + sceneIdx.ToString() + "_" + (keyIdx+1).ToString());
                 Image ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();

@@ -226,12 +226,14 @@ public class Player : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        Transform EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
-        Transform NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
+        Transform EricStartPoint;
+        EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
+        Transform NatalieStartPoint;
+        NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
 
 
-		//initialize camera filter color
-		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+        //initialize camera filter color
+        if (SceneManager.GetActiveScene ().name == "LX_scene1") {
 			ericFilter = new Color32 (0, 30, 51, 255); 
 			natalieFilter = new Color32 (50, 15, 100, 255);
 		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {

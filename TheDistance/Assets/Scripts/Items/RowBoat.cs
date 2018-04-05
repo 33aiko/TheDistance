@@ -193,6 +193,8 @@ public class RowBoat : MonoBehaviour {
     }
 
 
+    bool hasDivineShield = false;
+    Tween curTween = null;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("collide with:" + collision);
@@ -207,13 +209,25 @@ public class RowBoat : MonoBehaviour {
             Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
 
-            GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+            if (!hasDivineShield)
+                GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
 
             Vector3 back = new Vector3(velocity.x, velocity.y, 0);
 
-            transform.position -= back*4;
+            //transform.position -= back*4;
+            hasDivineShield = true;
+            r.AddForce(-back.normalized * 4, ForceMode2D.Impulse);
+            Invoke("RemoveShield", 1.0f);
+            //curTween = transform.DOMove(transform.position - back * 4, 1.0f).OnComplete(() => { hasDivineShield = false; });
         }
     }
+
+    void RemoveShield()
+    {
+        print("remove shield!");
+        hasDivineShield = false;
+    }
+
 
     public void BoatDeath()
     {

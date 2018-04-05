@@ -12,7 +12,7 @@ public class KeyController : MonoBehaviour {
 
 	int cnt = 0;
 
-	Image ima;
+	//Image ima;
 
     public Sprite[] fragSprite; //array to store sprite
 	public GameObject[] memoryContent ; 
@@ -59,11 +59,11 @@ public class KeyController : MonoBehaviour {
         both = new int[2];
         both[0] = 0;
         both[1] = 0;
-		ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-		if (ima == null)
+	//	ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
+	//	if (ima == null)
 			print("Nothign found! something wrong");
-		ima.enabled = true;
-		ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
+	//	ima.enabled = true;
+	//	ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
 
 		memoryBackground = GameObject.Find ("MemoryBackground").GetComponent<Image> ();
 		memoryHint = GameObject.Find ("MemoryHint").GetComponent<Text> ();

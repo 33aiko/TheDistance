@@ -25,26 +25,7 @@ public class Flower : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
-    /*
-	void Update () {
-        if (zoomFlag == 1)
-        {
-            //Debug.Log("?!?0");
-            mainCamera.orthographicSize -= 0.01f;
-			txt.DOFade (1, 1);
-        }
-        if (mainCamera.orthographicSize < 5f)
-        {
-            //zoomFlag = 0;
-            //this.gameObject.SetActive(false);
-			Debug.Log(Idx);
-			if (zoomFlag == 1) {
-				GameObject.Find ("Flower" + Idx.ToString ()).SetActive (false);
-			}
-		}
-	}
-     */ 
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -56,7 +37,8 @@ public class Flower : MonoBehaviour {
 			if (flowerAnim != null) {
 				flowerAnim.SetTrigger ("getFlower");
 			}
-            txt.DOFade(1, 1);
+           // txt.DOFade(1, 1);
+			FadeCharByChar(txt);
             hasTriggered = true;
         }
 		GetComponent<AudioSource> ().Play ();
@@ -71,4 +53,40 @@ public class Flower : MonoBehaviour {
             Debug.Log("out flower");
         }
     }
+
+	public float fadeCharTime = 0.1f;
+	bool fadeFinished = false;
+
+	void FadeCharByChar(Text orig)
+	{
+		fadeFinished = false;
+		string orig_str = orig.text;
+		orig.text = "";
+		int l = orig_str.Length;
+		string shown = "";
+
+		Sequence seq = DOTween.Sequence();
+		for (int i = 0; i < l; i++)
+		{
+			int vic = 30;
+			char tmp = orig_str[i];
+			seq.Append(
+				DOTween.To(() => vic, x =>
+					{
+						vic = x;
+						orig.text = shown + "<color=#ffffff" + vic.ToString("X2") + ">" + tmp + "</color>";
+					}, 255, fadeCharTime).
+				OnComplete(() =>
+					{
+						shown += (tmp);
+					}).SetEase(Ease.Linear)
+			);
+		}
+		seq.OnComplete(() =>
+			{
+				print("poem fade in char by char finished");
+			});
+	}
+
+
 }

@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
+
 
 public class RowBoat : MonoBehaviour {
+
     public float forceX = 2;
     public float forceY = 2;
     public GameObject oarEric;
@@ -17,12 +21,29 @@ public class RowBoat : MonoBehaviour {
     float height;
     Rigidbody2D r;
 
-	public GameObject oarEricEffect;
+
+    Vector2 velocity;
+
+    Vector3 originalPos;
+    //持续抖动的时长
+    public float shake = 0f;
+
+    // 抖动幅度（振幅）
+    //振幅越大抖动越厉害
+    public float shakeAmount = 0.7f;
+    public float decreaseFactor = 1.0f;
+
+    private Vector3 initPos;
+    private Quaternion initRot;	
+  
+  public GameObject oarEricEffect;
 	public GameObject oarNatalieEffect;
+    // Use this for initialization
+    void Start () {
 
+        initPos = transform.position;
+        initRot = transform.rotation;
 
-	// Use this for initialization
-	void Start () {
         r = GetComponent<Rigidbody2D>();
         height = GetComponent<Renderer>().bounds.size.y;
         oarEric = transform.Find("oar_Eric").gameObject;
@@ -94,6 +115,10 @@ public class RowBoat : MonoBehaviour {
 
             //UpdateCameraPosition();
 
+            if(this.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+            {
+                velocity = this.GetComponent<Rigidbody2D>().velocity;
+            }
         }
         
 	}
@@ -158,9 +183,67 @@ public class RowBoat : MonoBehaviour {
         //newRotationEric = finalRotationEric;
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("collide with:" + collision);
+        string collisionObjNamePrefix = collision.gameObject.name.Substring(0, 8);
+
+        //Debug.Log("collide with:" + collisionObjNamePrefix);
+        //Debug.Log(transform.right);
+        //Debug.Log("velocity: " + velocity);
+        if (collisionObjNamePrefix == "BG_stone")
+        {
+            // camera shake
+            Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
+
+            GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+
+            Vector3 back = new Vector3(velocity.x, velocity.y, 0);
+
+            transform.position -= back*4;
+        }
+    }
+
+    public void BoatDeath()
+    {
+        // TODO: flower & checkpoint
+
+        // UI black animation
+        GameObject.Find("UI/Canvas/deadBlack").GetComponent<DeathBlack>().FadeInAndOut(1f);
+
+        // boat back
+        transform.position = initPos;
+        transform.rotation = initRot;
+
+        // reinit durability
+        GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().Initializations();
+
+    }
+
+
+
+    //public void CameraShake()
+    //{
+    //    Transform camTransform = Camera.main.transform;
+    //    if (shake > 0)
+    //    {
+    //        camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+    //        shake -= Time.deltaTime * decreaseFactor;
+    //    }
+    //    else
+    //    {
+    //        shake = 0f;
+    //        camTransform.localPosition = originalPos;
+    //    }
+    //}
+
 	IEnumerator SetPSEnableDelay( GameObject psObj, bool to , float delay)
 	{
 		yield return new WaitForSeconds (delay);
 		SetPSEnable (psObj, to);
 	}
+
 }

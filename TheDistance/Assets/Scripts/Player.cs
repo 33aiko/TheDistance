@@ -378,7 +378,13 @@ public class Player : NetworkBehaviour
 				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
 			}
 
+            if (Input.GetKeyDown("v"))
+            {
+                Debug.Log("V pressed");
+                boatControl(boat);
+            }
 
+            return;
 		} else {
 			m_timer += Time.time;
 			if (m_timer > 50) {

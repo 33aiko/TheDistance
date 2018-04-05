@@ -11,7 +11,17 @@ public class CamFollow : MonoBehaviour {
     public float zoomTime = 3.0f;
     public float speed = 10.0f;
 
-	void Start () {
+    public bool isShaking = false;
+    //持续抖动的时长
+    public float shake = 0f;
+
+    // 抖动幅度（振幅）
+    //振幅越大抖动越厉害
+    public float shakeAmount = 0.7f;
+    public float decreaseFactor = 1.0f;
+    Vector3 originalPos;
+
+    void Start () {
         target = FindObjectOfType<RowBoat>().gameObject;
 	}
 
@@ -36,12 +46,32 @@ public class CamFollow : MonoBehaviour {
         Vector3 targetPos;
         if(target.tag == "Boat")
         {
-            targetPos = target.GetComponent<RowBoat>().FollowBoxCenter();
-            Camera cam = Camera.main;
-            Vector3 dir = target.transform.position - cam.transform.position;
-            dir.z = -5;
-            dir.Normalize();
-            GetComponent<CameraController>().Move(dir * speed * Time.deltaTime);
+            if (isShaking)
+            {
+               
+                Transform camTransform = Camera.main.transform;
+                if (shake > 0)
+                {
+                    camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+                    shake -= Time.deltaTime * decreaseFactor;
+                }
+                else
+                {
+                    shake = 0f;
+                    camTransform.localPosition = originalPos;
+                    isShaking = false;
+                }
+            }
+            else
+            {
+                targetPos = target.GetComponent<RowBoat>().FollowBoxCenter();
+                Camera cam = Camera.main;
+                Vector3 dir = target.transform.position - cam.transform.position;
+                dir.z = -5;
+                dir.Normalize();
+                GetComponent<CameraController>().Move(dir * speed * Time.deltaTime);
+            }
         }
     }
 
@@ -63,5 +93,14 @@ public class CamFollow : MonoBehaviour {
             vic = x;
             cam.orthographicSize = vic;
         }, isIn ? zoomInOrthoSize : zoomOutOrthoSize, zoomTime);
+    }
+
+
+
+    public void CameraShake(float shaketime)
+    {
+        shake = shaketime;
+        originalPos = Camera.main.transform.localPosition;
+        isShaking = true;
     }
 }

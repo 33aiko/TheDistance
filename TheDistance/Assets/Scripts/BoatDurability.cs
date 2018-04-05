@@ -86,7 +86,7 @@ public class BoatDurability : NetworkBehaviour {
         targetLifeNum--;
         t = 0.0f;
         //isAnimating = true;
-        transform.DOScale(new Vector3(2, 2, 2), 0.5f);
+        transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f);
         
     }
 
@@ -94,7 +94,7 @@ public class BoatDurability : NetworkBehaviour {
     {
         Debug.Log("On_target_life_num");
         t = 0.0f;
-        transform.DOScale(new Vector3(2, 2, 2), 0.5f);
+        transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f);
         //变量被访问之后会执行此方法，newValue为变量被赋的值，类型要与SyncVar的变量类型一致。
     }
 

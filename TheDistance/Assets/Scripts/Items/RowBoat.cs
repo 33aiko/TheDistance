@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class RowBoat : MonoBehaviour {
     public float forceX = 2;
@@ -177,6 +179,24 @@ public class RowBoat : MonoBehaviour {
 
             transform.position -= back*4;
         }
+    }
+
+    public void BoatDeath()
+    {
+        // TODO: flower & checkpoint
+
+        // UI black animation
+        GameObject.Find("UI/Canvas/deadBlack").GetComponent<DeathBlack>().FadeInAndOut(1f);
+
+        // boat back
+        transform.position = initPos;
+        transform.rotation = initRot;
+
+        // reinit durability
+        GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().Initializations();
+
+       
+
     }
 
 

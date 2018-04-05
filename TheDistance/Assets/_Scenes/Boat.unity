@@ -3990,6 +3990,7 @@ GameObject:
   - component: {fileID: 1096309129}
   - component: {fileID: 1096309131}
   - component: {fileID: 1096309130}
+  - component: {fileID: 1096309132}
   m_Layer: 5
   m_Name: deadBlack
   m_TagString: Untagged
@@ -4027,7 +4028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4048,6 +4049,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096309128}
+--- !u!114 &1096309132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096309128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cc15ccd962acd4abd283a6f3597f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1120010438
 Prefab:
   m_ObjectHideFlags: 0
@@ -5815,6 +5827,10 @@ MonoBehaviour:
   zoomOutOrthoSize: 11
   zoomTime: 15
   speed: 5
+  isShaking: 0
+  shake: 0
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!114 &1629455059
 MonoBehaviour:
   m_ObjectHideFlags: 0

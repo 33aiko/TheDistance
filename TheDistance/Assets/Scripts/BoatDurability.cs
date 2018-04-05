@@ -22,18 +22,26 @@ public class BoatDurability : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+       Initializations();
+    }
+
+    public void Initializations()
+    {
         targetLifeNum = maxLifeNum;
         curLifeNum = maxLifeNum;
         curLife = 1;
         hp = this.transform.Find("circle").GetComponent<Image>();
+        hp.fillAmount = 1;
         isAnimating = false;
+        this.transform.Find("circle").GetComponent<Image>().color = Color.white;
+        
     }
 
     // Update is called once per frame
     void Update() {
 
-        Debug.Log("curLife" + curLife);
-        Debug.Log("targetLifeNum/maxLifeNum" + targetLifeNum / maxLifeNum);
+        //Debug.Log("curLife" + curLife);
+        //Debug.Log("targetLifeNum/maxLifeNum" + targetLifeNum / maxLifeNum);
 
         hp.fillAmount = Mathf.Lerp(curLife, targetLifeNum / maxLifeNum, t);
         // .. and increate the t interpolater
@@ -48,6 +56,11 @@ public class BoatDurability : MonoBehaviour {
 
             transform.DOScale(new Vector3(1, 1, 1), 0.5f);
             curLife = hp.fillAmount;
+
+            if(curLife == 0)
+            {
+                GameObject.Find("boat").GetComponent<RowBoat>().BoatDeath();
+            }
         }
 
        
@@ -60,7 +73,7 @@ public class BoatDurability : MonoBehaviour {
 
     public void LifeDecreaseByOne()
     {
-        Debug.Log("LifeDecreaseByOne()");
+        //Debug.Log("LifeDecreaseByOne()");
         targetLifeNum--;
         t = 0.0f;
         //isAnimating = true;

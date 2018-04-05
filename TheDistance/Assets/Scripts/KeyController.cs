@@ -252,6 +252,7 @@ public class KeyController : MonoBehaviour {
 
     public float fadeCharTime = 0.1f;
     bool fadeFinished = false;
+
     void FadeCharByChar(Text orig)
     {
         fadeFinished = false;
@@ -355,7 +356,7 @@ public class KeyController : MonoBehaviour {
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
         memoryHint.DOFade(0, 0);
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
-        memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString();
+		memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
         diaryUIRect.gameObject.SetActive(false);
         if (divideLine.Length == 2)

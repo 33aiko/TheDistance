@@ -177,8 +177,9 @@ public class StepOnTriggerController : NetworkBehaviour{
             haveBox = false;
             curCollider = null;
         }
-        SetCanMove(haveBox || haveUser);
-		if (audio != null) {
+        if(!oneTimeTrigger)
+            SetCanMove(haveBox || haveUser);
+        if (audio != null) {
 			audio.Stop ("TriggerActivate");
 		}
     }

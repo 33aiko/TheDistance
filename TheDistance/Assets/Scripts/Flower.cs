@@ -37,11 +37,9 @@ public class Flower : MonoBehaviour {
 			if (flowerAnim != null) {
 				flowerAnim.SetTrigger ("getFlower");
 			}
-           // txt.DOFade(1, 1);
-			FadeCharByChar(txt);
+           txt.DOFade(1, 1);
             hasTriggered = true;
         }
-		GetComponent<AudioSource> ().Play ();
 
     }
 
@@ -54,39 +52,7 @@ public class Flower : MonoBehaviour {
         }
     }
 
-	public float fadeCharTime = 0.1f;
-	bool fadeFinished = false;
 
-	void FadeCharByChar(Text orig)
-	{
-		fadeFinished = false;
-		string orig_str = orig.text;
-		orig.text = "";
-		int l = orig_str.Length;
-		string shown = "";
-
-		Sequence seq = DOTween.Sequence();
-		for (int i = 0; i < l; i++)
-		{
-			int vic = 30;
-			char tmp = orig_str[i];
-			seq.Append(
-				DOTween.To(() => vic, x =>
-					{
-						vic = x;
-						orig.text = shown + "<color=#ffffff" + vic.ToString("X2") + ">" + tmp + "</color>";
-					}, 255, fadeCharTime).
-				OnComplete(() =>
-					{
-						shown += (tmp);
-					}).SetEase(Ease.Linear)
-			);
-		}
-		seq.OnComplete(() =>
-			{
-				print("poem fade in char by char finished");
-			});
-	}
 
 
 }

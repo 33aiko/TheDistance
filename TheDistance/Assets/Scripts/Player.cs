@@ -1967,7 +1967,8 @@ public class Player : NetworkBehaviour
     {
         //print("Cmd Move");
         GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
-        GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
+		GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
+		GameObject.Find ("boat").GetComponent<RowBoat> ().SetPSEnableDelay (0, true, 0.1f);
     }
 
 

@@ -36,7 +36,7 @@ public class RowBoat : MonoBehaviour {
     private Vector3 initPos;
     private Quaternion initRot;	
   
-  public GameObject oarEricEffect;
+  	public GameObject oarEricEffect;
 	public GameObject oarNatalieEffect;
     // Use this for initialization
     void Start () {
@@ -84,6 +84,12 @@ public class RowBoat : MonoBehaviour {
 				tempeaEric.z += 2.5f;
 				tempRotationEric = Quaternion.Euler (tempeaEric);
 				oarEric.GetComponent<Transform> ().localRotation = tempRotationEric;
+
+				float angleToOri = Quaternion.Angle (oarEric.GetComponent<Transform> ().localRotation, originalRotationEric);
+
+				if (angleToOri > 5f) {
+					SetPSEnable (oarEricEffect, true);
+				}
 			} else {
 
 				SetPSEnable (oarEricEffect, false);
@@ -93,6 +99,10 @@ public class RowBoat : MonoBehaviour {
 				tempeaNatalie.z -= 2.5f;
 				tempRotationNatalie = Quaternion.Euler (tempeaNatalie);
 				oarNatalie.GetComponent<Transform> ().localRotation = tempRotationNatalie;
+
+				float angleToOri = Quaternion.Angle (oarNatalie.GetComponent<Transform> ().localRotation, originalRotationNatalie);
+				if (angleToOri > 5f)
+					SetPSEnable (oarNatalieEffect, true);
 			} else {
 
 				SetPSEnable (oarNatalieEffect, false);
@@ -172,14 +182,13 @@ public class RowBoat : MonoBehaviour {
         {
             oarEric.GetComponent<Transform>().localRotation = originalRotationEric;
 			Debug.Log(originalRotationEric);
-			StartCoroutine(SetPSEnableDelay(oarEricEffect , true , 0.1f ));
+				
         }
         else
 		{
             oarNatalie.GetComponent<Transform>().localRotation = originalRotationNatalie;
-					StartCoroutine(SetPSEnableDelay(oarNatalieEffect , true , 0.1f ));
 			Debug.Log(originalRotationNatalie);
-        }
+		}
         //newRotationEric = finalRotationEric;
     }
 
@@ -240,7 +249,15 @@ public class RowBoat : MonoBehaviour {
     //    }
     //}
 
-	IEnumerator SetPSEnableDelay( GameObject psObj, bool to , float delay)
+	public void SetPSEnableDelay( int playerID , bool to , float delay )
+	{
+		if ( playerID == 0 )
+			StartCoroutine (DoPSEnableDelay (oarEricEffect, to, delay));
+		else 
+			StartCoroutine (DoPSEnableDelay (oarNatalieEffect, to, delay));
+	}
+
+	IEnumerator DoPSEnableDelay( GameObject psObj, bool to , float delay)
 	{
 		yield return new WaitForSeconds (delay);
 		SetPSEnable (psObj, to);

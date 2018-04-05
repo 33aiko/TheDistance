@@ -21,6 +21,7 @@ public class RowBoat : MonoBehaviour {
     float height;
     Rigidbody2D r;
 
+
     Vector2 velocity;
 
     Vector3 originalPos;
@@ -33,7 +34,10 @@ public class RowBoat : MonoBehaviour {
     public float decreaseFactor = 1.0f;
 
     private Vector3 initPos;
-    private Quaternion initRot;
+    private Quaternion initRot;	
+  
+  public GameObject oarEricEffect;
+	public GameObject oarNatalieEffect;
     // Use this for initialization
     void Start () {
 
@@ -58,7 +62,11 @@ public class RowBoat : MonoBehaviour {
         eaNatalie.z -= 75;
         newRotationNatalie = Quaternion.Euler(eaNatalie);
         oarNatalie.GetComponent<Transform>().localRotation = newRotationNatalie;
-        //newRotationEric = originalRotationEric;
+		//newRotationEric = originalRotationEric;
+
+		// disable the ripple effect
+		SetPSEnable (oarEric, false);
+		SetPSEnable (oarNatalieEffect, false);
     }
 	
 	// Update is called once per frame
@@ -71,20 +79,24 @@ public class RowBoat : MonoBehaviour {
             Vector3 bottom = (transform.position - transform.up * height / 2);
             Vector3 top = (transform.position + transform.up * height / 2);
 
-            if (oarEric.GetComponent<Transform>().localRotation != newRotationEric)
-            {
-                Vector3 tempeaEric = tempRotationEric.eulerAngles;
-                tempeaEric.z += 2.5f;
-                tempRotationEric = Quaternion.Euler(tempeaEric);
-                oarEric.GetComponent<Transform>().localRotation = tempRotationEric;
-            }
-            if (oarNatalie.GetComponent<Transform>().localRotation != newRotationNatalie)
-            {
-                Vector3 tempeaNatalie = tempRotationNatalie.eulerAngles;
-                tempeaNatalie.z -= 2.5f;
-                tempRotationNatalie = Quaternion.Euler(tempeaNatalie);
-                oarNatalie.GetComponent<Transform>().localRotation = tempRotationNatalie;
-            }
+			if (oarEric.GetComponent<Transform> ().localRotation != newRotationEric) {
+				Vector3 tempeaEric = tempRotationEric.eulerAngles;
+				tempeaEric.z += 2.5f;
+				tempRotationEric = Quaternion.Euler (tempeaEric);
+				oarEric.GetComponent<Transform> ().localRotation = tempRotationEric;
+			} else {
+
+				SetPSEnable (oarEricEffect, false);
+			}
+			if (oarNatalie.GetComponent<Transform> ().localRotation != newRotationNatalie) {
+				Vector3 tempeaNatalie = tempRotationNatalie.eulerAngles;
+				tempeaNatalie.z -= 2.5f;
+				tempRotationNatalie = Quaternion.Euler (tempeaNatalie);
+				oarNatalie.GetComponent<Transform> ().localRotation = tempRotationNatalie;
+			} else {
+
+				SetPSEnable (oarNatalieEffect, false);
+			}
             /*      if(oarEric.GetComponent<Transform>().rotation == finalRotationEric)
                   {
                       newRotationEric = originalRotationEric;
@@ -146,20 +158,31 @@ public class RowBoat : MonoBehaviour {
         }
     }
 
+	public void SetPSEnable( GameObject psObj , bool to )
+	{
+		foreach (var ps in psObj.GetComponentsInChildren<ParticleSystem>()) {
+			var e = ps.emission;
+			e.enabled = to;
+		}
+	}
+
     public void oarMove(int player)
     {
         if (player == 0)
         {
             oarEric.GetComponent<Transform>().localRotation = originalRotationEric;
-            Debug.Log(originalRotationEric);
+			Debug.Log(originalRotationEric);
+			StartCoroutine(SetPSEnableDelay(oarEricEffect , true , 0.1f ));
         }
         else
-        {
+		{
             oarNatalie.GetComponent<Transform>().localRotation = originalRotationNatalie;
-            Debug.Log(originalRotationNatalie);
+					StartCoroutine(SetPSEnableDelay(oarNatalieEffect , true , 0.1f ));
+			Debug.Log(originalRotationNatalie);
         }
         //newRotationEric = finalRotationEric;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -216,4 +239,11 @@ public class RowBoat : MonoBehaviour {
     //        camTransform.localPosition = originalPos;
     //    }
     //}
+
+	IEnumerator SetPSEnableDelay( GameObject psObj, bool to , float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		SetPSEnable (psObj, to);
+	}
+
 }

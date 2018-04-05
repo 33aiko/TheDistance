@@ -31,7 +31,7 @@ public class KeyController : MonoBehaviour {
 
 	Image memoryBackground; 
 	Text memoryTitle; 
-	Text memoryHint; 
+	public Text memoryHint; 
 
 	bool memoryShowed = false;
 
@@ -94,7 +94,7 @@ public class KeyController : MonoBehaviour {
 
     private void Update(){
 		if(Input.GetButtonDown("Submit")){
-			if (memoryShowed) {
+			if (memoryShowed && fadeFinished) {
 				Camera.main.GetComponent<DOVModify> ().SetActive (false);
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);
@@ -105,6 +105,8 @@ public class KeyController : MonoBehaviour {
 				divideLine [0].DOFade (0, 1);
 				divideLine [1].DOFade (0, 1);
                 CollectEffect();
+                diaryUIRect.gameObject.SetActive(true);
+                memoryShowed = false;
 			}
 		}
         updateText();
@@ -180,18 +182,14 @@ public class KeyController : MonoBehaviour {
 		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
 		{
 			cnt++;
-            print(name + " with cnt " + cnt);
-            if (collision is BoxCollider2D)
-                print("box!");
-            else if (collision is CircleCollider2D)
-                print("circle!");
+            //print(name + " with cnt " + cnt);
 			if (cnt == 2)
 			{
-                print("player enter fragment area! " + transform.parent.name);
+                //print("player enter fragment area! " + transform.parent.name);
 				Player p = collision.GetComponent<Player>();
                 playerNearby = true;
                 p.curFragment = this;
-                print("player's fragment: " + p.curFragment);
+                //print("player's fragment: " + p.curFragment);
                 inputUI.gameObject.SetActive(true);
                 updateText();
             }
@@ -205,7 +203,7 @@ public class KeyController : MonoBehaviour {
 			cnt--;
             if(cnt != 2)
             {
-                print("player leaves fragment area!");
+                //print("player leaves fragment area!");
 				Player p = collision.GetComponent<Player>();
                 playerNearby = false;
                 t.text = "";
@@ -222,77 +220,171 @@ public class KeyController : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().sprite = fragSprite[both[0] + both[1]];
     }
 
-	public void ShowEricMemory()
-	{
-		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
-		if (keyIdx == 0) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack01");
-			if (diaryBtn != null) {
-				diaryBtn.SetActive (true);
-			}
-		} else if (keyIdx == 1) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack01");
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack02");
-		} else if (keyIdx == 2) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack02");
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack03");
-		}
-		Camera.main.GetComponent<DOVModify> ().SetActive (true);
-		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
-		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
-		memoryTitle.text = "Fragment " + (keyIdx + 1).ToString ();
-		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
-		diaryBG.DOFade (1, 0.5f).SetDelay (0.5f);
-		if (divideLine.Length == 2) {
-			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
-			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);
-		}
-		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
-				memoryContent [0].SetActive (true);
-			});
-		memoryShowed = true; 
-	}
+    public bool isWordByWord = false;
 
-	public void ShowNatalieMemory(){
-		GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("MemoryContent");
-		if (keyIdx == 0) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack01");
-			if (diaryBtn != null) {
-				diaryBtn.SetActive (true);
-			}
-		}else if (keyIdx == 1) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack01");
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack02");
-		} else if (keyIdx == 2) {
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().StopMusicTrack ("musicTrack02");
-			GameObject.Find ("AudioManager").GetComponent<AudioManager> ().PlayMusicTrack ("musicTrack03");
-		}
+    public float fadeTime = 0.3f;
+    void FadeWordByWord(Text orig)
+    {
+        string orig_str = orig.text;
+        orig.text = "";
+        var arr = orig_str.Split(' ');
+        int l = arr.Length;
+        string shown = "";
 
-		Camera.main.GetComponent<DOVModify> ().SetActive (true);
-		Camera.main.GetComponent<DOVModify> ().SetFocalLength (100);
-		memoryBackground.DOFade (0.4f, 0.5f).SetDelay(0.5f);
-		memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString ();
-		memoryTitle.DOFade (1, 0.5f).SetDelay (0.5f);
-		diaryBG.DOFade (1, 0.5f).SetDelay (0.5f);
-		if (divideLine.Length == 2) {
-			divideLine [0].DOFade (1, 0.5f).SetDelay (0.5f);
-			divideLine [1].DOFade (1, 0.5f).SetDelay (0.5f);
-		}
-		memoryHint.DOFade (1, 0.5f).SetDelay(0.5f).OnComplete (() => {
-			memoryContent [1].SetActive (true);
-		});
-		memoryShowed = true; 
-	}
+        Sequence seq = DOTween.Sequence();
+        for(int i = 0; i < l; i++)
+        {
+            int vic = 30;
+            string tmp = arr[i];
+            seq.Append(
+                DOTween.To(() => vic, x =>
+                {
+                    vic = x;
+                    orig.text = shown + "<color=#ffffff" + vic.ToString("X2") + ">" + tmp + "</color>";
+                }, 255, fadeTime).
+                OnComplete(() =>
+                {
+                    shown += (tmp + " ");
+                }).SetEase(Ease.Linear)
+            );
+        }
+    }
 
-	public void PlayEffect(){
-		Debug.Log ("trigger");
-		if (!triggerEffect.GetComponent<ParticleSystem> ().isPlaying) {
-			triggerEffect.GetComponent<ParticleSystem> ().Play ();
-		}
-		triggerEffect.transform.DOScale (new Vector3 (0.3f, 1.4f, 1), 0);
-		triggerEffect.transform.DOScale (new Vector3 (0.5f, 1.5f, 1), 0.5f);
-		triggerEffect.transform.DOScale (new Vector3 (0.4f, 1.4f, 1), 0.5f).SetDelay(0.5f);
-	}
+    public float fadeCharTime = 0.1f;
+    bool fadeFinished = false;
+    void FadeCharByChar(Text orig)
+    {
+        fadeFinished = false;
+        string orig_str = orig.text;
+        orig.text = "";
+        int l = orig_str.Length;
+        string shown = "";
+
+        Sequence seq = DOTween.Sequence();
+        for (int i = 0; i < l; i++)
+        {
+            int vic = 30;
+            char tmp = orig_str[i];
+            seq.Append(
+                DOTween.To(() => vic, x =>
+                {
+                    vic = x;
+                    orig.text = shown + "<color=#ffffff" + vic.ToString("X2") + ">" + tmp + "</color>";
+                }, 255, fadeCharTime).
+                OnComplete(() =>
+                {
+                    shown += (tmp);
+                }).SetEase(Ease.Linear)
+            );
+        }
+        seq.OnComplete(() =>
+        {
+            print("diary fade in char by char finished");
+            memoryHint.DOFade(1, 0.5f).OnComplete(() => { fadeFinished = true; });
+        });
+    }
+
+
+    public void ShowEricMemory()
+    {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MemoryContent");
+        if (keyIdx == 0)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack01");
+            if (diaryBtn != null)
+            {
+                diaryBtn.SetActive(true);
+            }
+        }
+        else if (keyIdx == 1)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack01");
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack02");
+        }
+        else if (keyIdx == 2)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack02");
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack03");
+        }
+        Camera.main.GetComponent<DOVModify>().SetActive(true);
+        Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
+        memoryHint.DOFade(0, 0);
+        memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
+        memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
+        memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
+        diaryUIRect.gameObject.SetActive(false);
+        if (divideLine.Length == 2)
+        {
+            divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
+            divideLine[1].DOFade(1, 0.5f).SetDelay(0.5f);
+        }
+        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
+        {
+            memoryContent[0].SetActive(true);
+            if(isWordByWord)
+                FadeWordByWord(memoryContent[0].GetComponentInChildren<Text>());
+            else
+                FadeCharByChar(memoryContent[0].GetComponentInChildren<Text>());
+        });
+        memoryShowed = true;
+    }
+
+    public void ShowNatalieMemory()
+    {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MemoryContent");
+        if (keyIdx == 0)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack01");
+            if (diaryBtn != null)
+            {
+                diaryBtn.SetActive(true);
+            }
+        }
+        else if (keyIdx == 1)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack01");
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack02");
+        }
+        else if (keyIdx == 2)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack02");
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack03");
+        }
+
+        Camera.main.GetComponent<DOVModify>().SetActive(true);
+        Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
+        memoryHint.DOFade(0, 0);
+        memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
+        memoryTitle.text = memoryTitle.text + " " + (keyIdx + 1).ToString();
+        memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
+        diaryUIRect.gameObject.SetActive(false);
+        if (divideLine.Length == 2)
+        {
+            divideLine[0].DOFade(1, 0.5f).SetDelay(0.5f);
+            divideLine[1].DOFade(1, 0.5f).SetDelay(0.5f);
+        }
+        diaryBG.DOFade(1, 0.5f).SetDelay(0.5f).SetDelay(0.5f).OnComplete(() =>
+        {
+            memoryContent[1].SetActive(true);
+            if(isWordByWord)
+                FadeWordByWord(memoryContent[1].GetComponentInChildren<Text>());
+            else
+                FadeCharByChar(memoryContent[1].GetComponentInChildren<Text>());
+        });
+        memoryShowed = true;
+    }
+
+    public void PlayEffect()
+    {
+        Debug.Log("trigger");
+        if (!triggerEffect.GetComponent<ParticleSystem>().isPlaying)
+        {
+            triggerEffect.GetComponent<ParticleSystem>().Play();
+        }
+        triggerEffect.transform.DOScale(new Vector3(0.3f, 1.4f, 1), 0);
+        triggerEffect.transform.DOScale(new Vector3(0.5f, 1.5f, 1), 0.5f);
+        triggerEffect.transform.DOScale(new Vector3(0.4f, 1.4f, 1), 0.5f).SetDelay(0.5f);
+    }
 
     public void CollectEffect()
     {
@@ -307,8 +399,8 @@ public class KeyController : MonoBehaviour {
               start_screen = x;
               collectEffect.transform.position = Camera.main.ScreenToWorldPoint(x);
 
-          }, end_screen, 2.0f);
-        diaryUIRect.DOScale(0.4f, 1.0f).SetLoops(2, LoopType.Yoyo).SetDelay(2.0f);
+          }, end_screen, 1.0f);
+        diaryUIRect.DOScale(0.3f, 0.3f).SetLoops(2, LoopType.Yoyo).SetDelay(1.0f);
     }
 
     public Vector3 effectScreenPosition()

@@ -14,22 +14,37 @@ public class BoatAtFinish : MonoBehaviour {
     [SerializeField]
     bool remotePlayerOnBoat = false;
 
+    private void Start()
+    {
+      
+    }
     public void SetRemotePlayerOnBoat(bool onBoat)
     {
         remotePlayerOnBoat = onBoat;
         TryPlayFinishAnimation();
     }
 
+    public float moveTime = 10.0f;
+
     void TryPlayFinishAnimation()
     {
         if(curPlayerOnBoat && remotePlayerOnBoat)
         {
             print("both player on boat!");
-            transform.DOMoveX(transform.position.x + 500, 5.0f);
+            transform.DOMoveX(transform.position.x + 500, moveTime).SetEase(Ease.Linear);
+            float vic = 0;
+            float startY = transform.position.y;
+            DOTween.To(() => vic, x =>
+                    {
+                        vic = x;
+                Vector3 tmp = transform.position;
+                tmp.y = startY + Mathf.Sin(vic) * 1;
+                transform.position = tmp;
+            }, 3.14f * 2, 1.0f).SetLoops(-1).SetEase(Ease.Linear);
             p.canMove = false;
-            p.transform.DOMoveX(p.transform.position.x + 500, 5.0f).OnComplete( 
-                ()=> { p.canMove = true; });
-            Camera.main.transform.DOMoveX(Camera.main.transform.position.x + 300, 5.0f);
+            p.transform.DOMoveX(p.transform.position.x + 500, moveTime).OnComplete( 
+                ()=> { p.canMove = false; }).SetEase(Ease.Linear);
+            //Camera.main.transform.DOMoveX(Camera.main.transform.position.x + 300, 5.0f);
         }
     }
 
@@ -37,8 +52,7 @@ public class BoatAtFinish : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            cnt++;
-            if(cnt == 2)
+            if(collision is BoxCollider2D)
             {
                 print("player on boat!");
                 p = collision.GetComponent<Player>();
@@ -53,11 +67,13 @@ public class BoatAtFinish : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            cnt--;
-            if(p == null)
-                p = collision.GetComponent<Player>();
-            p.SetOnBoatAtFinish(false);
-            curPlayerOnBoat = false;
+            if(collision is BoxCollider2D)
+            {
+                if (p == null)
+                    p = collision.GetComponent<Player>();
+                p.SetOnBoatAtFinish(false);
+                curPlayerOnBoat = false;
+            }
         }
     }
 

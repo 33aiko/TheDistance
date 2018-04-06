@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Box : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class Box : MonoBehaviour {
     private void Start()
     {
         water = FindObjectOfType<Water>();
+        p = FindObjectOfType<Player>();
     }
 
     public Vector3 leftButtom; public Vector3 leftUp;
@@ -43,26 +45,38 @@ public class Box : MonoBehaviour {
     void FixedUpdate () {
         UpdateBound();
         float Fp = 0;
-        if (playerOnTop && p.velocity.y < -200.0f)
-        {
-            print("adding splash");
-            AddSplash();
-            Fp = -g * mass * 20;
-        }
+        //if (playerOnTop && p.velocity.y < -200.0f)
+        //{
+        //    //print("adding splash");
+        //    AddSplash();
+        //    Fp = -g * mass * 20;
+        //}
         if(playerOnTop)
         {
-            Fp = -g * mass * 1.5f;
+            Fp = -g * mass * 0.5f;
         }
 
         float percent = water.Intersect(this);
         float Fg = -g * mass;
-        float Fb = 3 * percent * mass * g;
+        float Fb = 2 * percent * mass * g;
         vy += (Fb + Fg + Fp) * Time.fixedDeltaTime;
         vy *= 0.99f;
 
         if (percent > 0.6f )
         {
             vy *= 0.95f;
+        }
+
+        if(gameObject.name != "BoatAtFinish" && GameObject.Find("BoatAtFinish"))
+        {
+            Box par = GameObject.Find("BoatAtFinish").GetComponent<Box>();
+            par.p = p;
+            vy = par.vy;
+            if (playerOnTop)
+            {
+                par.playerOnTop = true;
+                print(par.gameObject.name);
+            }
         }
 
         move = Vector3.up * vy * Time.fixedDeltaTime;
@@ -72,12 +86,16 @@ public class Box : MonoBehaviour {
             playerOnTop = false;
         }
 
-        transform.Translate(move);
+        if (gameObject.name == "LeftBar" || gameObject.name == "RightBar")
+        { }
+        else
+            transform.Translate(move);
 
 	}
 
     void movePlayer()
     {
+        if (!p) p = FindObjectOfType<Player>();
         p.controller.Move(move);
         p.controller.collisions.below = true;
     }

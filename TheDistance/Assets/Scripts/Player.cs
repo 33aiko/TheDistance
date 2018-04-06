@@ -99,12 +99,12 @@ public class Player : NetworkBehaviour
 	GameObject root;
 
 	[HideInInspector]
-	AudioManager audioManager;
+	public AudioManager audioManager;
 	GameObject transitionMask; 
     bool playingWalkingMusic = false;
 
 	[HideInInspector]
-	Animator animator;
+	public Animator animator;
     [HideInInspector]
     float nextIdleTime = 10.0f;
 
@@ -569,6 +569,7 @@ public class Player : NetworkBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         }
+        //updatePlayerAnimator();
 
         if (isServer)
         {

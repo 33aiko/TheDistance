@@ -153,7 +153,7 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        sceneIdx = 1;
+        
         //more scene Idx
         goingToNewScene = false;
         StartInits();
@@ -182,21 +182,25 @@ public class Player : NetworkBehaviour
 //            emoji = GameObject.Find("Emoji").gameObject;
         }
 
-        //Text load
+       
 		Debug.Log (SceneManager.GetActiveScene().name);
 		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
-			Debug.Log ("load text");
-			GameObject UIobject = GameObject.Find ("UI");
-			TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
-			if (isServer && isLocalPlayer) {
-				textSystem.HandAwake (1);
-				textSystem.already = 1;
-				textSystem.HandStart ();
-			} else if (!isServer && isLocalPlayer) {
-				textSystem.HandAwake (2);
-				textSystem.already = 1;
-				textSystem.HandStart ();
-			}
+			sceneIdx = 1; 
+		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
+			sceneIdx = 2; 
+		}
+
+		//Text load
+		GameObject UIobject = GameObject.Find ("UI");
+		TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
+		if (isServer && isLocalPlayer) {
+			textSystem.HandAwake (1);
+			textSystem.already = 1;
+			textSystem.HandStart ();
+		} else if (!isServer && isLocalPlayer) {
+			textSystem.HandAwake (2);
+			textSystem.already = 1;
+			textSystem.HandStart ();
 		}
 
         finishCheck = new int[3];

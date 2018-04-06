@@ -63141,7 +63141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   d: {fileID: 539581524}
   already: 0
-  filename: test.diary
+  filename: Level1.diary
 --- !u!4 &2098240727 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4675747348688916, guid: 8bc8c85ab63e14e0fb1c732b6ca1d013,

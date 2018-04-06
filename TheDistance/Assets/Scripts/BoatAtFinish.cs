@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class BoatAtFinish : MonoBehaviour {
 
@@ -48,8 +49,9 @@ public class BoatAtFinish : MonoBehaviour {
             p.animator.SetBool("playerStand", true);
             p.audioManager.Stop("PlayerWalking");
             p.transform.DOMoveX(p.transform.position.x + 500, moveTime).OnComplete( 
-                ()=> { p.canMove = false; }).SetEase(Ease.Linear);
-            //Camera.main.transform.DOMoveX(Camera.main.transform.position.x + 300, 5.0f);
+                ()=> { p.canMove = false; 
+						SceneManager.LoadScene("Loading");}).SetEase(Ease.Linear);
+            
         }
     }
 

@@ -7,13 +7,15 @@ using UnityEngine.Networking;
 
 namespace Prototype.NetworkLobby
 {
-    public class SceneManagerTheDistance
+    
+	public class SceneManagerTheDistance
     {
         public static string nextSceneName;
         public static string[] sceneList =
         {
             "LX_scene1",
             "LX_scene2",
+			"Boat",
         };
         public static int nextSceneID = 0;
     }

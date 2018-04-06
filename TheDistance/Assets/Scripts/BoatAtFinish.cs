@@ -58,7 +58,8 @@ public class BoatAtFinish : MonoBehaviour {
                 p = collision.GetComponent<Player>();
                 curPlayerOnBoat = true;
                 p.SetOnBoatAtFinish(true);
-                TryPlayFinishAnimation();
+                Invoke("TryPlayFinishAnimation", 0.1f);
+                //TryPlayFinishAnimation();
             }
         }
     }

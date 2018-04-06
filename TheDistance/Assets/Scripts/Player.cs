@@ -451,7 +451,13 @@ public class Player : NetworkBehaviour
             , transform.position.z + offset.z + currentCameraZoomValue);
     }
 
+    public bool canMove = true;
+
     void KeyControlMove(){
+
+        if (canMove)
+        {
+
 
         handleInput();
 
@@ -558,6 +564,7 @@ public class Player : NetworkBehaviour
         if (!controller.collisions.onLadder) velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        }
 
         if (isServer)
         {
@@ -2006,4 +2013,33 @@ public class Player : NetworkBehaviour
     {
         shareNotificationText.text = "";
     }
+
+    public void SetOnBoatAtFinish(bool onBoat)
+    {
+        if (isServer)
+            RpcSetOnBoatAtFinish(onBoat);
+        else
+            CmdSetOnBoatAtFinish(onBoat);
+    }
+
+    // from server, on client
+    [ClientRpc]
+    public void RpcSetOnBoatAtFinish(bool onBoat)
+    {
+        if (isServer) return;
+
+        if(onBoat)
+            print("eric on boat!");
+        FindObjectOfType<BoatAtFinish>().SetRemotePlayerOnBoat(onBoat);
+    }
+
+    //sent by client, run on server
+    [Command]
+    public void CmdSetOnBoatAtFinish(bool onBoat)
+    {
+        if(onBoat)
+            print("nat on boat!");
+        FindObjectOfType<BoatAtFinish>().SetRemotePlayerOnBoat(onBoat);
+    }
+
 }

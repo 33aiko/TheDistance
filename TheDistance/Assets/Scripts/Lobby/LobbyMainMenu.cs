@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Prototype.NetworkLobby
 {
@@ -149,6 +150,18 @@ namespace Prototype.NetworkLobby
             lobbyManager.SetServerInfo("Connecting...", lobbyManager.networkAddress);
 
             platform_temp.SetActive(true);
+
+			Text[] instructions;
+			GameObject titleScreenManager = GameObject.Find ("TitleScreenManager");
+			if (titleScreenManager) {
+				instructions = titleScreenManager.GetComponentsInChildren<Text> ();
+				foreach (Text t in instructions) {
+					if (t != null)
+						t.DOFade (1, 0.5f);
+					}
+
+			}
+
         }
 
         public void OnClickDedicated()

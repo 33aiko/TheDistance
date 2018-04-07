@@ -13,6 +13,8 @@ public class TitleScreenManager : MonoBehaviour {
 	Text[] instructions; 
 	Camera mainCam; 
 
+	GameObject mainMenu; 
+
 	void Start () {
 		mainCam = Camera.main;
 		LobbyManager.SetActive (false);
@@ -35,9 +37,17 @@ public class TitleScreenManager : MonoBehaviour {
 	public void StartNewGame(){
 		mainCam.transform.DOMoveZ (0, 2);
 		Scene2.SetActive (true);
+
 		foreach (Text t in instructions) {
 			t.DOFade (1, 0.5f).SetDelay (2);
 		}
+	}
+	public void JoinNewGame(){
+		mainCam.transform.DOMoveZ (0, 2).OnComplete (() => {
+			LobbyManager.GetComponentInChildren<Prototype.NetworkLobby.LobbyMainMenu>().OnClickBeClient();
+		});
+		Scene2.SetActive (true);
+
 	}
 		
 }

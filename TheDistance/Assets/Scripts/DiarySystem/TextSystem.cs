@@ -34,6 +34,7 @@ public class TextSystem : MonoBehaviour {
 
     public static void Construct(string path, int EricNatalie)
     {
+        Clear();
         StreamReader sr = new StreamReader(path, Encoding.UTF8);
         int EorN=0;
         string line;

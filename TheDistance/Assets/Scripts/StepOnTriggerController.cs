@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using DG.Tweening;
 
-public class StepOnTriggerController : NetworkBehaviour{
+public class StepOnTriggerController : MonoBehaviour{
 
     public string mpName;
     public bool oneTimeTrigger;
@@ -37,22 +37,21 @@ public class StepOnTriggerController : NetworkBehaviour{
 
     Transform curCollider;
 
-	void Start () {
-        try
+    void Awake()
+    {
+        print("step on trigger at start!");
+        if(!moveOnOtherWorld)
         {
             mPC = GameObject.Find(mpName).GetComponent<MovingPlatformController>();
-        }
-        catch(System.NullReferenceException e)
-        {
-            Debug.LogWarning("Cannot find moving platform");
         }
         if (hasParticle)
         {
             rotatePattern = pattern.transform.DORotate(Vector3.up * 360, 5.0f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
             StopAllParticle();
         }
-		audio = GameObject.Find ("AudioManager").GetComponent<AudioManager> ();
+        audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
+ 
 
     void SetCanMove (bool _canMove)
     {

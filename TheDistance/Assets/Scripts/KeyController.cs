@@ -61,7 +61,7 @@ public class KeyController : MonoBehaviour {
         both[1] = 0;
 	//	ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
 	//	if (ima == null)
-			print("Nothign found! something wrong");
+			//print("Nothign found! something wrong");
 	//	ima.enabled = true;
 	//	ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
 

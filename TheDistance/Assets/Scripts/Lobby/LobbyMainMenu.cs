@@ -63,8 +63,8 @@ namespace Prototype.NetworkLobby
             Button startBttn = this.transform.Find("InitPage/Btn_start").GetComponent<Button>();
             startBttn.onClick.AddListener(OnClickStart);
 
-            Button settingBttn = this.transform.Find("InitPage/Btn_settings").GetComponent<Button>();
-            settingBttn.onClick.AddListener(OnClickSettings);
+            Button settingBttn = this.transform.Find("InitPage/Btn_help").GetComponent<Button>();
+            settingBttn.onClick.AddListener(OnClickHelp);
 
 			Button creditBttn = this.transform.Find ("InitPage/Btn_credits").GetComponent<Button> ();
 			creditBttn.onClick.AddListener (OnClickCredits);
@@ -105,10 +105,11 @@ namespace Prototype.NetworkLobby
         {
             switchToPage("DirectPlaySubPanel");
         }
+			
 
-        public void OnClickSettings()
+		public void OnClickHelp()
         {
-            switchToPage("SettingsSubPanel");
+            switchToPage("HelpSubPanel");
         }
 
 		public void OnClickCredits(){

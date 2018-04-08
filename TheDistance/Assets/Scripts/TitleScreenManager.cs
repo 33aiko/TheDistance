@@ -46,6 +46,7 @@ public class TitleScreenManager : MonoBehaviour {
 		mainCam.transform.DOMoveZ (0, 2).OnComplete (() => {
 			LobbyManager.GetComponentInChildren<Prototype.NetworkLobby.LobbyMainMenu>().OnClickBeClient();
 		});
+		GameObject.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
 		Scene2.SetActive (true);
 
 	}

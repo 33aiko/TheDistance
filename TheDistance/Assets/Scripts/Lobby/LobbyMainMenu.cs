@@ -65,6 +65,9 @@ namespace Prototype.NetworkLobby
 
             Button settingBttn = this.transform.Find("InitPage/Btn_settings").GetComponent<Button>();
             settingBttn.onClick.AddListener(OnClickSettings);
+
+			Button creditBttn = this.transform.Find ("InitPage/Btn_credits").GetComponent<Button> ();
+			creditBttn.onClick.AddListener (OnClickCredits);
         }
 
         private void regStartPageButtons()
@@ -108,6 +111,10 @@ namespace Prototype.NetworkLobby
             switchToPage("SettingsSubPanel");
         }
 
+		public void OnClickCredits(){
+			switchToPage ("CreditsSubPanel");
+		}
+
         public void OnClickInvite()
         {
             lobbyManager.StartHost();
@@ -128,11 +135,11 @@ namespace Prototype.NetworkLobby
 
         public void OnClickBeClient()  // join a game
         {
-            this.transform.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
             this.transform.Find("DirectPlaySubPanel/ClientJoinPage").gameObject.SetActive(true);
 
             lobbyManager.backDelegate = lobbyManager.SimpleBackClbk;
         }
+
 
 
         public void OnClickJoin()

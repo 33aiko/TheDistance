@@ -42,11 +42,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLobbyGUI: 1
   playerAtLobby: {fileID: 0}
+  friendAtLobby: {fileID: 0}
+  ericAtLobby: {fileID: 0}
+  natalieAtLobby: {fileID: 0}
   spiritAtLobby: {fileID: 0}
+  platform_temp: {fileID: 0}
+  lobbyPage: {fileID: 0}
   EricAnimator: Animations/Player_1
-  NatalieAnimator: Animations/Player_2
-  EricSpiritAnimator: Animations/Spirit_1
-  NatalieSpiritAnimator: Animations/Spirit_2
+  NatalieAnimator: Animations/Player_2_Override
 --- !u!114 &114600423274566380
 MonoBehaviour:
   m_ObjectHideFlags: 1

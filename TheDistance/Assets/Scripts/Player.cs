@@ -172,159 +172,152 @@ public class Player : NetworkBehaviour
 
         //sceneState = 1;!!!!
         // boat = GameObject.Find("boat").GetComponent<RowBoat>();
-        if (SceneManager.GetActiveScene().name == "Boat")
-        {
-            boat = GameObject.Find("boat").GetComponent<RowBoat>();
+		if (SceneManager.GetActiveScene ().name == "Boat") {
+			boat = GameObject.Find ("boat").GetComponent<RowBoat> ();
 
-        }
-        else
-        {
-//            emoji = GameObject.Find("Emoji").gameObject;
-        }
-
-       
-		Debug.Log (SceneManager.GetActiveScene().name);
-		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
-			sceneIdx = 1; 
-		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
-			sceneIdx = 2; 
-		}
-
-		//Text load
-		if (SceneManager.GetActiveScene ().name != "Boat") {
-			GameObject UIobject = GameObject.Find ("UI");
-			TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
-			if (isServer && isLocalPlayer) {
-				textSystem.HandAwake (1);
-				textSystem.already = 1;
-				textSystem.HandStart ();
-			} else if (!isServer && isLocalPlayer) {
-				textSystem.HandAwake (2);
-				textSystem.already = 1;
-				textSystem.HandStart ();
-			}
-		}
-
-        finishCheck = new int[3];
-  
-        // init public variables:
-        root = GameObject.Find("Root");
-
-
-        // get components
-        if (!(audioManager && transitionMask && animator && controller && pCC))
-        {
-            GetAllComponents();
-        }
-
-
-        // movement offset
-        gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
-		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-
-		//have key
-		for (int i = 0; i < 3; i++) haveKey[i] = false;
-		for (int i = 0; i < 3; i++) otherHaveKey[i] = false;
-
-		// interact with objects
-		controller.collisions.interact = false;
-
-        if (!isLocalPlayer)
-            return;
-
-        Transform EricStartPoint;
-        EricStartPoint = root.transform.Find(ShareWorldName + "/" + EricPosName);
-        Transform NatalieStartPoint;
-        NatalieStartPoint = root.transform.Find(ShareWorldName + "/" + NataliePosName);
-
-
-        //initialize camera filter color
-        if (SceneManager.GetActiveScene ().name == "LX_scene1") {
-			ericFilter = new Color32 (0, 30, 51, 255); 
-			natalieFilter = new Color32 (50, 15, 100, 255);
-		} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
-			ericFilter = new Color32 (2, 63, 124, 255); 
-			natalieFilter = new Color32 (90, 57, 27, 255);
-		}
-
-        // initialize local player position and camera filter
-        if (isLocalPlayer && isServer)
-        {
-            transform.position = EricStartPoint.position;
-            curCheckPoint = EricStartPoint.position;
-			Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
-            GloabalVar.EorN = 0;
-        }
-        if (isLocalPlayer && !isServer)
-        {
-            transform.position = NatalieStartPoint.position;
-            curCheckPoint = NatalieStartPoint.position;
-			Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
-            GloabalVar.EorN = 1;
-        }
-
-        // initialize spirit
-        spirit = root.transform.Find("Spirit").gameObject;
-        if (spirit.GetComponent<Animator>() == null)
-        {
-            spirit.AddComponent<Animator>();
-            
-        }
-        spirit.GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
-        spiritTargetPos = spirit.transform.position;
-        spirit.SetActive(true);
-        if(spiritSignalPrefab == null)
-        {
-            Debug.LogError("spirit signal prefab not found!");
-        }
-
-
-        /* initial the cave effect material */
-		if(caveMaterial == null && FindObjectOfType<CaveEffectController>())
-            caveMaterial = FindObjectOfType<CaveEffectController>().caveMaterial;
-		if(caveMaterial != null) caveMaterial.SetVector("_SpiritPos", new Vector3(0, 0, -1));
-
-
-        // init camera pos
-        if (isLocalPlayer)
-        {
-            offset.z = Camera.main.transform.position.z - transform.position.z;
-            Camera.main.transform.position = transform.position + new Vector3(0, cameraOffset, offset.z);
-        }
-
-        // init world
-        root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
-		root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);
-
-		//hideRemotePlayer
-		if (!isLocalPlayer) {
-			// gameObject.SetActive (false);
 		} else {
-			gameObject.name = "Player";
-		}
+       
+			Debug.Log (SceneManager.GetActiveScene ().name);
+			if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+				sceneIdx = 1; 
+			} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
+				sceneIdx = 2; 
+			}
 
-        ////when client(Natalie) is connected and created, initialize server and itself
-        //if (isServer && !isLocalPlayer)
-        //{
-        //	InitializeServer(NatalieTransform.position,EricTransform.position);
-        //	RpcInitializeClient(EricTransform.position,NatalieTransform.position);
-        //}
+			//Text load
+			if (SceneManager.GetActiveScene ().name != "Boat") {
+				GameObject UIobject = GameObject.Find ("UI");
+				TextSystem textSystem = UIobject.GetComponent<TextSystem> ();
+				if (isServer && isLocalPlayer) {
+					textSystem.HandAwake (1);
+					textSystem.already = 1;
+					textSystem.HandStart ();
+				} else if (!isServer && isLocalPlayer) {
+					textSystem.HandAwake (2);
+					textSystem.already = 1;
+					textSystem.HandStart ();
+				}
+			}
 
-        // initialize player animator
-        GetComponent<Animator>().runtimeAnimatorController = Instantiate(Resources.Load(isServer?EricAnimator:NatalieAnimator)) as RuntimeAnimatorController;
-		if (animator == null)
-		{
-			print("no animation controller found!");
-		}
+			finishCheck = new int[3];
+  
+			// init public variables:
+			root = GameObject.Find ("Root");
 
-        // get the text &BG
-        shareNotificationText = GetComponentInChildren<Text>();
-        shareNotificationText.text = "";
-		if (shareBar != null) {
-			shareBar.DOFade (0, 0);
-		}
-		if (shareBarBg != null) {
-			shareBarBg.DOFade (0, 0);
+
+			// get components
+			if (!(audioManager && transitionMask && animator && controller && pCC)) {
+				GetAllComponents ();
+			}
+
+
+			// movement offset
+			gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
+			jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
+
+			//have key
+			for (int i = 0; i < 3; i++)
+				haveKey [i] = false;
+			for (int i = 0; i < 3; i++)
+				otherHaveKey [i] = false;
+
+			// interact with objects
+			controller.collisions.interact = false;
+
+			if (!isLocalPlayer)
+				return;
+
+			//initialize camera filter color
+			if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+				ericFilter = new Color32 (0, 30, 51, 255); 
+				natalieFilter = new Color32 (50, 15, 100, 255);
+			} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
+				ericFilter = new Color32 (2, 63, 124, 255); 
+				natalieFilter = new Color32 (90, 57, 27, 255);
+			}
+				
+				Transform EricStartPoint;
+				EricStartPoint = root.transform.Find (ShareWorldName + "/" + EricPosName);
+				Transform NatalieStartPoint;
+				NatalieStartPoint = root.transform.Find (ShareWorldName + "/" + NataliePosName);
+
+				// initialize local player position and camera filter
+
+				if (isLocalPlayer && isServer) {
+					transform.position = EricStartPoint.position;
+					curCheckPoint = EricStartPoint.position;
+					Camera.main.GetComponent<VignetteModify> ().color = ericFilter;
+					GloabalVar.EorN = 0;
+				}
+				if (isLocalPlayer && !isServer) {
+					transform.position = NatalieStartPoint.position;
+					curCheckPoint = NatalieStartPoint.position;
+					Camera.main.GetComponent<VignetteModify> ().color = natalieFilter;
+					GloabalVar.EorN = 1;
+				}
+		
+
+				// initialize spirit
+				spirit = root.transform.Find ("Spirit").gameObject;
+				if (spirit.GetComponent<Animator> () == null) {
+					spirit.AddComponent<Animator> ();
+            
+				}
+				spirit.GetComponent<Animator> ().runtimeAnimatorController = Instantiate (Resources.Load (isServer ? EricSpiritAnimator : NatalieSpiritAnimator)) as RuntimeAnimatorController;
+				spiritTargetPos = spirit.transform.position;
+				spirit.SetActive (true);
+				if (spiritSignalPrefab == null) {
+					Debug.LogError ("spirit signal prefab not found!");
+				}
+
+
+				/* initial the cave effect material */
+				if (caveMaterial == null && FindObjectOfType<CaveEffectController> ())
+					caveMaterial = FindObjectOfType<CaveEffectController> ().caveMaterial;
+				if (caveMaterial != null)
+					caveMaterial.SetVector ("_SpiritPos", new Vector3 (0, 0, -1));
+
+
+				// init camera pos
+				if (isLocalPlayer) {
+					offset.z = Camera.main.transform.position.z - transform.position.z;
+					Camera.main.transform.position = transform.position + new Vector3 (0, cameraOffset, offset.z);
+				}
+
+				// init world
+				root.transform.Find (EricWorldName).gameObject.SetActive (isServer);
+				root.transform.Find (NatalieWorldName).gameObject.SetActive (!isServer);
+
+				//hideRemotePlayer
+				if (!isLocalPlayer) {
+					// gameObject.SetActive (false);
+				} else {
+					gameObject.name = "Player";
+				}
+
+				////when client(Natalie) is connected and created, initialize server and itself
+				//if (isServer && !isLocalPlayer)
+				//{
+				//	InitializeServer(NatalieTransform.position,EricTransform.position);
+				//	RpcInitializeClient(EricTransform.position,NatalieTransform.position);
+				//}
+
+				// initialize player animator
+				GetComponent<Animator> ().runtimeAnimatorController = Instantiate (Resources.Load (isServer ? EricAnimator : NatalieAnimator)) as RuntimeAnimatorController;
+				if (animator == null) {
+					print ("no animation controller found!");
+				}
+
+				// get the text &BG
+				shareNotificationText = GetComponentInChildren<Text> ();
+				shareNotificationText.text = "";
+				if (shareBar != null) {
+					shareBar.DOFade (0, 0);
+				}
+				if (shareBarBg != null) {
+					shareBarBg.DOFade (0, 0);
+				}
+		
 		}
 
     }

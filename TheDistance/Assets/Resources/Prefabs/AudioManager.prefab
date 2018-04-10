@@ -230,6 +230,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: TriggerActivate
+    clip: {fileID: 8300000, guid: 3caf700de713d44189ffe60dacdc5178, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}
@@ -253,7 +262,7 @@ MonoBehaviour:
     objLoc: {fileID: 0}
   music:
   - name: musicTrack01
-    clip: {fileID: 8300000, guid: 8168e77b0f4ec43388383cfdad6adf97, type: 3}
+    clip: {fileID: 8300000, guid: 1fd282fe87ae64cdf942991f2a7ce1e1, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
@@ -262,7 +271,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: musicTrack02
-    clip: {fileID: 8300000, guid: a73c8f13659c7451da20cafee9e98986, type: 3}
+    clip: {fileID: 8300000, guid: 0d3ff7ffc50eb4ea9a22471fe5fdc3df, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
@@ -271,7 +280,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: musicTrack03
-    clip: {fileID: 8300000, guid: 6f511c861fc9c438980328212b43678c, type: 3}
+    clip: {fileID: 8300000, guid: e62be5892f30144ca836a582b39739f6, type: 3}
     volume: 0.8
     volumeVariance: 0
     pitch: 1

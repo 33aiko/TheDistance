@@ -53,6 +53,11 @@ public class Diary : MonoBehaviour {
             }
     }
 
+    private void OnEnable()
+    {
+        print("diary enabled!");
+    }
+
     private void Update()
     {
         if(Input.GetButtonDown("Submit"))

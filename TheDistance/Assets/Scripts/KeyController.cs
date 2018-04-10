@@ -95,6 +95,7 @@ public class KeyController : MonoBehaviour {
     private void Update(){
 		if(Input.GetButtonDown("Submit")){
 			if (memoryShowed && fadeFinished) {
+                print("here after memory showed");
 				Camera.main.GetComponent<DOVModify> ().SetActive (false);
 				memoryContent [0].SetActive (false);
 				memoryContent [1].SetActive (false);

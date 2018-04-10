@@ -21,6 +21,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     public bool isUsed = false;
 
     public List<string> npcTalks = new List<string>();
+    [SerializeField]
     int curIdx = 0;
 
     bool uiActive = false;
@@ -100,9 +101,10 @@ public class InstructionAreaTrigger : MonoBehaviour {
         ui_borderUp.transform.DOLocalMoveY(0, expand_time);
         ui_borderDown.transform.DOLocalMoveY(0, expand_time);
         ui_borderUp.DOFade(0, fade_time);
-        ui_borderDown.DOFade(0, fade_time);
-        curIdx = 0;
-        ui_text.text = npcTalks[curIdx];
+        ui_borderDown.DOFade(0, fade_time).OnComplete( ()=> {
+            curIdx = 0;
+            ui_text.text = npcTalks[curIdx];
+        });
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -125,6 +127,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         if(curIdx >= npcTalks.Count)
         {
             HideUI();
+            print("idx is " + curIdx);
             if (!autoShow)
                 GetComponentInParent<NPCTrigger>().inputUI.gameObject.SetActive(true);
         }

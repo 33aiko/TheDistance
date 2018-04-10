@@ -59,6 +59,7 @@ namespace Prototype.NetworkLobby
 
             if (Input.GetButtonDown("Submit"))
             {
+                print("sending ready begin message");
                 SendReadyToBeginMessage();
             }
 

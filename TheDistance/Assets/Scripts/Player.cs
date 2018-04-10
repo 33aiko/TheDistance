@@ -654,6 +654,7 @@ public class Player : NetworkBehaviour
 		if (Input.GetButtonDown("Submit")) {
 			if(curNPC != null)
 			{
+                print("trying to hide npc talk");
 				curNPC.hideTalkText ();
 			}
 		}
@@ -1195,6 +1196,7 @@ public class Player : NetworkBehaviour
                 Debug.Log("1show" + keyIdx);
                 if (showDiary != null)
                 {
+                    print("here shows the diary! at player checkwho");
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
 //                    if (scrollPage.enabled == true)
@@ -1249,6 +1251,7 @@ public class Player : NetworkBehaviour
                 if (showDiary != null)
                 {
 					Debug.Log (showDiary.name);
+                    print("here shows the diary! at player checkwho");
                     showDiary.SetActive(true);
 //                    if (scrollPage.enabled == true)
 //                    {
@@ -1299,6 +1302,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Nata::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+                    print("here shows the diary! at player checkwho");
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
 //                    if (scrollPage.enabled == true)
@@ -1352,6 +1356,7 @@ public class Player : NetworkBehaviour
 				GameObject showDiary = GameObject.Find("UI/Canvas/Diary/StoryContentScrollView/StoryContent/" +"Eric::Fragment " + keyIdx.ToString());
                 if (showDiary != null)
                 {
+                    print("here shows the diary! at player checkwho");
 					Debug.Log (showDiary.name);
                     showDiary.SetActive(true);
 //                    if (scrollPage.enabled == true)

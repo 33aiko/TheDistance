@@ -23,9 +23,9 @@ public class CameraFollowBox : MonoBehaviour {
         focusArea.focusTargetCenter(GetComponent<BoxCollider2D>().bounds, focusAreaSize, yOffset);
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
-        if (GetComponent<Player>()) return;
+        //if (GetComponent<Player>()) return;
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(focusArea.center, focusAreaSize);
     }

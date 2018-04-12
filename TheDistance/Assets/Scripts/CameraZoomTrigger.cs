@@ -9,7 +9,7 @@ public class CameraZoomTrigger : MonoBehaviour {
 	public float changeOffset; 
 
     int cnt = 0;
-	float currentOffset;
+	float currentOffset = 100;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

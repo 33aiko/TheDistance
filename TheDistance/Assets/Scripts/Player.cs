@@ -128,6 +128,15 @@ public class Player : NetworkBehaviour
     {
         // get components
         GetAllComponents();
+        //ReactivateCollider();
+    }
+
+    void ReactivateCollider()
+    {
+        // reset the collider to enable the camera zoom area
+        BoxCollider2D col = GetComponent<BoxCollider2D>();
+        col.enabled = false;
+        col.enabled = true;
     }
 
  

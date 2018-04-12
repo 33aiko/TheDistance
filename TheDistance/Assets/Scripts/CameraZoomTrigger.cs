@@ -16,16 +16,35 @@ public class CameraZoomTrigger : MonoBehaviour {
 		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
         {
             cnt++;
+            print("player enters zoom area!");
             if (cnt == 2)
             {
-                print("Zooming the camera");
-                Player p = collision.transform.gameObject.GetComponent<Player>();
-                p.areaCameraZoomValue = changeZValue;
-                //DOTween.To(() => p.currentCameraZoomValue, x => p.currentCameraZoomValue= x, changeZValue, 3);
-                //DOTween.To(() => p.cameraZoomValue, x => p.cameraZoomValue = x, changeZValue, 3);
-                p.TweenCameraZoomValue(changeZValue);
-                currentOffset = p.cameraOffset;
-                p.cameraOffset = changeOffset;
+                ZoomPlayerCamera(collision);
+            }
+        }
+    }
+
+    void ZoomPlayerCamera(Collider2D collision)
+    {
+        print("Zooming the camera");
+        Player p = collision.transform.gameObject.GetComponent<Player>();
+        p.areaCameraZoomValue = changeZValue;
+        //DOTween.To(() => p.currentCameraZoomValue, x => p.currentCameraZoomValue= x, changeZValue, 3);
+        //DOTween.To(() => p.cameraZoomValue, x => p.cameraZoomValue = x, changeZValue, 3);
+        p.TweenCameraZoomValue(changeZValue);
+        currentOffset = p.cameraOffset;
+        p.cameraOffset = changeOffset;
+    }
+
+    bool playerInside = false;
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+		if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
+        {
+            if (!playerInside)
+            {
+                playerInside = true;
+                ZoomPlayerCamera(collision);
             }
         }
     }

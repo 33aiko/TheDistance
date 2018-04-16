@@ -1955,6 +1955,9 @@ public class Player : NetworkBehaviour
             boat.move(1);
             //RpcBoat();
             //RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+			if (audioManager.GetSound ("Oar1").source.isPlaying) {
+				audioManager.Stop("Oar1");
+			}
 			audioManager.Play("Oar1");
         }
         else
@@ -1962,6 +1965,9 @@ public class Player : NetworkBehaviour
             //boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
+			if (audioManager.GetSound ("Oar1").source.isPlaying) {
+				audioManager.Stop("Oar1");
+			}
 			audioManager.Play("Oar2");
         }
     }

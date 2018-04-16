@@ -350,7 +350,7 @@ MonoBehaviour:
   curCheckPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 150
   velocity: {x: 0, y: 0, z: 0}
-  cameraOffset: 130
+  cameraOffset: 120
   cameraZoomValue: 100
   areaCameraZoomValue: 0
   currentCameraZoomValue: 0

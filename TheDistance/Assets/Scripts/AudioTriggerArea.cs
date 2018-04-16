@@ -5,9 +5,13 @@ using UnityEngine;
 public class AudioTriggerArea : MonoBehaviour {
 
 	public string audioName;
-	public AudioManager audioManager;
+	AudioManager audioManager;
 
 	int cnt = 0;
+
+	void Start(){
+		audioManager = GameObject.Find ("AudioManager").GetComponent<AudioManager> ();
+	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

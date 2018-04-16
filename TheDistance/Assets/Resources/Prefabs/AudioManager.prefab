@@ -239,6 +239,69 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: UIMouseHover
+    clip: {fileID: 8300000, guid: 4e3a1cf710be34e78bad3b249e1497ca, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: UIMouseClick
+    clip: {fileID: 8300000, guid: 304845fadc31d499396a8f0ae0995bd7, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: DiaryOpen
+    clip: {fileID: 8300000, guid: 9b12fe5a85b694dcfab6362cf2afa8c2, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ShareFull
+    clip: {fileID: 8300000, guid: 64c76a4f3678441c3b99ec8d60bb3d20, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Oar1
+    clip: {fileID: 8300000, guid: fd72e202b5ada44b5a9ac917cff43c5c, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Oar2
+    clip: {fileID: 8300000, guid: bd2873e4bae8f40f4a8398d0e5bd3995, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BoatHit
+    clip: {fileID: 8300000, guid: 972f16d2fbddf4720a72233a36ce55bc, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}

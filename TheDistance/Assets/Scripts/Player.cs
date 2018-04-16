@@ -698,6 +698,7 @@ public class Player : NetworkBehaviour
 			if (tPressedTime > tNeededTime && !shareBarFull ) {
 				shareBar.GetComponent<Image> ().DOColor (Color.gray, 6f).SetEase (Ease.Flash, 48, 1);
 				shareBarFull = true; 
+				audioManager.Play ("ShareFull");
 				Debug.Log ("I am here!");
 			}
         } 
@@ -1954,14 +1955,14 @@ public class Player : NetworkBehaviour
             boat.move(1);
             //RpcBoat();
             //RpcBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
-			boat.GetComponents<AudioSource>()[0].Play();
+			audioManager.Play("Oar1");
         }
         else
         {
             //boat.move(1);
             CmdBoat();
             //CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
-			boat.GetComponents<AudioSource>()[1].Play();
+			audioManager.Play("Oar2");
         }
     }
     [ClientRpc]

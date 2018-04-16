@@ -9,7 +9,7 @@ public class CameraZoomTrigger : MonoBehaviour {
 	public float changeOffset; 
 
     int cnt = 0;
-	float currentOffset = 100;
+	public float currentOffset = 100;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +19,8 @@ public class CameraZoomTrigger : MonoBehaviour {
             print("player enters zoom area!");
             if (cnt == 2)
             {
+                if (playerInside) return;
+                playerInside = true;
                 ZoomPlayerCamera(collision);
             }
         }

@@ -21,6 +21,8 @@ public class RowBoat : MonoBehaviour {
     float height;
     Rigidbody2D r;
 
+	AudioManager audioManager;
+
 
     Vector2 velocity;
 
@@ -40,6 +42,8 @@ public class RowBoat : MonoBehaviour {
 	public GameObject oarNatalieEffect;
     // Use this for initialization
     void Start () {
+
+		audioManager = GameObject.Find ("AudioManager").GetComponent<AudioManager>();
 
         initPos = transform.position;
         initRot = transform.rotation;
@@ -208,6 +212,10 @@ public class RowBoat : MonoBehaviour {
             // camera shake
             Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
+
+			if (audioManager != null) {
+				audioManager.Play ("BoatHit");
+			}
 
             if (!hasDivineShield)
                 GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();

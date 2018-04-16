@@ -8013,6 +8013,7 @@ GameObject:
   - component: {fileID: 147745565}
   - component: {fileID: 147745564}
   - component: {fileID: 147745563}
+  - component: {fileID: 147745567}
   m_Layer: 5
   m_Name: DiaryRightBtn
   m_TagString: Untagged
@@ -8136,6 +8137,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147745561}
+--- !u!114 &147745567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 147745561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc11170a1ece43e88972256b9ca577d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149725385
 GameObject:
   m_ObjectHideFlags: 0
@@ -8904,7 +8916,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4341276905142376, guid: be916c5f9e5ef794d8b45678f04f894b, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 95181682958443200, guid: be916c5f9e5ef794d8b45678f04f894b,
         type: 2}
@@ -19118,6 +19130,7 @@ GameObject:
   - component: {fileID: 429075233}
   - component: {fileID: 429075232}
   - component: {fileID: 429075231}
+  - component: {fileID: 429075235}
   m_Layer: 5
   m_Name: DiaryLeftBtn
   m_TagString: Untagged
@@ -19241,6 +19254,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429075229}
+--- !u!114 &429075235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 429075229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc11170a1ece43e88972256b9ca577d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &432678409
 GameObject:
   m_ObjectHideFlags: 0
@@ -27948,7 +27972,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4344889057303966, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1775351149259702, guid: ccde170a7c925084fba78d5138c0237e, type: 2}
       propertyPath: m_IsActive
@@ -33704,6 +33728,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioName: Cave
+--- !u!1001 &1022799221
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4006.1553
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -72.23486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
+  m_IsPrefabParent: 0
 --- !u!224 &1027248432 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224269450421290102, guid: 0f027edd2680345dc8449c48c2ed240d,
@@ -35016,88 +35082,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4675747348688916, guid: f8690baa43872438c8abbaa897791ee5,
     type: 2}
   m_PrefabInternal: {fileID: 1158398995}
---- !u!1001 &1165687691
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: sounds.Array.size
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4006.1553
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -72.23486
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648067932768720, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: music.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1fd282fe87ae64cdf942991f2a7ce1e1, type: 3}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: music.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0d3ff7ffc50eb4ea9a22471fe5fdc3df, type: 3}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: music.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e62be5892f30144ca836a582b39739f6, type: 3}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: sounds.Array.data[19].name
-      value: TriggerActivate
-      objectReference: {fileID: 0}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: sounds.Array.data[19].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3caf700de713d44189ffe60dacdc5178, type: 3}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: sounds.Array.data[19].volume
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: sounds.Array.data[19].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1172123480
 Prefab:
   m_ObjectHideFlags: 0
@@ -36202,6 +36186,7 @@ GameObject:
   - component: {fileID: 1263292520}
   - component: {fileID: 1263292519}
   - component: {fileID: 1263292518}
+  - component: {fileID: 1263292521}
   m_Layer: 5
   m_Name: DiaryBtn
   m_TagString: Untagged
@@ -36323,6 +36308,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263292516}
+--- !u!114 &1263292521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263292516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc11170a1ece43e88972256b9ca577d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263434190
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,20 +63,31 @@ public class VolumeMixer : MonoBehaviour {
     float nextHideTime = -1;
     private void Update()
     {
-        if(!sliderHidden)
+        float x_percent = Input.mousePosition.x / Screen.width;
+        float y_percent  = Input.mousePosition.y / Screen.height;
+        print(x_percent + ", " + y_percent);
+        if (!sliderHidden)
         {
             if(Time.time >= nextHideTime)
             {
                 HideSlider();
             }
 			if (Input.GetMouseButtonDown (0) ) {
+
+                if (x_percent <= 0.92f || y_percent <= 0.88f)
+                {
+                    HideSlider();
+                }
+                /*
 				if (EventSystem.current.currentSelectedGameObject == null) {
 					HideSlider ();
 				} else if (EventSystem.current.currentSelectedGameObject.name != "MixerGroup") {
 					HideSlider ();
 				}
+                 */ 
 			}
         }
+
     }
 
     public void SetAtomVolume(float f)

@@ -20,11 +20,19 @@ public class UIButtonSFX : MonoBehaviour, IPointerEnterHandler, IPointerDownHand
 
 	public void OnPointerDown(PointerEventData eventdata){
 		if (audioManager != null) {
-			if (this.name == "DiaryBtn") {
-				audioManager.Play("DiaryOpen");
-			} else {
-				audioManager.Play ("UIMouseClick");
-			}
+            if (this.name == "DiaryBtn")
+            {
+                audioManager.Play("DiaryOpen");
+            }
+            else if (this.name == "MixerGroup")
+            {
+
+            }
+            else
+            {
+                print("clicking: " + name);
+                audioManager.Play("UIMouseClick");
+            }
 		}
 	}
 

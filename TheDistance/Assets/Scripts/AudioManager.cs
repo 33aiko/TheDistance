@@ -238,6 +238,13 @@ public class AudioManager : MonoBehaviour
 		m.source.Stop ();
 	}
 
+	public void StopAllMusic(){
+		foreach (var m in music) {
+			if (m.source.isPlaying) {
+				m.source.Stop ();
+			}
+		}
+	}
 
 }
 

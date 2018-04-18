@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class VolumeMixer : MonoBehaviour {
 
@@ -49,7 +50,7 @@ public class VolumeMixer : MonoBehaviour {
         mixerGroup.audioMixer.GetFloat("masterVolume", out prev);
         mixerGroup.audioMixer.SetFloat("masterVolume", f);
         nextHideTime = Time.time + showTime;
-        if(f == -80)
+		if(f == -16)
         {
             m_button.sprite = SFXIcon_Mute;
         }
@@ -68,6 +69,13 @@ public class VolumeMixer : MonoBehaviour {
             {
                 HideSlider();
             }
+			if (Input.GetMouseButtonDown (0) ) {
+				if (EventSystem.current.currentSelectedGameObject == null) {
+					HideSlider ();
+				} else if (EventSystem.current.currentSelectedGameObject.name != "MixerGroup") {
+					HideSlider ();
+				}
+			}
         }
     }
 
@@ -94,7 +102,7 @@ public class VolumeMixer : MonoBehaviour {
         if(isMute)
         {
             mixerGroup.audioMixer.GetFloat("masterVolume", out previousVolume);
-            mixerGroup.audioMixer.SetFloat("masterVolume", -80);
+            mixerGroup.audioMixer.SetFloat("masterVolume", -16);
         }
         else
         {

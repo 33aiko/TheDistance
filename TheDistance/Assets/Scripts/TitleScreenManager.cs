@@ -48,7 +48,14 @@ public class TitleScreenManager : MonoBehaviour {
 		});
 		GameObject.Find("DirectPlaySubPanel/StartPage").gameObject.SetActive(false);
 		Scene2.SetActive (true);
+	}
 
+	public void TurnToHelpPage(){
+		Scene1.GetComponent<Animator> ().SetTrigger ("HelpPage");
+	}
+
+	public void BackToStartPate(){
+		Scene1.GetComponent<Animator> ().SetTrigger ("BackToStart");
 	}
 		
 }

@@ -222,5 +222,9 @@ namespace Prototype.NetworkLobby
             }
         }
 
+		public void onQuitGame(){
+			Application.Quit ();
+		}
+
     }
 }

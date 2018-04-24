@@ -58,6 +58,7 @@ public class CameraZoomTrigger : MonoBehaviour {
             cnt--;
             if (cnt != 2)
             {
+                playerInside = false;
                 Player p = collision.transform.gameObject.GetComponent<Player>();
                 //   p.cameraZoomValue = 0;
                 p.areaCameraZoomValue = 0;

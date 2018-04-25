@@ -351,7 +351,7 @@ MonoBehaviour:
   moveSpeed: 150
   velocity: {x: 0, y: 0, z: 0}
   cameraOffset: 120
-  cameraZoomValue: 100
+  cameraZoomValue: 0
   areaCameraZoomValue: 0
   currentCameraZoomValue: 0
   haveKey: 000000

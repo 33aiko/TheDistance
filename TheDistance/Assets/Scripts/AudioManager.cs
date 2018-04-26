@@ -168,10 +168,17 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		if (!a.source.isPlaying) {
-			a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
+			//a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
 			a.source.pitch = a.pitch * (1f + UnityEngine.Random.Range (-a.pitchVariance / 2f, a.pitchVariance / 2f));
-
+			a.source.volume = 0f;
 			a.source.Play ();
+			
+			//Code to Fade in on play
+			while(a.source.volume <= 1f){
+				a.source.volume += Time.deltaTime / 1f;
+			}
+			
+			
 		}
 	}
 

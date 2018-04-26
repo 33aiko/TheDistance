@@ -174,6 +174,7 @@ public class Player : NetworkBehaviour
 	{
 
 		audioManager.StopAllMusic ();
+		audioManager.PlayLevelMusic ();
 
         if (SceneManager.GetActiveScene().name == "Loading")
         {

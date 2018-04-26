@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace Prototype.NetworkLobby
 {
@@ -20,9 +21,10 @@ namespace Prototype.NetworkLobby
         public GameObject spiritAtLobby;
         public GameObject platform_temp;
         public GameObject lobbyPage;
+		public TitleScreenManager titleScreenManager;
 
         public string EricAnimator = "Animations/Player_1";
-        public string NatalieAnimator = "Animations/Player_2";
+        public string NatalieAnimator = "Animations/Player_2_Override";
         private string EricSpiritAnimator = "Animations/Spirit_1";
         private string NatalieSpiritAnimator = "Animations/Spirit_2";
 
@@ -38,13 +40,11 @@ namespace Prototype.NetworkLobby
         static Color TransparentColor = new Color(0, 0, 0, 0);
 
 
+
         private bool someoneReady = false;
 
         static int playerNum = 0;
-        //void Start()
-        //{
-            
-        //}
+
 
         void Update()
         {
@@ -57,10 +57,13 @@ namespace Prototype.NetworkLobby
             //}
 
 
-            if (Input.GetButtonDown("Submit"))
+			if (Input.GetButtonDown("Submit") && (friendAtLobby.activeSelf || spiritAtLobby.activeSelf))
             {
                 print("sending ready begin message");
                 SendReadyToBeginMessage();
+				if (isLocalPlayer) {
+					titleScreenManager.WaitForPartner ();
+				}
             }
 
             //print("updating!!!");
@@ -99,6 +102,8 @@ namespace Prototype.NetworkLobby
             //playerAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/player");
             //spiritAtLobby = GameObject.Find("LobbyManager_customized/LobbyPanel/LobbyPage/platform_temp/Spirit");
             platform_temp = GameObject.Find("platform_temp");
+			titleScreenManager = GameObject.Find("TitleScreenManager").GetComponent<TitleScreenManager>();
+		
 
             ericAtLobby = platform_temp.transform.Find("eric").gameObject;
             natalieAtLobby = platform_temp.transform.Find("natalie").gameObject;
@@ -141,6 +146,7 @@ namespace Prototype.NetworkLobby
             {
                 friendAtLobby.GetComponent<PlayerSimple>().controllerEnteredLobby = true;
                 friendAtLobby.SetActive(true);
+				titleScreenManager.MatchGame ();
             }
                 
 
@@ -231,17 +237,20 @@ namespace Prototype.NetworkLobby
                 if (!isLocalPlayer)
                 {
                     Debug.Log("bie ren ready");
-                    lobbyPage.transform.Find("YourFriendReady").gameObject.SetActive(true);
+                //    lobbyPage.transform.Find("YourFriendReady").gameObject.SetActive(true);
                     spiritAtLobby.transform.position = friendAtLobby.transform.position;
                     spiritAtLobby.SetActive(true);
                     friendAtLobby.SetActive(false);
+					spiritAtLobby.GetComponentInChildren<Text> ().DOFade (1, 0.5f);
+
                 }
                 else
                 {
                     Debug.Log("wo ready");
-                    lobbyPage.transform.Find("YouAreReady").gameObject.SetActive(true);
-                    
+                //    lobbyPage.transform.Find("YouAreReady").gameObject.SetActive(true); 
                     playerAtLobby.GetComponent<PlayerSimple>().Change2ReadyState();
+					playerAtLobby.GetComponentInChildren<Text> ().DOFade (1, 0.5f);
+
                 }
             }
             else

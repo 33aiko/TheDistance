@@ -38,10 +38,24 @@ public class TitleScreenManager : MonoBehaviour {
 		mainCam.transform.DOMoveZ (0, 2);
 		Scene2.SetActive (true);
 
-		foreach (Text t in instructions) {
-			t.DOFade (1, 0.5f).SetDelay (2);
-		}
+//		foreach (Text t in instructions) {
+//			t.DOFade (1, 0.5f).SetDelay (2);
+//		}
+		instructions [0].DOFade (1, 0.5f).SetDelay (2);
+
 	}
+
+
+	public void MatchGame(){
+		instructions [1].DOFade (1, 0.5f);
+	}
+
+	public void WaitForPartner(){
+		instructions[0].text = "Wait for your partner to start...";
+		instructions [1].DOFade (0, 0.5f);
+	}
+
+
 	public void JoinNewGame(){
 		mainCam.transform.DOMoveZ (0, 2).OnComplete (() => {
 			LobbyManager.GetComponentInChildren<Prototype.NetworkLobby.LobbyMainMenu>().OnClickBeClient();
@@ -57,5 +71,7 @@ public class TitleScreenManager : MonoBehaviour {
 	public void BackToStartPate(){
 		Scene1.GetComponent<Animator> ().SetTrigger ("BackToStart");
 	}
+
+
 		
 }

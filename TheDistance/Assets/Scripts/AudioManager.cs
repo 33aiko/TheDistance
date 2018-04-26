@@ -31,6 +31,14 @@ public class AudioManager : MonoBehaviour
 
 	}
 
+	public void PlayLevelMusic(){
+		if (SceneManager.GetActiveScene ().name == "LX_scene1") {
+			PlayAtmo ("atmosphere01");
+			Debug.Log ("playatmo");
+		}
+	}
+
+
 	//On game load
 	void Awake()
 	{
@@ -83,9 +91,7 @@ public class AudioManager : MonoBehaviour
 	}
 
 	void Update(){
-		if (SceneManager.GetActiveScene ().name == "LX_scene1" && !musicScene1played) {
-			PlayAtmo ("atmosphere01");
-		}
+
 	}
 
 
@@ -170,15 +176,7 @@ public class AudioManager : MonoBehaviour
 		if (!a.source.isPlaying) {
 			//a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
 			a.source.pitch = a.pitch * (1f + UnityEngine.Random.Range (-a.pitchVariance / 2f, a.pitchVariance / 2f));
-			a.source.volume = 0f;
 			a.source.Play ();
-			
-			//Code to Fade in on play
-			while(a.source.volume <= 1f){
-				a.source.volume += Time.deltaTime / 1f;
-			}
-			
-			
 		}
 	}
 
@@ -190,10 +188,10 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		
-		while(a.source.volume > 0){
-			a.source.volume -= Time.deltaTime / 1f;
-		
-		}
+//		while(a.source.volume > 0){
+//			a.source.volume -= Time.deltaTime / 1f;
+//		
+//		}
 		a.source.Stop ();
 	}
 

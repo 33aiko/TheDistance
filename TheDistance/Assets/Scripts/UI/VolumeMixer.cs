@@ -65,7 +65,7 @@ public class VolumeMixer : MonoBehaviour {
     {
         float x_percent = Input.mousePosition.x / Screen.width;
         float y_percent  = Input.mousePosition.y / Screen.height;
-        print(x_percent + ", " + y_percent);
+      //  print(x_percent + ", " + y_percent);
         if (!sliderHidden)
         {
             if(Time.time >= nextHideTime)

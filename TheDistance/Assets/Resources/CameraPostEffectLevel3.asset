@@ -113,12 +113,12 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0
-        neutralWhiteIn: 7
+        neutralBlackIn: 0.053
+        neutralWhiteIn: 7.5
         neutralBlackOut: 0.02
-        neutralWhiteOut: 6
-        neutralWhiteLevel: 10
-        neutralWhiteClip: 5.5
+        neutralWhiteOut: 9.7
+        neutralWhiteLevel: 7
+        neutralWhiteClip: 6.96
       basic:
         postExposure: 0
         temperature: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0.058823515, g: 0.24043274, b: 0.39215684, a: 1}
+      color: {r: 0.44117647, g: 0.15570934, b: 0.20886526, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.3
       smoothness: 1

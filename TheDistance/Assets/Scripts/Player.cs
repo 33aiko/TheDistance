@@ -244,6 +244,10 @@ public class Player : NetworkBehaviour
 			} else if (SceneManager.GetActiveScene ().name == "LX_scene2") {
 				ericFilter = new Color32 (2, 63, 124, 255); 
 				natalieFilter = new Color32 (90, 57, 27, 255);
+			}else if (SceneManager.GetActiveScene ().name == "LX_scene3Temp"){
+				ericFilter = new Color32(3,109,124,255);
+				natalieFilter = new Color32 (113, 40, 53, 255);
+
 			}
 				
 				Transform EricStartPoint;

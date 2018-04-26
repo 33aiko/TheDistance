@@ -652,6 +652,21 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c630a99357afd453bafa2c51a4d41ebc, type: 2}
   m_IsPrefabParent: 0
@@ -2484,7 +2499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4903b5c696040499049959afdae230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: ac91a17302fe2cc47aed682089d90b91, type: 2}
+  profile: {fileID: 11400000, guid: d35dbf1990c73476980938808e0ecf10, type: 2}
   intensity: 0.3
   color: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 0}
 --- !u!4 &388547101 stripped
@@ -5577,6 +5592,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 55127
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
       objectReference: {fileID: 0}
     - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
         type: 2}

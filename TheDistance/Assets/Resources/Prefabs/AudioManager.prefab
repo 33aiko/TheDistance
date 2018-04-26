@@ -304,7 +304,7 @@ MonoBehaviour:
     source: {fileID: 0}
   atmo:
   - name: atmosphere01
-    clip: {fileID: 8300000, guid: 6384837b3ceb442ed854c9d298bf6a00, type: 3}
+    clip: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1

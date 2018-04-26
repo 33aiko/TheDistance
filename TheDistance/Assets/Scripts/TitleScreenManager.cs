@@ -38,20 +38,20 @@ public class TitleScreenManager : MonoBehaviour {
 		mainCam.transform.DOMoveZ (0, 2);
 		Scene2.SetActive (true);
 
-//		foreach (Text t in instructions) {
-//			t.DOFade (1, 0.5f).SetDelay (2);
-//		}
-		instructions [0].DOFade (1, 0.5f).SetDelay (2);
+		foreach (Text t in instructions) {
+			t.DOFade (1, 0.5f).SetDelay (2);
+		}
+		instructions [1].text = "Wait for your friend to join the game...";
 
 	}
 
 
 	public void MatchGame(){
-		instructions [1].DOFade (1, 0.5f);
+		instructions [1].text = "Press Enter when you are ready to start!";
 	}
 
 	public void WaitForPartner(){
-		instructions[0].text = "Wait for your partner to start...";
+		instructions[0].text = "Wait for your friend to start...";
 		instructions [1].DOFade (0, 0.5f);
 	}
 

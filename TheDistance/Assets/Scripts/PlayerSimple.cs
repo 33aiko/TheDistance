@@ -68,6 +68,7 @@ public class PlayerSimple : MonoBehaviour{
     public void Change2ReadyState()
     {
         canMove = false;
+		animator.SetTrigger ("playerIsReady");
     }
 
     public void ControlledByOthers()

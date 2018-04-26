@@ -189,6 +189,11 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
+		
+		while(a.source.volume > 0){
+			a.source.volume -= Time.deltaTime / 1f;
+		
+		}
 		a.source.Stop ();
 	}
 

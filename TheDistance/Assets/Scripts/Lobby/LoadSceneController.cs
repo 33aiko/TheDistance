@@ -16,6 +16,7 @@ namespace Prototype.NetworkLobby
             "LX_scene1",
             "LX_scene2",
 			"Boat",
+			"LX_scene3Temp",
         };
         public static int nextSceneID = 0;
     }

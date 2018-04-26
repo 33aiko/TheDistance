@@ -396,13 +396,7 @@ public class Player : NetworkBehaviour
             }
 
             return;
-		} else {
-			m_timer += Time.time;
-			if (m_timer > 50) {
-//				emoji.GetComponent<Transform> ().position = new Vector3 (-9999f, -9999f, -9999f);
-			}
-		}
-
+		} 
 
         //input controlling move
         KeyControlMove();

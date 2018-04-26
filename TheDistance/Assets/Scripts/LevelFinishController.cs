@@ -14,7 +14,7 @@ public class LevelFinishController : MonoBehaviour {
 
     public void Start(){
         finishCount = 0;
-		instruct = GameObject.Find("Instruction").GetComponent<Text>();
+		//instruct = GameObject.Find("Instruction").GetComponent<Text>();
         root = GameObject.Find("Root");
     }
 
@@ -65,18 +65,22 @@ public class LevelFinishController : MonoBehaviour {
             {
 //                Button bu = FindObjectOfType<Button>();
 //                bu.GetComponentInChildren<Text>().text = "Try again!";
-				instruct.text = "Level completed!" ;
+			//	instruct.text = "Level completed!" ;
                 print("Finished this level!");
                 SceneManager.LoadScene("Loading");
                 // level finished
             }
             else
             {
-				instruct.text = "You need to collect all memory fragments.";
+			//	instruct.text = "You need to collect all memory fragments.";
                 print("You need to collect the key first!");
                 // the player have to collect the key first
             }
         }
+
+		if (collision.gameObject.tag == "Boat" && SceneManager.GetActiveScene().name=="Boat") {
+			SceneManager.LoadScene("Loading");
+		}
     }
 
     private void OnTriggerExit2D(Collider2D collision)

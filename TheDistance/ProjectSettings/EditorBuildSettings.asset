@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/NetworkLobby.unity
     guid: 3c0d76c55eed6214f9d3b070caede5d3
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/StartScreen.unity
     guid: a5e30b4332651452cab3a2c744c75b2d
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/LX_scene1.unity
     guid: fa93c561a503f49e2ba1532820557cf8
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Loading.unity
     guid: 83c7fa728f9993c479e119d2820a6e6a
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/LX_scene2.unity
     guid: d0d45510be46b4a848a0494649acb7a8
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Boat.unity
     guid: b39652786de8c634cb5659c8acae2f45
   - enabled: 0

@@ -21,6 +21,7 @@ public class KeyController : MonoBehaviour {
 	public GameObject diaryBtn; 
 	public Image[] divideLine; 
 	public Image diaryBG;
+	public string music2play; 
 
 
     public GameObject collectEffect;
@@ -47,6 +48,7 @@ public class KeyController : MonoBehaviour {
     bool currentIsKeyboard = true;
 
 	float blurFocalLength = 100, normalFocalLength = 50; 
+	AudioManager audioManager; 
 
     private void Start()
 	{
@@ -59,11 +61,8 @@ public class KeyController : MonoBehaviour {
         both = new int[2];
         both[0] = 0;
         both[1] = 0;
-	//	ima = GameObject.Find("HaveFragment" + keyIdx).GetComponent<Image>();
-	//	if (ima == null)
-			//print("Nothign found! something wrong");
-	//	ima.enabled = true;
-	//	ima.sprite = Resources.Load<Sprite>("Sprites/Items/UI_fragment_uncollected") ;
+
+		audioManager = GameObject.Find ("AudioManager").GetComponent<AudioManager> (); 
 
 		memoryBackground = GameObject.Find ("MemoryBackground").GetComponent<Image> ();
 		memoryHint = GameObject.Find ("MemoryHint").GetComponent<Text> ();
@@ -292,22 +291,15 @@ public class KeyController : MonoBehaviour {
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MemoryContent");
         if (keyIdx == 0)
         {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack01");
             if (diaryBtn != null)
             {
                 diaryBtn.SetActive(true);
             }
         }
-        else if (keyIdx == 1)
-        {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack01");
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack02");
-        }
-        else if (keyIdx == 2)
-        {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack02");
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack03");
-        }
+
+		audioManager.StopAllMusic ();
+		audioManager.PlayMusicTrack (music2play);
+
         Camera.main.GetComponent<DOVModify>().SetActive(true);
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
         memoryHint.DOFade(0, 0);

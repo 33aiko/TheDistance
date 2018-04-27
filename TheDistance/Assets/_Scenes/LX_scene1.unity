@@ -14060,6 +14060,16 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 8db665b0df8b44ec68815088dc3f8709,
         type: 3}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: fadeCharTime
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
   m_IsPrefabParent: 0
@@ -18122,6 +18132,16 @@ Prefab:
       propertyPath: diaryUIRect
       value: 
       objectReference: {fileID: 1263292517}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: fadeCharTime
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
   m_IsPrefabParent: 0
@@ -33592,11 +33612,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: atmo.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
   m_IsPrefabParent: 0
@@ -37746,6 +37761,16 @@ Prefab:
       propertyPath: diaryUIRect
       value: 
       objectReference: {fileID: 1263292517}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: fadeCharTime
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}
   m_IsPrefabParent: 0
@@ -38183,6 +38208,7 @@ MonoBehaviour:
   diaryBtn: {fileID: 0}
   divideLine: []
   diaryBG: {fileID: 0}
+  music2play: 
   collectEffect: {fileID: 0}
   diaryUIRect: {fileID: 0}
   isInCave: 0
@@ -42555,6 +42581,16 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 8db665b0df8b44ec68815088dc3f8709,
         type: 3}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: fadeCharTime
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
   m_IsPrefabParent: 0
@@ -51295,6 +51331,11 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 8db665b0df8b44ec68815088dc3f8709,
         type: 3}
+    - target: {fileID: 114473841047958930, guid: 0f027edd2680345dc8449c48c2ed240d,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 122413744852225500, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0f027edd2680345dc8449c48c2ed240d, type: 2}
@@ -61964,6 +62005,11 @@ Prefab:
         type: 2}
       propertyPath: fadeCharTime
       value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076519686297888, guid: cc06576ae139c4ffd94ac7bf6e9e2a73,
+        type: 2}
+      propertyPath: music2play
+      value: Level1Music1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc06576ae139c4ffd94ac7bf6e9e2a73, type: 2}

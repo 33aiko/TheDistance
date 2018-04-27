@@ -324,7 +324,7 @@ MonoBehaviour:
     source: {fileID: 0}
     objLoc: {fileID: 0}
   music:
-  - name: musicTrack01
+  - name: Level1Music1
     clip: {fileID: 8300000, guid: 1fd282fe87ae64cdf942991f2a7ce1e1, type: 3}
     volume: 1
     volumeVariance: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: musicTrack02
+  - name: Level1Music2
     clip: {fileID: 8300000, guid: 0d3ff7ffc50eb4ea9a22471fe5fdc3df, type: 3}
     volume: 1
     volumeVariance: 0
@@ -342,8 +342,35 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: musicTrack03
+  - name: Level1Music3
     clip: {fileID: 8300000, guid: e62be5892f30144ca836a582b39739f6, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Level2Music1
+    clip: {fileID: 8300000, guid: 193e3b62cd34040769c48bba235848a7, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Level2Music2
+    clip: {fileID: 8300000, guid: 29001ac5a847845d38480f7cfaaa8fc9, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Level2Music3
+    clip: {fileID: 8300000, guid: 744331068ad6741b298493fdf92d7880, type: 3}
     volume: 0.8
     volumeVariance: 0
     pitch: 1

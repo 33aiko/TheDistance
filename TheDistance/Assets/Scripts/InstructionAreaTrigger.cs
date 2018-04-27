@@ -139,7 +139,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
 
     private void Update()
     {
-        if(uiActive && Input.GetKeyDown(KeyCode.Return))
+		if(uiActive && Input.GetButtonDown("Submit"))
         {
             ShowNextText();
         }

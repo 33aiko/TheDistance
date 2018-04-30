@@ -117,6 +117,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
                 Player p = collision.GetComponent<Player>();
                 p.cur_instruction = null;
                 HideUI();
+				this.transform.parent.gameObject.GetComponentInChildren<Animator> ().SetBool ("NPCtalk", false);
             }
         }
     }
@@ -127,6 +128,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         if(curIdx >= npcTalks.Count)
         {
             HideUI();
+			this.transform.parent.gameObject.GetComponentInChildren<Animator> ().SetBool ("NPCtalk", false);
             print("idx is " + curIdx);
             if (!autoShow)
                 GetComponentInParent<NPCTrigger>().inputUI.gameObject.SetActive(true);

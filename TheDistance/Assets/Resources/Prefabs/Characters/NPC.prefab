@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23927484407285238}
   - component: {fileID: 58964392255411332}
   - component: {fileID: 114857697808841420}
+  - component: {fileID: 95278994844214028}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -67,6 +69,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -97,6 +100,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.27578026}
   serializedVersion: 2
   m_Radius: 2.706251
+--- !u!95 &95278994844214028
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462834944966712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114857697808841420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,4 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ececcd1345f54980911ee838beaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blackmask: {fileID: 0}
+  NPCcontent: {fileID: 0}
   NPCtalk: hello boooooo
+  inputUI: {fileID: 0}

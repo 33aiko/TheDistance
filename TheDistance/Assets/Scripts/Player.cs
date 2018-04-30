@@ -652,6 +652,7 @@ public class Player : NetworkBehaviour
 				GameObject.Find ("AudioManager").GetComponent<AudioManager> ().Play ("NPCcontent");
 				print("NPC says: " + curNPC.NPCtalk);
 				curNPC.showTalkText();
+				curNPC.gameObject.GetComponentInChildren<Animator> ().SetBool ("NPCtalk", true);
 			}
             else if(curFragment != null)
             {
@@ -659,14 +660,7 @@ public class Player : NetworkBehaviour
             }
 		}
 
-		// press Enter to close NPC contents 
-		if (Input.GetButtonDown("Submit")) {
-			if(curNPC != null)
-			{
-                print("trying to hide npc talk");
-				curNPC.hideTalkText ();
-			}
-		}
+
 
 
 

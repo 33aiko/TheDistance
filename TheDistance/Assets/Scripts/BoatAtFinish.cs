@@ -48,7 +48,7 @@ public class BoatAtFinish : MonoBehaviour {
             p.animator.SetBool("playerWalking", false);
             p.animator.SetBool("playerStand", true);
             p.audioManager.Stop("PlayerWalking");
-            p.transform.DOMoveX(p.transform.position.x + 500, moveTime).OnComplete( 
+			p.transform.DOMoveX(p.transform.position.x + 500, moveTime).SetDelay(2f).OnComplete( 
                 ()=> { p.canMove = false; 
 						SceneManager.LoadScene("Loading");}).SetEase(Ease.Linear);
             

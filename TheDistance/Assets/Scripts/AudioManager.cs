@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
 			Debug.Log ("playatmo");
 		}
 		if (SceneManager.GetActiveScene ().name == "LX_scene2") {
+			PlayAtmo ("atmosphere02");
 			PlayMusicTrack ("Level2Music1");
 		}
 	}
@@ -255,6 +256,14 @@ public class AudioManager : MonoBehaviour
 		foreach (var m in music) {
 			if (m.source.isPlaying) {
 				m.source.Stop ();
+			}
+		}
+	}
+
+	public void StopAllAtmo(){
+		foreach (var a in atmo) {
+			if (a.source.isPlaying) {
+				a.source.Stop ();
 			}
 		}
 	}

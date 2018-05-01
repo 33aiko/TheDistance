@@ -302,12 +302,30 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: HitGround
+    clip: {fileID: 8300000, guid: 064e58e06f0674ad98a2daa9359cea8c, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: atmosphere02
+    clip: {fileID: 8300000, guid: 817da6c5c59634f9bbc29e94a3ec1ce8, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 0.8
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}
@@ -353,7 +371,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Level2Music1
     clip: {fileID: 8300000, guid: 193e3b62cd34040769c48bba235848a7, type: 3}
-    volume: 0.8
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

@@ -41,7 +41,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         ui_borderUp.DOFade(0, 0);
         ui_borderDown.DOFade(0, 0);
         ui_background.DOFade(0, 0);
-        ui_background.transform.DOScaleY(0.1f, 0);
+        ui_background.transform.DOScaleY(0f, 0);
         ui_text.canvasRenderer.SetAlpha(0);
         if (npcTalks.Count == 0)
             npcTalks.Add(ui_text.text);
@@ -68,6 +68,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
     {
         if (isUsed || uiActive) return;
         ui_text.text = npcTalks[curIdx];
+		ui_text.text = ui_text.text.Replace(";","\n");
         uiActive = true;
         ui_borderUp.DOFade(1, fade_time);
         ui_borderDown.DOFade(1, fade_time);
@@ -90,7 +91,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         if (isUsed) return;
         uiActive = false;
         ui_background.DOFade(0, fade_time);
-        ui_background.transform.DOScaleY(0.1f, fade_time);
+        ui_background.transform.DOScaleY(0f, fade_time);
         float vic = ui_text.canvasRenderer.GetAlpha();
         DOTween.To(() => vic, x => { ui_text.canvasRenderer.SetAlpha(vic); vic = x; }, 0, fade_time);
         if(enter_text != null)
@@ -104,6 +105,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         ui_borderDown.DOFade(0, fade_time).OnComplete( ()=> {
             curIdx = 0;
             ui_text.text = npcTalks[curIdx];
+		
         });
     }
 
@@ -136,6 +138,7 @@ public class InstructionAreaTrigger : MonoBehaviour {
         else
         {
             ui_text.text = npcTalks[curIdx];
+			ui_text.text = ui_text.text.Replace(";","\n");
         }
     }
 

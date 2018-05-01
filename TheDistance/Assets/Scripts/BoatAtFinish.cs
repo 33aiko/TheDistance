@@ -32,7 +32,7 @@ public class BoatAtFinish : MonoBehaviour {
         if(curPlayerOnBoat && remotePlayerOnBoat)
         {
             print("both player on boat!");
-            transform.DOMoveX(transform.position.x + 500, moveTime).SetEase(Ease.Linear);
+			transform.DOMoveX(transform.position.x + 500, moveTime).SetEase(Ease.Linear).SetDelay(2f);
             /*
             float vic = 0;
             float startY = transform.position.y;

@@ -320,15 +320,6 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: BouncyMushroom
-    clip: {fileID: 8300000, guid: 5c326a10b3b5c48488050232a684cbbc, type: 3}
-    volume: 0.6
-    volumeVariance: 0
-    pitch: 1.2
-    pitchVariance: 0
-    loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
@@ -340,10 +331,10 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: atmosphere02
-    clip: {fileID: 0}
-    volume: 0.2
+    clip: {fileID: 8300000, guid: 1e9c431924b8b41409abbbbeb641ef8d, type: 3}
+    volume: 0.3
     volumeVariance: 0
-    pitch: 0.8
+    pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}

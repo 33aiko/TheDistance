@@ -182,7 +182,7 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		if (!a.source.isPlaying) {
-			//a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
+			a.source.volume = a.volume * (1f + UnityEngine.Random.Range (-a.volumeVariance / 2f, a.volumeVariance / 2f));;
 			a.source.pitch = a.pitch * (1f + UnityEngine.Random.Range (-a.pitchVariance / 2f, a.pitchVariance / 2f));
 			a.source.Play ();
 		}

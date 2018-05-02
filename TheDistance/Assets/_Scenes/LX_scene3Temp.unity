@@ -1967,11 +1967,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114425086096915652, guid: 3a818a0d8e6e44a6dacf314f11224ecf,
-        type: 2}
-      propertyPath: atmo.Array.data[2].volume
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a818a0d8e6e44a6dacf314f11224ecf, type: 2}
   m_IsPrefabParent: 0

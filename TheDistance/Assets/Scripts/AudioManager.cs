@@ -40,6 +40,10 @@ public class AudioManager : MonoBehaviour
 			PlayAtmo ("atmosphere02");
 			PlayMusicTrack ("Level2Music1");
 		}
+		if (SceneManager.GetActiveScene ().name == "LX_scene3Temp") {
+			PlayAtmo ("atmosphere03");
+			//PlayMusicTrack ("Level2Music1");
+		}
 	}
 
 

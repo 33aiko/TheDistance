@@ -8,10 +8,14 @@ public class BouncingMushroomController : MonoBehaviour {
     public float jumpFactor = 1.2f;
     public float scaleFactor = 0.4f;
 
+
     BoxCollider2D bc;
+	AudioManager audioManager; 
+
 
 	void Start () {
         bc = GetComponent<BoxCollider2D>();
+		audioManager = GameObject.Find ("AudioManager").GetComponent<AudioManager>();
 	}
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -31,6 +35,7 @@ public class BouncingMushroomController : MonoBehaviour {
 
                 // bouncing effect
                 StartBouncingEffect();
+				audioManager.StopAndPlay ("BouncyMushroom");
             }
         }
     }

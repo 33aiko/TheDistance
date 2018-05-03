@@ -14,7 +14,7 @@ PlayerSettings:
   companyName: DefaultCompany
   productName: The Distance
   defaultCursor: {fileID: 2800000, guid: 2ed88946a37544857ba145b88ac8187c, type: 3}
-  cursorHotspot: {x: 0, y: 0}
+  cursorHotspot: {x: 8, y: 8}
   m_SplashScreenBackgroundColor: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1

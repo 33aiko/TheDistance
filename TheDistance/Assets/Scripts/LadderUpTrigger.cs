@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class LadderUpTrigger : MonoBehaviour {
 
     int cnt = 0;
-    Text instruct;
+
 
     private void Start()
     {
-        instruct = GameObject.Find("Instruction").GetComponent<Text>();
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +21,6 @@ public class LadderUpTrigger : MonoBehaviour {
             if (cnt < 2) return;
             Player p = collision.gameObject.GetComponent<Player>();
             if(!p.controller.collisions.onLadder)
-                instruct.text = "Press down to climb the ladder";
             p.controller.collisions.canClimbLadder = true;
         }
     }
@@ -31,7 +30,6 @@ public class LadderUpTrigger : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             cnt--;
-            instruct.text = "";
             Player p = collision.gameObject.GetComponent<Player>();
             p.controller.collisions.canClimbLadder = false;
         }

@@ -14,7 +14,6 @@ public class LevelFinishController : MonoBehaviour {
 
     public void Start(){
         finishCount = 0;
-		//instruct = GameObject.Find("Instruction").GetComponent<Text>();
         root = GameObject.Find("Root");
     }
 

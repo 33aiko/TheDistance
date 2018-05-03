@@ -37,6 +37,7 @@ public class KeyController : MonoBehaviour {
 	bool memoryShowed = false;
 
     Text t;
+	string levelTitle; 
 	Image inputUI;
 
     bool collected = false;
@@ -67,6 +68,7 @@ public class KeyController : MonoBehaviour {
 		memoryBackground = GameObject.Find ("MemoryBackground").GetComponent<Image> ();
 		memoryHint = GameObject.Find ("MemoryHint").GetComponent<Text> ();
 		memoryTitle = GameObject.Find ("MemoryTitle").GetComponent<Text> ();
+		levelTitle = memoryTitle.text;
 		memoryTitle.DOFade (0, 0);
 		if (divideLine.Length == 2) {
 			divideLine [0].DOFade (0, 0);
@@ -304,7 +306,7 @@ public class KeyController : MonoBehaviour {
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
         memoryHint.DOFade(0, 0);
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
-        memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
+		memoryTitle.text = levelTitle + " " + (keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
         diaryUIRect.gameObject.SetActive(false);
         if (divideLine.Length == 2)
@@ -349,7 +351,7 @@ public class KeyController : MonoBehaviour {
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
         memoryHint.DOFade(0, 0);
         memoryBackground.DOFade(0.4f, 0.5f).SetDelay(0.5f);
-		memoryTitle.text = "Fragment " + (keyIdx + 1).ToString();
+		memoryTitle.text = levelTitle + " "+(keyIdx + 1).ToString();
         memoryTitle.DOFade(1, 0.5f).SetDelay(0.5f);
         diaryUIRect.gameObject.SetActive(false);
         if (divideLine.Length == 2)

@@ -12,7 +12,7 @@ public class NPCTrigger : MonoBehaviour {
 
 	public Image inputUI;
     Text t;
-    Text instruct;
+
 
     string UIPath = "Sprites/UI/controls/input hint UI";
     string ps4UIName = "inputUI_tri";
@@ -27,7 +27,6 @@ public class NPCTrigger : MonoBehaviour {
     private void Start()
     {
 		inputUI = GetComponentInChildren<Image> ();
-        instruct = GameObject.Find("Instruction").GetComponent<Text>();
         loadSprite(UIPath, keyboardUIName);
 		inputUI.gameObject.SetActive (false);
         t = GetComponentInChildren<Text>();
@@ -64,7 +63,7 @@ public class NPCTrigger : MonoBehaviour {
             cnt++;
             if(cnt == 2)
             {
-                instruct.text = "";
+               
 				//t.text = "Press E to view" ;
 				inputUI.gameObject.SetActive(true);
                 Player p = collision.transform.gameObject.GetComponent<Player>();
@@ -83,7 +82,7 @@ public class NPCTrigger : MonoBehaviour {
                 p.curNPC = null;
                // t.text = "";
 				inputUI.gameObject.SetActive(false);
-                instruct.text = "";
+                
 
             }
         }

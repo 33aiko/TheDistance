@@ -28,7 +28,7 @@ public class BoxController : MonoBehaviour {
         velocity.y = 0;
         haveGravity = true;
         inputUI = GetComponentInChildren<Image>();
-        if(inputUI != null)
+		if(inputUI != null&&this.CompareTag("BoxCannotShare"))
             inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
     }
 
@@ -45,25 +45,26 @@ public class BoxController : MonoBehaviour {
         GameObject pGO = GameObject.Find("Player");
         if(pGO != null)
         {
-            Player p = pGO.GetComponent<Player>();
-            bool isKeyboard = (p.currentInputDevice == Player.InputDeviceType.KEYBOARD);
-            if (isKeyboard != currentIsKeyboard)
-            {
-                if (isKeyboard)
-                {
-                    if (inputUI != null)
-                        inputUI.sprite = Resources.Load<Sprite>(keyboardUIName);
-                }
-                else
-                {
-                    Sprite[] sprites;
-                    sprites = Resources.LoadAll<Sprite>(UIPath);
-                    if (inputUI != null)
-                        inputUI.sprite = sprites.Where(tmp => tmp.name == ps4UIName).First();
-                }
+			if (this.CompareTag ("BoxCannotShare")) {
+				inputUI.gameObject.SetActive (true);
+				Player p = pGO.GetComponent<Player> ();
+				bool isKeyboard = (p.currentInputDevice == Player.InputDeviceType.KEYBOARD);
+				if (isKeyboard != currentIsKeyboard) {
+					if (isKeyboard) {
+						if (inputUI != null)
+							inputUI.sprite = Resources.Load<Sprite> (keyboardUIName);
+					} else {
+						Sprite[] sprites;
+						sprites = Resources.LoadAll<Sprite> (UIPath);
+						if (inputUI != null)
+							inputUI.sprite = sprites.Where (tmp => tmp.name == ps4UIName).First ();
+					}
 
-                currentIsKeyboard = isKeyboard;
-            }
+					currentIsKeyboard = isKeyboard;
+				}
+			} else {
+				inputUI.gameObject.SetActive (false);
+			}
         }
     }
 

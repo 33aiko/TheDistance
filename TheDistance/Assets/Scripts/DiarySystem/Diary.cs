@@ -33,6 +33,7 @@ public class Diary : MonoBehaviour {
 				total_s += item.Value [i] + '\n';
 			}
 			total_s += item.Value [item.Value.Count - 1];
+			total_s = total_s.Replace(";","\n");
 
 			//add story content
 			GameObject contentObj = Instantiate (StoryContentItem, storyContent);

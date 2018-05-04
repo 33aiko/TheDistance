@@ -1994,10 +1994,12 @@ public class Player : NetworkBehaviour
         //print("Rpc Move");
         if (!isServer)
         {
-            GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().position = pos;
-            GameObject.Find("boat").GetComponent<RowBoat>().GetComponent<Transform>().rotation = rot;
-            GameObject.Find("oar_Eric").gameObject.GetComponent<Transform>().rotation = erJiang;
-            GameObject.Find("oar_Natalie").gameObject.GetComponent<Transform>().rotation = naJiang;
+			if (SceneManager.GetActiveScene ().name == "Boat") {
+				GameObject.Find ("boat").GetComponent<RowBoat> ().GetComponent<Transform> ().position = pos;
+				GameObject.Find ("boat").GetComponent<RowBoat> ().GetComponent<Transform> ().rotation = rot;
+				GameObject.Find ("oar_Eric").gameObject.GetComponent<Transform> ().rotation = erJiang;
+				GameObject.Find ("oar_Natalie").gameObject.GetComponent<Transform> ().rotation = naJiang;
+			}
         }
     }
 

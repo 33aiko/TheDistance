@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening; 
 
+
 public class NPCTrigger : MonoBehaviour {
 
 	public Image blackmask; 
@@ -13,6 +14,7 @@ public class NPCTrigger : MonoBehaviour {
 	public Image inputUI;
     Text t;
 
+	GameObject p; 
 
     string UIPath = "Sprites/UI/controls/input hint UI";
     string ps4UIName = "inputUI_tri";
@@ -23,6 +25,7 @@ public class NPCTrigger : MonoBehaviour {
     bool currentIsKeyboard = true;
 
     InstructionAreaTrigger instruction;
+	float scaleX; 
 
     private void Start()
     {
@@ -32,6 +35,8 @@ public class NPCTrigger : MonoBehaviour {
         t = GetComponentInChildren<Text>();
         instruction = GetComponentInChildren<InstructionAreaTrigger>();
         t.text = "";
+		scaleX = transform.localScale.x;
+
     }
 
     private void loadSprite(string path, string UIname)
@@ -97,5 +102,22 @@ public class NPCTrigger : MonoBehaviour {
 		inputUI.gameObject.SetActive(false);
     }
 
+	void Update(){
+		if (p == null) {
+			p = GameObject.Find ("Player");
+		} else {
+
+			Vector3 direction = p.transform.position - transform.position;
+
+			if (direction.x > 0) {
+				transform.DOScaleX (-1f * scaleX,0); 
+			} else {
+				transform.DOScaleX (scaleX,0);
+			}
+
+
+		}
+
+	}
 
 }

@@ -12,8 +12,6 @@ public class BoxController : MonoBehaviour {
     float gravity;
     Vector3 velocity;
 
-    bool musicPlayed = false;
-
     public Controller2D controller;
     string UIPath = "Sprites/UI/controls/input hint UI";
     string ps4UIName = "inputUI_square";
@@ -71,6 +69,7 @@ public class BoxController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if (Time.timeSinceLevelLoad < 5.0f) return;
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         if(coll.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {

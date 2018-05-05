@@ -68,4 +68,25 @@ public class BoxController : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if(audioManager == null )
+        {
+            print("null !");
+        }
+        if(coll.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            if(!audioManager.GetSound("HitGround").source.isPlaying)
+                audioManager.Play("HitGround");
+            // play hit groud music
+        }
+        else if(coll.gameObject.tag == "Water")
+        {
+            if(!audioManager.GetSound("HitWater").source.isPlaying)
+                audioManager.Play("HitWater");
+            // play water music
+        }
+    }
+
 }

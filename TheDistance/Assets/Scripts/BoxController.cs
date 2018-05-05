@@ -62,7 +62,8 @@ public class BoxController : MonoBehaviour {
 					currentIsKeyboard = isKeyboard;
 				}
 			} else {
-				inputUI.gameObject.SetActive (false);
+                if (inputUI != null) // temp bug fix
+                    inputUI.gameObject.SetActive (false);
 			}
         }
     }

@@ -58,8 +58,11 @@ public class MovingPlatformController : RaycastController
                     if (oneWay)
                     {
                         gameObject.tag = "MovingPlatformSharable";
+						if(!isMoved)
+						GetComponentInChildren<SharingEffectsController> ().PlayDefaultEffect ();
                     }
 					isMoved = true; 
+
 				}
 				//if (diff.y < 0) {
 				//	gameObject.tag = "MovingPlatform";

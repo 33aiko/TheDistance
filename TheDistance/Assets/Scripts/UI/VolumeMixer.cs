@@ -14,12 +14,14 @@ public class VolumeMixer : MonoBehaviour {
     public Sprite SFXIcon;
     public Sprite SFXIcon_Mute;
     public Image m_button;
+	public float minValue = 25f; 
 
     bool sliderHidden = true;
     float showTime = 5.0f;
 
     private void Start()
     {
+		slider.GetComponent<Slider> ().minValue = -minValue;
         HideSlider();
     }
     public void ToggleSlider()
@@ -50,9 +52,10 @@ public class VolumeMixer : MonoBehaviour {
         mixerGroup.audioMixer.GetFloat("masterVolume", out prev);
         mixerGroup.audioMixer.SetFloat("masterVolume", f);
         nextHideTime = Time.time + showTime;
-		if(f == -16)
+		if(f == -minValue)
         {
             m_button.sprite = SFXIcon_Mute;
+			mixerGroup.audioMixer.SetFloat("masterVolume", -50);
         }
         else
         {
@@ -74,7 +77,7 @@ public class VolumeMixer : MonoBehaviour {
             }
 			if (Input.GetMouseButtonDown (0) ) {
 
-                if (x_percent <= 0.92f || y_percent <= 0.88f)
+                if (x_percent <= 0.9f || y_percent <= 0.8f)
                 {
                     HideSlider();
                 }
@@ -113,7 +116,7 @@ public class VolumeMixer : MonoBehaviour {
         if(isMute)
         {
             mixerGroup.audioMixer.GetFloat("masterVolume", out previousVolume);
-            mixerGroup.audioMixer.SetFloat("masterVolume", -16);
+			mixerGroup.audioMixer.SetFloat("masterVolume", -minValue);
         }
         else
         {

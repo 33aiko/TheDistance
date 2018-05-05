@@ -1134,7 +1134,7 @@ public class Player : NetworkBehaviour
         animator.SetBool("playerPushBox", controller.collisions.pushBox);
         bool hasInput = key_jump_pressed || input.x != 0 || shareCharging || key_Share_Pressed;
         animator.SetBool("hasInput", hasInput);
-        if (!hasInput && wavePressed)
+        if (!hasInput && wavePressed && playerStand)
         {
             animator.SetTrigger("playerWave");
         }

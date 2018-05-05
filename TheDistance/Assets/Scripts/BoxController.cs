@@ -12,6 +12,7 @@ public class BoxController : MonoBehaviour {
     float gravity;
     Vector3 velocity;
 
+    bool musicPlayed = false;
 
     public Controller2D controller;
     string UIPath = "Sprites/UI/controls/input hint UI";
@@ -70,21 +71,20 @@ public class BoxController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if (musicPlayed) return;
         AudioManager audioManager = FindObjectOfType<AudioManager>();
-        if(audioManager == null )
-        {
-            print("null !");
-        }
         if(coll.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             if(!audioManager.GetSound("HitGround").source.isPlaying)
                 audioManager.Play("HitGround");
+            musicPlayed = true;
             // play hit groud music
         }
         else if(coll.gameObject.tag == "Water")
         {
             if(!audioManager.GetSound("HitWater").source.isPlaying)
                 audioManager.Play("HitWater");
+            musicPlayed = true;
             // play water music
         }
     }

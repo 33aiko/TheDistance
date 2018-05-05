@@ -172,6 +172,9 @@ public class Player : NetworkBehaviour
 
     void StartInits()
 	{
+        isPressingE = false;
+        bothPressEFlag = false;
+
 
 		audioManager.StopAllMusic ();
 		audioManager.StopAllAtmo ();
@@ -693,13 +696,9 @@ public class Player : NetworkBehaviour
             }
 		}
 
-
-
-
-
-	/***********************************************************************
-     * Objects Sharing
-     ***********************************************************************/
+        /***********************************************************************
+         * Objects Sharing
+         ***********************************************************************/
         tCanShare = false;
 
         // press T(share) to start sharing
@@ -766,7 +765,115 @@ public class Player : NetworkBehaviour
         {
             curFragment.setImage(currentInputDevice == InputDeviceType.KEYBOARD);
         }
+
+        /***********************************************************************
+       * End of Scene 
+       ***********************************************************************/
+        if (SceneManager.GetActiveScene().name == "LX_scene1")
+        {
+            // press E to go to next scene
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                isPressingE = true;
+                Invoke("RemoveE", 2.0f);
+            }
+
+            if (isPressingE)
+            {
+                if (isLocalPlayer && !isServer)
+                {
+                    CmdSetPressEFlag();
+                    //Debug.Log("tell server that client is pressing E");
+                }
+            }
+        }
     }
+
+
+    void RemoveE()
+    {
+        print("RemoveE");
+        isPressingE = false;
+    }
+
+    public bool isPressingE = false;
+    public bool bothPressEFlag = false;
+
+    //sent by server, check on clients
+    [ClientRpc]
+    public void RpcSetPressEFlag()
+    {
+        if (!isServer)
+        {
+            Player p = GetComponent<Player>();
+            p.bothPressEFlag = true;
+            Debug.Log("client get instruction from server to go to next scene");
+            Scene1EndingControlsNatalie();
+            //SceneManager.LoadScene("Loading");
+        }
+    }
+
+    //sent by client, check on server
+    [Command]
+    public void CmdSetPressEFlag()
+    {
+        //Debug.Log("CmdSetPressEFlag() is called");
+        if (isServer)
+        {
+            //if (isLocalPlayer)
+            //    Debug.Log("islocalplayer");
+            //Debug.Log("server get client is pressing");
+            Player p = GetComponent<Player>();
+            //if (p.isPressingE)
+           if(Input.GetKeyDown(KeyCode.E))
+           {
+                Debug.Log("server is pressing e");
+                p.bothPressEFlag = true;
+
+                if (GameObject.Find("ShareWorld/LevelFinish").GetComponent<LevelFinishController>().willingToFinish)
+                {
+                    Debug.Log("go to next scene");
+                    Scene1EndingControlsEric();
+                    //SceneManager.LoadScene("Loading");
+                    RpcSetPressEFlag(); // tell client to finish it
+                }
+           }
+        }
+    }
+    void Scene1EndingControlsNatalie()
+    {
+        if (SceneManager.GetActiveScene().name == "LX_scene1")
+        {
+            GameObject.Find("Root/NatalieWorld/WorldB/LevelCompletionTrigger/InstructionArea (1)/Canvas").SetActive(false);
+            Transform left = root.transform.Find("NatalieWorld/WorldB/LevelCompletionTrigger/Level1_Natalie_endingleft");
+            Transform right = root.transform.Find("NatalieWorld/WorldB/LevelCompletionTrigger/Level1_Natalie_endingright");
+            //pattern.transform.DOMove(transform.position + Vector3.up * 100, 1.0f);
+            left.DOMoveX(left.position.x - 100, 1.0f);
+            right.DOMoveX(right.position.x + 110, 1.0f);
+
+            GameObject wallRight = GameObject.Find("ShareWorld/wall_right");
+            Vector3 newPos = new Vector3(5000, wallRight.transform.position.y, wallRight.transform.position.z);
+            wallRight.transform.position = newPos;
+        }
+    }
+    void Scene1EndingControlsEric()
+    {
+        if (SceneManager.GetActiveScene().name == "LX_scene1")
+        {
+            Debug.Log("why???");
+            GameObject.Find("Root/EricWorld/WorldA/LevelCompletionTrigger/InstructionArea (1)/Canvas").SetActive(false);
+           Transform left = root.transform.Find("EricWorld/WorldA/LevelCompletionTrigger/Level1_Eric_endingleft");
+           Transform right = root.transform.Find("EricWorld/WorldA/LevelCompletionTrigger/Level1_Eric_endingright");
+            //pattern.transform.DOMove(transform.position + Vector3.up * 100, 1.0f);
+            left.DOMoveX(left.position.x - 100, 1.0f);
+            right.DOMoveX(right.position.x + 110, 1.0f);
+
+            GameObject wallRight = GameObject.Find("ShareWorld/wall_right");
+            Vector3 newPos = new Vector3(5000, wallRight.transform.position.y, wallRight.transform.position.z);
+            wallRight.transform.position = newPos; // 下一关要改回来？？
+        }
+    }
+    
 
     /*
    _____  _                          ____   _      _              _   
@@ -1408,7 +1515,6 @@ public class Player : NetworkBehaviour
 
         }
     }
-
 
     /***********************************************************************
      * 2-player fragment status

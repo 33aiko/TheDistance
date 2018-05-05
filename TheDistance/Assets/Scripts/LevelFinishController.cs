@@ -11,11 +11,21 @@ public class LevelFinishController : MonoBehaviour {
     GameObject root;
 
     int finishCount;
-
+    public bool goToNextScene = false;
+    public bool willingToFinish = false;
     public void Start(){
         finishCount = 0;
         root = GameObject.Find("Root");
     }
+
+    //private void Update()
+    //{
+    //    if(goToNextScene)
+    //    {
+    //        SceneManager.LoadScene("Loading");
+    //        return;
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,12 +76,14 @@ public class LevelFinishController : MonoBehaviour {
 //                bu.GetComponentInChildren<Text>().text = "Try again!";
 			//	instruct.text = "Level completed!" ;
                 print("Finished this level!");
-                SceneManager.LoadScene("Loading");
+                
+                willingToFinish = true;
                 // level finished
             }
             else
             {
-			//	instruct.text = "You need to collect all memory fragments.";
+                willingToFinish = false;
+                //	instruct.text = "You need to collect all memory fragments.";
                 print("You need to collect the key first!");
                 // the player have to collect the key first
             }

@@ -1165,7 +1165,7 @@ public class Player : NetworkBehaviour
 
     public void backToCheckPoint()
     {
-        transform.position = curCheckPoint;
+        transform.position = curCheckPoint + Vector3.up * 10.0f;
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
         transitionMask.GetComponent<TransitionManager>().BlackTransition();
         transitionMask.GetComponent<TransitionManager>().transitionTime = 2;

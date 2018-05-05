@@ -71,20 +71,17 @@ public class BoxController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (musicPlayed) return;
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         if(coll.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             if(!audioManager.GetSound("HitGround").source.isPlaying)
                 audioManager.Play("HitGround");
-            musicPlayed = true;
             // play hit groud music
         }
         else if(coll.gameObject.tag == "Water")
         {
             if(!audioManager.GetSound("HitWater").source.isPlaying)
                 audioManager.Play("HitWater");
-            musicPlayed = true;
             // play water music
         }
     }

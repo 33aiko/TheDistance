@@ -119,6 +119,9 @@ public class Player : NetworkBehaviour
 
     RowBoat boat;
 
+    // waving 
+    bool wavePressed = false;
+
     float m_timer=0;
 //    GameObject emoji;
 
@@ -621,9 +624,11 @@ public class Player : NetworkBehaviour
         //else:
 
         //press R or R1 to send signal
-		if (Input.GetButton("Signal"))
+		if (Input.GetButtonDown("Signal"))
         {
             m_timer = 0;
+            print("player waving");
+            wavePressed = true;
             if(isServer && isLocalPlayer)
             {
                 RpcComm();
@@ -633,6 +638,10 @@ public class Player : NetworkBehaviour
                 CmdComm();
             }
 //            sendEmoji();
+        }
+        else
+        {
+            wavePressed = false;
         }
 
 		// press Q to interact with the object
@@ -1123,7 +1132,12 @@ public class Player : NetworkBehaviour
         animator.SetBool("playerStand", playerStand);
         animator.SetBool("playerClimb", controller.collisions.onLadder);
         animator.SetBool("playerPushBox", controller.collisions.pushBox);
-        animator.SetBool("hasInput", key_jump_pressed || input.x != 0 || shareCharging);
+        bool hasInput = key_jump_pressed || input.x != 0 || shareCharging || key_Share_Pressed;
+        animator.SetBool("hasInput", hasInput);
+        if (!hasInput && wavePressed)
+        {
+            animator.SetTrigger("playerWave");
+        }
 
         if (playerStand && !shareCharging)
         {

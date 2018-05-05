@@ -242,7 +242,7 @@ public class RowBoat : MonoBehaviour {
         // TODO: flower & checkpoint
 
         // UI black animation
-        GameObject.Find("UI/Canvas/deadBlack").GetComponent<DeathBlack>().FadeInAndOut(1f);
+        GameObject.Find("UI/Canvas/deadBlack").GetComponent<DeathBlack>().FadeInAndOut(2.5f);
 
         // boat back
         transform.position = initPos;

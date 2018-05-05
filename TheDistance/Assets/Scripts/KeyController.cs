@@ -330,22 +330,16 @@ public class KeyController : MonoBehaviour {
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MemoryContent");
         if (keyIdx == 0)
         {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack01");
+
             if (diaryBtn != null)
             {
                 diaryBtn.SetActive(true);
             }
         }
-        else if (keyIdx == 1)
-        {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack01");
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack02");
-        }
-        else if (keyIdx == 2)
-        {
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusicTrack("musicTrack02");
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusicTrack("musicTrack03");
-        }
+       
+
+		audioManager.StopAllMusic ();
+		audioManager.PlayMusicTrack (music2play);
 
         Camera.main.GetComponent<DOVModify>().SetActive(true);
         Camera.main.GetComponent<DOVModify>().SetFocalLength(100);

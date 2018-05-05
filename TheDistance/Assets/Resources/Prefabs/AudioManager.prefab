@@ -295,7 +295,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BoatHit
     clip: {fileID: 8300000, guid: 972f16d2fbddf4720a72233a36ce55bc, type: 3}
-    volume: 0.8
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: atmosphere02
     clip: {fileID: 8300000, guid: 1e9c431924b8b41409abbbbeb641ef8d, type: 3}
-    volume: 0.3
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

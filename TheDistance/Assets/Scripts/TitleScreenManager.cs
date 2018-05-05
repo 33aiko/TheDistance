@@ -51,8 +51,8 @@ public class TitleScreenManager : MonoBehaviour {
 	}
 
 	public void WaitForPartner(){
-		instructions[0].text = "Wait for your friend to start...";
-		instructions [1].DOFade (0, 0.5f);
+		instructions[1].text = "Wait for your friend to start...";
+		instructions [0].DOFade (0, 0.5f);
 	}
 
 

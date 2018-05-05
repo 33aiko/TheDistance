@@ -186,7 +186,7 @@ public class Player : NetworkBehaviour
         // boat = GameObject.Find("boat").GetComponent<RowBoat>();
 		if (SceneManager.GetActiveScene ().name == "Boat") {
 			boat = GameObject.Find ("boat").GetComponent<RowBoat> ();
-
+			Camera.main.GetComponent<EnterSceneInstruction> ().Initialize ();
 		} else {
        
 			Debug.Log (SceneManager.GetActiveScene ().name);
@@ -395,9 +395,9 @@ public class Player : NetworkBehaviour
 				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
 			}
 
-            if (Input.GetKeyDown("v"))
+			if (Input.GetButton("Share"))
             {
-                Debug.Log("V pressed");
+                Debug.Log("t pressed");
                 boatControl(boat);
             }
 
@@ -611,17 +611,17 @@ public class Player : NetworkBehaviour
         //press v to exciting
         if (SceneManager.GetActiveScene().name == "Boat")
         {
-            if (Input.GetKeyDown("v"))
+			if (Input.GetButton("Share"))
             {
-                Debug.Log("V pressed");
+                Debug.Log("T pressed");
                 boatControl(boat);
             }
         }
 
         //else:
 
-        //press R to send emoji
-		if (Input.GetKeyDown(KeyCode.R))
+        //press R or R1 to send signal
+		if (Input.GetButton("Signal"))
         {
             m_timer = 0;
             if(isServer && isLocalPlayer)
@@ -1927,7 +1927,7 @@ public class Player : NetworkBehaviour
 
     void Comm()
     {
-		audioManager.Play ("SpiritSignal");
+		audioManager.StopAndPlay ("SpiritSignal");
         GameObject spi = GameObject.Find("Spirit");
 #if false
         spi.GetComponent<Animator>().SetTrigger("spirit_signal");

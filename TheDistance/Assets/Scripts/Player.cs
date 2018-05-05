@@ -389,7 +389,12 @@ public class Player : NetworkBehaviour
                 //RpcBoat ();
                 //Quaternion ericQuaternion, natalieQuaternion;
 				RpcBoatMove (boat.GetComponent<Transform> ().position, boat.GetComponent<Transform> ().rotation, GameObject.Find("oar_Eric").gameObject.GetComponent<Transform>().rotation, GameObject.Find("oar_Natalie").gameObject.GetComponent<Transform>().rotation);
-			} else {
+
+                // check duriation with client
+                float sTLN = GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum;
+                RpcDurationSync(sTLN);
+
+            } else {
 
 				//CmdBoat();
 				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
@@ -431,6 +436,33 @@ public class Player : NetworkBehaviour
          */
 
     }
+
+
+    [ClientRpc]
+    public void RpcDurationSync(float sTLM)
+    {
+       
+        if (GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum != sTLM)
+        {
+            Debug.Log(GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum);
+            Debug.Log(sTLM);
+            Debug.Log("syncing");
+
+            Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
+
+            if (audioManager != null)
+            {
+                audioManager.Play("BoatHit");
+            }
+
+            GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum = sTLM;
+            //GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+        }
+    }
+
+
+
 
     public void TweenCameraZoomValue(float changeZValue)
     {

@@ -8,18 +8,12 @@ using UnityEngine.Networking;
 public class BoatDurability : NetworkBehaviour {
 
     
-  
-
-
-
     public float maxLifeNum = 4;
     //public float speed = 0.05f;
     public Image hp;
 
     [SyncVar(hook = "On_target_life_num")]
     public float targetLifeNum;
-
-
 
     private float curLifeNum;
     private float curLife;

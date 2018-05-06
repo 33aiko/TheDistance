@@ -178,9 +178,6 @@ public class Player : NetworkBehaviour
         isPressingE = false;
         bothPressEFlag = false;
 
-
-		audioManager.StopAllMusic ();
-		audioManager.StopAllAtmo ();
 		audioManager.PlayLevelMusic ();
 
         if (SceneManager.GetActiveScene().name == "Loading")
@@ -351,6 +348,10 @@ public class Player : NetworkBehaviour
 
         if (SceneManager.GetActiveScene().name == "Loading")
         {
+			audioManager.StopAllMusic ();
+			audioManager.StopAllAtmo ();
+			audioManager.StopAllSounds ();
+
             GameObject Loading_Natalie_GO = GameObject.Find("Loading_Natalie");
             GameObject Loading_Eric_GO = GameObject.Find("Loading_Eric");
 			GameObject SlideHandle = GameObject.Find ("Handle");

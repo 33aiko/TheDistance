@@ -15,11 +15,14 @@ public class Box : MonoBehaviour {
 
     public bool playerOnTop = false;
     public Player p;
+    AudioManager audioManager;
+    bool musicPlayed = false;
 
     private void Start()
     {
         water = FindObjectOfType<Water>();
         p = FindObjectOfType<Player>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public Vector3 leftButtom; public Vector3 leftUp;
@@ -62,6 +65,11 @@ public class Box : MonoBehaviour {
         vy += (Fb + Fg + Fp) * Time.fixedDeltaTime;
         vy *= 0.99f;
 
+        if(percent >= 0.1f)
+        {
+            PlayMusic();
+        }
+
         if (percent > 0.6f )
         {
             vy *= 0.95f;
@@ -92,6 +100,19 @@ public class Box : MonoBehaviour {
             transform.Translate(move);
 
 	}
+
+
+    void PlayMusic()
+    {
+        if (musicPlayed) return;
+        if (!audioManager.GetSound("HitWater").source.isPlaying)
+        {
+            musicPlayed = true;
+            audioManager.Play("HitWater");
+        }
+    }
+
+
 
     void movePlayer()
     {

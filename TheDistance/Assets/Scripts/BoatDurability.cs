@@ -92,4 +92,19 @@ public class BoatDurability : NetworkBehaviour {
         //变量被访问之后会执行此方法，newValue为变量被赋的值，类型要与SyncVar的变量类型一致。
     }
 
+	public void HideUI(){
+		Image[] durabilityUI = this.GetComponentsInChildren<Image> ();
+		foreach (Image i in durabilityUI) {
+			i.DOFade (0, 0);
+		}
+	}
+
+	public void ShowUI(){
+		Image[] durabilityUI = this.GetComponentsInChildren<Image> ();
+		foreach (Image i in durabilityUI) {
+			i.DOFade (1, 0);
+		}
+	}
+
+
 }

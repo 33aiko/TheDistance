@@ -19,20 +19,19 @@ public class EnterSceneInstruction : MonoBehaviour {
 
 	bool isActivated = false; 
 
-	GameObject durabilityUI, volumeUI;
+	GameObject durabilityUI;
+
+	void Start(){
+		upY = ui_borderUp.transform.localPosition.y;
+		downY = ui_borderDown.transform.localPosition.y;
+	}
 
 	public void Initialize(){
 		Camera.main.GetComponent<DOVModify>().SetActive(true);
 		Camera.main.GetComponent<DOVModify>().SetFocalLength(100);
 
-		durabilityUI = GameObject.Find ("durability");
-		volumeUI = GameObject.Find("VolumeControl");
-
-		durabilityUI.SetActive (false);
-		volumeUI.SetActive (false);
-
-		upY = ui_borderUp.transform.localPosition.y;
-		downY = ui_borderDown.transform.localPosition.y;
+		durabilityUI = GameObject.Find ("UI/Canvas/durability");
+		durabilityUI.GetComponent<BoatDurability> ().HideUI ();
 
 		ui_borderUp.transform.localPosition = Vector3.zero;
 		ui_borderDown.transform.localPosition = Vector3.zero;
@@ -70,8 +69,8 @@ public class EnterSceneInstruction : MonoBehaviour {
 
 			Camera.main.GetComponent<DOVModify>().SetActive(false);
 
-			durabilityUI.SetActive (true);
-			volumeUI.SetActive (true);
+			durabilityUI.GetComponent<BoatDurability> ().ShowUI ();
+
 		}
 	}
 }

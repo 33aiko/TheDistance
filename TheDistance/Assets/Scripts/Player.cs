@@ -406,9 +406,9 @@ public class Player : NetworkBehaviour
 				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
 			}
 
-			if (Input.GetButton("Share"))
+			if (Input.GetKeyDown(KeyCode.V))
             {
-                Debug.Log("t pressed");
+                Debug.Log("v pressed");
                 boatControl(boat);
             }
 
@@ -651,9 +651,9 @@ public class Player : NetworkBehaviour
         //press v to exciting
         if (SceneManager.GetActiveScene().name == "Boat")
         {
-			if (Input.GetButton("Share"))
+			if (Input.GetKeyDown(KeyCode.V))
             {
-                Debug.Log("T pressed");
+                Debug.Log("v pressed");
                 boatControl(boat);
             }
         }

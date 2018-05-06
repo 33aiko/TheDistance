@@ -447,8 +447,10 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcDurationSync(float sTLM)
     {
-       
-        if (GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum != sTLM)
+        GameObject d = GameObject.Find("UI/Canvas/durability");
+        if (!d)
+            return;
+        if (d.GetComponent<BoatDurability>().targetLifeNum != sTLM)
         {
             Debug.Log(GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum);
             Debug.Log(sTLM);

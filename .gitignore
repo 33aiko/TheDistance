@@ -38,3 +38,4 @@ sysinfo.txt
 *.assets
 *.resS
 TheDistance/Assets/Resources/Sounds/atmosphere 01.wav
+TheDistance/Assets/_Scenes/StartScreen.unity

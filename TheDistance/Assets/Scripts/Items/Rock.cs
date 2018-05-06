@@ -7,7 +7,7 @@ public class Rock : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         AudioManager audioManager = FindObjectOfType<AudioManager>();
-        if (coll.gameObject.tag == "Obstacle")
+        if(coll.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             if (!audioManager.GetSound("HitGround").source.isPlaying)
                 audioManager.Play("HitGround");

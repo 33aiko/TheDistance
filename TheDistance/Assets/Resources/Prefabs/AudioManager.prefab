@@ -405,6 +405,15 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: BoatMusic1
+    clip: {fileID: 8300000, guid: 3aa552a40777548a4b36380a4a7fe5be, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   - name: Level2Music3
     clip: {fileID: 8300000, guid: 744331068ad6741b298493fdf92d7880, type: 3}
     volume: 0.8

@@ -4186,7 +4186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e56eb0357a38cd478e0133b9f45efe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceX: 3
+  forceX: 2
   forceY: 2
   oarEric: {fileID: 0}
   oarNatalie: {fileID: 0}
@@ -6160,7 +6160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1463019, g: 0.30293968, b: 0.4852941, a: 1}
+  m_Color: {r: 0.1463019, g: 0.30293968, b: 0.4852941, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7193,7 +7193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8446,7 +8446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9403,6 +9403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90007eba39b78634aba56206c8adf7aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToNextScene: 0
+  willingToFinish: 0
 --- !u!61 &1468033791
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21721,7 +21723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -15,8 +15,10 @@ public class Rock : MonoBehaviour {
         }
         else if (coll.gameObject.tag == "Water")
         {
-            if (!audioManager.GetSound("HitWater").source.isPlaying)
-                audioManager.Play("HitWater");
+			if (!audioManager.GetSound ("HitWater").source.isPlaying) {
+				audioManager.Play ("HitWater");
+				Debug.Log (this.gameObject.name);
+			}
             // play water music
         }
     }

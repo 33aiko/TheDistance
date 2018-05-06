@@ -50,7 +50,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: NPC
+    path: NPCSprite/NPC
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -61,10 +61,16 @@ AnimationClip:
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
+      - serializedVersion: 2
+        time: 3.3333333
+        value: {x: 0.8, y: 0.8, z: 0.8}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: NPC
+    path: NPCSprite/NPC
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 24
@@ -75,14 +81,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3492492454
+      path: 2135915016
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3492492454
+      path: 2135915016
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -147,7 +153,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -187,7 +193,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -227,7 +233,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -235,6 +241,12 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 3.3333333
         value: 0.8
         inSlope: 0
         outSlope: 0
@@ -243,7 +255,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -251,6 +263,12 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 3.3333333
         value: 0.8
         inSlope: 0
         outSlope: 0
@@ -259,7 +277,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -271,11 +289,17 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 136
+      - serializedVersion: 2
+        time: 3.3333333
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: NPC
+    path: NPCSprite/NPC
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []

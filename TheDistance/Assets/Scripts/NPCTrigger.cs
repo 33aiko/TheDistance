@@ -25,6 +25,7 @@ public class NPCTrigger : MonoBehaviour {
     bool currentIsKeyboard = true;
 
     InstructionAreaTrigger instruction;
+	GameObject NPCSprite; 
 	float scaleX; 
 
     private void Start()
@@ -35,7 +36,8 @@ public class NPCTrigger : MonoBehaviour {
         t = GetComponentInChildren<Text>();
         instruction = GetComponentInChildren<InstructionAreaTrigger>();
         t.text = "";
-		scaleX = transform.localScale.x;
+		NPCSprite = transform.Find ("NPCSprite").gameObject;
+		scaleX = NPCSprite.transform.localScale.x;
 
     }
 
@@ -110,9 +112,10 @@ public class NPCTrigger : MonoBehaviour {
 			Vector3 direction = p.transform.position - transform.position;
 
 			if (direction.x > 0) {
-				transform.DOScaleX (-1f * scaleX,0); 
+				NPCSprite.transform.DOScaleX (-1f * scaleX, 0);
+
 			} else {
-				transform.DOScaleX (scaleX,0);
+				NPCSprite.transform.DOScaleX (scaleX,0);
 			}
 
 

@@ -10,6 +10,7 @@ public class Box : MonoBehaviour {
     float buoyancy = 0;
     public float vy = 0;
     public Vector3 move;
+	public bool isBoat; 
 
     Water water;
 
@@ -104,12 +105,14 @@ public class Box : MonoBehaviour {
 
     void PlayMusic()
     {
-        if (musicPlayed) return;
-        if (!audioManager.GetSound("HitWater").source.isPlaying)
-        {
-            musicPlayed = true;
-            audioManager.Play("HitWater");
-        }
+		if (!isBoat) {
+			if (musicPlayed)
+				return;
+			if (!audioManager.GetSound ("HitWater").source.isPlaying) {
+				musicPlayed = true;
+				audioManager.Play ("HitWater");
+			}
+		}
     }
 
 

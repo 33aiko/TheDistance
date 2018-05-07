@@ -448,25 +448,42 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcDurationSync(float sTLM)
     {
-        GameObject d = GameObject.Find("UI/Canvas/durability");
-        if (!d)
-            return;
-        if (d.GetComponent<BoatDurability>().targetLifeNum != sTLM)
+        if (!isServer)
         {
-            Debug.Log(GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum);
-            Debug.Log(sTLM);
-            Debug.Log("syncing");
-
-            Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
-
-            if (audioManager != null)
+            if (sTLM == 0) // eric has not called BoatDeath(), no need to sync
             {
-                audioManager.Play("BoatHit");
+                GameObject b = GameObject.Find("boat");
+                if (!b)
+                    return;
+                if (GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum 
+                    != GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().maxLifeNum)  
+                    // have not detected died yet, but eric died
+                {
+                    b.GetComponent<RowBoat>().BoatDeath();
+                }
+                return;
             }
 
-            GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum = sTLM;
-            //GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+            GameObject d = GameObject.Find("UI/Canvas/durability");
+            if (!d)
+                return;
+            if (d.GetComponent<BoatDurability>().targetLifeNum != sTLM)
+            {
+                Debug.Log(GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum);
+                Debug.Log(sTLM);
+                Debug.Log("syncing");
+
+                Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+                mainCamera.GetComponent<CamFollow>().CameraShake(0.1f);
+
+                if (audioManager != null)
+                {
+                    audioManager.Play("BoatHit");
+                }
+
+                GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().targetLifeNum = sTLM;
+                //GameObject.Find("UI/Canvas/durability").GetComponent<BoatDurability>().LifeDecreaseByOne();
+            }
         }
     }
 

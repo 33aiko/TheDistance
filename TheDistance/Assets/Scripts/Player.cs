@@ -191,6 +191,8 @@ public class Player : NetworkBehaviour
 			boat = GameObject.Find ("boat").GetComponent<RowBoat> ();
 			Camera.main.GetComponent<EnterSceneInstruction> ().Initialize ();
 		} else {
+
+			canMove = true; 
        
 			Debug.Log (SceneManager.GetActiveScene ().name);
 			if (SceneManager.GetActiveScene ().name == "LX_scene1") {

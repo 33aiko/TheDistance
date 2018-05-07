@@ -329,6 +329,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: BouncyMushroom
+    clip: {fileID: 8300000, guid: 5c326a10b3b5c48488050232a684cbbc, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
@@ -407,6 +416,15 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Level2Music2
     clip: {fileID: 8300000, guid: 29001ac5a847845d38480f7cfaaa8fc9, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BoatMusic1
+    clip: {fileID: 8300000, guid: 3aa552a40777548a4b36380a4a7fe5be, type: 3}
     volume: 0.8
     volumeVariance: 0
     pitch: 1

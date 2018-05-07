@@ -687,6 +687,16 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c630a99357afd453bafa2c51a4d41ebc, type: 2}
   m_IsPrefabParent: 0
@@ -5881,6 +5891,16 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423182884648356, guid: c630a99357afd453bafa2c51a4d41ebc,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c630a99357afd453bafa2c51a4d41ebc, type: 2}
   m_IsPrefabParent: 0
@@ -8206,6 +8226,8 @@ MonoBehaviour:
   canClimbLadder: 0
   currentInputDevice: 1
   canMove: 1
+  isPressingE: 0
+  bothPressEFlag: 0
 --- !u!114 &1810989901
 MonoBehaviour:
   m_ObjectHideFlags: 0

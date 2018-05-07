@@ -863,6 +863,8 @@ public class Player : NetworkBehaviour
             left.DOMoveX(left.position.x - 100, 1.0f);
             right.DOMoveX(right.position.x + 110, 1.0f);
 
+			audioManager.Play ("TreeOpen");
+
             GameObject wallRight = GameObject.Find("ShareWorld/wall_right");
             Vector3 newPos = new Vector3(5000, wallRight.transform.position.y, wallRight.transform.position.z);
             wallRight.transform.position = newPos;

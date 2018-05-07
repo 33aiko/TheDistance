@@ -77,6 +77,8 @@ public class LevelFinishController : MonoBehaviour {
                 
                 willingToFinish = true;
                 // level finished
+			
+					
             }
             else
             {
@@ -86,10 +88,14 @@ public class LevelFinishController : MonoBehaviour {
                 // the player have to collect the key first
             }
         }
+		Debug.Log (collision.gameObject.name);
 
 		if (collision.gameObject.tag == "Boat" && SceneManager.GetActiveScene().name=="Boat") {
 			SceneManager.LoadScene("Loading");
 		}
+
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

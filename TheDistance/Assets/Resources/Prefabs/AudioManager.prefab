@@ -304,7 +304,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: HitGround
     clip: {fileID: 8300000, guid: 064e58e06f0674ad98a2daa9359cea8c, type: 3}
-    volume: 0.8
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -313,6 +313,15 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: HitWater
     clip: {fileID: 8300000, guid: 7e83b1804af624a43aaed334fe159eeb, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: TreeOpen
+    clip: {fileID: 8300000, guid: 491c2a9f035284471ada4681699463c6, type: 3}
     volume: 0.8
     volumeVariance: 0
     pitch: 1

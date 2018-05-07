@@ -22,7 +22,9 @@ public class BoatAtFinish : MonoBehaviour {
     public void SetRemotePlayerOnBoat(bool onBoat)
     {
         remotePlayerOnBoat = onBoat;
-        TryPlayFinishAnimation();
+
+		TryPlayFinishAnimation ();
+
     }
 
     public float moveTime = 10.0f;
@@ -32,7 +34,7 @@ public class BoatAtFinish : MonoBehaviour {
         if(curPlayerOnBoat && remotePlayerOnBoat)
         {
             print("both player on boat!");
-			transform.DOMoveX(transform.position.x + 500, moveTime).SetEase(Ease.Linear).SetDelay(2f);
+			transform.DOMoveX(transform.position.x + 350, moveTime).SetEase(Ease.Linear).SetDelay(2f);
             /*
             float vic = 0;
             float startY = transform.position.y;
@@ -48,9 +50,9 @@ public class BoatAtFinish : MonoBehaviour {
             p.animator.SetBool("playerWalking", false);
             p.animator.SetBool("playerStand", true);
             p.audioManager.Stop("PlayerWalking");
-			p.transform.DOMoveX(p.transform.position.x + 500, moveTime).SetDelay(2f).OnComplete( 
+			p.transform.DOMoveX(p.transform.position.x + 350, moveTime).SetDelay(2f).OnComplete( 
                 ()=> { p.canMove = false; 
-						SceneManager.LoadScene("Loading");}).SetEase(Ease.Linear);
+						}).SetEase(Ease.Linear);
             
         }
     }

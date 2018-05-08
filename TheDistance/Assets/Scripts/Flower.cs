@@ -15,6 +15,7 @@ public class Flower : MonoBehaviour {
     public int Idx;
 
 	Animator flowerAnim; 
+	AudioManager audioManager; 
 
     // Use this for initialization
     void Start () {
@@ -22,7 +23,7 @@ public class Flower : MonoBehaviour {
 		txt = GameObject.Find("FlowerBox"+Idx.ToString()+"/Canvas/Text").GetComponent<Text>();
 		txt.DOFade (0, 0);
 		flowerAnim = GetComponentInChildren<Animator> ();
-
+		audioManager = GameObject.Find ("AudioManager").GetComponent<AudioManager> ();
     }
 	
 
@@ -32,13 +33,28 @@ public class Flower : MonoBehaviour {
         if (hasTriggered) return;
         if (collision.gameObject.tag == "Boat")
         {
+			
             mainCamera.GetComponent<CamFollow>().FocusObject(fb.gameObject);
+
+			audioManager.Play ("CollectFlower");
 
 			if (flowerAnim != null) {
 				flowerAnim.SetTrigger ("getFlower");
 			}
            txt.DOFade(1, 1);
-            hasTriggered = true;
+           hasTriggered = true;
+
+
+			switch (Idx) {
+			case 2: 
+				audioManager.StopAllMusic ();
+				audioManager.PlayMusicTrack ("BoatMusic2");
+				break;
+			case 4:
+				audioManager.StopAllMusic ();
+				audioManager.PlayMusicTrack ("BoatMusic3");
+				break;
+			}
         }
 
     }

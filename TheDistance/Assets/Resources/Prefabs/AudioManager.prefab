@@ -338,6 +338,24 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Creek
+    clip: {fileID: 8300000, guid: eb02889ada972473fb93a5e9538ccd11, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: CollectFlower
+    clip: {fileID: 8300000, guid: f66b0fd61898d46f88ed4850dfc88c0e, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1.2
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   atmo:
   - name: atmosphere01
     clip: {fileID: 8300000, guid: 1b2838f690cf24f0bb40a73a8bd72d41, type: 3}
@@ -359,7 +377,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: atmosphere03
     clip: {fileID: 8300000, guid: b4a4bc38b855c486da55a6daba9562c4, type: 3}
-    volume: 0.1
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Creek
+    clip: {fileID: 8300000, guid: eb02889ada972473fb93a5e9538ccd11, type: 3}
+    volume: 0.8
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -424,8 +451,8 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: BoatMusic1
-    clip: {fileID: 8300000, guid: 3aa552a40777548a4b36380a4a7fe5be, type: 3}
-    volume: 0.8
+    clip: {fileID: 8300000, guid: 4c5e0ff0940ae463eb157bb1c7aa2e46, type: 3}
+    volume: 0.3
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -435,6 +462,24 @@ MonoBehaviour:
   - name: Level2Music3
     clip: {fileID: 8300000, guid: 744331068ad6741b298493fdf92d7880, type: 3}
     volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BoatMusic2
+    clip: {fileID: 8300000, guid: 30fbf60723cde4a5a89b242299dc6830, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BoatMusic3
+    clip: {fileID: 8300000, guid: dc05658a587a946f4b009d19d501ef76, type: 3}
+    volume: 0.3
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

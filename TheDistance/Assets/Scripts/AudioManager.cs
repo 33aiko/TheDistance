@@ -42,11 +42,12 @@ public class AudioManager : MonoBehaviour
 			PlayMusicTrack ("Level2Music1");
 		}
 		if (SceneManager.GetActiveScene ().name == "Boat") {
+			PlayAtmo ("Creek");
 			PlayMusicTrack ("BoatMusic1");
 		}
 		if (SceneManager.GetActiveScene ().name == "LX_scene3Temp") {
 			PlayAtmo ("atmosphere03");
-			//PlayMusicTrack ("Level2Music1");
+		
 		}
 	}
 

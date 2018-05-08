@@ -9,7 +9,7 @@ public class ButtonController : MonoBehaviour {
     private void Start()
     {
         Button button = GetComponent<Button>();
-        button.onClick.AddListener(delegate { restartLevel(); });
+        button.onClick.AddListener(delegate { QuitGame(); });
     }
 
     void restartLevel()
@@ -17,4 +17,9 @@ public class ButtonController : MonoBehaviour {
         print("RUA, Button!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+	void QuitGame()
+	{
+		Application.Quit ();
+	}
 }

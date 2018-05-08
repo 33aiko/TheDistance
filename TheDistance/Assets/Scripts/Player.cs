@@ -806,7 +806,7 @@ public class Player : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 isPressingE = true;
-                Invoke("RemoveE", 2.0f);
+                Invoke("RemoveE", 1.0f);
             }
 
             if (isPressingE)
@@ -900,6 +900,8 @@ public class Player : NetworkBehaviour
             //pattern.transform.DOMove(transform.position + Vector3.up * 100, 1.0f);
             left.DOMoveX(left.position.x - 100, 1.0f);
             right.DOMoveX(right.position.x + 110, 1.0f);
+
+			audioManager.Play ("TreeOpen");
 
             GameObject wallRight = GameObject.Find("ShareWorld/wall_right");
             Vector3 newPos = new Vector3(5000, wallRight.transform.position.y, wallRight.transform.position.z);

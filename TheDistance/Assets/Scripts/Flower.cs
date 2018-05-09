@@ -46,7 +46,7 @@ public class Flower : MonoBehaviour {
 
 
 			switch (Idx) {
-			case 2: 
+			case 1: 
 				audioManager.StopAllMusic ();
 				audioManager.PlayMusicTrack ("BoatMusic2");
 				break;

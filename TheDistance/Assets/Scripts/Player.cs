@@ -409,7 +409,7 @@ public class Player : NetworkBehaviour
 				//CmdBoatMove(boat.GetComponent<Transform>().position, boat.GetComponent<Transform>().rotation);
 			}
 
-			if (Input.GetKeyDown(KeyCode.V))
+			if (Input.GetButtonDown("Row"))
             {
                 Debug.Log("v pressed");
                 boatControl(boat);
@@ -671,7 +671,7 @@ public class Player : NetworkBehaviour
         //press v to exciting
         if (SceneManager.GetActiveScene().name == "Boat")
         {
-			if (Input.GetKeyDown(KeyCode.V))
+			if (Input.GetButtonDown("Row"))
             {
                 Debug.Log("v pressed");
                 boatControl(boat);
@@ -803,7 +803,7 @@ public class Player : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "LX_scene1")
         {
             // press E to go to next scene
-            if (Input.GetKeyDown(KeyCode.E))
+			if (Input.GetButtonDown("Talk"))
             {
                 isPressingE = true;
                 Invoke("RemoveE", 1.0f);
@@ -856,7 +856,7 @@ public class Player : NetworkBehaviour
             //Debug.Log("server get client is pressing");
             Player p = GetComponent<Player>();
             //if (p.isPressingE)
-           if(Input.GetKeyDown(KeyCode.E))
+			if(Input.GetButtonDown("Talk"))
            {
                 Debug.Log("server is pressing e");
                 p.bothPressEFlag = true;

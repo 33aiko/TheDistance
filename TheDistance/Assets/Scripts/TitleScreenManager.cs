@@ -47,7 +47,11 @@ public class TitleScreenManager : MonoBehaviour {
 
 
 	public void MatchGame(){
-		instructions [1].text = "Press Enter when you are ready to start!";
+		if (GameObject.Find ("InputDeviceManager").GetComponent<InputDeviceManager> ().isController) {
+			instructions [1].text = "Press O when you are ready to start!";
+		} else {
+			instructions [1].text = "Press Enter when you are ready to start!";
+		}
 	}
 
 	public void WaitForPartner(){

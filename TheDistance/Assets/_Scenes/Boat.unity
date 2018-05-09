@@ -5959,6 +5959,7 @@ GameObject:
   - component: {fileID: 769158031}
   - component: {fileID: 769158033}
   - component: {fileID: 769158032}
+  - component: {fileID: 769158034}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6028,6 +6029,21 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769158030}
+--- !u!114 &769158034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769158030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d574a95f43c404793f5859105ea33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionForKeyboard: 'Press V to row the boat. ;Go for flowers and be careful
+    not to hit stones. '
+  instructionForController: 'Press L2 to row the boat. ;Go for flowers and be careful
+    not to hit stones. '
 --- !u!1 &773284536
 GameObject:
   m_ObjectHideFlags: 0
@@ -7719,7 +7735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4990302863780384, guid: 63c689ed128085f448fb20aab2343ced, type: 2}
       propertyPath: m_RootOrder
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 4990302863780384, guid: 63c689ed128085f448fb20aab2343ced, type: 2}
       propertyPath: m_LocalScale.x
@@ -13060,6 +13076,53 @@ Transform:
   m_PrefabParentObject: {fileID: 4325742915900452, guid: 8ad666acb5ae24ae19da5f7b5c93ffb5,
     type: 2}
   m_PrefabInternal: {fileID: 1584810699}
+--- !u!1001 &1591599209
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 275.8275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 71.22625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067492300878192, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+      propertyPath: m_RootOrder
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840391399767898, guid: e17005a9a860f456d910599f1889fb17,
+        type: 2}
+      propertyPath: isController
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e17005a9a860f456d910599f1889fb17, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1615396315
 GameObject:
   m_ObjectHideFlags: 0

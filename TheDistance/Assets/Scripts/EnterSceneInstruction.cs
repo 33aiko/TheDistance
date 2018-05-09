@@ -58,7 +58,7 @@ public class EnterSceneInstruction : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.V) && isActivated) {
+		if (Input.GetButtonDown("Row") && isActivated) {
 			ui_background.DOFade(0, fade_time);
 			ui_background.transform.DOScaleY(0f, fade_time);
 			ui_text.DOFade (0, fade_time);
